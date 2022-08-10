@@ -67,14 +67,12 @@ TEST_F(
             , 2
             , 3
         }
-        , true
+        , false
         , 3
         , true
     );
 }
 
-//TODO
-/*
 TEST_F(
     JoystickState_forPressedButtonsTest
     , Breaked
@@ -90,9 +88,8 @@ TEST_F(
             , 2
             , 3
         }
-        , false
+        , true
         , 1
         , false
     );
 }
-*/
