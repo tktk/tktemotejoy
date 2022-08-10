@@ -10,7 +10,7 @@ class JoystickState
 public:
     using States = std::vector< __s16 >;
 
-    using MapProc = std::function<
+    using ForProc = std::function<
         bool (
             const States::size_type
             , const States::value_type
@@ -38,11 +38,11 @@ public:
     );
 
     void forPressedButtons(
-        const MapProc &
+        const ForProc &
     );
 
     void forAxes(
-        const MapProc &
+        const ForProc &
     );
 };
 

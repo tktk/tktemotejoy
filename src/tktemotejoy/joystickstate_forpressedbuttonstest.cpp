@@ -3,52 +3,96 @@
 #include <vector>
 #include <set>
 
-TEST(
-    JoystickState_forPressedButtonsTest
-    , MapAllPressedButtons
-)
-{
+namespace {
     using Indices = std::set< JoystickState::States::size_type >;
 
-    const auto  PRESS_BUTTON_INDICES = Indices{
-        2
-        , 3
-        , 4
-    };
-
-    auto    joystickState = JoystickState(
-        5
-        , 5
-    );
-
-    for( const auto & I : PRESS_BUTTON_INDICES ) {
-        joystickState.setButtonState(
-            I
-            , 1
-        );
-    }
-
-    auto    callCount = 0;
-    auto    calledIndices = Indices();
-    joystickState.forPressedButtons (
-        [
-            &callCount
-            , &calledIndices
-        ]
-        (
-            const JoystickState::States::size_type      _INDEX
-            , const JoystickState::States::value_type
-        ) -> bool
+    class JoystickState_forPressedButtonsTest : public ::testing::Test
+    {
+    public:
+        void test(
+            JoystickState                               _joystickState
+            , const Indices                             _PRESS_BUTTON_INDICES
+            , const bool                                _RETURNS_FOR_PROC
+            , const JoystickState::States::size_type    _EXPECTED_CALL_COUNT
+            , const bool                                _TEST_CALLED_INDICES
+        )
         {
-            callCount++;
-            calledIndices.insert( _INDEX );
+            for( const auto & INDEX : _PRESS_BUTTON_INDICES ) {
+                _joystickState.setButtonState(
+                    INDEX
+                    , 1
+                );
+            }
 
-            return false;
+            auto    callCount = 0;
+            auto    calledIndices = Indices();
+            _joystickState.forPressedButtons(
+                [
+                    &_RETURNS_FOR_PROC
+                    , &callCount
+                    , &calledIndices
+                ]
+                (
+                    const JoystickState::States::size_type      _INDEX
+                    , const JoystickState::States::value_type
+                ) -> bool
+                {
+                    callCount++;
+                    calledIndices.insert( _INDEX );
+
+                    return _RETURNS_FOR_PROC;
+                }
+            );
+
+            EXPECT_EQ( _EXPECTED_CALL_COUNT, callCount );
+            if( _TEST_CALLED_INDICES == true ) {
+                EXPECT_EQ( _PRESS_BUTTON_INDICES, calledIndices );
+            }
         }
-    );
-
-    EXPECT_EQ( PRESS_BUTTON_INDICES.size(), callCount );
-    EXPECT_EQ( PRESS_BUTTON_INDICES, calledIndices );
+    };
 }
 
-//TODO Breaked
+TEST_F(
+    JoystickState_forPressedButtonsTest
+    , ForAllPressedButtons
+)
+{
+    this->test(
+        JoystickState(
+            5
+            , 5
+        )
+        , Indices{
+            1
+            , 2
+            , 3
+        }
+        , true
+        , 3
+        , true
+    );
+}
+
+//TODO
+/*
+TEST_F(
+    JoystickState_forPressedButtonsTest
+    , Breaked
+)
+{
+    this->test(
+        JoystickState(
+            5
+            , 5
+        )
+        , Indices{
+            1
+            , 2
+            , 3
+        }
+        , false
+        , 1
+        , false
+    );
+}
+*/
