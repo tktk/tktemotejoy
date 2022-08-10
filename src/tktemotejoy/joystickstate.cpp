@@ -33,10 +33,12 @@ void JoystickState::forPressedButtons(
     auto    index = JoystickState::States::size_type( 0 );
     for( const auto & STATE : this->buttonStates ) {
         if( STATE != 0 ) {
-            _FOR_PROC(
+            if( _FOR_PROC(
                 index
                 , STATE
-            );
+            ) == true ) {
+                break;
+            }
         }
 
         index++;
