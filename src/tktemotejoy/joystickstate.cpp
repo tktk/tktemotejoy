@@ -51,6 +51,24 @@ bool JoystickState::forAxes(
     const JoystickState::ForProc &  _FOR_PROC
 )
 {
-    //TODO
+    auto    index = JoystickState::States::size_type( 0 );
+    for( const auto & STATE : this->axisStates ) {
+        //TODO
+        _FOR_PROC(
+            index
+            , STATE
+        );
+/*
+        if( _FOR_PROC(
+            index
+            , STATE
+        ) == true ) {
+            return true;
+        }
+*/
+
+        index++;
+    }
+
     return false;
 }
