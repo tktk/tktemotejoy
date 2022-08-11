@@ -37,7 +37,7 @@ bool JoystickState::forPressedButtons(
                 index
                 , STATE
             ) == true ) {
-                break;
+                return true;
             }
         }
 
