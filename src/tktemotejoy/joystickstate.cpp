@@ -44,7 +44,7 @@ bool JoystickState::forPressedButtons(
         index++;
     }
 
-    return true;
+    return false;
 }
 
 bool JoystickState::forAxes(
