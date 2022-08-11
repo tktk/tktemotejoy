@@ -88,8 +88,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     JoystickState_forAxesTest
     , Breaked
@@ -100,15 +98,11 @@ TEST_F(
             5
             , 5
         )
-        , Indices{
-            1
-            , 2
-            , 3
-        }
+        , IndexAndValueMap{}
         , true
         , true
         , 1
+        , IndexAndValueMap{}
         , false
     );
 }
-*/
