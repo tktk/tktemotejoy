@@ -13,6 +13,7 @@ namespace {
             JoystickState                               _joystickState
             , const Indices                             _PRESS_BUTTON_INDICES
             , const bool                                _RETURNS_FOR_PROC
+            , const bool                                _EXPECTED
             , const JoystickState::States::size_type    _EXPECTED_CALL_COUNT
             , const bool                                _TEST_CALLED_INDICES
         )
@@ -26,22 +27,25 @@ namespace {
 
             auto    callCount = 0;
             auto    calledIndices = Indices();
-            _joystickState.forPressedButtons(
-                [
-                    &_RETURNS_FOR_PROC
-                    , &callCount
-                    , &calledIndices
-                ]
-                (
-                    const JoystickState::States::size_type      _INDEX
-                    , const JoystickState::States::value_type
-                ) -> bool
-                {
-                    callCount++;
-                    calledIndices.insert( _INDEX );
+            EXPECT_EQ(
+                _EXPECTED
+                , _joystickState.forPressedButtons(
+                    [
+                        &_RETURNS_FOR_PROC
+                        , &callCount
+                        , &calledIndices
+                    ]
+                    (
+                        const JoystickState::States::size_type      _INDEX
+                        , const JoystickState::States::value_type
+                    ) -> bool
+                    {
+                        callCount++;
+                        calledIndices.insert( _INDEX );
 
-                    return _RETURNS_FOR_PROC;
-                }
+                        return _RETURNS_FOR_PROC;
+                    }
+                )
             );
 
             EXPECT_EQ( _EXPECTED_CALL_COUNT, callCount );
@@ -68,11 +72,13 @@ TEST_F(
             , 3
         }
         , false
+        , false
         , 3
         , true
     );
 }
 
+/*
 TEST_F(
     JoystickState_forPressedButtonsTest
     , Breaked
@@ -93,3 +99,4 @@ TEST_F(
         , false
     );
 }
+*/

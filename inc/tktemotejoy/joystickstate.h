@@ -37,11 +37,11 @@ public:
         , const States::value_type
     );
 
-    void forPressedButtons(
+    bool forPressedButtons(
         const ForProc &
     );
 
-    void forAxes(
+    bool forAxes(
         const ForProc &
     );
 };

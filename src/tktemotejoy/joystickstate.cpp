@@ -26,7 +26,7 @@ void JoystickState::setAxisState(
     this->axisStates.at( _INDEX ) = _VALUE;
 }
 
-void JoystickState::forPressedButtons(
+bool JoystickState::forPressedButtons(
     const JoystickState::ForProc &  _FOR_PROC
 )
 {
@@ -43,11 +43,14 @@ void JoystickState::forPressedButtons(
 
         index++;
     }
+
+    return true;
 }
 
-void JoystickState::forAxes(
+bool JoystickState::forAxes(
     const JoystickState::ForProc &  _FOR_PROC
 )
 {
     //TODO
+    return false;
 }
