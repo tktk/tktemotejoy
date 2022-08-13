@@ -1,5 +1,4 @@
 #include "tktemotejoy/joystickstate.h"
-#include <cstdio>
 
 JoystickState::JoystickState(
     const JoystickState::States::size_type      _BUTTONS
