@@ -69,6 +69,9 @@ void Mapping::pressButton(
 ) const
 {
     const auto  IT = this->pressButtonHandlersForPspState.find( _KEY );
+    if( IT == this->pressButtonHandlersForPspState.end() ) {
+        return;
+    }
 
     ( *( IT->second ) )(
         1
