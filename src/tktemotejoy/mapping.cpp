@@ -4,8 +4,8 @@
 
 namespace {
     void callHandlerForPspState(
-        const Mapping::HandlersForPspState &             _HANDLERS
-        , const Mapping::HandlersForPspState::key_type   _KEY
+        const Mapping::HandlersForPspState &            _HANDLERS
+        , const Mapping::HandlersForPspState::key_type  _KEY
         , const __s16                                   _VALUE
         , PspState &                                    _pspState
     )
@@ -18,6 +18,26 @@ namespace {
         ( *( IT->second ) )(
             _VALUE
             , _pspState
+        );
+    }
+
+    std::size_t callHandlerForChangeMapping(
+        const Mapping::HandlersForChangeMapping &           _HANDLERS
+        , const Mapping::HandlersForChangeMapping::key_type _KEY
+        , const __s16                                       _VALUE
+        , std::size_t &                                     _mappingIndex
+        , const std::size_t                                 _CURRENT_MAPPING_INDEX
+    )
+    {
+        const auto  IT = _HANDLERS.find( _KEY );
+        if( IT == _HANDLERS.end() ) {
+            return _CURRENT_MAPPING_INDEX;
+        }
+
+        return ( *( IT->second ) )(
+            _VALUE
+            , _mappingIndex
+            , _CURRENT_MAPPING_INDEX
         );
     }
 }
@@ -103,13 +123,10 @@ std::size_t Mapping::pressButton(
     , const std::size_t                         _CURRENT_MAPPING_INDEX
 ) const
 {
-    const auto  IT = this->pressButtonHandlersForChangeMapping.find( _KEY );
-    if( IT == this->pressButtonHandlersForChangeMapping.end() ) {
-        return _CURRENT_MAPPING_INDEX;
-    }
-
-    return ( *( IT->second ) )(
-        1
+    return callHandlerForChangeMapping(
+        this->pressButtonHandlersForChangeMapping
+        , _KEY
+        , 1
         , _mappingIndex
         , _CURRENT_MAPPING_INDEX
     );
@@ -136,13 +153,10 @@ std::size_t Mapping::operateAxis(
     , const std::size_t                         _CURRENT_MAPPING_INDEX
 ) const
 {
-    const auto  IT = this->operateAxisHandlersForChangeMapping.find( _KEY );
-    if( IT == this->operateAxisHandlersForChangeMapping.end() ) {
-        return _CURRENT_MAPPING_INDEX;
-    }
-
-    return ( *( IT->second ) )(
-        _VALUE
+    return callHandlerForChangeMapping(
+        this->operateAxisHandlersForChangeMapping
+        , _KEY
+        , _VALUE
         , _mappingIndex
         , _CURRENT_MAPPING_INDEX
     );
