@@ -130,12 +130,20 @@ void Mapping::operateAxis(
 }
 
 std::size_t Mapping::operateAxis(
-    const HandlersForChangeMapping::key_type
-    , const __s16
-    , std::size_t &
-    , const std::size_t
+    const HandlersForChangeMapping::key_type    _KEY
+    , const __s16                               _VALUE
+    , std::size_t &                             _mappingIndex
+    , const std::size_t                         _CURRENT_MAPPING_INDEX
 ) const
 {
-    //TODO
-    return 0;
+    const auto  IT = this->operateAxisHandlersForChangeMapping.find( _KEY );
+    if( IT == this->operateAxisHandlersForChangeMapping.end() ) {
+        return _CURRENT_MAPPING_INDEX;
+    }
+
+    return ( *( IT->second ) )(
+        _VALUE
+        , _mappingIndex
+        , _CURRENT_MAPPING_INDEX
+    );
 }
