@@ -114,8 +114,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     Mapping_pressButtonForChangeMappingTest
     , NotExistsHandler
@@ -124,7 +122,12 @@ TEST_F(
     this->test(
         10
         , 20
+        , 30
+        , 40
+        , 50
+        , 40
+        , 0
+        , 0
         , 0
     );
 }
-*/
