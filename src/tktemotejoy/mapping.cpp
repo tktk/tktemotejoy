@@ -98,13 +98,23 @@ void Mapping::pressButton(
 }
 
 std::size_t Mapping::pressButton(
-    const HandlersForChangeMapping::key_type
-    , std::size_t &
-    , const std::size_t
+    const HandlersForChangeMapping::key_type    _KEY
+    , std::size_t &                             _mappingIndex
+    , const std::size_t                         _CURRENT_MAPPING_INDEX
 ) const
 {
-    //TODO
-    return false;
+    const auto  IT = this->pressButtonHandlersForChangeMapping.find( _KEY );
+/*
+    if( IT == _HANDLERS.end() ) {
+        return;
+    }
+*/
+
+    return ( *( IT->second ) )(
+        1
+        , _mappingIndex
+        , _CURRENT_MAPPING_INDEX
+    );
 }
 
 void Mapping::operateAxis(
@@ -129,5 +139,5 @@ std::size_t Mapping::operateAxis(
 ) const
 {
     //TODO
-    return false;
+    return 0;
 }
