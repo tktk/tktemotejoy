@@ -6,6 +6,7 @@ from taf.tools import cpp
 module.DEPENDS = [
     'tktemotejoy_joystickstate_forpressedbuttonstest',
     'tktemotejoy_joystickstate_foraxestest',
+    'tktemotejoy_mapping_pressbuttonforpspstatetest',
 ]
 
 module.BUILDER = cpp.program
@@ -15,4 +16,5 @@ module.TARGET = 'tktemotejoy'
 module.SOURCE = [
     'main.cpp',
     'joystickstate.cpp',
+    'mapping.cpp',
 ]

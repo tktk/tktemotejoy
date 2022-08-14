@@ -1,0 +1,102 @@
+#include "tktemotejoy/mapping.h"
+#include <utility>
+
+Mapping::HandlerForPspState::~HandlerForPspState(
+)
+{
+}
+
+Mapping::HandlerForChangeMapping::~HandlerForChangeMapping(
+)
+{
+}
+
+void Mapping::setPressButtonHandler(
+    const HandlersForPspState::key_type     _KEY
+    , HandlersForPspState::mapped_type &&   _mappedUnique
+)
+{
+    this->pressButtonHandlersForPspState.insert(
+        {
+            _KEY,
+            std::move( _mappedUnique ),
+        }
+    );
+}
+
+void Mapping::setPressButtonHandler(
+    const HandlersForChangeMapping::key_type    _KEY
+    , HandlersForChangeMapping::mapped_type &&  _mappedUnique
+)
+{
+    this->pressButtonHandlersForChangeMapping.insert(
+        {
+            _KEY,
+            std::move( _mappedUnique ),
+        }
+    );
+}
+
+void Mapping::setOperateAxisHandler(
+    const HandlersForPspState::key_type     _KEY
+    , HandlersForPspState::mapped_type &&   _mappedUnique
+)
+{
+    this->operateAxisHandlersForPspState.insert(
+        {
+            _KEY,
+            std::move( _mappedUnique ),
+        }
+    );
+}
+
+void Mapping::setOperateAxisHandler(
+    const HandlersForChangeMapping::key_type    _KEY
+    , HandlersForChangeMapping::mapped_type &&  _mappedUnique
+)
+{
+    this->operateAxisHandlersForChangeMapping.insert(
+        {
+            _KEY,
+            std::move( _mappedUnique ),
+        }
+    );
+}
+
+void Mapping::pressButton(
+    const HandlersForPspState::key_type
+    , PspState &
+) const
+{
+    //TODO
+}
+
+std::size_t Mapping::pressButton(
+    const HandlersForChangeMapping::key_type
+    , std::size_t &
+    , const std::size_t
+) const
+{
+    //TODO
+    return false;
+}
+
+void Mapping::operateAxis(
+    const HandlersForPspState::key_type
+    , const __s16
+    , PspState &
+) const
+{
+    //TODO
+}
+
+std::size_t Mapping::operateAxis(
+    const HandlersForChangeMapping::key_type
+    , const __s16
+    , std::size_t &
+    , const std::size_t
+) const
+{
+    //TODO
+    return false;
+}

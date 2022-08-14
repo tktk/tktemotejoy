@@ -1,0 +1,8 @@
+#ifndef TKTEMOTEJOY_PSPSTATE_H
+#define TKTEMOTEJOY_PSPSTATE_H
+
+struct PspState
+{
+};
+
+#endif  // TKTEMOTEJOY_PSPSTATE_H
