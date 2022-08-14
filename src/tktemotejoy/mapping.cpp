@@ -63,6 +63,7 @@ void Mapping::setOperateAxisHandler(
     );
 }
 
+//TODO 要リファクタリング
 void Mapping::pressButton(
     const HandlersForPspState::key_type _KEY
     , PspState &                        _pspState
@@ -89,13 +90,22 @@ std::size_t Mapping::pressButton(
     return false;
 }
 
+//TODO 要リファクタリング
 void Mapping::operateAxis(
-    const HandlersForPspState::key_type
-    , const __s16
-    , PspState &
+    const HandlersForPspState::key_type _KEY
+    , const __s16                       _VALUE
+    , PspState &                        _pspState
 ) const
 {
-    //TODO
+    const auto  IT = this->operateAxisHandlersForPspState.find( _KEY );
+    if( IT == this->operateAxisHandlersForPspState.end() ) {
+        return;
+    }
+
+    ( *( IT->second ) )(
+        _VALUE
+        , _pspState
+    );
 }
 
 std::size_t Mapping::operateAxis(
