@@ -64,11 +64,16 @@ void Mapping::setOperateAxisHandler(
 }
 
 void Mapping::pressButton(
-    const HandlersForPspState::key_type
-    , PspState &
+    const HandlersForPspState::key_type _KEY
+    , PspState &                        _pspState
 ) const
 {
-    //TODO
+    const auto  IT = this->pressButtonHandlersForPspState.find( _KEY );
+
+    ( *( IT->second ) )(
+        1
+        , _pspState
+    );
 }
 
 std::size_t Mapping::pressButton(
