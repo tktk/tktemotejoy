@@ -104,11 +104,9 @@ std::size_t Mapping::pressButton(
 ) const
 {
     const auto  IT = this->pressButtonHandlersForChangeMapping.find( _KEY );
-/*
-    if( IT == _HANDLERS.end() ) {
-        return;
+    if( IT == this->pressButtonHandlersForChangeMapping.end() ) {
+        return _CURRENT_MAPPING_INDEX;
     }
-*/
 
     return ( *( IT->second ) )(
         1
