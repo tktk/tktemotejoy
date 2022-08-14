@@ -34,6 +34,8 @@ namespace {
     {
     public:
         void test(
+            bool    _SET_HANDLER
+            , int   _EXPECTED_CALLED_COUNT
         )
         {
             auto    calledCount = 0;
@@ -48,25 +50,41 @@ namespace {
 
             auto    mapping = Mapping();
 
-            mapping.setPressButtonHandler(
-                10
-                , std::move( forPspStateUnique )
-            );
+            if( _SET_HANDLER == true ) {
+                mapping.setPressButtonHandler(
+                    10
+                    , std::move( forPspStateUnique )
+                );
+            }
 
             mapping.pressButton(
                 10
                 , pspState
             );
 
-            ASSERT_EQ( 1, calledCount );
+            ASSERT_EQ( _EXPECTED_CALLED_COUNT, calledCount );
         }
     };
 }
 
 TEST_F(
     Mapping_pressButtonForPspStateTest
-    , ExistsProc
+    , ExistsHandler
 )
 {
-    this->test();
+    this->test(
+        true
+        , 1
+    );
+}
+
+TEST_F(
+    Mapping_pressButtonForPspStateTest
+    , NotExistsHandler
+)
+{
+    this->test(
+        false
+        , 0
+    );
 }
