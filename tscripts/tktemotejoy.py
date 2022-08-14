@@ -7,6 +7,7 @@ module.DEPENDS = [
     'tktemotejoy_joystickstate_forpressedbuttonstest',
     'tktemotejoy_joystickstate_foraxestest',
     'tktemotejoy_mapping_pressbuttonforpspstatetest',
+    'tktemotejoy_mapping_operateaxisforpspstatetest',
 ]
 
 module.BUILDER = cpp.program
