@@ -1,5 +1,26 @@
 #include "tktemotejoy/mapping.h"
+#include <linux/joystick.h>
 #include <utility>
+
+namespace {
+    void callHandlerForPspState(
+        const Mapping::HandlersForPspState &             _HANDLERS
+        , const Mapping::HandlersForPspState::key_type   _KEY
+        , const __s16                                   _VALUE
+        , PspState &                                    _pspState
+    )
+    {
+        const auto  IT = _HANDLERS.find( _KEY );
+        if( IT == _HANDLERS.end() ) {
+            return;
+        }
+
+        ( *( IT->second ) )(
+            _VALUE
+            , _pspState
+        );
+    }
+}
 
 Mapping::HandlerForPspState::~HandlerForPspState(
 )
@@ -63,19 +84,15 @@ void Mapping::setOperateAxisHandler(
     );
 }
 
-//TODO 要リファクタリング
 void Mapping::pressButton(
     const HandlersForPspState::key_type _KEY
     , PspState &                        _pspState
 ) const
 {
-    const auto  IT = this->pressButtonHandlersForPspState.find( _KEY );
-    if( IT == this->pressButtonHandlersForPspState.end() ) {
-        return;
-    }
-
-    ( *( IT->second ) )(
-        1
+    callHandlerForPspState(
+        this->pressButtonHandlersForPspState
+        , _KEY
+        , 1
         , _pspState
     );
 }
@@ -90,20 +107,16 @@ std::size_t Mapping::pressButton(
     return false;
 }
 
-//TODO 要リファクタリング
 void Mapping::operateAxis(
     const HandlersForPspState::key_type _KEY
     , const __s16                       _VALUE
     , PspState &                        _pspState
 ) const
 {
-    const auto  IT = this->operateAxisHandlersForPspState.find( _KEY );
-    if( IT == this->operateAxisHandlersForPspState.end() ) {
-        return;
-    }
-
-    ( *( IT->second ) )(
-        _VALUE
+    callHandlerForPspState(
+        this->operateAxisHandlersForPspState
+        , _KEY
+        , _VALUE
         , _pspState
     );
 }
