@@ -1,7 +1,7 @@
 #include "tktemotejoy/pspstate.h"
 
 namespace {
-    struct BitField
+    struct Bits_
     {
         alignas( 1 ) unsigned short buttons;
         alignas( 1 ) unsigned char  axisX;
@@ -9,11 +9,7 @@ namespace {
     };
 }
 
-#define SET_BITS( _NAME, _VALUE ) reinterpret_cast< BitField & >( this->bits )._NAME = _VALUE;
-
-#define PRESS_BUTTON( _NAME ) SET_BITS( _NAME, true )
-
-#define OPERATE_AXIS( _NAME, _VALUE ) SET_BITS( _NAME, _VALUE )
+#define SET( _NAME, _VALUE ) reinterpret_cast< Bits_ & >( this->bits )._NAME = _VALUE;
 
 void PspState::diff(
     const PspState &                _OTHER
@@ -26,28 +22,31 @@ void PspState::diff(
 }
 
 void PspState::pressButtons(
-    const PspState::Buttons _BUTTONS
+    const PspState::Buttons _VALUE
 )
 {
-    //TODO
+    SET(
+        buttons
+        , _VALUE
+    )
 }
 
 void PspState::operateAxisX(
-    const PspState::Axis    _value
+    const PspState::Axis    _VALUE
 )
 {
-    OPERATE_AXIS(
+    SET(
         axisX
-        , _value
+        , _VALUE
     )
 }
 
 void PspState::operateAxisY(
-    const PspState::Axis    _value
+    const PspState::Axis    _VALUE
 )
 {
-    OPERATE_AXIS(
+    SET(
         axisY
-        , _value
+        , _VALUE
     )
 }
