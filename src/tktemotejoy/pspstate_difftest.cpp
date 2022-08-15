@@ -13,7 +13,9 @@ namespace {
         {
             auto    pspState = PspState();
 
-            ( pspState.*_PRESS_BUTTON )();
+            if( _PRESS_BUTTON != nullptr ) {
+                ( pspState.*_PRESS_BUTTON )();
+            }
 
             const auto  OTHER = PspState();
 
@@ -194,6 +196,18 @@ TEST_F(
         &PspState::pressSelect
         , true
         , 0x000001
+    );
+}
+
+TEST_F(
+    PspState_diffButtonsTest
+    , Same
+)
+{
+    this->test(
+        nullptr
+        , false
+        , 0
     );
 }
 
