@@ -1,72 +1,66 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/pspstate.h"
+#include <functional>
 
 namespace {
-    class PspState_diffButtonsTest : public ::testing::Test
+    class PspState_diffTest : public ::testing::Test
     {
     public:
         void test(
-            void ( PspState:: *             _PRESS_BUTTON )()
-            , const bool                    _EXPECTED_CALLED_WHEN_DIFF_BUTTONS
-            , const PspState::ButtonBits    _EXPECTED_BUTTON_BITS
+            const std::function< void ( PspState & ) > &    _FOR_PSP_STATE
+            , const bool                                    _EXPECTED_CALLED_WHEN_DIFF
+            , const PspState::Bits                          _EXPECTED_BITS
         )
         {
             auto    pspState = PspState();
 
-            if( _PRESS_BUTTON != nullptr ) {
-                ( pspState.*_PRESS_BUTTON )();
-            }
+            _FOR_PSP_STATE( pspState );
 
             const auto  OTHER = PspState();
 
-            auto    calledWhenDiffButtons = false;
-            auto    buttonBits = PspState::ButtonBits();
+            auto    calledWhenDiff = false;
+            auto    bits = PspState::Bits();
 
             pspState.diff(
                 OTHER
                 , [
-                    &calledWhenDiffButtons
-                    , &buttonBits
+                    &calledWhenDiff
+                    , &bits
                 ]
                 (
-                    const PspState::ButtonBits &    _BUTTON_BITS
+                    const PspState::Bits &  _BITS
                 )
                 {
-                    calledWhenDiffButtons = true;
-                    buttonBits = _BUTTON_BITS;
-                }
-                , [](
-                    const PspState::Axis &
-                )
-                {
-                    ASSERT_FALSE( true );
-                }
-                , [](
-                    const PspState::Axis &
-                )
-                {
-                    ASSERT_FALSE( true );
+                    calledWhenDiff = true;
+                    bits = _BITS;
                 }
             );
 
-            ASSERT_EQ( _EXPECTED_CALLED_WHEN_DIFF_BUTTONS, calledWhenDiffButtons );
-            ASSERT_EQ( _EXPECTED_BUTTON_BITS, buttonBits );
+            ASSERT_EQ( _EXPECTED_CALLED_WHEN_DIFF, calledWhenDiff );
+            ASSERT_EQ( _EXPECTED_BITS, bits );
         }
     };
 }
 
 TEST_F(
-    PspState_diffButtonsTest
+    PspState_diffTest
     , Up
 )
 {
     this->test(
-        &PspState::pressUp
+        [](
+            PspState &  _pspState
+        )
+        {
+            _pspState.pressUp();
+        }
         , true
         , 0x000010
     );
 }
 
+//TODO
+/*
 TEST_F(
     PspState_diffButtonsTest
     , Down
@@ -213,3 +207,4 @@ TEST_F(
 
 //TODO AxisX
 //TODO AxisY
+*/

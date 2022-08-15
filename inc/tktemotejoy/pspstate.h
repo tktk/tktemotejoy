@@ -1,43 +1,32 @@
 #ifndef TKTEMOTEJOY_PSPSTATE_H
 #define TKTEMOTEJOY_PSPSTATE_H
 
-#include <linux/joystick.h>
 #include <functional>
 
 class PspState
 {
 public:
-    using ButtonBits = unsigned int;
+    using Bits = unsigned int;
+
     using Axis = unsigned char;
 
-    using WhenDiffButtons = std::function<
+    using WhenDiff = std::function<
         void (
-            const ButtonBits &
-        )
-    >;
-
-    using WhenDiffAxis = std::function<
-        void (
-            const Axis &
+            const Bits &
         )
     >;
 
 private:
-    ButtonBits  buttonBits;
-
-    Axis    axisX;
-    Axis    axisY;
+    Bits    bits;
 
     void press(
-        const ButtonBits
+        const Bits
     );
 
 public:
     void diff(
         const PspState &
-        , const WhenDiffButtons &
-        , const WhenDiffAxis &
-        , const WhenDiffAxis &
+        , const WhenDiff &
     ) const;
 
     void pressUp(

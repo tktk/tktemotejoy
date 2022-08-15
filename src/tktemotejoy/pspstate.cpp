@@ -1,8 +1,7 @@
 #include "tktemotejoy/pspstate.h"
-#include <linux/joystick.h>
 
 namespace {
-    struct ButtonBits_
+    struct BitField
     {
         bool select : 1;
 
@@ -25,18 +24,14 @@ namespace {
     };
 }
 
-#define PRESS_BUTTON( _BUTTON ) reinterpret_cast< ButtonBits_ & >( this->buttonBits )._BUTTON = 1;
+#define PRESS_BUTTON( _BUTTON ) reinterpret_cast< BitField & >( this->bits )._BUTTON = 1;
 
 void PspState::diff(
-    const PspState &            _OTHER
-    , const WhenDiffButtons &   _WHEN_DIFF_BUTTONS
-    , const WhenDiffAxis &
-    , const WhenDiffAxis &
+    const PspState &                _OTHER
+    , const PspState::WhenDiff &    _WHEN_DIFF
 ) const
 {
-    if( this->buttonBits != _OTHER.buttonBits ) {
-        _WHEN_DIFF_BUTTONS( this->buttonBits );
-    }
+    //TODO
 }
 
 void PspState::pressUp(
@@ -112,14 +107,14 @@ void PspState::pressSelect(
 }
 
 void PspState::operateAxisX(
-    const Axis
+    const PspState::Axis
 )
 {
     //TODO
 }
 
 void PspState::operateAxisY(
-    const Axis
+    const PspState::Axis
 )
 {
     //TODO
