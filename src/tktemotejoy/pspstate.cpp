@@ -52,61 +52,61 @@ void PspState::pressDown(
 void PspState::pressLeft(
 )
 {
-    //TODO
+    PRESS_BUTTON( left )
 }
 
 void PspState::pressRight(
 )
 {
-    //TODO
+    PRESS_BUTTON( right )
 }
 
 void PspState::pressCircle(
 )
 {
-    //TODO
+    PRESS_BUTTON( circle )
 }
 
 void PspState::pressCross(
 )
 {
-    //TODO
+    PRESS_BUTTON( cross )
 }
 
 void PspState::pressTriangle(
 )
 {
-    //TODO
+    PRESS_BUTTON( triangle )
 }
 
 void PspState::pressSquare(
 )
 {
-    //TODO
+    PRESS_BUTTON( square )
 }
 
 void PspState::pressTriggerL(
 )
 {
-    //TODO
+    PRESS_BUTTON( triggerL )
 }
 
 void PspState::pressTriggerR(
 )
 {
-    //TODO
+    PRESS_BUTTON( triggerR )
 }
 
 void PspState::pressStart(
 )
 {
-    //TODO
+    PRESS_BUTTON( start )
 }
 
 void PspState::pressSelect(
 )
 {
-    //TODO
+    PRESS_BUTTON( select )
 }
 
 void PspState::operateAxisX(
