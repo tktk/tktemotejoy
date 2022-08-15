@@ -59,147 +59,204 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
-    PspState_diffButtonsTest
+    PspState_diffTest
     , Down
 )
 {
     this->test(
-        &PspState::pressDown
+        [](
+            PspState &  _pspState
+        )
+        {
+            _pspState.pressDown();
+        }
         , true
         , 0x000040
     );
 }
 
 TEST_F(
-    PspState_diffButtonsTest
+    PspState_diffTest
     , Left
 )
 {
     this->test(
-        &PspState::pressLeft
+        [](
+            PspState &  _pspState
+        )
+        {
+            _pspState.pressLeft();
+        }
         , true
         , 0x000080
     );
 }
 
 TEST_F(
-    PspState_diffButtonsTest
+    PspState_diffTest
     , Right
 )
 {
     this->test(
-        &PspState::pressRight
+        [](
+            PspState &  _pspState
+        )
+        {
+            _pspState.pressRight();
+        }
         , true
         , 0x000020
     );
 }
 
 TEST_F(
-    PspState_diffButtonsTest
+    PspState_diffTest
     , Circle
 )
 {
     this->test(
-        &PspState::pressCircle
+        [](
+            PspState &  _pspState
+        )
+        {
+            _pspState.pressCircle();
+        }
         , true
         , 0x002000
     );
 }
 
 TEST_F(
-    PspState_diffButtonsTest
+    PspState_diffTest
     , Cross
 )
 {
     this->test(
-        &PspState::pressCross
+        [](
+            PspState &  _pspState
+        )
+        {
+            _pspState.pressCross();
+        }
         , true
         , 0x004000
     );
 }
 
 TEST_F(
-    PspState_diffButtonsTest
+    PspState_diffTest
     , Triangle
 )
 {
     this->test(
-        &PspState::pressTriangle
+        [](
+            PspState &  _pspState
+        )
+        {
+            _pspState.pressTriangle();
+        }
         , true
         , 0x001000
     );
 }
 
 TEST_F(
-    PspState_diffButtonsTest
+    PspState_diffTest
     , Square
 )
 {
     this->test(
-        &PspState::pressSquare
+        [](
+            PspState &  _pspState
+        )
+        {
+            _pspState.pressSquare();
+        }
         , true
         , 0x008000
     );
 }
 
 TEST_F(
-    PspState_diffButtonsTest
+    PspState_diffTest
     , TriggerL
 )
 {
     this->test(
-        &PspState::pressTriggerL
+        [](
+            PspState &  _pspState
+        )
+        {
+            _pspState.pressTriggerL();
+        }
         , true
         , 0x000100
     );
 }
 
 TEST_F(
-    PspState_diffButtonsTest
+    PspState_diffTest
     , TriggerR
 )
 {
     this->test(
-        &PspState::pressTriggerR
+        [](
+            PspState &  _pspState
+        )
+        {
+            _pspState.pressTriggerR();
+        }
         , true
         , 0x000200
     );
 }
 
 TEST_F(
-    PspState_diffButtonsTest
+    PspState_diffTest
     , Start
 )
 {
     this->test(
-        &PspState::pressStart
+        [](
+            PspState &  _pspState
+        )
+        {
+            _pspState.pressStart();
+        }
         , true
         , 0x000008
     );
 }
 
 TEST_F(
-    PspState_diffButtonsTest
+    PspState_diffTest
     , Select
 )
 {
     this->test(
-        &PspState::pressSelect
+        [](
+            PspState &  _pspState
+        )
+        {
+            _pspState.pressSelect();
+        }
         , true
         , 0x000001
     );
 }
 
 TEST_F(
-    PspState_diffButtonsTest
+    PspState_diffTest
     , Same
 )
 {
     this->test(
-        nullptr
+        [](
+            PspState &
+        )
+        {
+        }
         , false
         , 0
     );
@@ -207,4 +264,3 @@ TEST_F(
 
 //TODO AxisX
 //TODO AxisY
-*/
