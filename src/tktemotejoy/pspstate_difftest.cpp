@@ -55,7 +55,7 @@ TEST_F(
             _pspState.pressUp();
         }
         , true
-        , 0x000010
+        , 0x00000010
     );
 }
 
@@ -72,7 +72,7 @@ TEST_F(
             _pspState.pressDown();
         }
         , true
-        , 0x000040
+        , 0x00000040
     );
 }
 
@@ -89,7 +89,7 @@ TEST_F(
             _pspState.pressLeft();
         }
         , true
-        , 0x000080
+        , 0x00000080
     );
 }
 
@@ -106,7 +106,7 @@ TEST_F(
             _pspState.pressRight();
         }
         , true
-        , 0x000020
+        , 0x00000020
     );
 }
 
@@ -123,7 +123,7 @@ TEST_F(
             _pspState.pressCircle();
         }
         , true
-        , 0x002000
+        , 0x00002000
     );
 }
 
@@ -140,7 +140,7 @@ TEST_F(
             _pspState.pressCross();
         }
         , true
-        , 0x004000
+        , 0x00004000
     );
 }
 
@@ -157,7 +157,7 @@ TEST_F(
             _pspState.pressTriangle();
         }
         , true
-        , 0x001000
+        , 0x00001000
     );
 }
 
@@ -174,7 +174,7 @@ TEST_F(
             _pspState.pressSquare();
         }
         , true
-        , 0x008000
+        , 0x00008000
     );
 }
 
@@ -191,7 +191,7 @@ TEST_F(
             _pspState.pressTriggerL();
         }
         , true
-        , 0x000100
+        , 0x00000100
     );
 }
 
@@ -208,7 +208,7 @@ TEST_F(
             _pspState.pressTriggerR();
         }
         , true
-        , 0x000200
+        , 0x00000200
     );
 }
 
@@ -225,7 +225,7 @@ TEST_F(
             _pspState.pressStart();
         }
         , true
-        , 0x000008
+        , 0x00000008
     );
 }
 
@@ -242,7 +242,7 @@ TEST_F(
             _pspState.pressSelect();
         }
         , true
-        , 0x000001
+        , 0x00000001
     );
 }
 
@@ -262,5 +262,21 @@ TEST_F(
     );
 }
 
-//TODO AxisX
+TEST_F(
+    PspState_diffTest
+    , AxisX
+)
+{
+    this->test(
+        [](
+            PspState &  _pspState
+        )
+        {
+            _pspState.operateAxisX( 10 );
+        }
+        , true
+        , 0x000a0000
+    );
+}
+
 //TODO AxisY
