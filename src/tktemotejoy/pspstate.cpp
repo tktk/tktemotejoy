@@ -31,7 +31,7 @@ void PspState::diff(
     , const PspState::WhenDiff &    _WHEN_DIFF
 ) const
 {
-    //TODO
+    _WHEN_DIFF( this->bits );
 }
 
 void PspState::pressUp(
