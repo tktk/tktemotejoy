@@ -3,28 +3,35 @@
 namespace {
     struct BitField
     {
-        bool select : 1;
+        bool    select : 1;
 
         bool : 2;
 
-        bool start : 1;
-        bool up : 1;
-        bool right : 1;
-        bool down : 1;
-        bool left : 1;
-        bool triggerL : 1;
-        bool triggerR : 1;
+        bool    start : 1;
+        bool    up : 1;
+        bool    right : 1;
+        bool    down : 1;
+        bool    left : 1;
+        bool    triggerL : 1;
+        bool    triggerR : 1;
 
         bool : 2;
 
-        bool triangle : 1;
-        bool circle : 1;
-        bool cross : 1;
-        bool square : 1;
+        bool    triangle : 1;
+        bool    circle : 1;
+        bool    cross : 1;
+        bool    square : 1;
+
+        unsigned char axisX;
+        unsigned char axisY;
     };
 }
 
-#define PRESS_BUTTON( _BUTTON ) reinterpret_cast< BitField & >( this->bits )._BUTTON = 1;
+#define SET_BITS( _NAME, _VALUE ) reinterpret_cast< BitField & >( this->bits )._NAME = _VALUE;
+
+#define PRESS_BUTTON( _NAME ) SET_BITS( _NAME, 1 )
+
+#define OPERATE_AXIS( _NAME, _VALUE ) SET_BITS( _NAME, _VALUE )
 
 void PspState::diff(
     const PspState &                _OTHER
@@ -109,10 +116,13 @@ void PspState::pressSelect(
 }
 
 void PspState::operateAxisX(
-    const PspState::Axis
+    const PspState::Axis    _value
 )
 {
-    //TODO
+    OPERATE_AXIS(
+        axisX
+        , _value
+    )
 }
 
 void PspState::operateAxisY(
