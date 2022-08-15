@@ -65,6 +65,18 @@ TEST_F(
     );
 }
 
+TEST_F(
+    PspState_diffButtonsTest
+    , Down
+)
+{
+    this->test(
+        &PspState::pressDown
+        , true
+        , 0b1000000
+    );
+}
+
 //TODO Down
 //TODO Left
 //TODO Right
