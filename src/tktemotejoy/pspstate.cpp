@@ -126,8 +126,11 @@ void PspState::operateAxisX(
 }
 
 void PspState::operateAxisY(
-    const PspState::Axis
+    const PspState::Axis    _value
 )
 {
-    //TODO
+    OPERATE_AXIS(
+        axisY
+        , _value
+    )
 }
