@@ -28,13 +28,15 @@ namespace {
 #define PRESS_BUTTON( _BUTTON ) reinterpret_cast< ButtonBits_ & >( this->buttonBits )._BUTTON = 1;
 
 void PspState::diff(
-    const PspState &
+    const PspState &            _OTHER
     , const WhenDiffButtons &   _WHEN_DIFF_BUTTONS
     , const WhenDiffAxis &
     , const WhenDiffAxis &
 ) const
 {
-    _WHEN_DIFF_BUTTONS( this->buttonBits );
+    if( this->buttonBits != _OTHER.buttonBits ) {
+        _WHEN_DIFF_BUTTONS( this->buttonBits );
+    }
 }
 
 void PspState::pressUp(
