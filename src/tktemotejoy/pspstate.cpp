@@ -4,10 +4,28 @@
 namespace {
     struct ButtonBits_
     {
-        bool : 4;
+        bool select : 1;
+
+        bool : 2;
+
+        bool start : 1;
         bool up : 1;
+        bool right : 1;
+        bool down : 1;
+        bool left : 1;
+        bool triggerL : 1;
+        bool triggerR : 1;
+
+        bool : 2;
+
+        bool triangle : 1;
+        bool circle : 1;
+        bool cross : 1;
+        bool square : 1;
     };
 }
+
+#define PRESS_BUTTON( _BUTTON ) reinterpret_cast< ButtonBits_ & >( this->buttonBits )._BUTTON = 1;
 
 void PspState::diff(
     const PspState &
@@ -22,14 +40,13 @@ void PspState::diff(
 void PspState::pressUp(
 )
 {
-    reinterpret_cast< ButtonBits_ & >( this->buttonBits ).up = 1;
+    PRESS_BUTTON( up )
 }
-
 
 void PspState::pressDown(
 )
 {
-    //TODO
+    PRESS_BUTTON( down )
 }
 
 void PspState::pressLeft(
