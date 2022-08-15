@@ -279,4 +279,19 @@ TEST_F(
     );
 }
 
-//TODO AxisY
+TEST_F(
+    PspState_diffTest
+    , AxisY
+)
+{
+    this->test(
+        [](
+            PspState &  _pspState
+        )
+        {
+            _pspState.operateAxisY( 20 );
+        }
+        , true
+        , 0x14000000
+    );
+}
