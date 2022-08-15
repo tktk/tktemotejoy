@@ -61,7 +61,7 @@ TEST_F(
     this->test(
         &PspState::pressUp
         , true
-        , 0b10000
+        , 0x000010
     );
 }
 
@@ -73,20 +73,129 @@ TEST_F(
     this->test(
         &PspState::pressDown
         , true
-        , 0b1000000
+        , 0x000040
     );
 }
 
-//TODO Down
-//TODO Left
-//TODO Right
-//TODO Circle
-//TODO Cross
-//TODO Triangle
-//TODO Square
-//TODO TriggerL
-//TODO TriggerR
-//TODO Start
-//TODO Select
+TEST_F(
+    PspState_diffButtonsTest
+    , Left
+)
+{
+    this->test(
+        &PspState::pressLeft
+        , true
+        , 0x000080
+    );
+}
+
+TEST_F(
+    PspState_diffButtonsTest
+    , Right
+)
+{
+    this->test(
+        &PspState::pressRight
+        , true
+        , 0x000020
+    );
+}
+
+TEST_F(
+    PspState_diffButtonsTest
+    , Circle
+)
+{
+    this->test(
+        &PspState::pressCircle
+        , true
+        , 0x002000
+    );
+}
+
+TEST_F(
+    PspState_diffButtonsTest
+    , Cross
+)
+{
+    this->test(
+        &PspState::pressCross
+        , true
+        , 0x004000
+    );
+}
+
+TEST_F(
+    PspState_diffButtonsTest
+    , Triangle
+)
+{
+    this->test(
+        &PspState::pressTriangle
+        , true
+        , 0x001000
+    );
+}
+
+TEST_F(
+    PspState_diffButtonsTest
+    , Square
+)
+{
+    this->test(
+        &PspState::pressSquare
+        , true
+        , 0x008000
+    );
+}
+
+TEST_F(
+    PspState_diffButtonsTest
+    , TriggerL
+)
+{
+    this->test(
+        &PspState::pressTriggerL
+        , true
+        , 0x000100
+    );
+}
+
+TEST_F(
+    PspState_diffButtonsTest
+    , TriggerR
+)
+{
+    this->test(
+        &PspState::pressTriggerR
+        , true
+        , 0x000200
+    );
+}
+
+TEST_F(
+    PspState_diffButtonsTest
+    , Start
+)
+{
+    this->test(
+        &PspState::pressStart
+        , true
+        , 0x000008
+    );
+}
+
+TEST_F(
+    PspState_diffButtonsTest
+    , Select
+)
+{
+    this->test(
+        &PspState::pressSelect
+        , true
+        , 0x000001
+    );
+}
+
 //TODO AxisX
 //TODO AxisY
