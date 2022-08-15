@@ -1,21 +1,30 @@
 #include "tktemotejoy/pspstate.h"
 #include <linux/joystick.h>
 
+namespace {
+    struct ButtonBits_
+    {
+        bool : 4;
+        bool up : 1;
+    };
+}
+
 void PspState::diff(
     const PspState &
-    , const WhenDiffButtons &
+    , const WhenDiffButtons &   _WHEN_DIFF_BUTTONS
     , const WhenDiffAxis &
     , const WhenDiffAxis &
 ) const
 {
-    //TODO
+    _WHEN_DIFF_BUTTONS( this->buttonBits );
 }
 
 void PspState::pressUp(
 )
 {
-    //TODO
+    reinterpret_cast< ButtonBits_ & >( this->buttonBits ).up = 1;
 }
+
 
 void PspState::pressDown(
 )

@@ -28,6 +28,10 @@ private:
     Axis    axisX;
     Axis    axisY;
 
+    void press(
+        const ButtonBits
+    );
+
 public:
     void diff(
         const PspState &
