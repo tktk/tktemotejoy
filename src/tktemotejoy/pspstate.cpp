@@ -9,8 +9,6 @@ namespace {
     };
 }
 
-#define SET( _NAME, _VALUE ) reinterpret_cast< Bits_ & >( this->bits )._NAME = _VALUE;
-
 void PspState::diff(
     const PspState &                _OTHER
     , const PspState::WhenDiff &    _WHEN_DIFF
@@ -25,28 +23,19 @@ void PspState::pressButtons(
     const PspState::Buttons _VALUE
 )
 {
-    SET(
-        buttons
-        , _VALUE
-    )
+    reinterpret_cast< Bits_ & >( this->bits ).buttons |= _VALUE;
 }
 
 void PspState::operateAxisX(
     const PspState::Axis    _VALUE
 )
 {
-    SET(
-        axisX
-        , _VALUE
-    )
+    reinterpret_cast< Bits_ & >( this->bits ).axisX = _VALUE;
 }
 
 void PspState::operateAxisY(
     const PspState::Axis    _VALUE
 )
 {
-    SET(
-        axisY
-        , _VALUE
-    )
+    reinterpret_cast< Bits_ & >( this->bits ).axisY = _VALUE;
 }
