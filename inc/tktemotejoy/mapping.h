@@ -85,6 +85,34 @@ public:
         , OperateAxisHandlerForChangeMappingUnique
     >;
 
+    inline static auto HandlerUnique(
+        PressButtonHandlerForPspState * _handler
+    )
+    {
+        return PressButtonHandlerForPspStateUnique( _handler );
+    }
+
+    inline static auto HandlerUnique(
+        OperateAxisHandlerForPspState * _handler
+    )
+    {
+        return OperateAxisHandlerForPspStateUnique( _handler );
+    }
+
+    inline static auto HandlerUnique(
+        PressButtonHandlerForChangeMapping *    _handler
+    )
+    {
+        return PressButtonHandlerForChangeMappingUnique( _handler );
+    }
+
+    inline static auto HandlerUnique(
+        OperateAxisHandlerForChangeMapping *    _handler
+    )
+    {
+        return OperateAxisHandlerForChangeMappingUnique( _handler );
+    }
+
 private:
     PressButtonHandlersForPspState  pressButtonHandlersForPspState;
     OperateAxisHandlersForPspState  operateAxisHandlersForPspState;

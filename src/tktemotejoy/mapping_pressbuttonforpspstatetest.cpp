@@ -41,7 +41,7 @@ namespace {
             auto    calledCount = 0;
             auto    pspState = PspState();
 
-            auto    handlerUnique = Mapping::PressButtonHandlerForPspStateUnique(
+            auto    handlerUnique = Mapping::HandlerUnique(
                 new TestHandlerForPspState(
                     calledCount
                     , pspState

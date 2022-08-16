@@ -58,7 +58,7 @@ namespace {
             auto    calledCount = 0;
             auto    mappingIndex = _MAPPING_INDEX;
 
-            auto    handlerUnique = Mapping::PressButtonHandlerForChangeMappingUnique(
+            auto    handlerUnique = Mapping::HandlerUnique(
                 new TestHandlerForChangeMapping(
                     calledCount
                     , _RETURNS_MAPPING_INDEX

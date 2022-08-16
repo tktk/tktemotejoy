@@ -48,7 +48,7 @@ namespace {
             auto    calledCount = 0;
             auto    pspState = PspState();
 
-            auto    handlerUnique = Mapping::OperateAxisHandlerForPspStateUnique(
+            auto    handlerUnique = Mapping::HandlerUnique(
                 new TestHandlerForPspState(
                     calledCount
                     , _EXPECTED_VALUE
