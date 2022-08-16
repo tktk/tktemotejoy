@@ -4,7 +4,7 @@
 #include <linux/joystick.h>
 
 namespace {
-    struct TestHandlerForPspState : public Mapping::PressButtonHandlerForPspState
+    struct TestHandlerForPspState final : public Mapping::PressButtonHandlerForPspState
     {
         int &               calledCount;
         const PspState &    PSP_STATE;
@@ -21,7 +21,7 @@ namespace {
 
         void operator()(
             PspState &  _pspState
-        ) const
+        ) const override
         {
             EXPECT_EQ( &( this->PSP_STATE ), &_pspState );
 

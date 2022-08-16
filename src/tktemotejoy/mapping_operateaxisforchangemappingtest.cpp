@@ -5,7 +5,7 @@
 #include <cstddef>
 
 namespace {
-    struct TestHandlerForChangeMapping : public Mapping::HandlerForChangeMapping
+    struct TestHandlerForChangeMapping final : public Mapping::OperateAxisHandlerForChangeMapping
     {
         int &               calledCount;
         const std::size_t   RETURNS_MAPPING_INDEX;
@@ -18,7 +18,7 @@ namespace {
             , const __s16       _EXPECTED_VALUE
             , const std::size_t _EXPECTED_MAPPING_INDEX
         )
-            : Mapping::HandlerForChangeMapping()
+            : Mapping::OperateAxisHandlerForChangeMapping()
             , calledCount( _calledCount )
             , RETURNS_MAPPING_INDEX( _RETURNS_MAPPING_INDEX )
             , EXPECTED_VALUE( _EXPECTED_VALUE )
@@ -29,7 +29,7 @@ namespace {
         std::size_t operator()(
             const __s16         _VALUE
             , std::size_t &     _mappingIndex
-        ) const
+        ) const override
         {
             [
                 this
@@ -66,7 +66,7 @@ namespace {
             auto    calledCount = 0;
             auto    mappingIndex = _MAPPING_INDEX;
 
-            auto    forPspStateUnique = Mapping::HandlerForChangeMappingUnique(
+            auto    handlerUnique = Mapping::OperateAxisHandlerForChangeMappingUnique(
                 new TestHandlerForChangeMapping(
                     calledCount
                     , _RETURNS_MAPPING_INDEX
@@ -79,7 +79,7 @@ namespace {
 
             mapping.setOperateAxisHandler(
                 _SET_HANDLER_KEY
-                , std::move( forPspStateUnique )
+                , std::move( handlerUnique )
             );
 
             EXPECT_EQ(

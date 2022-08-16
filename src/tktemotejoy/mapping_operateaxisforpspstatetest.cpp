@@ -4,7 +4,7 @@
 #include <linux/joystick.h>
 
 namespace {
-    struct TestHandlerForPspState : public Mapping::OperateAxisHandlerForPspState
+    struct TestHandlerForPspState final : public Mapping::OperateAxisHandlerForPspState
     {
         int &               calledCount;
         const __s16         EXPECTED_VALUE;
@@ -25,7 +25,7 @@ namespace {
         void operator()(
             const __s16     _VALUE
             , PspState &    _pspState
-        ) const
+        ) const override
         {
             EXPECT_EQ( this->EXPECTED_VALUE, _VALUE );
             EXPECT_EQ( &( this->PSP_STATE ), &_pspState );

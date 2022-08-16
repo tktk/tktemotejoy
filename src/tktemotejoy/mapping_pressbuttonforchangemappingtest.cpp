@@ -5,7 +5,7 @@
 #include <cstddef>
 
 namespace {
-    struct TestHandlerForChangeMapping : public Mapping::HandlerForChangeMapping
+    struct TestHandlerForChangeMapping final : public Mapping::PressButtonHandlerForChangeMapping
     {
         int &               calledCount;
         const std::size_t   RETURNS_MAPPING_INDEX;
@@ -16,7 +16,7 @@ namespace {
             , const std::size_t _RETURNS_MAPPING_INDEX
             , const std::size_t _EXPECTED_MAPPING_INDEX
         )
-            : Mapping::HandlerForChangeMapping()
+            : Mapping::PressButtonHandlerForChangeMapping()
             , calledCount( _calledCount )
             , RETURNS_MAPPING_INDEX( _RETURNS_MAPPING_INDEX )
             , EXPECTED_MAPPING_INDEX( _EXPECTED_MAPPING_INDEX )
@@ -24,9 +24,8 @@ namespace {
         }
 
         std::size_t operator()(
-            const __s16
-            , std::size_t & _mappingIndex
-        ) const
+            std::size_t &   _mappingIndex
+        ) const override
         {
             [
                 this
@@ -59,7 +58,7 @@ namespace {
             auto    calledCount = 0;
             auto    mappingIndex = _MAPPING_INDEX;
 
-            auto    forPspStateUnique = Mapping::HandlerForChangeMappingUnique(
+            auto    handlerUnique = Mapping::PressButtonHandlerForChangeMappingUnique(
                 new TestHandlerForChangeMapping(
                     calledCount
                     , _RETURNS_MAPPING_INDEX
@@ -71,7 +70,7 @@ namespace {
 
             mapping.setPressButtonHandler(
                 _SET_HANDLER_KEY
-                , std::move( forPspStateUnique )
+                , std::move( handlerUnique )
             );
 
             EXPECT_EQ(

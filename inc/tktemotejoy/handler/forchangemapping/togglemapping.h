@@ -5,7 +5,7 @@
 #include <linux/joystick.h>
 #include <cstddef>
 
-class ToggleMapping final : public Mapping::HandlerForChangeMapping
+class ToggleMapping final : public Mapping::PressButtonHandlerForChangeMapping
 {
     const std::size_t   MAPPING_INDEX;
 
@@ -15,8 +15,7 @@ public:
     );
 
     std::size_t operator()(
-        const __s16
-        , std::size_t &
+        std::size_t &
     ) const override;
 };
 

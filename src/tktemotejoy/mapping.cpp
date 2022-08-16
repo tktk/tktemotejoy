@@ -7,54 +7,62 @@ namespace {
         typename RETURNS_T
         , typename HANDLERS_T
         , typename CALL_HANDLER_T
+        , typename NOT_FOUND_T
     >
     RETURNS_T callHandler(
         const HANDLERS_T &                      _HANDLERS
         , const typename HANDLERS_T::key_type   _KEY
         , const CALL_HANDLER_T &                _CALL_HANDLER
+        , const NOT_FOUND_T &                   _NOT_FOUND
     )
     {
         const auto  IT = _HANDLERS.find( _KEY );
         if( IT == _HANDLERS.end() ) {
-            return;
+            return _NOT_FOUND();
         }
 
-        _CALL_HANDLER( *( IT->second ) );
+        return _CALL_HANDLER( *( IT->second ) );
     }
 
     template<
         typename HANDLERS_T
         , typename CALL_HANDLER_T
     >
-    void callHandlerForPspState(
+    auto callHandlerForPspState(
         const HANDLERS_T &                      _HANDLERS
         , const typename HANDLERS_T::key_type   _KEY
         , const CALL_HANDLER_T &                _CALL_HANDLER
     )
     {
-        callHandler< void >(
+        return callHandler< void >(
             _HANDLERS
             , _KEY
             , _CALL_HANDLER
+            , []{}
         );
     }
 
-    std::size_t callHandlerForChangeMapping(
-        const Mapping::HandlersForChangeMapping &           _HANDLERS
-        , const Mapping::HandlersForChangeMapping::key_type _KEY
-        , const __s16                                       _VALUE
-        , std::size_t &                                     _mappingIndex
-        , const std::size_t                                 _CURRENT_MAPPING_INDEX
+    template<
+        typename HANDLERS_T
+        , typename CALL_HANDLER_T
+    >
+    auto callHandlerForChangeMapping(
+        const HANDLERS_T &                      _HANDLERS
+        , const typename HANDLERS_T::key_type   _KEY
+        , const std::size_t                     _CURRENT_MAPPING_INDEX
+        , const CALL_HANDLER_T &                _CALL_HANDLER
     )
     {
-        const auto  IT = _HANDLERS.find( _KEY );
-        if( IT == _HANDLERS.end() ) {
-            return _CURRENT_MAPPING_INDEX;
-        }
-
-        return ( *( IT->second ) )(
-            _VALUE
-            , _mappingIndex
+        return callHandler< std::size_t >(
+            _HANDLERS
+            , _KEY
+            , _CALL_HANDLER
+            , [
+                &_CURRENT_MAPPING_INDEX
+            ]
+            {
+                return _CURRENT_MAPPING_INDEX;
+            }
         );
     }
 }
@@ -69,7 +77,12 @@ Mapping::OperateAxisHandlerForPspState::~OperateAxisHandlerForPspState(
 {
 }
 
-Mapping::HandlerForChangeMapping::~HandlerForChangeMapping(
+Mapping::PressButtonHandlerForChangeMapping::~PressButtonHandlerForChangeMapping(
+)
+{
+}
+
+Mapping::OperateAxisHandlerForChangeMapping::~OperateAxisHandlerForChangeMapping(
 )
 {
 }
@@ -88,8 +101,8 @@ void Mapping::setPressButtonHandler(
 }
 
 void Mapping::setPressButtonHandler(
-    const HandlersForChangeMapping::key_type    _KEY
-    , HandlersForChangeMapping::mapped_type &&  _mappedUnique
+    const PressButtonHandlersForChangeMapping::key_type     _KEY
+    , PressButtonHandlersForChangeMapping::mapped_type &&   _mappedUnique
 )
 {
     this->pressButtonHandlersForChangeMapping.insert(
@@ -114,8 +127,8 @@ void Mapping::setOperateAxisHandler(
 }
 
 void Mapping::setOperateAxisHandler(
-    const HandlersForChangeMapping::key_type    _KEY
-    , HandlersForChangeMapping::mapped_type &&  _mappedUnique
+    const OperateAxisHandlersForChangeMapping::key_type     _KEY
+    , OperateAxisHandlersForChangeMapping::mapped_type &&   _mappedUnique
 )
 {
     this->operateAxisHandlersForChangeMapping.insert(
@@ -147,17 +160,24 @@ void Mapping::pressButton(
 }
 
 std::size_t Mapping::pressButton(
-    const HandlersForChangeMapping::key_type    _KEY
-    , std::size_t &                             _mappingIndex
-    , const std::size_t                         _CURRENT_MAPPING_INDEX
+    const PressButtonHandlersForChangeMapping::key_type _KEY
+    , std::size_t &                                     _mappingIndex
+    , const std::size_t                                 _CURRENT_MAPPING_INDEX
 ) const
 {
     return callHandlerForChangeMapping(
         this->pressButtonHandlersForChangeMapping
         , _KEY
-        , 1
-        , _mappingIndex
         , _CURRENT_MAPPING_INDEX
+        , [
+            &_mappingIndex
+        ]
+        (
+            const PressButtonHandlerForChangeMapping &  _HANDLER
+        )
+        {
+            return _HANDLER( _mappingIndex );
+        }
     );
 }
 
@@ -187,17 +207,28 @@ void Mapping::operateAxis(
 }
 
 std::size_t Mapping::operateAxis(
-    const HandlersForChangeMapping::key_type    _KEY
-    , const __s16                               _VALUE
-    , std::size_t &                             _mappingIndex
-    , const std::size_t                         _CURRENT_MAPPING_INDEX
+    const OperateAxisHandlersForChangeMapping::key_type _KEY
+    , const __s16                                       _VALUE
+    , std::size_t &                                     _mappingIndex
+    , const std::size_t                                 _CURRENT_MAPPING_INDEX
 ) const
 {
     return callHandlerForChangeMapping(
         this->operateAxisHandlersForChangeMapping
         , _KEY
-        , _VALUE
-        , _mappingIndex
         , _CURRENT_MAPPING_INDEX
+        , [
+            &_VALUE
+            , &_mappingIndex
+        ]
+        (
+            const OperateAxisHandlerForChangeMapping &  _HANDLER
+        )
+        {
+            return _HANDLER(
+                _VALUE
+                , _mappingIndex
+            );
+        }
     );
 }

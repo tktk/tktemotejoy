@@ -48,10 +48,28 @@ public:
         , OperateAxisHandlerForPspStateUnique
     >;
 
-    class HandlerForChangeMapping
+    class PressButtonHandlerForChangeMapping
     {
     public:
-        virtual ~HandlerForChangeMapping(
+        virtual ~PressButtonHandlerForChangeMapping(
+        ) = 0;
+
+        virtual std::size_t operator()(
+            std::size_t &
+        ) const = 0;
+    };
+
+    using PressButtonHandlerForChangeMappingUnique = std::unique_ptr< PressButtonHandlerForChangeMapping >;
+
+    using PressButtonHandlersForChangeMapping = std::map<
+        std::size_t
+        , PressButtonHandlerForChangeMappingUnique
+    >;
+
+    class OperateAxisHandlerForChangeMapping
+    {
+    public:
+        virtual ~OperateAxisHandlerForChangeMapping(
         ) = 0;
 
         virtual std::size_t operator()(
@@ -60,19 +78,19 @@ public:
         ) const = 0;
     };
 
-    using HandlerForChangeMappingUnique = std::unique_ptr< HandlerForChangeMapping >;
+    using OperateAxisHandlerForChangeMappingUnique = std::unique_ptr< OperateAxisHandlerForChangeMapping >;
 
-    using HandlersForChangeMapping = std::map<
+    using OperateAxisHandlersForChangeMapping = std::map<
         std::size_t
-        , HandlerForChangeMappingUnique
+        , OperateAxisHandlerForChangeMappingUnique
     >;
 
 private:
-    PressButtonHandlersForPspState pressButtonHandlersForPspState;
-    OperateAxisHandlersForPspState operateAxisHandlersForPspState;
+    PressButtonHandlersForPspState  pressButtonHandlersForPspState;
+    OperateAxisHandlersForPspState  operateAxisHandlersForPspState;
 
-    HandlersForChangeMapping    pressButtonHandlersForChangeMapping;
-    HandlersForChangeMapping    operateAxisHandlersForChangeMapping;
+    PressButtonHandlersForChangeMapping pressButtonHandlersForChangeMapping;
+    OperateAxisHandlersForChangeMapping operateAxisHandlersForChangeMapping;
 
 public:
     void setPressButtonHandler(
@@ -81,8 +99,8 @@ public:
     );
 
     void setPressButtonHandler(
-        const HandlersForChangeMapping::key_type
-        , HandlersForChangeMapping::mapped_type &&
+        const PressButtonHandlersForChangeMapping::key_type
+        , PressButtonHandlersForChangeMapping::mapped_type &&
     );
 
     void setOperateAxisHandler(
@@ -91,8 +109,8 @@ public:
     );
 
     void setOperateAxisHandler(
-        const HandlersForChangeMapping::key_type
-        , HandlersForChangeMapping::mapped_type &&
+        const OperateAxisHandlersForChangeMapping::key_type
+        , OperateAxisHandlersForChangeMapping::mapped_type &&
     );
 
     void pressButton(
@@ -101,7 +119,7 @@ public:
     ) const;
 
     std::size_t pressButton(
-        const HandlersForChangeMapping::key_type
+        const PressButtonHandlersForChangeMapping::key_type
         , std::size_t &
         , const std::size_t
     ) const;
@@ -113,7 +131,7 @@ public:
     ) const;
 
     std::size_t operateAxis(
-        const HandlersForChangeMapping::key_type
+        const OperateAxisHandlersForChangeMapping::key_type
         , const __s16
         , std::size_t &
         , const std::size_t

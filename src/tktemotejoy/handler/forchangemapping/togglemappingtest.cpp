@@ -12,10 +12,7 @@ TEST(
 
     EXPECT_EQ(
         10
-        , toggleMapping(
-            30
-            , mappingIndex
-        )
+        , toggleMapping( mappingIndex )
     );
 
     EXPECT_EQ( 10, mappingIndex );
