@@ -52,10 +52,11 @@ TEST_F(
             PspState &  _pspState
         )
         {
-            _pspState.pressButtons( 0x1234 );
+            _pspState.pressButtons( 0x1111 );
+            _pspState.pressButtons( 0x2222 );
         }
         , true
-        , 0x00001234
+        , 0x00003333
     );
 }
 
