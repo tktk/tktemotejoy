@@ -14,7 +14,7 @@ std::size_t ToggleMapping::operator()(
     , std::size_t & _mappingIndex
 ) const
 {
-    //TODO
-    _mappingIndex = 5;
-    return 0;
+    _mappingIndex = this->MAPPING_INDEX;
+
+    return _mappingIndex;
 }
