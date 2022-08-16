@@ -37,7 +37,6 @@ namespace {
         return ( *( IT->second ) )(
             _VALUE
             , _mappingIndex
-            , _CURRENT_MAPPING_INDEX
         );
     }
 }

@@ -1,22 +1,22 @@
 #include "tktemotejoy/test.h"
-#include "tktemotejoy/handler/forchangemapping/shiftmapping.h"
+#include "tktemotejoy/handler/forchangemapping/togglemapping.h"
 
 TEST(
-    ShiftMappingTest
+    ToggleMappingTest
     , OperatorCall
 )
 {
-    auto    shiftMapping = ShiftMapping( 10 );
+    auto    toggleMapping = ToggleMapping( 10 );
 
     auto    mappingIndex = std::size_t( 20 );
 
     EXPECT_EQ(
         10
-        , shiftMapping(
+        , toggleMapping(
             30
             , mappingIndex
         )
     );
 
-    EXPECT_EQ( 20, mappingIndex );
+    EXPECT_EQ( 10, mappingIndex );
 }

@@ -10,36 +10,30 @@ namespace {
         int &               calledCount;
         const std::size_t   RETURNS_MAPPING_INDEX;
         const std::size_t   EXPECTED_MAPPING_INDEX;
-        const std::size_t   EXPECTED_CURRENT_MAPPING_INDEX;
 
         TestHandlerForChangeMapping(
             int &               _calledCount
             , const std::size_t _RETURNS_MAPPING_INDEX
             , const std::size_t _EXPECTED_MAPPING_INDEX
-            , const std::size_t _EXPECTED_CURRENT_MAPPING_INDEX
         )
             : Mapping::HandlerForChangeMapping()
             , calledCount( _calledCount )
             , RETURNS_MAPPING_INDEX( _RETURNS_MAPPING_INDEX )
             , EXPECTED_MAPPING_INDEX( _EXPECTED_MAPPING_INDEX )
-            , EXPECTED_CURRENT_MAPPING_INDEX( _EXPECTED_CURRENT_MAPPING_INDEX )
         {
         }
 
         std::size_t operator()(
             const __s16
-            , std::size_t &     _mappingIndex
-            , const std::size_t _CURRENT_MAPPING_INDEX
+            , std::size_t & _mappingIndex
         ) const
         {
             [
                 this
                 , &_mappingIndex
-                , &_CURRENT_MAPPING_INDEX
             ]
             {
                 EXPECT_EQ( this->EXPECTED_MAPPING_INDEX, _mappingIndex );
-                EXPECT_EQ( this->EXPECTED_CURRENT_MAPPING_INDEX, _CURRENT_MAPPING_INDEX );
             }();
 
             const_cast< int & >( this->calledCount )++;
@@ -59,7 +53,6 @@ namespace {
             , const std::size_t _RETURNS_MAPPING_INDEX
             , const std::size_t _EXPECTED_NEW_MAPPING_INDEX
             , const std::size_t _EXPECTED_MAPPING_INDEX
-            , const std::size_t _EXPECTED_CURRENT_MAPPING_INDEX
             , const int         _EXPECTED_CALLED_COUNT
         )
         {
@@ -71,7 +64,6 @@ namespace {
                     calledCount
                     , _RETURNS_MAPPING_INDEX
                     , _EXPECTED_MAPPING_INDEX
-                    , _EXPECTED_CURRENT_MAPPING_INDEX
                 )
             );
 
@@ -109,7 +101,6 @@ TEST_F(
         , 40
         , 40
         , 20
-        , 30
         , 1
     );
 }
@@ -126,7 +117,6 @@ TEST_F(
         , 40
         , 50
         , 40
-        , 0
         , 0
         , 0
     );
