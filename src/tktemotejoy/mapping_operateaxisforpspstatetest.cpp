@@ -27,8 +27,8 @@ namespace {
             , PspState &    _pspState
         ) const
         {
-            ASSERT_EQ( this->EXPECTED_VALUE, _VALUE );
-            ASSERT_EQ( &( this->PSP_STATE ), &_pspState );
+            EXPECT_EQ( this->EXPECTED_VALUE, _VALUE );
+            EXPECT_EQ( &( this->PSP_STATE ), &_pspState );
 
             const_cast< int & >( this->calledCount )++;
         }
@@ -69,7 +69,7 @@ namespace {
                 , pspState
             );
 
-            ASSERT_EQ( _EXPECTED_CALLED_COUNT, calledCount );
+            EXPECT_EQ( _EXPECTED_CALLED_COUNT, calledCount );
         }
     };
 }

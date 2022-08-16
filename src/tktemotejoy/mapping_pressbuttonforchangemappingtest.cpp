@@ -38,8 +38,8 @@ namespace {
                 , &_CURRENT_MAPPING_INDEX
             ]
             {
-                ASSERT_EQ( this->EXPECTED_MAPPING_INDEX, _mappingIndex );
-                ASSERT_EQ( this->EXPECTED_CURRENT_MAPPING_INDEX, _CURRENT_MAPPING_INDEX );
+                EXPECT_EQ( this->EXPECTED_MAPPING_INDEX, _mappingIndex );
+                EXPECT_EQ( this->EXPECTED_CURRENT_MAPPING_INDEX, _CURRENT_MAPPING_INDEX );
             }();
 
             const_cast< int & >( this->calledCount )++;
@@ -82,7 +82,7 @@ namespace {
                 , std::move( forPspStateUnique )
             );
 
-            ASSERT_EQ(
+            EXPECT_EQ(
                 _EXPECTED_NEW_MAPPING_INDEX
                 , mapping.pressButton(
                     _PRESS_BUTTON_KEY
@@ -91,7 +91,7 @@ namespace {
                 )
             );
 
-            ASSERT_EQ( _EXPECTED_CALLED_COUNT, calledCount );
+            EXPECT_EQ( _EXPECTED_CALLED_COUNT, calledCount );
         }
     };
 }

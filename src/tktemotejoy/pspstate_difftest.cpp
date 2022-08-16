@@ -36,8 +36,8 @@ namespace {
                 }
             );
 
-            ASSERT_EQ( _EXPECTED_CALLED_WHEN_DIFF, calledWhenDiff );
-            ASSERT_EQ( _EXPECTED_BITS, bits );
+            EXPECT_EQ( _EXPECTED_CALLED_WHEN_DIFF, calledWhenDiff );
+            EXPECT_EQ( _EXPECTED_BITS, bits );
         }
     };
 }

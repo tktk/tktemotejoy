@@ -11,6 +11,7 @@ module.DEPENDS = [
     'tktemotejoy_mapping_pressbuttonforchangemappingtest',
     'tktemotejoy_mapping_operateaxisforchangemappingtest',
     'tktemotejoy_pspstate_difftest',
+    'tktemotejoy_handler_forchangemapping_shiftmappingtest',
 ]
 
 module.BUILDER = cpp.program
@@ -22,4 +23,11 @@ module.SOURCE = [
     'joystickstate.cpp',
     'mapping.cpp',
     'pspstate.cpp',
+    {
+        'handler' : {
+            'forchangemapping' : [
+                'shiftmapping.cpp',
+            ],
+        },
+    },
 ]

@@ -37,10 +37,6 @@ public:
 private:
     Bits    bits;
 
-    void press(
-        const Bits
-    );
-
 public:
     void diff(
         const PspState &
