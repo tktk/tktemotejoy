@@ -50,7 +50,7 @@ namespace {
 
             auto    mapping = Mapping();
 
-            mapping.setPressButtonHandler(
+            mapping.setHandler(
                 _SET_HANDLER_KEY
                 , std::move( handlerUnique )
             );

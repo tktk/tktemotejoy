@@ -77,7 +77,7 @@ namespace {
 
             auto    mapping = Mapping();
 
-            mapping.setOperateAxisHandler(
+            mapping.setHandler(
                 _SET_HANDLER_KEY
                 , std::move( handlerUnique )
             );

@@ -87,7 +87,7 @@ Mapping::OperateAxisHandlerForChangeMapping::~OperateAxisHandlerForChangeMapping
 {
 }
 
-void Mapping::setPressButtonHandler(
+void Mapping::setHandler(
     const PressButtonHandlersForPspState::key_type      _KEY
     , PressButtonHandlersForPspState::mapped_type &&    _mappedUnique
 )
@@ -100,7 +100,7 @@ void Mapping::setPressButtonHandler(
     );
 }
 
-void Mapping::setPressButtonHandler(
+void Mapping::setHandler(
     const PressButtonHandlersForChangeMapping::key_type     _KEY
     , PressButtonHandlersForChangeMapping::mapped_type &&   _mappedUnique
 )
@@ -113,7 +113,7 @@ void Mapping::setPressButtonHandler(
     );
 }
 
-void Mapping::setOperateAxisHandler(
+void Mapping::setHandler(
     const OperateAxisHandlersForPspState::key_type      _KEY
     , OperateAxisHandlersForPspState::mapped_type &&    _mappedUnique
 )
@@ -126,7 +126,7 @@ void Mapping::setOperateAxisHandler(
     );
 }
 
-void Mapping::setOperateAxisHandler(
+void Mapping::setHandler(
     const OperateAxisHandlersForChangeMapping::key_type     _KEY
     , OperateAxisHandlersForChangeMapping::mapped_type &&   _mappedUnique
 )

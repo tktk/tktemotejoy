@@ -93,22 +93,22 @@ private:
     OperateAxisHandlersForChangeMapping operateAxisHandlersForChangeMapping;
 
 public:
-    void setPressButtonHandler(
+    void setHandler(
         const PressButtonHandlersForPspState::key_type
         , PressButtonHandlersForPspState::mapped_type &&
     );
 
-    void setPressButtonHandler(
+    void setHandler(
         const PressButtonHandlersForChangeMapping::key_type
         , PressButtonHandlersForChangeMapping::mapped_type &&
     );
 
-    void setOperateAxisHandler(
+    void setHandler(
         const OperateAxisHandlersForPspState::key_type
         , OperateAxisHandlersForPspState::mapped_type &&
     );
 
-    void setOperateAxisHandler(
+    void setHandler(
         const OperateAxisHandlersForChangeMapping::key_type
         , OperateAxisHandlersForChangeMapping::mapped_type &&
     );
