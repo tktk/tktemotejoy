@@ -11,10 +11,28 @@
 class Mapping
 {
 public:
-    class HandlerForPspState
+    class PressButtonHandlerForPspState
     {
     public:
-        virtual ~HandlerForPspState(
+        virtual ~PressButtonHandlerForPspState(
+        ) = 0;
+
+        virtual void operator()(
+            PspState &
+        ) const = 0;
+    };
+
+    using PressButtonHandlerForPspStateUnique = std::unique_ptr< PressButtonHandlerForPspState >;
+
+    using PressButtonHandlersForPspState = std::map<
+        std::size_t
+        , PressButtonHandlerForPspStateUnique
+    >;
+
+    class OperateAxisHandlerForPspState
+    {
+    public:
+        virtual ~OperateAxisHandlerForPspState(
         ) = 0;
 
         virtual void operator()(
@@ -23,11 +41,11 @@ public:
         ) const = 0;
     };
 
-    using HandlerForPspStateUnique = std::unique_ptr< HandlerForPspState >;
+    using OperateAxisHandlerForPspStateUnique = std::unique_ptr< OperateAxisHandlerForPspState >;
 
-    using HandlersForPspState = std::map<
+    using OperateAxisHandlersForPspState = std::map<
         std::size_t
-        , HandlerForPspStateUnique
+        , OperateAxisHandlerForPspStateUnique
     >;
 
     class HandlerForChangeMapping
@@ -50,16 +68,16 @@ public:
     >;
 
 private:
-    HandlersForPspState pressButtonHandlersForPspState;
-    HandlersForPspState operateAxisHandlersForPspState;
+    PressButtonHandlersForPspState pressButtonHandlersForPspState;
+    OperateAxisHandlersForPspState operateAxisHandlersForPspState;
 
     HandlersForChangeMapping    pressButtonHandlersForChangeMapping;
     HandlersForChangeMapping    operateAxisHandlersForChangeMapping;
 
 public:
     void setPressButtonHandler(
-        const HandlersForPspState::key_type
-        , HandlersForPspState::mapped_type &&
+        const PressButtonHandlersForPspState::key_type
+        , PressButtonHandlersForPspState::mapped_type &&
     );
 
     void setPressButtonHandler(
@@ -68,8 +86,8 @@ public:
     );
 
     void setOperateAxisHandler(
-        const HandlersForPspState::key_type
-        , HandlersForPspState::mapped_type &&
+        const OperateAxisHandlersForPspState::key_type
+        , OperateAxisHandlersForPspState::mapped_type &&
     );
 
     void setOperateAxisHandler(
@@ -78,7 +96,7 @@ public:
     );
 
     void pressButton(
-        const HandlersForPspState::key_type
+        const PressButtonHandlersForPspState::key_type
         , PspState &
     ) const;
 
@@ -89,7 +107,7 @@ public:
     ) const;
 
     void operateAxis(
-        const HandlersForPspState::key_type
+        const OperateAxisHandlersForPspState::key_type
         , const __s16
         , PspState &
     ) const;

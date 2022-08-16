@@ -4,7 +4,7 @@
 #include <linux/joystick.h>
 
 namespace {
-    struct TestHandlerForPspState : public Mapping::HandlerForPspState
+    struct TestHandlerForPspState : public Mapping::OperateAxisHandlerForPspState
     {
         int &               calledCount;
         const __s16         EXPECTED_VALUE;
@@ -15,7 +15,7 @@ namespace {
             , const __s16       _EXPECTED_VALUE
             , const PspState &  _PSP_STATE
         )
-            : Mapping::HandlerForPspState()
+            : Mapping::OperateAxisHandlerForPspState()
             , calledCount( _calledCount )
             , EXPECTED_VALUE( _EXPECTED_VALUE )
             , PSP_STATE( _PSP_STATE )
@@ -48,7 +48,7 @@ namespace {
             auto    calledCount = 0;
             auto    pspState = PspState();
 
-            auto    forPspStateUnique = Mapping::HandlerForPspStateUnique(
+            auto    handlerUnique = Mapping::OperateAxisHandlerForPspStateUnique(
                 new TestHandlerForPspState(
                     calledCount
                     , _EXPECTED_VALUE
@@ -60,7 +60,7 @@ namespace {
 
             mapping.setOperateAxisHandler(
                 _SET_HANDLER_KEY
-                , std::move( forPspStateUnique )
+                , std::move( handlerUnique )
             );
 
             mapping.operateAxis(

@@ -4,7 +4,7 @@
 #include <linux/joystick.h>
 
 namespace {
-    struct TestHandlerForPspState : public Mapping::HandlerForPspState
+    struct TestHandlerForPspState : public Mapping::PressButtonHandlerForPspState
     {
         int &               calledCount;
         const PspState &    PSP_STATE;
@@ -13,15 +13,14 @@ namespace {
             int &               _calledCount
             , const PspState &  _PSP_STATE
         )
-            : Mapping::HandlerForPspState()
+            : Mapping::PressButtonHandlerForPspState()
             , calledCount( _calledCount )
             , PSP_STATE( _PSP_STATE )
         {
         }
 
         void operator()(
-            const __s16
-            , PspState &    _pspState
+            PspState &  _pspState
         ) const
         {
             EXPECT_EQ( &( this->PSP_STATE ), &_pspState );
@@ -42,7 +41,7 @@ namespace {
             auto    calledCount = 0;
             auto    pspState = PspState();
 
-            auto    forPspStateUnique = Mapping::HandlerForPspStateUnique(
+            auto    handlerUnique = Mapping::PressButtonHandlerForPspStateUnique(
                 new TestHandlerForPspState(
                     calledCount
                     , pspState
@@ -53,7 +52,7 @@ namespace {
 
             mapping.setPressButtonHandler(
                 _SET_HANDLER_KEY
-                , std::move( forPspStateUnique )
+                , std::move( handlerUnique )
             );
 
             mapping.pressButton(

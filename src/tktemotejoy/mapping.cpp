@@ -3,11 +3,15 @@
 #include <utility>
 
 namespace {
-    void callHandlerForPspState(
-        const Mapping::HandlersForPspState &            _HANDLERS
-        , const Mapping::HandlersForPspState::key_type  _KEY
-        , const __s16                                   _VALUE
-        , PspState &                                    _pspState
+    template<
+        typename RETURNS_T
+        , typename HANDLERS_T
+        , typename CALL_HANDLER_T
+    >
+    RETURNS_T callHandler(
+        const HANDLERS_T &                      _HANDLERS
+        , const typename HANDLERS_T::key_type   _KEY
+        , const CALL_HANDLER_T &                _CALL_HANDLER
     )
     {
         const auto  IT = _HANDLERS.find( _KEY );
@@ -15,9 +19,23 @@ namespace {
             return;
         }
 
-        ( *( IT->second ) )(
-            _VALUE
-            , _pspState
+        _CALL_HANDLER( *( IT->second ) );
+    }
+
+    template<
+        typename HANDLERS_T
+        , typename CALL_HANDLER_T
+    >
+    void callHandlerForPspState(
+        const HANDLERS_T &                      _HANDLERS
+        , const typename HANDLERS_T::key_type   _KEY
+        , const CALL_HANDLER_T &                _CALL_HANDLER
+    )
+    {
+        callHandler< void >(
+            _HANDLERS
+            , _KEY
+            , _CALL_HANDLER
         );
     }
 
@@ -41,7 +59,12 @@ namespace {
     }
 }
 
-Mapping::HandlerForPspState::~HandlerForPspState(
+Mapping::PressButtonHandlerForPspState::~PressButtonHandlerForPspState(
+)
+{
+}
+
+Mapping::OperateAxisHandlerForPspState::~OperateAxisHandlerForPspState(
 )
 {
 }
@@ -52,8 +75,8 @@ Mapping::HandlerForChangeMapping::~HandlerForChangeMapping(
 }
 
 void Mapping::setPressButtonHandler(
-    const HandlersForPspState::key_type     _KEY
-    , HandlersForPspState::mapped_type &&   _mappedUnique
+    const PressButtonHandlersForPspState::key_type      _KEY
+    , PressButtonHandlersForPspState::mapped_type &&    _mappedUnique
 )
 {
     this->pressButtonHandlersForPspState.insert(
@@ -78,8 +101,8 @@ void Mapping::setPressButtonHandler(
 }
 
 void Mapping::setOperateAxisHandler(
-    const HandlersForPspState::key_type     _KEY
-    , HandlersForPspState::mapped_type &&   _mappedUnique
+    const OperateAxisHandlersForPspState::key_type      _KEY
+    , OperateAxisHandlersForPspState::mapped_type &&    _mappedUnique
 )
 {
     this->operateAxisHandlersForPspState.insert(
@@ -104,15 +127,22 @@ void Mapping::setOperateAxisHandler(
 }
 
 void Mapping::pressButton(
-    const HandlersForPspState::key_type _KEY
-    , PspState &                        _pspState
+    const PressButtonHandlersForPspState::key_type  _KEY
+    , PspState &                                    _pspState
 ) const
 {
     callHandlerForPspState(
         this->pressButtonHandlersForPspState
         , _KEY
-        , 1
-        , _pspState
+        , [
+            &_pspState
+        ]
+        (
+            const PressButtonHandlerForPspState &   _HANDLER
+        )
+        {
+            _HANDLER( _pspState );
+        }
     );
 }
 
@@ -132,16 +162,27 @@ std::size_t Mapping::pressButton(
 }
 
 void Mapping::operateAxis(
-    const HandlersForPspState::key_type _KEY
-    , const __s16                       _VALUE
-    , PspState &                        _pspState
+    const OperateAxisHandlersForPspState::key_type  _KEY
+    , const __s16                                   _VALUE
+    , PspState &                                    _pspState
 ) const
 {
     callHandlerForPspState(
         this->operateAxisHandlersForPspState
         , _KEY
-        , _VALUE
-        , _pspState
+        , [
+            &_VALUE
+            , &_pspState
+        ]
+        (
+            const OperateAxisHandlerForPspState &   _HANDLER
+        )
+        {
+            _HANDLER(
+                _VALUE
+                , _pspState
+            );
+        }
     );
 }
 
