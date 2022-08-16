@@ -11,11 +11,9 @@ ShiftMapping::ShiftMapping(
 
 std::size_t ShiftMapping::operator()(
     const __s16
-    , std::size_t &     _mappingIndex
+    , std::size_t &
     , const std::size_t
 ) const
 {
-    //TODO
-    _mappingIndex = 10;
-    return 0;
+    return this->MAPPING_INDEX;
 }
