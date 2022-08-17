@@ -5,11 +5,7 @@
 ToFixedAxisY::ToFixedAxisY(
     const __s16 _AXIS
 )
-    //TODO
-/*
     : AXIS( jsEventAxisToPspStateAxis( _AXIS ) )
-*/
-    : AXIS( 0 )
 {
 }
 
