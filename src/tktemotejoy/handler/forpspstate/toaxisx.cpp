@@ -3,16 +3,14 @@
 #include "tktemotejoy/common.h"
 #include <linux/joystick.h>
 
-ToAxisX::ToAxisX(
-    const __s16     _DEAD_ZONE
-    , const __s16   _MAX
+ToAxisXImpl::ToAxisXImpl(
+    const __s16 _MAX
 )
-    : DEAD_ZONE( _DEAD_ZONE )
-    , MAX( _MAX )
+    : MAX( _MAX )
 {
 }
 
-void ToAxisX::operator()(
+void ToAxisXImpl::operator()(
     const __s16     _VALUE
     , PspState &    _pspState
 ) const

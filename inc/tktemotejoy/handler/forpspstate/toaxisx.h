@@ -1,25 +1,25 @@
-#ifndef TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_TOAXISX_H
-#define TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_TOAXISX_H
+#ifndef TKTEMOTEJOY_HANDLER_FORPSPSTATE_TOAXISX_H
+#define TKTEMOTEJOY_HANDLER_FORPSPSTATE_TOAXISX_H
 
-#include "tktemotejoy/mapping.h"
+#include "tktemotejoy/handler/forpspstate/withdeadzone.h"
 #include "tktemotejoy/pspstate.h"
 #include <linux/joystick.h>
 
-class ToAxisX final : public Mapping::OperateAxisHandlerForPspState
+class ToAxisXImpl final
 {
-    const __s16 DEAD_ZONE;
     const __s16 MAX;
 
 public:
-    ToAxisX(
+    ToAxisXImpl(
         const __s16
-        , const __s16
     );
 
     void operator()(
         const __s16
         , PspState &
-    ) const override;
+    ) const;
 };
 
-#endif  // TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_TOAXISX_H
+using ToAxisX = WithDeadZone< ToAxisXImpl >;
+
+#endif  // TKTEMOTEJOY_HANDLER_FORPSPSTATE_TOAXISX_H

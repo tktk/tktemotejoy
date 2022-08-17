@@ -58,5 +58,15 @@ TEST_F(
     );
 }
 
-//TODO DeadZonePlus
-//TODO DeadZoneMinus
+TEST_F(
+    ToAxisXTest
+    , DeadZone
+)
+{
+    this->test(
+        1000
+        , 2000
+        , 500
+        , 0x80800000
+    );
+}
