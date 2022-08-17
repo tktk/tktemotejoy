@@ -18,5 +18,7 @@ void ToButtonHandlersImpl::operator()(
     , PspState &    _pspState
 ) const
 {
-    ( *( this->handler1Unique ) )( _pspState );
+    const auto &    HANDLER = *( _VALUE < 0 ? this->handler1Unique : this->handler2Unique );
+
+    HANDLER( _pspState );
 }
