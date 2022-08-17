@@ -27,6 +27,8 @@ PspState::Axis jsEventAxisToPspStateAxis(
 {
     if( _JS_EVENT_AXIS >= _MAX ) {
         return PSP_STATE_AXIS_MAX;
+    } else if( _JS_EVENT_AXIS <= -_MAX ) {
+        return PSP_STATE_AXIS_MIN;
     }
 
     return jsEventAxisToPspStateAxis( static_cast< __s16 >( static_cast< int >( _JS_EVENT_AXIS ) * static_cast< int >( JS_EVENT_AXIS_MAX ) / static_cast< int >( _MAX ) ) );
