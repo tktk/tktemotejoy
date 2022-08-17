@@ -68,7 +68,7 @@ namespace {
 
 TEST_F(
     WithDeadZoneTest
-    , OutOfDeadZone
+    , OutOfDeadZonePlus
 )
 {
     this->test(
@@ -81,15 +81,39 @@ TEST_F(
 
 TEST_F(
     WithDeadZoneTest
+    , OutOfDeadZoneMinus
+)
+{
+    this->test(
+        0
+        , -2000
+        , true
+        , -2000
+    );
+}
+
+TEST_F(
+    WithDeadZoneTest
     , DeadZonePlus
 )
 {
     this->test(
         1000
-        , 999
+        , 1000
         , false
         , 0
     );
 }
 
-//TODO DeadZoneMinus
+TEST_F(
+    WithDeadZoneTest
+    , DeadZoneMinus
+)
+{
+    this->test(
+        1000
+        , -1000
+        , false
+        , 0
+    );
+}
