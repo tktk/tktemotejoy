@@ -4,7 +4,7 @@
 ToFixedAxisX::ToFixedAxisX(
     const __s16 _AXIS
 )
-    : AXIS( 0 ) //TODO
+    : AXIS( 0xff )  //TODO
 {
 }
 
@@ -12,5 +12,5 @@ void ToFixedAxisX::operator()(
     PspState &  _pspState
 ) const
 {
-    //TODO
+    _pspState.operateAxisX( this->AXIS );
 }
