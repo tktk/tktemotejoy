@@ -15,13 +15,10 @@ void ToAxisYImpl::operator()(
     , PspState &    _pspState
 ) const
 {
-    //TODO
-/*
-    _pspState.operateAxisX(
+    _pspState.operateAxisY(
         jsEventAxisToPspStateAxis(
             _VALUE
             , this->MAX
         )
     );
-*/
 }
