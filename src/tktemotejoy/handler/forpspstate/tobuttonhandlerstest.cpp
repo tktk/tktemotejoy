@@ -89,17 +89,15 @@ TEST_F(
     );
 }
 
-/*
 TEST_F(
-    ToAxisXTest
+    ToButtonHandlersTest
     , DeadZone
 )
 {
     this->test(
-        1000
-        , 2000
-        , 500
-        , 0x80800000
+        0
+        , 0
+        , false
+        , false
     );
 }
-*/
