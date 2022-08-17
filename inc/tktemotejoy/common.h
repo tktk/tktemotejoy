@@ -8,4 +8,9 @@ PspState::Axis jsEventAxisToPspStateAxis(
     const __s16
 );
 
+PspState::Axis jsEventAxisToPspStateAxis(
+    const __s16
+    , const __s16
+);
+
 #endif  // TKTEMOTEJOY_COMMON_H

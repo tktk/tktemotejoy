@@ -14,6 +14,25 @@ namespace {
             EXPECT_EQ( _EXPECTED, jsEventAxisToPspStateAxis( _JS_EVENT_AXIS ) );
         }
     };
+
+    class JsEventAxisToPspStateAxisWithMaxTest : public ::testing::Test
+    {
+    public:
+        void test(
+            const __s16             _JS_EVENT_AXIS
+            , const __s16           _MAX
+            , const PspState::Axis  _EXPECTED
+        ) const
+        {
+            EXPECT_EQ(
+                _EXPECTED
+                , jsEventAxisToPspStateAxis(
+                    _JS_EVENT_AXIS
+                    , _MAX
+                )
+            );
+        }
+    };
 }
 
 TEST_F(
@@ -48,3 +67,19 @@ TEST_F(
         , 0x00
     );
 }
+
+TEST_F(
+    JsEventAxisToPspStateAxisWithMaxTest
+    , Max
+)
+{
+    this->test(
+        20000
+        , 20000
+        , 0xff
+    );
+}
+
+//TODO Zero
+//TODO Min
+//TODO Half
