@@ -20,5 +20,5 @@ module.SOURCE = [
     },
     'mapping.cpp',
     'pspstate.cpp',
-    #'common.cpp',
+    'common.cpp',
 ]

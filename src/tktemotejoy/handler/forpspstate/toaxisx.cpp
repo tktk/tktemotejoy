@@ -7,8 +7,8 @@ ToAxisX::ToAxisX(
     const __s16     _DEAD_ZONE
     , const __s16   _MAX
 )
-    : DEAD_ZONE( 0 )    //TODO
-    , MAX( 0 )  //TODO
+    : DEAD_ZONE( _DEAD_ZONE )
+    , MAX( _MAX )
 {
 }
 
@@ -17,8 +17,10 @@ void ToAxisX::operator()(
     , PspState &    _pspState
 ) const
 {
-    //TODO
-/*
-    _pspState.operateAxisX( this->AXIS );
-*/
+    _pspState.operateAxisX(
+        jsEventAxisToPspStateAxis(
+            _VALUE
+            , this->MAX
+        )
+    );
 }
