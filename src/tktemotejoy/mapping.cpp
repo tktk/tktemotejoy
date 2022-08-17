@@ -220,6 +220,7 @@ std::size_t Mapping::operateAxis(
         , [
             &_VALUE
             , &_mappingIndex
+            , &_CURRENT_MAPPING_INDEX
         ]
         (
             const OperateAxisHandlerForChangeMapping &  _HANDLER
@@ -228,6 +229,7 @@ std::size_t Mapping::operateAxis(
             return _HANDLER(
                 _VALUE
                 , _mappingIndex
+                , 0 //TODO
             );
         }
     );
