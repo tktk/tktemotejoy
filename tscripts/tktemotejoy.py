@@ -16,6 +16,7 @@ module.DEPENDS = [
     'tktemotejoy_handler_forchangemapping_togglemappingtest',
     'tktemotejoy_handler_forpspstate_tobuttonstest',
     'tktemotejoy_handler_forpspstate_tofixedaxisxtest',
+    'tktemotejoy_handler_forpspstate_tofixedaxisytest',
 ]
 
 module.BUILDER = cpp.program
@@ -37,6 +38,7 @@ module.SOURCE = [
             'forpspstate' : [
                 'tobuttons.cpp',
                 'tofixedaxisx.cpp',
+                'tofixedaxisy.cpp',
             ],
         },
     },
