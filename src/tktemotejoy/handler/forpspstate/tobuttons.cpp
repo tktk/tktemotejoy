@@ -12,5 +12,5 @@ void ToButtons::operator()(
     PspState &  _pspState
 ) const
 {
-    //TODO
+    _pspState.pressButtons( this->BUTTONS );
 }
