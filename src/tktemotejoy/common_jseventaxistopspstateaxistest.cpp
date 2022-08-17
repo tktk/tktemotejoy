@@ -27,5 +27,24 @@ TEST_F(
     );
 }
 
-//TODO Zero
-//TODO Min
+TEST_F(
+    JsEventAxisToPspStateAxisTest
+    , Zero
+)
+{
+    this->test(
+        0x0000
+        , 0x80
+    );
+}
+
+TEST_F(
+    JsEventAxisToPspStateAxisTest
+    , Min
+)
+{
+    this->test(
+        0x8000
+        , 0x00
+    );
+}
