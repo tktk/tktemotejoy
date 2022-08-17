@@ -56,7 +56,7 @@ TEST_F(
             _pspState.pressButtons( 0x2222 );
         }
         , true
-        , 0x00003333
+        , 0x80803333
     );
 }
 
@@ -89,7 +89,7 @@ TEST_F(
             _pspState.operateAxisX( 10 );
         }
         , true
-        , 0x000a0000
+        , 0x800a0000
     );
 }
 
@@ -106,6 +106,6 @@ TEST_F(
             _pspState.operateAxisY( 20 );
         }
         , true
-        , 0x14000000
+        , 0x14800000
     );
 }
