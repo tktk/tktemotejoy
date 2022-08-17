@@ -20,6 +20,6 @@ public:
     ) const;
 };
 
-using ToAxisY = WithDeadZone< ToAxisYImpl >;
+using ToAxisY = WithDeadZoneForPspState< ToAxisYImpl >;
 
 #endif  // TKTEMOTEJOY_HANDLER_FORPSPSTATE_TOAXISY_H

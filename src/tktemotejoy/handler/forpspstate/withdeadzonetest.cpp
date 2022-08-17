@@ -35,7 +35,7 @@ namespace {
         }
     };
 
-    class WithDeadZoneTest : public ::testing::Test
+    class WithDeadZoneForPspStateTest : public ::testing::Test
     {
     public:
         void test(
@@ -49,7 +49,7 @@ namespace {
 
             auto    pspState = PspState();
 
-            auto    withDeadZone = WithDeadZone< TestHandler >(
+            auto    withDeadZone = WithDeadZoneForPspState< TestHandler >(
                 _DEAD_ZONE
                 , called
                 , _EXPECTED_VALUE
@@ -67,8 +67,8 @@ namespace {
 }
 
 TEST_F(
-    WithDeadZoneTest
-    , OutOfDeadZonePlus
+    WithDeadZoneForPspStateTest
+    , OutOfDeadZoneForPspStatePlus
 )
 {
     this->test(
@@ -80,8 +80,8 @@ TEST_F(
 }
 
 TEST_F(
-    WithDeadZoneTest
-    , OutOfDeadZoneMinus
+    WithDeadZoneForPspStateTest
+    , OutOfDeadZoneForPspStateMinus
 )
 {
     this->test(
@@ -93,8 +93,8 @@ TEST_F(
 }
 
 TEST_F(
-    WithDeadZoneTest
-    , DeadZonePlus
+    WithDeadZoneForPspStateTest
+    , DeadZoneForPspStatePlus
 )
 {
     this->test(
@@ -106,8 +106,8 @@ TEST_F(
 }
 
 TEST_F(
-    WithDeadZoneTest
-    , DeadZoneMinus
+    WithDeadZoneForPspStateTest
+    , DeadZoneForPspStateMinus
 )
 {
     this->test(

@@ -7,7 +7,7 @@
 #include <cmath>
 
 template< typename HANDLER_T >
-class WithDeadZone final : public Mapping::OperateAxisHandlerForPspState
+class WithDeadZoneForPspState final : public Mapping::OperateAxisHandlerForPspState
 {
     const __s16 DEAD_ZONE;
 
@@ -15,7 +15,7 @@ class WithDeadZone final : public Mapping::OperateAxisHandlerForPspState
 
 public:
     template< typename ... ARGS_T >
-    WithDeadZone(
+    WithDeadZoneForPspState(
         const __s16     _DEAD_ZONE
         , ARGS_T & ...  _args
     )
