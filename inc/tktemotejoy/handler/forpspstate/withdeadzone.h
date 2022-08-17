@@ -18,7 +18,7 @@ public:
         const __s16     _DEAD_ZONE
         , ARGS_T & ...  _args
     )
-        : DEAD_ZONE( 0 )
+        : DEAD_ZONE( _DEAD_ZONE )
         , HANDLER( _args ... )
     {
     }
@@ -28,6 +28,10 @@ public:
         , PspState &    _pspState
     ) const override
     {
+        if( _VALUE <= this->DEAD_ZONE ) {
+            return;
+        }
+
         this->HANDLER(
             _VALUE
             , _pspState
