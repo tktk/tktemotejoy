@@ -229,7 +229,7 @@ std::size_t Mapping::operateAxis(
             return _HANDLER(
                 _VALUE
                 , _mappingIndex
-                , 0 //TODO
+                , _CURRENT_MAPPING_INDEX
             );
         }
     );
