@@ -80,6 +80,29 @@ TEST_F(
     );
 }
 
-//TODO Zero
-//TODO Min
-//TODO Half
+TEST_F(
+    JsEventAxisToPspStateAxisWithMaxTest
+    , Zero
+)
+{
+    this->test(
+        0
+        , 20000
+        , 0x80
+    );
+}
+
+TEST_F(
+    JsEventAxisToPspStateAxisWithMaxTest
+    , Min
+)
+{
+    this->test(
+        -20000
+        , 20000
+        , 0x00
+    );
+}
+
+//TODO GreaterThanMax
+//TODO LesserThanMin
