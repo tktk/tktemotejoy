@@ -22,5 +22,5 @@ PspState::Axis jsEventAxisToPspStateAxis(
 )
 {
     //TODO
-    return 0;
+    return 0xff;
 }
