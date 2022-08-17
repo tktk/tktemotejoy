@@ -48,5 +48,24 @@ TEST_F(
     );
 }
 
-//TODO Zero
-//TODO Min
+TEST_F(
+    ToFixedAxisX_operatorCallTest
+    , Zero
+)
+{
+    this->test(
+        0
+        , 0x00800000
+    );
+}
+
+TEST_F(
+    ToFixedAxisX_operatorCallTest
+    , Min
+)
+{
+    this->test(
+        -32768
+        , 0x00000000
+    );
+}
