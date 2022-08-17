@@ -16,7 +16,7 @@ namespace {
         {
             auto    toAxisY = ToAxisY(
                 _DEAD_ZONE
-                , _MAX
+                , ToAxisYImpl( _MAX )
             );
 
             auto    pspState = PspState();

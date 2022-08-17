@@ -4,7 +4,7 @@
 #include <linux/joystick.h>
 
 namespace {
-    class TestHandler
+    class TestHandler final
     {
         bool &  called;
 
@@ -49,11 +49,13 @@ namespace {
 
             auto    pspState = PspState();
 
-            auto    withDeadZone = WithDeadZoneForPspState< TestHandler >(
+            auto    withDeadZone = WithDeadZoneForPspState(
                 _DEAD_ZONE
-                , called
-                , _EXPECTED_VALUE
-                , pspState
+                , TestHandler(
+                    called
+                    , _EXPECTED_VALUE
+                    , pspState
+                )
             );
 
             withDeadZone(

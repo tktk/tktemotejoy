@@ -4,12 +4,13 @@
 #include <linux/joystick.h>
 
 namespace {
-    struct TestHandlerForPspState final : public Mapping::OperateAxisHandlerForPspState
+    class TestHandlerForPspState final : public Mapping::OperateAxisHandlerForPspState
     {
         int &               calledCount;
         const __s16         EXPECTED_VALUE;
         const PspState &    PSP_STATE;
 
+    public:
         TestHandlerForPspState(
             int &               _calledCount
             , const __s16       _EXPECTED_VALUE

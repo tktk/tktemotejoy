@@ -5,12 +5,13 @@
 #include <cstddef>
 
 namespace {
-    struct TestHandlerForChangeMapping final : public Mapping::PressButtonHandlerForChangeMapping
+    class TestHandlerForChangeMapping final : public Mapping::PressButtonHandlerForChangeMapping
     {
         int &               calledCount;
         const std::size_t   RETURNS_MAPPING_INDEX;
         const std::size_t   EXPECTED_MAPPING_INDEX;
 
+    public:
         TestHandlerForChangeMapping(
             int &               _calledCount
             , const std::size_t _RETURNS_MAPPING_INDEX

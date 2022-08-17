@@ -5,7 +5,7 @@
 #include <vector>
 #include <functional>
 
-class JoystickState
+class JoystickState final
 {
 public:
     using States = std::vector< __s16 >;

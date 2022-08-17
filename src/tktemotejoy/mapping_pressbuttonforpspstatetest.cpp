@@ -4,11 +4,12 @@
 #include <linux/joystick.h>
 
 namespace {
-    struct TestHandlerForPspState final : public Mapping::PressButtonHandlerForPspState
+    class TestHandlerForPspState final : public Mapping::PressButtonHandlerForPspState
     {
         int &               calledCount;
         const PspState &    PSP_STATE;
 
+    public:
         TestHandlerForPspState(
             int &               _calledCount
             , const PspState &  _PSP_STATE

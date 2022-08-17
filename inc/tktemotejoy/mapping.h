@@ -8,7 +8,7 @@
 #include <memory>
 #include <cstddef>
 
-class Mapping
+class Mapping final
 {
 public:
     class PressButtonHandlerForPspState

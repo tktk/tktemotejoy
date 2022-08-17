@@ -5,6 +5,7 @@
 #include "tktemotejoy/pspstate.h"
 #include <linux/joystick.h>
 #include <cmath>
+#include <utility>
 
 template< typename HANDLER_T >
 class WithDeadZoneForPspState final : public Mapping::OperateAxisHandlerForPspState
@@ -14,13 +15,12 @@ class WithDeadZoneForPspState final : public Mapping::OperateAxisHandlerForPspSt
     const HANDLER_T HANDLER;
 
 public:
-    template< typename ... ARGS_T >
     WithDeadZoneForPspState(
         const __s16     _DEAD_ZONE
-        , ARGS_T & ...  _args
+        , HANDLER_T &&  _handler
     )
         : DEAD_ZONE( _DEAD_ZONE )
-        , HANDLER( _args ... )
+        , HANDLER( std::move( _handler ) )
     {
     }
 

@@ -3,7 +3,7 @@
 
 #include <functional>
 
-class PspState
+class PspState final
 {
 public:
     enum Button
