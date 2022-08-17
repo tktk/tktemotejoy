@@ -19,6 +19,7 @@ module.DEPENDS = [
     'tktemotejoy_handler_forpspstate_tofixedaxisytest',
     'tktemotejoy_handler_forpspstate_withdeadzonetest',
     'tktemotejoy_handler_forpspstate_toaxisxtest',
+    'tktemotejoy_handler_forpspstate_toaxisytest',
 ]
 
 module.BUILDER = cpp.program
@@ -42,6 +43,7 @@ module.SOURCE = [
                 'tofixedaxisx.cpp',
                 'tofixedaxisy.cpp',
                 'toaxisx.cpp',
+                'toaxisy.cpp',
             ],
         },
     },
