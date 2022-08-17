@@ -22,7 +22,7 @@ TEST(
             const PspState::Bits &  _BITS
         )
         {
-            EXPECT_EQ( 0xff000000, _BITS );
+            EXPECT_EQ( 0xff800000, _BITS );
         }
     );
 }
