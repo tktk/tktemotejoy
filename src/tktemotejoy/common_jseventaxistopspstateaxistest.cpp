@@ -104,5 +104,16 @@ TEST_F(
     );
 }
 
-//TODO GreaterThanMax
+TEST_F(
+    JsEventAxisToPspStateAxisWithMaxTest
+    , GreaterThanMax
+)
+{
+    this->test(
+        20001
+        , 20000
+        , 0xff
+    );
+}
+
 //TODO LesserThanMin
