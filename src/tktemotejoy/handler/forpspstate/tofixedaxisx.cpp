@@ -1,10 +1,11 @@
 #include "tktemotejoy/handler/forpspstate/tofixedaxisx.h"
 #include "tktemotejoy/pspstate.h"
+#include "tktemotejoy/common.h"
 
 ToFixedAxisX::ToFixedAxisX(
     const __s16 _AXIS
 )
-    : AXIS( ( _AXIS + 0x8000 ) >> 8 )
+    : AXIS( jsEventAxisToPspStateAxis( _AXIS ) )
 {
 }
 
