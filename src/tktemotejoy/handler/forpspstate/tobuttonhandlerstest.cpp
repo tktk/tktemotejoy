@@ -76,7 +76,18 @@ TEST_F(
     );
 }
 
-//TODO Minus
+TEST_F(
+    ToButtonHandlersTest
+    , CallHandler2
+)
+{
+    this->test(
+        0
+        , 1
+        , false
+        , true
+    );
+}
 
 /*
 TEST_F(
