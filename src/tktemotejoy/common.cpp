@@ -4,8 +4,10 @@
 
 namespace {
     enum {
-        JS_EVENT_AXIS_ZERO = 0x8000,
+        JS_EVENT_AXIS_TO_PSP_STATE_AXIS = 0x8000,
         SHIFT_TO_PSP_STATE_AXIS = 8,
+
+        JS_EVENT_AXIS_MAX = 0x7fff,
     };
 }
 
@@ -13,7 +15,7 @@ PspState::Axis jsEventAxisToPspStateAxis(
     const __s16 _JS_EVENT_AXIS
 )
 {
-    return ( _JS_EVENT_AXIS + JS_EVENT_AXIS_ZERO ) >> SHIFT_TO_PSP_STATE_AXIS;
+    return ( _JS_EVENT_AXIS + JS_EVENT_AXIS_TO_PSP_STATE_AXIS ) >> SHIFT_TO_PSP_STATE_AXIS;
 }
 
 PspState::Axis jsEventAxisToPspStateAxis(
@@ -21,6 +23,5 @@ PspState::Axis jsEventAxisToPspStateAxis(
     , const __s16   _MAX
 )
 {
-    //TODO
-    return 0xff;
+    return jsEventAxisToPspStateAxis( static_cast< __s16 >( static_cast< int >( _JS_EVENT_AXIS ) * static_cast< int >( JS_EVENT_AXIS_MAX ) / static_cast< int >( _MAX ) ) );
 }
