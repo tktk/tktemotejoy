@@ -16,20 +16,22 @@ public:
     template< typename ... ARGS_T >
     WithDeadZone(
         const __s16     _DEAD_ZONE
-        , ARGS_T ...    _args
+        , ARGS_T & ...  _args
     )
         : DEAD_ZONE( 0 )
         , HANDLER( _args ... )
     {
-        //TODO
     }
 
     void operator()(
-        const __s16
-        , PspState &
+        const __s16     _VALUE
+        , PspState &    _pspState
     ) const override
     {
-        //TODO
+        this->HANDLER(
+            _VALUE
+            , _pspState
+        );
     }
 };
 
