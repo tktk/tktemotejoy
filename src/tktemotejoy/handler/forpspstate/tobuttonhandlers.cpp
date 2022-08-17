@@ -2,13 +2,15 @@
 #include "tktemotejoy/pspstate.h"
 #include "tktemotejoy/mapping.h"
 #include <linux/joystick.h>
+#include <utility>
 
 ToButtonHandlersImpl::ToButtonHandlersImpl(
-    Mapping::PressButtonHandlerForPspStateUnique &&
-    , Mapping::PressButtonHandlerForPspStateUnique &&
+    Mapping::PressButtonHandlerForPspStateUnique &&     _handler1Unique
+    , Mapping::PressButtonHandlerForPspStateUnique &&   _handler2Unique
 )
+    : handler1Unique( std::move( _handler1Unique ) )
+    , handler2Unique( std::move( _handler2Unique ) )
 {
-    //TODO
 }
 
 void ToButtonHandlersImpl::operator()(
@@ -16,5 +18,5 @@ void ToButtonHandlersImpl::operator()(
     , PspState &    _pspState
 ) const
 {
-    //TODO
+    ( *( this->handler1Unique ) )( _pspState );
 }
