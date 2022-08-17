@@ -4,6 +4,7 @@
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/pspstate.h"
 #include <linux/joystick.h>
+#include <cmath>
 
 template< typename HANDLER_T >
 class WithDeadZone final : public Mapping::OperateAxisHandlerForPspState
@@ -28,7 +29,7 @@ public:
         , PspState &    _pspState
     ) const override
     {
-        if( _VALUE <= this->DEAD_ZONE ) {
+        if( std::abs( _VALUE ) <= this->DEAD_ZONE ) {
             return;
         }
 
