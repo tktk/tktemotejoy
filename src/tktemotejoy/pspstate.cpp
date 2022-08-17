@@ -7,6 +7,16 @@ namespace {
         alignas( 1 ) unsigned char  axisX;
         alignas( 1 ) unsigned char  axisY;
     };
+
+    enum {
+        BITS_DEFAULT = 0x80800000,
+    };
+}
+
+PspState::PspState(
+)
+    : bits( BITS_DEFAULT )
+{
 }
 
 void PspState::diff(

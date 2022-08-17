@@ -12,4 +12,5 @@ module.TARGET = 'tktemotejoy_mapping_operateaxisforpspstatetest'
 module.SOURCE = [
     'mapping_operateaxisforpspstatetest.cpp',
     'mapping.cpp',
+    'pspstate.cpp',
 ]

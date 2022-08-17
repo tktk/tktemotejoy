@@ -12,4 +12,5 @@ module.TARGET = 'tktemotejoy_mapping_pressbuttonforpspstatetest'
 module.SOURCE = [
     'mapping_pressbuttonforpspstatetest.cpp',
     'mapping.cpp',
+    'pspstate.cpp',
 ]

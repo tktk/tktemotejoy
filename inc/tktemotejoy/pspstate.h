@@ -38,6 +38,9 @@ private:
     Bits    bits;
 
 public:
+    PspState(
+    );
+
     void diff(
         const PspState &
         , const WhenDiff &
