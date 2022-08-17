@@ -79,5 +79,17 @@ TEST_F(
     );
 }
 
-//TODO DeadZonePlus
+TEST_F(
+    WithDeadZoneTest
+    , DeadZonePlus
+)
+{
+    this->test(
+        1000
+        , 999
+        , false
+        , 0
+    );
+}
+
 //TODO DeadZoneMinus
