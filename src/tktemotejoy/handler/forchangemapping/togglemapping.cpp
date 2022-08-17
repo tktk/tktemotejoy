@@ -1,5 +1,4 @@
 #include "tktemotejoy/handler/forchangemapping/togglemapping.h"
-#include <linux/joystick.h>
 #include <cstddef>
 
 ToggleMapping::ToggleMapping(

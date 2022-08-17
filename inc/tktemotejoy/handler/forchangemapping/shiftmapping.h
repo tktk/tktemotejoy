@@ -2,7 +2,6 @@
 #define TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_SHIFTMAPPING_H
 
 #include "tktemotejoy/mapping.h"
-#include <linux/joystick.h>
 #include <cstddef>
 
 class ShiftMapping final : public Mapping::PressButtonHandlerForChangeMapping

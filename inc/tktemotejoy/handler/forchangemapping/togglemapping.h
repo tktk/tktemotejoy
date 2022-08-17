@@ -2,7 +2,6 @@
 #define TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_TOGGLEMAPPING_H
 
 #include "tktemotejoy/mapping.h"
-#include <linux/joystick.h>
 #include <cstddef>
 
 class ToggleMapping final : public Mapping::PressButtonHandlerForChangeMapping

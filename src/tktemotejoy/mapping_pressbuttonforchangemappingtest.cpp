@@ -27,13 +27,7 @@ namespace {
             std::size_t &   _mappingIndex
         ) const override
         {
-            [
-                this
-                , &_mappingIndex
-            ]
-            {
-                EXPECT_EQ( this->EXPECTED_MAPPING_INDEX, _mappingIndex );
-            }();
+            EXPECT_EQ( this->EXPECTED_MAPPING_INDEX, _mappingIndex );
 
             const_cast< int & >( this->calledCount )++;
 

@@ -1,5 +1,4 @@
 #include "tktemotejoy/handler/forchangemapping/shiftmapping.h"
-#include <linux/joystick.h>
 #include <cstddef>
 
 ShiftMapping::ShiftMapping(
