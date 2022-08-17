@@ -19,7 +19,7 @@ namespace {
             , const JoystickState::States::size_type    _EXPECTED_CALL_COUNT
             , const IndexAndValueMap                    _EXPECTED_CALLED_INDEX_AND_VALUE_MAP
             , const bool                                _TEST_CALLED_INDEX_AND_VALUE_MAP
-        )
+        ) const
         {
             for( const auto & INDEX_AND_VALUE : _INDEX_AND_VALUE_MAP ) {
                 _joystickState.setAxisState(

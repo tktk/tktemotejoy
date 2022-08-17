@@ -47,7 +47,7 @@ namespace {
             , const std::size_t _EXPECTED_NEW_MAPPING_INDEX
             , const std::size_t _EXPECTED_MAPPING_INDEX
             , const int         _EXPECTED_CALLED_COUNT
-        )
+        ) const
         {
             auto    calledCount = 0;
             auto    mappingIndex = _MAPPING_INDEX;

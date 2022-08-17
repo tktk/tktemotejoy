@@ -10,7 +10,7 @@ namespace {
             const std::function< void ( PspState & ) > &    _FOR_PSP_STATE
             , const bool                                    _EXPECTED_CALLED_WHEN_DIFF
             , const PspState::Bits                          _EXPECTED_BITS
-        )
+        ) const
         {
             auto    pspState = PspState();
 

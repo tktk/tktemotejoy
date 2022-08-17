@@ -36,7 +36,7 @@ namespace {
             const int   _SET_HANDLER_KEY
             , const int _PRESS_BUTTON_KEY
             , const int _EXPECTED_CALLED_COUNT
-        )
+        ) const
         {
             auto    calledCount = 0;
             auto    pspState = PspState();

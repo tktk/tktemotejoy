@@ -16,7 +16,7 @@ namespace {
             , const bool                                _EXPECTED
             , const JoystickState::States::size_type    _EXPECTED_CALL_COUNT
             , const bool                                _TEST_CALLED_INDICES
-        )
+        ) const
         {
             for( const auto & INDEX : _PRESS_BUTTON_INDICES ) {
                 _joystickState.setButtonState(
