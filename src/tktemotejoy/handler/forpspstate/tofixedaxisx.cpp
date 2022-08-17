@@ -4,7 +4,7 @@
 ToFixedAxisX::ToFixedAxisX(
     const __s16 _AXIS
 )
-    : AXIS( 0xff )  //TODO
+    : AXIS( ( _AXIS + 0x8000 ) >> 8 )
 {
 }
 
