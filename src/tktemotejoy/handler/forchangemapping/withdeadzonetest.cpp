@@ -136,8 +136,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     WithDeadZoneForChangeMappingTest
     , DeadZoneMinus
@@ -146,8 +144,10 @@ TEST_F(
     this->test(
         1000
         , -1000
+        , 10
+        , 20
+        , 30
+        , 20
         , false
-        , 0
     );
 }
-*/
