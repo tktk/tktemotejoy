@@ -16,7 +16,7 @@ public:
         )
     >;
 
-    using ForState = std::function<
+    using ForAxis = std::function<
         bool (
             const States::size_type
             , const States::value_type
@@ -48,7 +48,7 @@ public:
     ) const;
 
     bool forAxes(
-        const ForState &
+        const ForAxis &
     ) const;
 };
 

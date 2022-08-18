@@ -44,12 +44,12 @@ bool JoystickState::forPressedButtons(
 }
 
 bool JoystickState::forAxes(
-    const JoystickState::ForState & _FOR_STATE
+    const JoystickState::ForAxis &  _FOR_AXIS
 ) const
 {
     auto    index = JoystickState::States::size_type( 0 );
     for( const auto & STATE : this->axisStates ) {
-        if( _FOR_STATE(
+        if( _FOR_AXIS(
             index
             , STATE
         ) == true ) {
