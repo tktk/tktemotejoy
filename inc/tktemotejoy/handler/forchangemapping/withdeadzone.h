@@ -33,9 +33,10 @@ public:
         //TODO
 /*
         if( std::abs( _VALUE ) <= this->DEAD_ZONE ) {
+*/
+        if( _VALUE <= this->DEAD_ZONE ) {
             return _CURRENT_MAPPING_INDEX;
         }
-*/
 
         return this->HANDLER(
             _VALUE
