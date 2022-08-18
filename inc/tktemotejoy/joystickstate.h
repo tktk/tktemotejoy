@@ -10,7 +10,7 @@ class JoystickState final
 public:
     using States = std::vector< __s16 >;
 
-    using ForProc = std::function<
+    using ForState = std::function<
         bool (
             const States::size_type
             , const States::value_type
@@ -38,11 +38,11 @@ public:
     );
 
     bool forPressedButtons(
-        const ForProc &
+        const ForState &
     );
 
     bool forAxes(
-        const ForProc &
+        const ForState &
     );
 };
 

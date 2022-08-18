@@ -14,7 +14,7 @@ namespace {
         void test(
             JoystickState                               _joystickState
             , const IndexAndValueMap                    _INDEX_AND_VALUE_MAP
-            , const bool                                _RETURNS_FOR_PROC
+            , const bool                                _RETURNS_FOR_STATE
             , const bool                                _EXPECTED
             , const JoystickState::States::size_type    _EXPECTED_CALL_COUNT
             , const IndexAndValueMap                    _EXPECTED_CALLED_INDEX_AND_VALUE_MAP
@@ -34,7 +34,7 @@ namespace {
                 _EXPECTED
                 , _joystickState.forAxes(
                     [
-                        &_RETURNS_FOR_PROC
+                        &_RETURNS_FOR_STATE
                         , &callCount
                         , &calledIndexAndValueMap
                     ]
@@ -46,7 +46,7 @@ namespace {
                         callCount++;
                         calledIndexAndValueMap.insert( { _INDEX, _VALUE } );
 
-                        return _RETURNS_FOR_PROC;
+                        return _RETURNS_FOR_STATE;
                     }
                 )
             );

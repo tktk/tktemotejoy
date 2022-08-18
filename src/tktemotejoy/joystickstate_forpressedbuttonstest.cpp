@@ -12,7 +12,7 @@ namespace {
         void test(
             JoystickState                               _joystickState
             , const Indices                             _PRESS_BUTTON_INDICES
-            , const bool                                _RETURNS_FOR_PROC
+            , const bool                                _RETURNS_FOR_STATE
             , const bool                                _EXPECTED
             , const JoystickState::States::size_type    _EXPECTED_CALL_COUNT
             , const bool                                _TEST_CALLED_INDICES
@@ -31,7 +31,7 @@ namespace {
                 _EXPECTED
                 , _joystickState.forPressedButtons(
                     [
-                        &_RETURNS_FOR_PROC
+                        &_RETURNS_FOR_STATE
                         , &callCount
                         , &calledIndices
                     ]
@@ -43,7 +43,7 @@ namespace {
                         callCount++;
                         calledIndices.insert( _INDEX );
 
-                        return _RETURNS_FOR_PROC;
+                        return _RETURNS_FOR_STATE;
                     }
                 )
             );
