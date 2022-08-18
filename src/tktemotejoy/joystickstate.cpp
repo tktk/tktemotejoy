@@ -29,22 +29,16 @@ bool JoystickState::forPressedButtons(
     const JoystickState::ForButton &    _FOR_BUTTON
 ) const
 {
-    //TODO
-/*
     auto    index = JoystickState::States::size_type( 0 );
     for( const auto & STATE : this->buttonStates ) {
         if( STATE != 0 ) {
-            if( _FOR_STATE(
-                index
-                , STATE
-            ) == true ) {
+            if( _FOR_BUTTON( index ) == true ) {
                 return true;
             }
         }
 
         index++;
     }
-*/
 
     return false;
 }
