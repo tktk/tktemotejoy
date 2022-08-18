@@ -24,6 +24,10 @@ module.SOURCE = [
                 'toaxisy.cpp',
                 'tobuttonhandlers.cpp',
             ],
+            'forchangemapping' : [
+                'shiftmapping.cpp',
+                'tochangemappinghandlers.cpp',
+            ],
         },
     },
 ]
