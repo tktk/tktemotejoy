@@ -37,7 +37,6 @@ namespace {
                     ]
                     (
                         const JoystickState::States::size_type      _INDEX
-                        , const JoystickState::States::value_type
                     ) -> bool
                     {
                         callCount++;

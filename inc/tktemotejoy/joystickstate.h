@@ -10,6 +10,12 @@ class JoystickState final
 public:
     using States = std::vector< __s16 >;
 
+    using ForButton = std::function<
+        bool (
+            const States::size_type
+        )
+    >;
+
     using ForState = std::function<
         bool (
             const States::size_type
@@ -38,12 +44,12 @@ public:
     );
 
     bool forPressedButtons(
-        const ForState &
-    );
+        const ForButton &
+    ) const;
 
     bool forAxes(
         const ForState &
-    );
+    ) const;
 };
 
 #endif  // TKTEMOTEJOY_JOYSTICKSTATE_H
