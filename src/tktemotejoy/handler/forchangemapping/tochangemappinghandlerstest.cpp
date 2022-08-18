@@ -93,8 +93,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     ToChangeMappingHandlersTest
     , CallHandler2
@@ -103,11 +101,15 @@ TEST_F(
     this->test(
         0
         , 1
-        , false
-        , true
+        , 10
+        , 20
+        , 30
+        , 20
     );
 }
 
+//TODO
+/*
 TEST_F(
     ToChangeMappingHandlersTest
     , DeadZone
