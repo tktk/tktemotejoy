@@ -30,8 +30,8 @@ namespace {
         {
             this->called = true;
 
-            ASSERT_EQ( this->EXPECTED_VALUE, _VALUE );
-            ASSERT_EQ( &( this->EXPECTED_PSP_STATE ), &_pspState );
+            EXPECT_EQ( this->EXPECTED_VALUE, _VALUE );
+            EXPECT_EQ( &( this->EXPECTED_PSP_STATE ), &_pspState );
         }
     };
 
@@ -63,7 +63,7 @@ namespace {
                 , pspState
             );
 
-            ASSERT_EQ( _EXPECTED_CALLED, called );
+            EXPECT_EQ( _EXPECTED_CALLED, called );
         }
     };
 }
