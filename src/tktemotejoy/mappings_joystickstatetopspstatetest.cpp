@@ -85,7 +85,7 @@ namespace {
                 )
                 {
                     _mapping.setHandler(
-                        3
+                        2
                         , Mapping::handlerUnique(
                             new ToChangeMappingHandlers(
                                 0
