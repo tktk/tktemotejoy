@@ -12,8 +12,6 @@ module.DEPENDS = [
     'tktemotejoy_mapping_operateaxisforchangemappingtest',
     'tktemotejoy_pspstate_difftest',
     'tktemotejoy_common_jseventaxistopspstateaxistest',
-    'tktemotejoy_handler_forchangemapping_shiftmappingtest',
-    'tktemotejoy_handler_forchangemapping_togglemappingtest',
     'tktemotejoy_handler_forpspstate_tobuttonstest',
     'tktemotejoy_handler_forpspstate_tofixedaxisxtest',
     'tktemotejoy_handler_forpspstate_tofixedaxisytest',
@@ -21,6 +19,9 @@ module.DEPENDS = [
     'tktemotejoy_handler_forpspstate_toaxisxtest',
     'tktemotejoy_handler_forpspstate_toaxisytest',
     'tktemotejoy_handler_forpspstate_tobuttonhandlerstest',
+    'tktemotejoy_handler_forchangemapping_shiftmappingtest',
+    'tktemotejoy_handler_forchangemapping_togglemappingtest',
+    'tktemotejoy_handler_forchangemapping_withdeadzonetest',
 ]
 
 module.BUILDER = cpp.program
@@ -35,16 +36,16 @@ module.SOURCE = [
     'common.cpp',
     {
         'handler' : {
-            'forchangemapping' : [
-                'shiftmapping.cpp',
-                'togglemapping.cpp',
-            ],
             'forpspstate' : [
                 'tobuttons.cpp',
                 'tofixedaxisx.cpp',
                 'tofixedaxisy.cpp',
                 'toaxisx.cpp',
                 'toaxisy.cpp',
+            ],
+            'forchangemapping' : [
+                'shiftmapping.cpp',
+                'togglemapping.cpp',
             ],
         },
     },

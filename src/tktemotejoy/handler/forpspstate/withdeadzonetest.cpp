@@ -41,8 +41,8 @@ namespace {
         void test(
             const __s16     _DEAD_ZONE
             , const __s16   _VALUE
-            , const bool    _EXPECTED_CALLED
             , const __s16   _EXPECTED_VALUE
+            , const bool    _EXPECTED_CALLED
         ) const
         {
             auto    called = false;
@@ -70,52 +70,52 @@ namespace {
 
 TEST_F(
     WithDeadZoneForPspStateTest
-    , OutOfDeadZoneForPspStatePlus
+    , OutOfDeadZonePlus
 )
 {
     this->test(
         0
         , 2000
-        , true
         , 2000
+        , true
     );
 }
 
 TEST_F(
     WithDeadZoneForPspStateTest
-    , OutOfDeadZoneForPspStateMinus
+    , OutOfDeadZoneMinus
 )
 {
     this->test(
         0
         , -2000
-        , true
         , -2000
+        , true
     );
 }
 
 TEST_F(
     WithDeadZoneForPspStateTest
-    , DeadZoneForPspStatePlus
+    , DeadZonePlus
 )
 {
     this->test(
         1000
         , 1000
-        , false
         , 0
+        , false
     );
 }
 
 TEST_F(
     WithDeadZoneForPspStateTest
-    , DeadZoneForPspStateMinus
+    , DeadZoneMinus
 )
 {
     this->test(
         1000
         , -1000
-        , false
         , 0
+        , false
     );
 }
