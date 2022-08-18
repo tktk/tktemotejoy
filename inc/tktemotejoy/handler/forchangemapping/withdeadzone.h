@@ -34,7 +34,7 @@ public:
 /*
         if( std::abs( _VALUE ) <= this->DEAD_ZONE ) {
 */
-        if( _VALUE <= this->DEAD_ZONE ) {
+        if( _VALUE <= 0 || _VALUE <= this->DEAD_ZONE ) {
             return _CURRENT_MAPPING_INDEX;
         }
 
