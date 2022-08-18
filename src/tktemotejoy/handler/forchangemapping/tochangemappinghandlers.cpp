@@ -19,11 +19,7 @@ std::size_t ToChangeMappingHandlersImpl::operator()(
     , const std::size_t
 ) const
 {
-    //TODO
-    return ( *( this->handler1Unique ) )( _mappingIndex );
-/*
     const auto &    HANDLER = *( _VALUE < 0 ? this->handler1Unique : this->handler2Unique );
 
-    HANDLER( _pspState );
-*/
+    return HANDLER( _mappingIndex );
 }
