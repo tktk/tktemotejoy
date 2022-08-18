@@ -65,7 +65,7 @@ namespace {
             auto    calledCount = 0;
             auto    mappingIndex = _MAPPING_INDEX;
 
-            auto    handlerUnique = Mapping::HandlerUnique(
+            auto    handlerUnique = Mapping::handlerUnique(
                 new TestHandlerForChangeMapping(
                     calledCount
                     , _RETURNS_MAPPING_INDEX

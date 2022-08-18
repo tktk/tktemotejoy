@@ -6,12 +6,7 @@ from taf.tools import cpp
 module.DEPENDS = [
     'tktemotejoy_joystickstate_forpressedbuttonstest',
     'tktemotejoy_joystickstate_foraxestest',
-    'tktemotejoy_mapping_pressbuttonforpspstatetest',
-    'tktemotejoy_mapping_operateaxisforpspstatetest',
-    'tktemotejoy_mapping_pressbuttonforchangemappingtest',
-    'tktemotejoy_mapping_operateaxisforchangemappingtest',
     'tktemotejoy_pspstate_difftest',
-    'tktemotejoy_common_jseventaxistopspstateaxistest',
     'tktemotejoy_handler_forpspstate_tobuttonstest',
     'tktemotejoy_handler_forpspstate_tofixedaxisxtest',
     'tktemotejoy_handler_forpspstate_tofixedaxisytest',
@@ -23,6 +18,12 @@ module.DEPENDS = [
     'tktemotejoy_handler_forchangemapping_togglemappingtest',
     'tktemotejoy_handler_forchangemapping_withdeadzonetest',
     'tktemotejoy_handler_forchangemapping_tochangemappinghandlerstest',
+    'tktemotejoy_mapping_pressbuttonforpspstatetest',
+    'tktemotejoy_mapping_operateaxisforpspstatetest',
+    'tktemotejoy_mapping_pressbuttonforchangemappingtest',
+    'tktemotejoy_mapping_operateaxisforchangemappingtest',
+    'tktemotejoy_mappings_joystickstatetopspstatetest',
+    'tktemotejoy_common_jseventaxistopspstateaxistest',
 ]
 
 module.BUILDER = cpp.program
@@ -32,8 +33,9 @@ module.TARGET = 'tktemotejoy'
 module.SOURCE = [
     'main.cpp',
     'joystickstate.cpp',
-    'mapping.cpp',
     'pspstate.cpp',
+    'mapping.cpp',
+    'mappings.cpp',
     'common.cpp',
     {
         'handler' : {

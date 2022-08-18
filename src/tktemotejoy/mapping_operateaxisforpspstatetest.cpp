@@ -49,7 +49,7 @@ namespace {
             auto    calledCount = 0;
             auto    pspState = PspState();
 
-            auto    handlerUnique = Mapping::HandlerUnique(
+            auto    handlerUnique = Mapping::handlerUnique(
                 new TestHandlerForPspState(
                     calledCount
                     , _EXPECTED_VALUE

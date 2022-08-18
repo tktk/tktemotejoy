@@ -12,16 +12,26 @@ TEST(
 
     toButtons( pspState );
 
-    auto    diffPspState = PspState();
-    diffPspState.pressButtons( 20 );
+    const auto  OTHER = PspState();
+
+    auto    calledWhenDiff = false;
+    auto    bits = PspState::Bits();
 
     pspState.diff(
-        diffPspState
-        , [](
+        OTHER
+        , [
+            &calledWhenDiff
+            , &bits
+        ]
+        (
             const PspState::Bits &  _BITS
         )
         {
-            EXPECT_EQ( 0x8080000a, _BITS );
+            calledWhenDiff = true;
+            bits = _BITS;
         }
     );
+
+    EXPECT_TRUE( calledWhenDiff );
+    EXPECT_EQ( 0x8080000a, bits );
 }

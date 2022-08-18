@@ -13,16 +13,26 @@ TEST(
 
     toFixedAxisY( pspState );
 
-    auto    diffPspState = PspState();
-    diffPspState.pressButtons( 10 );
+    const auto  OTHER = PspState();
+
+    auto    calledWhenDiff = false;
+    auto    bits = PspState::Bits();
 
     pspState.diff(
-        diffPspState
-        , [](
+        OTHER
+        , [
+            &calledWhenDiff
+            , &bits
+        ]
+        (
             const PspState::Bits &  _BITS
         )
         {
-            EXPECT_EQ( 0xff800000, _BITS );
+            calledWhenDiff = true;
+            bits = _BITS;
         }
     );
+
+    EXPECT_TRUE( calledWhenDiff );
+    EXPECT_EQ( 0xff800000, bits );
 }

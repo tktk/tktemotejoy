@@ -11,6 +11,7 @@ namespace {
             const __s16             _DEAD_ZONE
             , const __s16           _MAX
             , const __s16           _VALUE
+            , const bool            _EXPECTED_CALLED_WHEN_DIFF
             , const PspState::Bits  _EXPECTED_BITS
         ) const
         {
@@ -26,21 +27,30 @@ namespace {
                 , pspState
             );
 
-            auto    diffPspState = PspState();
-            diffPspState.pressButtons( 10 );
+            const auto  OTHER = PspState();
+
+            auto    calledWhenDiff = false;
+            auto    bits = PspState::Bits();
 
             pspState.diff(
-                diffPspState
+                OTHER
                 , [
-                    &_EXPECTED_BITS
+                    &calledWhenDiff
+                    , &bits
                 ]
                 (
                     const PspState::Bits &  _BITS
                 )
                 {
-                    EXPECT_EQ( _EXPECTED_BITS, _BITS );
+                    calledWhenDiff = true;
+                    bits = _BITS;
                 }
             );
+
+            EXPECT_EQ( _EXPECTED_CALLED_WHEN_DIFF, calledWhenDiff );
+            if( calledWhenDiff == true ) {
+                EXPECT_EQ( _EXPECTED_BITS, bits );
+            }
         }
     };
 }
@@ -54,6 +64,7 @@ TEST_F(
         0
         , 2000
         , 3000
+        , true
         , 0xff800000
     );
 }
@@ -67,6 +78,7 @@ TEST_F(
         1000
         , 2000
         , 500
-        , 0x80800000
+        , false
+        , 0
     );
 }
