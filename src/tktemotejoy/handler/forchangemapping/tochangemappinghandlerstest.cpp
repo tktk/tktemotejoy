@@ -108,8 +108,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     ToChangeMappingHandlersTest
     , DeadZone
@@ -118,8 +116,9 @@ TEST_F(
     this->test(
         0
         , 0
-        , false
-        , false
+        , 10
+        , 20
+        , 30
+        , 30
     );
 }
-*/
