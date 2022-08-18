@@ -8,6 +8,7 @@
 #include "tktemotejoy/handler/forpspstate/toaxisy.h"
 #include "tktemotejoy/handler/forpspstate/tobuttonhandlers.h"
 #include "tktemotejoy/handler/forchangemapping/shiftmapping.h"
+#include "tktemotejoy/handler/forchangemapping/togglemapping.h"
 #include "tktemotejoy/handler/forchangemapping/tochangemappinghandlers.h"
 #include <linux/joystick.h>
 #include <cstddef>
@@ -49,7 +50,7 @@ namespace {
 
                     _mapping.setHandler(
                         2
-                        , Mapping::handlerUnique( new ShiftMapping( 1 ) )
+                        , Mapping::handlerUnique( new ToggleMapping( 1 ) )
                     );
 
                     _mapping.setHandler(
@@ -85,6 +86,11 @@ namespace {
                 )
                 {
                     _mapping.setHandler(
+                        0
+                        , Mapping::handlerUnique( new ToButtons( 0xd000 ) )
+                    );
+
+                    _mapping.setHandler(
                         2
                         , Mapping::handlerUnique(
                             new ToChangeMappingHandlers(
@@ -108,7 +114,7 @@ namespace {
                 {
                     _mapping.setHandler(
                         0
-                        , Mapping::handlerUnique( new ToButtons( 0xd000 ) )
+                        , Mapping::handlerUnique( new ToButtons( 0xe000 ) )
                     );
                 }
             )
@@ -212,7 +218,7 @@ TEST_F(
 
 TEST_F(
     Mappings_joystickStateToPspStateTest
-    , ShiftMapping
+    , ChangeMapping
 )
 {
     auto    mappings = generateMappings();
@@ -232,7 +238,7 @@ TEST_F(
     this->test(
         mappings
         , joystickState1
-        , 0x8080d000
+        , 0x8080e000
     );
 
     const auto  JOYSTICK_STATE2 = generateJoystickState();
@@ -240,8 +246,6 @@ TEST_F(
     this->test(
         mappings
         , JOYSTICK_STATE2
-        , 0xbfff00ba
+        , 0x8080d000
     );
 }
-
-//TODO ToggleMapping

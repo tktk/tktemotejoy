@@ -26,6 +26,7 @@ module.SOURCE = [
             ],
             'forchangemapping' : [
                 'shiftmapping.cpp',
+                'togglemapping.cpp',
                 'tochangemappinghandlers.cpp',
             ],
         },
