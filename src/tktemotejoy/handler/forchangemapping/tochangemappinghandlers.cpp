@@ -20,7 +20,7 @@ std::size_t ToChangeMappingHandlersImpl::operator()(
 ) const
 {
     //TODO
-    return 0;
+    return ( *( this->handler1Unique ) )( _mappingIndex );
 /*
     const auto &    HANDLER = *( _VALUE < 0 ? this->handler1Unique : this->handler2Unique );
 

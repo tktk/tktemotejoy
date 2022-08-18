@@ -8,20 +8,25 @@
 namespace {
     class TestHandler final : public Mapping::PressButtonHandlerForPspState
     {
-        bool &  calledHandler;
+        bool &              calledHandler;
+        const PspState &    EXPECTED_PSP_STATE;
 
     public:
         TestHandler(
-            bool &  _calledHandler
+            bool &              _calledHandler
+            , const PspState &  _EXPECTED_PSP_STATE
         )
             : calledHandler( _calledHandler )
+            , EXPECTED_PSP_STATE( _EXPECTED_PSP_STATE )
         {
         }
 
         void operator()(
-            PspState &
+            PspState &  _pspState
         ) const override
         {
+            EXPECT_EQ( &( this->EXPECTED_PSP_STATE ), &_pspState );
+
             this->calledHandler = true;
         }
     };
@@ -39,8 +44,20 @@ namespace {
             auto    calledHandler1 = false;
             auto    calledHandler2 = false;
 
-            auto    handler1Unique = Mapping::PressButtonHandlerForPspStateUnique( new TestHandler( calledHandler1 ) );
-            auto    handler2Unique = Mapping::PressButtonHandlerForPspStateUnique( new TestHandler( calledHandler2 ) );
+            auto    pspState = PspState();
+
+            auto    handler1Unique = Mapping::PressButtonHandlerForPspStateUnique(
+                new TestHandler(
+                    calledHandler1
+                    , pspState
+                )
+            );
+            auto    handler2Unique = Mapping::PressButtonHandlerForPspStateUnique(
+                new TestHandler(
+                    calledHandler2
+                    , pspState
+                )
+            );
 
             auto    toButtonHandlers = ToButtonHandlers(
                 _DEAD_ZONE
@@ -49,8 +66,6 @@ namespace {
                     , std::move( handler2Unique )
                 )
             );
-
-            auto    pspState = PspState();
 
             toButtonHandlers(
                 _VALUE
