@@ -22,6 +22,7 @@ module.DEPENDS = [
     'tktemotejoy_handler_forchangemapping_shiftmappingtest',
     'tktemotejoy_handler_forchangemapping_togglemappingtest',
     'tktemotejoy_handler_forchangemapping_withdeadzonetest',
+    'tktemotejoy_handler_forchangemapping_tochangemappinghandlerstest',
 ]
 
 module.BUILDER = cpp.program
