@@ -1,4 +1,5 @@
 #include "tktemotejoy/mappings.h"
+#include "tktemotejoy/mapping.h"
 #include "tktemotejoy/pspstate.h"
 #include "tktemotejoy/joystickstate.h"
 #include <utility>
@@ -22,12 +23,10 @@ namespace {
         , const JoystickState &         _JOYSTICK_STATE
     )
     {
-        auto    mappingIndex = _mappingIndex;   //REMOVEME
-
         while( true ) {
             if( _JOYSTICK_STATE.forPressedButtons(
                 [
-                    &mappingIndex
+                    &_mappingIndex
                     , &_currentMappingIndex
                     , &_MAPPINGS_IMPL
                 ]
@@ -39,11 +38,7 @@ namespace {
                         _currentMappingIndex
                         , _MAPPINGS_IMPL.at( _currentMappingIndex ).pressButton(
                             _INDEX
-                            //TODO
-                            , mappingIndex
-/*
                             , _mappingIndex
-*/
                             , _currentMappingIndex
                         )
                     );
@@ -53,7 +48,7 @@ namespace {
             }
             if( _JOYSTICK_STATE.forAxes(
                 [
-                    &mappingIndex
+                    &_mappingIndex
                     , &_currentMappingIndex
                     , &_MAPPINGS_IMPL
                 ]
@@ -67,11 +62,7 @@ namespace {
                         , _MAPPINGS_IMPL.at( _currentMappingIndex ).operateAxis(
                             _INDEX
                             , _VALUE
-                            //TODO
-                            , mappingIndex
-/*
                             , _mappingIndex
-*/
                             , _currentMappingIndex
                         )
                     );
@@ -82,6 +73,50 @@ namespace {
 
             break;
         }
+    }
+
+    void joystickStateToPspState(
+        PspState &              _pspState
+        , const Mapping &       _MAPPING
+        , const JoystickState & _JOYSTICK_STATE
+    )
+    {
+        _JOYSTICK_STATE.forPressedButtons(
+            [
+                &_pspState
+                , &_MAPPING
+            ]
+            (
+                const JoystickState::States::size_type  _INDEX
+            ) -> bool
+            {
+                _MAPPING.pressButton(
+                    _INDEX
+                    , _pspState
+                );
+
+                return false;
+            }
+        );
+        _JOYSTICK_STATE.forAxes(
+            [
+                &_pspState
+                , &_MAPPING
+            ]
+            (
+                const JoystickState::States::size_type      _INDEX
+                , const JoystickState::States::value_type   _VALUE
+            ) -> bool
+            {
+                _MAPPING.operateAxis(
+                    _INDEX
+                    , _VALUE
+                    , _pspState
+                );
+
+                return false;
+            }
+        );
     }
 }
 
@@ -101,49 +136,16 @@ void Mappings::joystickStateToPspState(
 {
     auto    currentMappingIndex = this->mappingIndex;
 
-    changeMappingIndex(
+    ::changeMappingIndex(
         this->mappingIndex
         , currentMappingIndex
         , this->IMPL
         , _JOYSTICK_STATE
     );
 
-    _JOYSTICK_STATE.forPressedButtons(
-        [
-            this
-            , &_pspState
-            , &currentMappingIndex
-        ]
-        (
-            const JoystickState::States::size_type  _INDEX
-        ) -> bool
-        {
-            this->IMPL.at( currentMappingIndex ).pressButton(
-                _INDEX
-                , _pspState
-            );
-
-            return false;
-        }
-    );
-    _JOYSTICK_STATE.forAxes(
-        [
-            this
-            , &_pspState
-            , &currentMappingIndex
-        ]
-        (
-            const JoystickState::States::size_type      _INDEX
-            , const JoystickState::States::value_type   _VALUE
-        ) -> bool
-        {
-            this->IMPL.at( currentMappingIndex ).operateAxis(
-                _INDEX
-                , _VALUE
-                , _pspState
-            );
-
-            return false;
-        }
+    ::joystickStateToPspState(
+        _pspState
+        , this->IMPL.at( currentMappingIndex )
+        , _JOYSTICK_STATE
     );
 }
