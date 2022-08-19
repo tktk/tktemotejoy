@@ -24,6 +24,7 @@ module.DEPENDS = [
     'tktemotejoy_mapping_operateaxisforchangemappingtest',
     'tktemotejoy_mappings_joystickstatetopspstatetest',
     'tktemotejoy_common_jseventaxistopspstateaxistest',
+    'tktemotejoy_customjson_parsetest',
 ]
 
 module.BUILDER = cpp.program
