@@ -9,7 +9,7 @@ Json parseCustomJson(
     return Json::parse(
         std::regex_replace(
             _STRING
-            , std::regex( R"(,(\s*(?:])))" )
+            , std::regex( R"(,(\s*(?:]|})))" )
             , "$1"
         )
     );
