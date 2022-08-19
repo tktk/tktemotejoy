@@ -228,5 +228,18 @@ TEST_F(
     );
 }
 
-//TODO NotExistsButtons
+TEST_F(
+    GenerateToButtonsTest
+    , NotExistsButtons
+)
+{
+    this->testAnyThrow(
+        R"({
+    "button" : [
+        "up"
+    ]
+})"
+    );
+}
+
 //TODO ButtonsIsNotArray
