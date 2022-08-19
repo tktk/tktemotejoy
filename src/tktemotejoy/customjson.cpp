@@ -6,11 +6,17 @@ Json parseCustomJson(
     const std::string & _STRING
 )
 {
-    return Json::parse(
-        std::regex_replace(
-            _STRING
-            , std::regex( R"(,(\s*(?:]|})))" )
-            , "$1"
-        )
+    const auto  REMOVE_COMMENT = std::regex_replace(
+        _STRING
+        , std::regex( R"(\s*//.*)" )
+        , ""
     );
+
+    const auto  REMOVE_TAIL_COMMA = std::regex_replace(
+        REMOVE_COMMENT
+        , std::regex( R"(,(\s*(?:]|})))" )
+        , "$1"
+    );
+
+    return Json::parse( REMOVE_TAIL_COMMA );
 }
