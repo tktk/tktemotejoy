@@ -117,7 +117,7 @@ TEST_F(
 
 TEST_F(
     ParseCustomJsonTest
-    , WithComment
+    , WithLineComment
 )
 {
     this->testArray(
@@ -129,6 +129,26 @@ TEST_F(
         , {
             "abc"
             , "def"
+            , "ghi"
+        }
+    );
+}
+
+TEST_F(
+    ParseCustomJsonTest
+    , WithBlockComment
+)
+{
+    this->testArray(
+        R"([
+    "abc",
+/*
+    "def",
+*/
+    "ghi"
+])"
+        , {
+            "abc"
             , "ghi"
         }
     );
