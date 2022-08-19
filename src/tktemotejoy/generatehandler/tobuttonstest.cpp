@@ -242,4 +242,14 @@ TEST_F(
     );
 }
 
-//TODO ButtonsIsNotArray
+TEST_F(
+    GenerateToButtonsTest
+    , ButtonsIsNotArray
+)
+{
+    this->testAnyThrow(
+        R"({
+    "buttons" : "up"
+})"
+    );
+}
