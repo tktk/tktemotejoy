@@ -31,19 +31,29 @@ Mapping::PressButtonHandlerForPspStateUnique generateToButtonsUnique(
         }
     );
 
-    const auto &    BUTTON_STRINGS_JSON = _OBJECT.at( KEY_BUTTONS );
+    const auto  OBJECT_END = _OBJECT.end();
+
+    const auto  BUTTONS_IT = _OBJECT.find( KEY_BUTTONS );
+    if( BUTTONS_IT == OBJECT_END ) {
+        auto    oStringStream = std::ostringstream();
+
+        oStringStream << '"' << KEY_BUTTONS << '"' << "が存在しない";
+
+        throw std::runtime_error( oStringStream.str() );
+    }
+    const auto &    BUTTON_STRINGS_JSON = BUTTONS_IT->second;
 
     const auto &    BUTTON_STRINGS = BUTTON_STRINGS_JSON.get_ref< const Json::array_t & >();
 
     auto    buttons = PspState::Buttons( 0 );
 
-    const auto  END = STRING_TO_BUTTON.end();
+    const auto  STRING_TO_BUTTON_END = STRING_TO_BUTTON.end();
     for( const auto & BUTTON_STRING : BUTTON_STRINGS ) {
         const auto  IT = STRING_TO_BUTTON.find( BUTTON_STRING );
-        if( IT == END ) {
+        if( IT == STRING_TO_BUTTON_END ) {
             auto    oStringStream = std::ostringstream();
 
-            oStringStream << "ボタン" << BUTTON_STRING << "は非対応";
+            oStringStream << "ボタン\"" << BUTTON_STRING << "\"は非対応";
 
             throw std::runtime_error( oStringStream.str() );
         }
