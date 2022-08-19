@@ -20,6 +20,16 @@ Mapping::PressButtonHandlerForPspStateUnique generateToButtonsUnique(
         {
             { "up", PspState::Button::UP },
             { "down", PspState::Button::DOWN },
+            { "left", PspState::Button::LEFT },
+            { "right", PspState::Button::RIGHT },
+            { "circle", PspState::Button::CIRCLE },
+            { "cross", PspState::Button::CROSS },
+            { "triangle", PspState::Button::TRIANGLE },
+            { "square", PspState::Button::SQUARE },
+            { "triggerL", PspState::Button::TRIGGER_L },
+            { "triggerR", PspState::Button::TRIGGER_R },
+            { "start", PspState::Button::START },
+            { "select", PspState::Button::SELECT },
         }
     );
 
