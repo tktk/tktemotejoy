@@ -32,7 +32,21 @@ TEST_F(
     );
 }
 
-//TODO Down
+TEST_F(
+    GenerateToButtonsTest
+    , Down
+)
+{
+    this->test(
+        R"({
+    "buttons" : [
+        "down"
+    ]
+})"
+        , 0x80800040
+    );
+}
+
 //TODO Left
 //TODO Right
 //TODO Circle
@@ -44,3 +58,6 @@ TEST_F(
 //TODO Start
 //TODO Select
 //TODO Buttons
+//TODO IllegalButton
+//TODO NotExistsButtons
+//TODO ButtonsIsNotArray
