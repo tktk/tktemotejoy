@@ -5,6 +5,5 @@ Json parseCustomJson(
     std::istream &  _iStream
 )
 {
-    //TODO
-    return Json();
+    return Json::parse( _iStream );
 }
