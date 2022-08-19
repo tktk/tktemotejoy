@@ -15,7 +15,6 @@ module.SOURCE = [
     'mapping.cpp',
     'joystickstate.cpp',
     'pspstate.cpp',
-    'common.cpp',
     {
         'handler' : {
             'forpspstate' : [
@@ -23,6 +22,7 @@ module.SOURCE = [
                 'tofixedaxisx.cpp',
                 'toaxisy.cpp',
                 'tobuttonhandlers.cpp',
+                'jseventaxistopspstateaxis.cpp',
             ],
             'forchangemapping' : [
                 'shiftmapping.cpp',

@@ -15,10 +15,10 @@ module.SOURCE = [
             'forpspstate' : [
                 'toaxisxtest.cpp',
                 'toaxisx.cpp',
+                'jseventaxistopspstateaxis.cpp',
             ],
         },
     },
     'mapping.cpp',
     'pspstate.cpp',
-    'common.cpp',
 ]

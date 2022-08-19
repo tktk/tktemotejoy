@@ -1,6 +1,6 @@
 #include "tktemotejoy/handler/forpspstate/toaxisx.h"
+#include "tktemotejoy/handler/forpspstate/jseventaxistopspstateaxis.h"
 #include "tktemotejoy/pspstate.h"
-#include "tktemotejoy/common.h"
 #include <linux/joystick.h>
 
 ToAxisXImpl::ToAxisXImpl(

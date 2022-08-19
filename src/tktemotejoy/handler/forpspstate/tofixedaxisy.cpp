@@ -1,6 +1,6 @@
 #include "tktemotejoy/handler/forpspstate/tofixedaxisy.h"
+#include "tktemotejoy/handler/forpspstate/jseventaxistopspstateaxis.h"
 #include "tktemotejoy/pspstate.h"
-#include "tktemotejoy/common.h"
 
 ToFixedAxisY::ToFixedAxisY(
     const __s16 _AXIS
