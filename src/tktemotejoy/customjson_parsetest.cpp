@@ -115,4 +115,21 @@ TEST_F(
     );
 }
 
-//TODO WithComment
+TEST_F(
+    ParseCustomJsonTest
+    , WithComment
+)
+{
+    this->testArray(
+        R"([    //コメント
+    "abc",
+    "def",
+    "ghi"
+])"
+        , {
+            "abc"
+            , "def"
+            , "ghi"
+        }
+    );
+}
