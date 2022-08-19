@@ -2,6 +2,7 @@
 #include "tktemotejoy/customjson.h"
 #include <string>
 #include <vector>
+#include <map>
 
 namespace {
     class ParseCustomJsonTest : public ::testing::Test
@@ -27,6 +28,31 @@ namespace {
                 EXPECT_EQ( _EXPECTED_STRINGS.at( index ), J.get_ref< const Json::string_t & >() );
 
                 index++;
+            }
+        }
+
+        void testObject(
+            const std::string &                             _CUSTOM_JSON
+            , const std::map< std::string, std::string > &  _EXPECTED_MAP
+        ) const
+        {
+            const auto  JSON = parseCustomJson( _CUSTOM_JSON );
+
+            ASSERT_TRUE( JSON.is_object() );
+
+            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
+
+            ASSERT_EQ( _EXPECTED_MAP.size(), OBJECT.size() );
+
+            for( const auto & ITEM : OBJECT ) {
+                const auto &    J = ITEM.second;
+
+                ASSERT_TRUE( J.is_string() );
+
+                const auto  IT = _EXPECTED_MAP.find( ITEM.first );
+                ASSERT_NE( _EXPECTED_MAP.end(), IT );
+
+                EXPECT_EQ( IT->second, J.get_ref< const Json::string_t & >() );
             }
         }
     };
@@ -70,5 +96,23 @@ TEST_F(
     );
 }
 
-//TODO ObjectWithTailComma
+TEST_F(
+    ParseCustomJsonTest
+    , ObjectWithTailComma
+)
+{
+    this->testObject(
+        R"({
+    "key1" : "abc",
+    "key2" : "def",
+    "key3" : "ghi",
+})"
+        , {
+            { "key1", "abc" },
+            { "key2", "def" },
+            { "key3", "ghi" },
+        }
+    );
+}
+
 //TODO WithComment
