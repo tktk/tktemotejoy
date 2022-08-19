@@ -2,7 +2,6 @@
 #include "tktemotejoy/customjson.h"
 #include <string>
 #include <vector>
-#include <sstream>
 
 namespace {
     class ParseCustomJsonTest : public ::testing::Test
@@ -13,9 +12,7 @@ namespace {
             , const std::vector< std::string > &    _EXPECTED_STRINGS
         ) const
         {
-            auto    iStringStream = std::istringstream( _CUSTOM_JSON );
-
-            const auto  JSON = parseCustomJson( iStringStream );
+            const auto  JSON = parseCustomJson( _CUSTOM_JSON );
 
             ASSERT_TRUE( JSON.is_array() );
 

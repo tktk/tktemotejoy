@@ -1,9 +1,16 @@
 #include "tktemotejoy/customjson.h"
-#include <iostream>
+#include <string>
+#include <regex>
 
 Json parseCustomJson(
-    std::istream &  _iStream
+    const std::string & _STRING
 )
 {
-    return Json::parse( _iStream );
+    return Json::parse(
+        std::regex_replace(
+            _STRING
+            , std::regex( R"(,(\s*(?:])))" )
+            , "$1"
+        )
+    );
 }

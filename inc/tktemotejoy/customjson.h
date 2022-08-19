@@ -2,12 +2,12 @@
 #define TKTEMOTEJOY_CUSTOMJSON_H
 
 #include "nlohmann/json.hpp"
-#include <iostream>
+#include <string>
 
 using Json = nlohmann::json;
 
 Json parseCustomJson(
-    std::istream &
+    const std::string &
 );
 
 #endif  // TKTEMOTEJOY_CUSTOMJSON_H
