@@ -12,10 +12,6 @@ Mapping::PressButtonHandlerForPspStateUnique generateToButtonsUnique(
     const Json::object_t &  _OBJECT
 )
 {
-    const auto &    STRINGS_JSON = _OBJECT.at( KEY_BUTTONS );
-
-    const auto &    STRINGS = STRINGS_JSON.get_ref< const Json::array_t & >();
-
     const auto  STRING_TO_BUTTON = std::map< std::string, PspState::Buttons >(
         {
             { "up", PspState::Button::UP },
@@ -33,7 +29,16 @@ Mapping::PressButtonHandlerForPspStateUnique generateToButtonsUnique(
         }
     );
 
-    const auto  IT = STRING_TO_BUTTON.find( STRINGS.at( 0 ) );
+    const auto &    STRINGS_JSON = _OBJECT.at( KEY_BUTTONS );
 
-    return Mapping::handlerUnique( new ToButtons( IT->second ) );
+    const auto &    STRINGS = STRINGS_JSON.get_ref< const Json::array_t & >();
+
+    auto    buttons = PspState::Buttons( 0 );
+    for( const auto & STRING : STRINGS ) {
+        const auto  IT = STRING_TO_BUTTON.find( STRING );
+
+        buttons |= IT->second;
+    }
+
+    return Mapping::handlerUnique( new ToButtons( buttons ) );
 }
