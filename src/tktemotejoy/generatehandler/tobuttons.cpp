@@ -3,6 +3,8 @@
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/pspstate.h"
 #include "tktemotejoy/customjson.h"
+#include <sstream>
+#include <stdexcept>
 
 namespace {
     const auto  KEY_BUTTONS = "buttons";
@@ -29,13 +31,22 @@ Mapping::PressButtonHandlerForPspStateUnique generateToButtonsUnique(
         }
     );
 
-    const auto &    STRINGS_JSON = _OBJECT.at( KEY_BUTTONS );
+    const auto &    BUTTON_STRINGS_JSON = _OBJECT.at( KEY_BUTTONS );
 
-    const auto &    STRINGS = STRINGS_JSON.get_ref< const Json::array_t & >();
+    const auto &    BUTTON_STRINGS = BUTTON_STRINGS_JSON.get_ref< const Json::array_t & >();
 
     auto    buttons = PspState::Buttons( 0 );
-    for( const auto & STRING : STRINGS ) {
-        const auto  IT = STRING_TO_BUTTON.find( STRING );
+
+    const auto  END = STRING_TO_BUTTON.end();
+    for( const auto & BUTTON_STRING : BUTTON_STRINGS ) {
+        const auto  IT = STRING_TO_BUTTON.find( BUTTON_STRING );
+        if( IT == END ) {
+            auto    oStringStream = std::ostringstream();
+
+            oStringStream << "ボタン" << BUTTON_STRING << "は非対応";
+
+            throw std::runtime_error( oStringStream.str() );
+        }
 
         buttons |= IT->second;
     }

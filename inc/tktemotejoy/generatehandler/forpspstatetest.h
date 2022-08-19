@@ -12,58 +12,32 @@
 template< typename GENERATE_HANDLER_UNIQUE_T >
 class GenerateHandlerForPspStateTest : public ::testing::Test
 {
-    struct SetHandler
-    {
-        template< typename HANDLER_UNIQUE_T >
-        void operator()(
-            Mapping &               _mapping
-            , const std::size_t     _INDEX
-            , HANDLER_UNIQUE_T &&   _handlerUnique
-        ) const
-        {
-            _mapping.setHandler(
-                _INDEX
-                , std::move( _handlerUnique )
-            );
-        }
-    };
-
-    struct SetHandlerWithAssertAnyThrow
-    {
-        template< typename HANDLER_UNIQUE_T >
-        void operator()(
-            Mapping &               _mapping
-            , const std::size_t     _INDEX
-            , HANDLER_UNIQUE_T &&   _handlerUnique
-        ) const
-        {
-            ASSERT_ANY_THROW(
-                {
-                    _mapping.setHandler(
-                        _INDEX
-                        , std::move( _handlerUnique )
-                    );
-                }
-            );
-        }
-    };
-
-    template< typename SET_HANDLER_T >
     void test(
-        const std::string &     _JSON
+        const std::string &     _JSON_STRING
         , const PspState::Bits  _EXPECTED_BITS
+        , const bool            _GENERATE_HANDLER_UNIQUE_WITH_ASSERT_ANY_THROW
     ) const
     {
-        const auto  JSON = Json::parse( _JSON );
+        const auto  JSON = Json::parse( _JSON_STRING );
+
+        if( _GENERATE_HANDLER_UNIQUE_WITH_ASSERT_ANY_THROW == true ) {
+            // ASSERT_ARY_THROWで記述するとsegmentation fault
+            try {
+                GENERATE_HANDLER_UNIQUE_T()( JSON );
+
+                ASSERT_FALSE( true );
+            } catch( ... ) {
+                return;
+            }
+        }
 
         auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( JSON );
         ASSERT_NE( nullptr, handlerUnique.get() );
 
         auto    mapping = Mapping();
 
-        SET_HANDLER_T()(
-            mapping
-            , 0
+        mapping.setHandler(
+            0
             , std::move( handlerUnique )
         );
 
@@ -96,23 +70,25 @@ class GenerateHandlerForPspStateTest : public ::testing::Test
 
 public:
     void test(
-        const std::string &     _JSON
+        const std::string &     _JSON_STRING
         , const PspState::Bits  _EXPECTED_BITS
     ) const
     {
-        this->test< SetHandler >(
-            _JSON
+        this->test(
+            _JSON_STRING
             , _EXPECTED_BITS
+            , false
         );
     }
 
     void testAnyThrow(
-        const std::string &     _JSON
+        const std::string &     _JSON_STRING
     ) const
     {
-        this->test< SetHandlerWithAssertAnyThrow >(
-            _JSON
+        this->test(
+            _JSON_STRING
             , 0
+            , true
         );
     }
 };
