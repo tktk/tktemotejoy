@@ -8,7 +8,7 @@ namespace {
     class ParseCustomJsonTest : public ::testing::Test
     {
     public:
-        void test(
+        void testArray(
             const std::string &                     _CUSTOM_JSON
             , const std::vector< std::string > &    _EXPECTED_STRINGS
         ) const
@@ -40,7 +40,7 @@ TEST_F(
     , Standard
 )
 {
-    this->test(
+    this->testArray(
         R"([
     "abc",
     "def",
@@ -54,5 +54,24 @@ TEST_F(
     );
 }
 
-//TODO WithTailComma
+TEST_F(
+    ParseCustomJsonTest
+    , ArrayWithTailComma
+)
+{
+    this->testArray(
+        R"([
+    "jkl",
+    "mno",
+    "pqr",
+])"
+        , {
+            "jkl"
+            , "mno"
+            , "pqr"
+        }
+    );
+}
+
+//TODO ObjectWithTailComma
 //TODO WithComment
