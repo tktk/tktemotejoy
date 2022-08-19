@@ -15,6 +15,11 @@ module.SOURCE = [
             'tobuttonstest.cpp',
             'tobuttons.cpp',
         ],
+        'handler' : {
+            'forpspstate' : [
+                'tobuttons.cpp',
+            ],
+        },
     },
     'pspstate.cpp',
     'mapping.cpp',

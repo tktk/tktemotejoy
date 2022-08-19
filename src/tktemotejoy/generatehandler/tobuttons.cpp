@@ -8,5 +8,5 @@ Mapping::PressButtonHandlerForPspStateUnique generateToButtonsUnique(
 )
 {
     //TODO
-    return Mapping::handlerUnique( static_cast< ToButtons * >( nullptr ) );
+    return Mapping::handlerUnique( new ToButtons( 0x0010 ) );
 }
