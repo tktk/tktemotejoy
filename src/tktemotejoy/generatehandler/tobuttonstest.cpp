@@ -197,7 +197,23 @@ TEST_F(
     );
 }
 
-//TODO Buttons
+TEST_F(
+    GenerateToButtonsTest
+    , Buttons
+)
+{
+    this->test(
+        R"({
+    "buttons" : [
+        "up",
+        "up",
+        "circle"
+    ]
+})"
+        , 0x80802010
+    );
+}
+
 //TODO IllegalButton
 //TODO NotExistsButtons
 //TODO ButtonsIsNotArray
