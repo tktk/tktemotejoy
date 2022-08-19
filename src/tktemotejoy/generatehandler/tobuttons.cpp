@@ -43,6 +43,13 @@ Mapping::PressButtonHandlerForPspStateUnique generateToButtonsUnique(
     }
     const auto &    BUTTON_STRINGS_JSON = BUTTONS_IT->second;
 
+    if( BUTTON_STRINGS_JSON.is_array() == false ) {
+        auto    oStringStream = std::ostringstream();
+
+        oStringStream << '"' << KEY_BUTTONS << '"' << "がリストではない";
+
+        throw std::runtime_error( oStringStream.str() );
+    }
     const auto &    BUTTON_STRINGS = BUTTON_STRINGS_JSON.get_ref< const Json::array_t & >();
 
     auto    buttons = PspState::Buttons( 0 );
