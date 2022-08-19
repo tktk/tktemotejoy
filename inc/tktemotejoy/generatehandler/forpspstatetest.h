@@ -12,7 +12,43 @@
 template< typename GENERATE_HANDLER_UNIQUE_T >
 class GenerateHandlerForPspStateTest : public ::testing::Test
 {
-public:
+    struct SetHandler
+    {
+        template< typename HANDLER_UNIQUE_T >
+        void operator()(
+            Mapping &               _mapping
+            , const std::size_t     _INDEX
+            , HANDLER_UNIQUE_T &&   _handlerUnique
+        ) const
+        {
+            _mapping.setHandler(
+                _INDEX
+                , std::move( _handlerUnique )
+            );
+        }
+    };
+
+    struct SetHandlerWithAssertAnyThrow
+    {
+        template< typename HANDLER_UNIQUE_T >
+        void operator()(
+            Mapping &               _mapping
+            , const std::size_t     _INDEX
+            , HANDLER_UNIQUE_T &&   _handlerUnique
+        ) const
+        {
+            ASSERT_ANY_THROW(
+                {
+                    _mapping.setHandler(
+                        _INDEX
+                        , std::move( _handlerUnique )
+                    );
+                }
+            );
+        }
+    };
+
+    template< typename SET_HANDLER_T >
     void test(
         const std::string &     _JSON
         , const PspState::Bits  _EXPECTED_BITS
@@ -25,8 +61,9 @@ public:
 
         auto    mapping = Mapping();
 
-        mapping.setHandler(
-            0
+        SET_HANDLER_T()(
+            mapping
+            , 0
             , std::move( handlerUnique )
         );
 
@@ -55,6 +92,28 @@ public:
         );
 
         EXPECT_EQ( _EXPECTED_BITS, bits );
+    }
+
+public:
+    void test(
+        const std::string &     _JSON
+        , const PspState::Bits  _EXPECTED_BITS
+    ) const
+    {
+        this->test< SetHandler >(
+            _JSON
+            , _EXPECTED_BITS
+        );
+    }
+
+    void testAnyThrow(
+        const std::string &     _JSON
+    ) const
+    {
+        this->test< SetHandlerWithAssertAnyThrow >(
+            _JSON
+            , 0
+        );
     }
 };
 

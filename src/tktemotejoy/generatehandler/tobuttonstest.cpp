@@ -214,6 +214,19 @@ TEST_F(
     );
 }
 
-//TODO IllegalButton
+TEST_F(
+    GenerateToButtonsTest
+    , IllegalButton
+)
+{
+    this->testAnyThrow(
+        R"({
+    "buttons" : [
+        "illegal"
+    ]
+})"
+    );
+}
+
 //TODO NotExistsButtons
 //TODO ButtonsIsNotArray
