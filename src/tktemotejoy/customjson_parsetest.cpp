@@ -153,3 +153,24 @@ TEST_F(
         }
     );
 }
+
+TEST_F(
+    ParseCustomJsonTest
+    , WithLineCommentAndBlockComment
+)
+{
+    this->testArray(
+        R"([
+    "abc",
+///*
+    "def",
+//*/
+    "ghi"
+])"
+        , {
+            "abc"
+            , "def"
+            , "ghi"
+        }
+    );
+}
