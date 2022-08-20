@@ -5,7 +5,6 @@
 #include "tktemotejoy/pspstate.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
-#include "nlohmann/json.hpp"
 #include <string>
 #include <utility>
 

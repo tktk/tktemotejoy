@@ -1,7 +1,7 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/generatehandler/forpspstatetest.h"
 #include "tktemotejoy/generatehandler/tobuttons.h"
-#include "nlohmann/json.hpp"
+#include "tktemotejoy/customjson.h"
 
 namespace {
     struct GenerateToButtonsUnique

@@ -1,0 +1,19 @@
+#ifndef TKTEMOTEJOY_GENERATEHANDLER_GENERATEHANDLERUNIQUE_H
+#define TKTEMOTEJOY_GENERATEHANDLER_GENERATEHANDLERUNIQUE_H
+
+#include "tktemotejoy/customjson.h"
+
+template<
+    typename HANDLER_UNIQUE_T
+    , typename GET_TYPE_T
+    , typename GENERATE_HANDLER_UNIQUE_T
+>
+HANDLER_UNIQUE_T generateHandlerUnique(
+    const Json::object_t &  _JSON
+)
+{
+    //TODO
+    return HANDLER_UNIQUE_T();
+}
+
+#endif  // TKTEMOTEJOY_GENERATEHANDLER_GENERATEHANDLERUNIQUE_H
