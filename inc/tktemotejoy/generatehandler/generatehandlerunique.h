@@ -12,7 +12,9 @@ HANDLER_UNIQUE_T generateHandlerUnique(
     const Json::object_t &  _OBJECT
 )
 {
-    if( _OBJECT.at( "type" ).get_ref< const Json::string_t & >() != GET_TYPE_T()() ) {
+    const auto  TYPE = _OBJECT.at( "type" );
+
+    if( TYPE.is_string() != true || TYPE.get_ref< const Json::string_t & >() != GET_TYPE_T()() ) {
         return HANDLER_UNIQUE_T();
     }
 
