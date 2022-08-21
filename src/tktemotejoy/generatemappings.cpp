@@ -1,10 +1,9 @@
 #include "tktemotejoy/generatemappings.h"
 #include "tktemotejoy/mappings.h"
 #include "tktemotejoy/customjson.h"
+#include "tktemotejoy/jsonerror.h"
 #include <string>
 #include <utility>
-#include <sstream>
-#include <stdexcept>
 
 namespace {
     const auto  ROOT_KEY_GENERAL = std::string( "general" );
@@ -23,39 +22,29 @@ namespace {
     {
         const auto  GENERAL_IT = _JSON_OBJECT.find( ROOT_KEY_GENERAL );
         if( GENERAL_IT == _JSON_OBJECT.end() ) {
-            auto    oStringStream = std::ostringstream();
-
-            oStringStream << '"' << ROOT_KEY_GENERAL << '"' << "が存在しない";
-
-            throw std::runtime_error( oStringStream.str() );
+            throw jsonIsNotExists( ROOT_KEY_GENERAL );
         }
         const auto &    GENERAL_JSON = GENERAL_IT->second;
 
         if( GENERAL_JSON.is_object() == false ) {
-            auto    oStringStream = std::ostringstream();
-
-            oStringStream << '"' << ROOT_KEY_GENERAL << '"' << "がオブジェクトではない";
-
-            throw std::runtime_error( oStringStream.str() );
+            throw jsonIsNotObject( ROOT_KEY_GENERAL );
         }
         const auto &    GENERAL = GENERAL_JSON.get_ref< const Json::object_t & >();
 
         const auto  DEFAULT_MAPPING_IT = GENERAL.find( GENERAL_KEY_DEFAULT_MAPPING );
         if( DEFAULT_MAPPING_IT == GENERAL.end() ) {
-            auto    oStringStream = std::ostringstream();
-
-            oStringStream << '"' << GENERAL_KEY_DEFAULT_MAPPING << '"' << "が存在しない";
-
-            throw std::runtime_error( oStringStream.str() );
+            throw jsonIsNotExists(
+                ROOT_KEY_GENERAL
+                , GENERAL_KEY_DEFAULT_MAPPING
+            );
         }
         const auto &    DEFAULT_MAPPING_JSON = DEFAULT_MAPPING_IT->second;
 
         if( DEFAULT_MAPPING_JSON.is_number_unsigned() == false ) {
-            auto    oStringStream = std::ostringstream();
-
-            oStringStream << '"' << ROOT_KEY_GENERAL << '"' << "が数値ではない";
-
-            throw std::runtime_error( oStringStream.str() );
+            throw jsonIsNotUnsigned(
+                ROOT_KEY_GENERAL
+                , GENERAL_KEY_DEFAULT_MAPPING
+            );
         }
         const auto &    DEFAULT_MAPPING = DEFAULT_MAPPING_JSON.get_ref< const Json::number_unsigned_t & >();
 
