@@ -83,6 +83,20 @@ TEST_F(
 
 TEST_F(
     GenerateHandlerUniqueTest
+    , NotExistsType
+)
+{
+    this->test< GetType >(
+        R"({
+    "key" : 10
+})"
+        , false
+        , 0
+    );
+}
+
+TEST_F(
+    GenerateHandlerUniqueTest
     , NotMatchType
 )
 {
@@ -101,7 +115,7 @@ TEST_F(
     , TypeIsNotString
 )
 {
-    this->test< GetDiffType >(
+    this->test< GetType >(
         R"({
     "type" : [ "TYPENAME" ],
     "key" : 10
