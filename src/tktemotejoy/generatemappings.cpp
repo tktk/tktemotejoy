@@ -40,7 +40,15 @@ namespace {
         }
         const auto &    GENERAL = GENERAL_JSON.get_ref< const Json::object_t & >();
 
-        const auto &    DEFAULT_MAPPING = GENERAL.at( GENERAL_KEY_DEFAULT_MAPPING ).get_ref< const Json::number_unsigned_t & >();
+        const auto  DEFAULT_MAPPING_IT = GENERAL.find( GENERAL_KEY_DEFAULT_MAPPING );
+        if( DEFAULT_MAPPING_IT == GENERAL.end() ) {
+            auto    oStringStream = std::ostringstream();
+
+            oStringStream << '"' << GENERAL_KEY_DEFAULT_MAPPING << '"' << "が存在しない";
+
+            throw std::runtime_error( oStringStream.str() );
+        }
+        const auto &    DEFAULT_MAPPING = DEFAULT_MAPPING_IT->second.get_ref< const Json::number_unsigned_t & >();
 
         return General{
             DEFAULT_MAPPING,
