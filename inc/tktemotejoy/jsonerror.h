@@ -76,14 +76,10 @@ std::runtime_error jsonIsNotUnsigned(
     const ARGS_T & ...  _ARGS
 )
 {
-    //TODO
-    return std::runtime_error( "TODO" );
-/*
     return jsonError(
-        "符号なし整数ではない"
+        "の値が符号なし整数ではない"
         , _ARGS ...
     );
-*/
 }
 
 template< typename ... ARGS_T >
