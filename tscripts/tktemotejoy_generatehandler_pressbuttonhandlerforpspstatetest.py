@@ -14,12 +14,13 @@ module.SOURCE = [
         'generatehandler' : [
             'pressbuttonhandlerforpspstatetest.cpp',
             'pressbuttonhandlerforpspstate.cpp',
+            'tobuttons.cpp',
         ],
-#        'handler' : {
-#            'forpspstate' : [
-#                'tobuttons.cpp',
-#            ],
-#        },
+        'handler' : {
+            'forpspstate' : [
+                'tobuttons.cpp',
+            ],
+        },
     },
     'pspstate.cpp',
     'mapping.cpp',
