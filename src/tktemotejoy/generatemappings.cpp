@@ -3,6 +3,8 @@
 #include "tktemotejoy/customjson.h"
 #include <string>
 #include <utility>
+#include <sstream>
+#include <stdexcept>
 
 namespace {
     const auto  ROOT_KEY_GENERAL = std::string( "general" );
@@ -19,7 +21,16 @@ namespace {
         const Json::object_t &  _JSON_OBJECT
     )
     {
-        const auto &    GENERAL = _JSON_OBJECT.at( ROOT_KEY_GENERAL ).get_ref< const Json::object_t & >();
+        const auto  GENERAL_IT = _JSON_OBJECT.find( ROOT_KEY_GENERAL );
+        if( GENERAL_IT == _JSON_OBJECT.end() ) {
+            auto    oStringStream = std::ostringstream();
+
+            oStringStream << '"' << ROOT_KEY_GENERAL << '"' << "が存在しない";
+
+            throw std::runtime_error( oStringStream.str() );
+        }
+        const auto &    GENERAL = GENERAL_IT->second.get_ref< const Json::object_t & >();
+
         const auto &    DEFAULT_MAPPING = GENERAL.at( GENERAL_KEY_DEFAULT_MAPPING ).get_ref< const Json::number_unsigned_t & >();
 
         return General{
