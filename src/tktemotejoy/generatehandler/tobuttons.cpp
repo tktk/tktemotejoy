@@ -4,6 +4,7 @@
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/pspstate.h"
 #include "tktemotejoy/customjson.h"
+#include "tktemotejoy/jsonerror.h"
 #include <map>
 #include <string>
 #include <sstream>
@@ -49,20 +50,18 @@ namespace {
 
             const auto  BUTTONS_IT = _OBJECT.find( KEY_BUTTONS );
             if( BUTTONS_IT == OBJECT_END ) {
-                auto    oStringStream = std::ostringstream();
-
-                oStringStream << '"' << KEY_BUTTONS << '"' << "が存在しない";
-
-                throw std::runtime_error( oStringStream.str() );
+                throw jsonIsNotExists(
+                    TYPE
+                    , KEY_BUTTONS
+                );
             }
             const auto &    BUTTON_STRINGS_JSON = BUTTONS_IT->second;
 
             if( BUTTON_STRINGS_JSON.is_array() == false ) {
-                auto    oStringStream = std::ostringstream();
-
-                oStringStream << '"' << KEY_BUTTONS << '"' << "がリストではない";
-
-                throw std::runtime_error( oStringStream.str() );
+                throw jsonIsNotArray(
+                    TYPE
+                    , KEY_BUTTONS
+                );
             }
             const auto &    BUTTON_STRINGS = BUTTON_STRINGS_JSON.get_ref< const Json::array_t & >();
 
