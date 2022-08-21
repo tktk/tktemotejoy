@@ -87,14 +87,10 @@ std::runtime_error jsonIsNotString(
     const ARGS_T & ...  _ARGS
 )
 {
-    //TODO
-    return std::runtime_error( "TODO" );
-/*
     return jsonError(
-        "文字列ではない"
+        "の値が文字列ではない"
         , _ARGS ...
     );
-*/
 }
 
 template< typename ... ARGS_T >
