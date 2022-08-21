@@ -4,6 +4,7 @@ from taf import *
 from taf.tools import cpp
 
 module.DEPENDS = [
+    'tktemotejoy_commandlineoptionstest',
     'tktemotejoy_joystickstate_forpressedbuttonstest',
     'tktemotejoy_joystickstate_foraxestest',
     'tktemotejoy_pspstate_difftest',
