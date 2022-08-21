@@ -16,4 +16,15 @@ module.SOURCE = [
     'mapping.cpp',
     'joystickstate.cpp',
     'pspstate.cpp',
+    {
+        'generatehandler' : [
+            'pressbuttonhandlerforpspstate.cpp',
+            'tobuttons.cpp',
+        ],
+        'handler' : {
+            'forpspstate' : [
+                'tobuttons.cpp',
+            ],
+        },
+    },
 ]

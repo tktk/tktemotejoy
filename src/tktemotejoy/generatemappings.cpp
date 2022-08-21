@@ -1,4 +1,5 @@
 #include "tktemotejoy/generatemappings.h"
+#include "tktemotejoy/generatehandler/pressbuttonhandlerforpspstate.h"
 #include "tktemotejoy/mappings.h"
 #include "tktemotejoy/customjson.h"
 #include "tktemotejoy/jsonerror.h"
@@ -10,6 +11,8 @@ namespace {
     const auto  ROOT_KEY_MAPPINGS = std::string( "mappings" );
 
     const auto  GENERAL_KEY_DEFAULT_MAPPING = std::string( "defaultMapping" );
+
+    const auto  MAPPING_KEY_BUTTONS = std::string( "buttons" );
 
     struct General
     {
@@ -53,13 +56,58 @@ namespace {
         };
     }
 
+    void setButtonHandlers(
+        Mapping &                   _mapping
+        , const Json::object_t &    _JSON_OBJECT
+    )
+    {
+        for( const auto & ITEM : _JSON_OBJECT ) {
+            const auto  INDEX = std::stoull( ITEM.first );
+
+            const auto &    JSON_OBJECT = ITEM.second.get_ref< const Json::object_t & >();
+
+            auto    handlerForPspStateUnique = generatePressButtonHandlerForPspStateUnique( JSON_OBJECT );
+
+            _mapping.setHandler(
+                INDEX
+                , std::move( handlerForPspStateUnique )
+            );
+        }
+    }
+
+    Mapping generateMapping(
+        const Json::object_t &  _JSON_OBJECT
+    )
+    {
+        auto    mapping = Mapping();
+
+        const auto  END = _JSON_OBJECT.end();
+
+        const auto  BUTTONS_IT = _JSON_OBJECT.find( MAPPING_KEY_BUTTONS );
+        if( BUTTONS_IT != END ) {
+            const auto &    BUTTONS = BUTTONS_IT->second.get_ref< const Json::object_t & >();
+
+            setButtonHandlers(
+                mapping
+                , BUTTONS
+            );
+        }
+
+        return mapping;
+    }
+
     Mappings::Impl generateMappingsImpl(
         const Json::object_t &  _JSON_OBJECT
     )
     {
-        //TODO
+        const auto &    MAPPING_JSONS = _JSON_OBJECT.at( ROOT_KEY_MAPPINGS ).get_ref< const Json::array_t & >();
+
         auto    impl = Mappings::Impl();
-        impl.push_back( Mapping() );
+        for( const auto & MAPPING_JSON : MAPPING_JSONS ) {
+            const auto &    JSON_OBJECT = MAPPING_JSON.get_ref< const Json::object_t & >();
+
+            impl.push_back( generateMapping( JSON_OBJECT ) );
+        }
 
         return impl;
     }
