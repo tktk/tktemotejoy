@@ -98,14 +98,10 @@ std::runtime_error jsonIsNotArray(
     const ARGS_T & ...  _ARGS
 )
 {
-    //TODO
-    return std::runtime_error( "TODO" );
-/*
     return jsonError(
-        "配列ではない"
+        "の値が配列ではない"
         , _ARGS ...
     );
-*/
 }
 
 template< typename ... ARGS_T >
