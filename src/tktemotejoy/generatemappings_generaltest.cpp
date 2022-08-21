@@ -28,8 +28,6 @@ namespace {
             EXPECT_EQ( _EXPECTED_MAPPING_INDEX, TEST_MAPPINGS.mappingIndex );
         }
 
-        //TODO
-/*
         void testAnyThrow(
             const std::string & _JSON_STRING
         ) const
@@ -38,7 +36,6 @@ namespace {
 
             EXPECT_ANY_THROW( generateMappings( JSON ) );
         }
-*/
     };
 }
 
@@ -58,7 +55,18 @@ TEST_F(
     );
 }
 
-//TODO NotExistsGeneral
+TEST_F(
+    GenerateMappings_generalTest
+    , NotExistsGeneral
+)
+{
+    this->testAnyThrow(
+        R"({
+    "mappings" : []
+})"
+    );
+}
+
 //TODO GeneralIsNotMap
 //TODO NotExistsDefaultMapping
 //TODO DefaultMappingIsNotUnsignedInteger
