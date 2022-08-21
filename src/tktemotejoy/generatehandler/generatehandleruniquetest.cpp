@@ -78,4 +78,17 @@ TEST_F(
     );
 }
 
-//TODO NotMatchType
+TEST_F(
+    GenerateHandlerUniqueTest
+    , NotMatchType
+)
+{
+    this->test< GetDiffType >(
+        R"({
+    "type" : "TYPENAME"
+})"
+        , false
+    );
+}
+
+//TODO TypeIsNotString
