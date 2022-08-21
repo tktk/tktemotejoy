@@ -11,7 +11,7 @@ std::runtime_error jsonError(
 )
 {
     //TODO
-    return std::runtime_error( "TODO" );
+    return std::runtime_error( "key1.key2.key3がエラー" );
 }
 
 template< typename ... ARGS_T >
