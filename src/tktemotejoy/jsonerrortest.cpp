@@ -107,5 +107,21 @@ TEST_F(
     this->test< JsonIsNotString >( "keyの値が文字列ではない" );
 }
 
-//TODO JsonIsNotArray
+TEST_F(
+    JsonErrorTest
+    , JsonIsNotArray
+)
+{
+    struct JsonIsNotArray
+    {
+        auto operator()(
+        ) const
+        {
+            return jsonIsNotArray( "key" );
+        }
+    };
+
+    this->test< JsonIsNotArray >( "keyの値が配列ではない" );
+}
+
 //TODO JsonIsNotObject
