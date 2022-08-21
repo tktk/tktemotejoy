@@ -30,6 +30,15 @@ namespace {
                 , JOYSTICK_STATE
             );
         }
+
+        void testAnyThrow(
+            const std::string & _JSON_STRING
+        ) const
+        {
+            const auto  JSON = Json::parse( _JSON_STRING );
+
+            EXPECT_ANY_THROW( generateMappings( JSON ) );
+        }
     };
 }
 
@@ -51,5 +60,19 @@ TEST_F(
     );
 }
 
-//TODO NotFoundGeneral
-//TODO NotFoundMappings
+TEST_F(
+    GenerateMappingsTest
+    , NotExistsGeneral
+)
+{
+    this->testAnyThrow(
+        R"({
+    "mappings" : [
+        {
+        }
+    ]
+})"
+    );
+}
+
+//TODO NotExistsMappings

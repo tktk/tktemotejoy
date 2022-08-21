@@ -62,13 +62,7 @@ public:
     {
         const auto  JSON = Json::parse( _JSON_STRING );
 
-        // ASSERT_ARY_THROWで記述するとsegmentation fault
-        try {
-            GENERATE_HANDLER_UNIQUE_T()( JSON );
-
-            ASSERT_FALSE( true );
-        } catch( ... ) {
-        }
+        EXPECT_ANY_THROW( GENERATE_HANDLER_UNIQUE_T()( JSON ) );
     }
 
     void testNull(
