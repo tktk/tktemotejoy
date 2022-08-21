@@ -263,10 +263,7 @@ TEST_F(
 {
     this->testAnyThrow(
         R"({
-    "type" : "toButtons",
-    "button" : [
-        "up"
-    ]
+    "type" : "toButtons"
 })"
     );
 }

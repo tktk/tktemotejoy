@@ -27,6 +27,7 @@ module.DEPENDS = [
     'tktemotejoy_customjson_parsetest',
     'tktemotejoy_generatehandler_generatehandleruniquetest',
     'tktemotejoy_generatehandler_tobuttonstest',
+    'tktemotejoy_generatemappingstest',
 ]
 
 module.BUILDER = cpp.program
