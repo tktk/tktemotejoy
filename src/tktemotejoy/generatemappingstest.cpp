@@ -60,9 +60,11 @@ TEST_F(
     );
 }
 
+//TODO NotObject
+
 TEST_F(
     GenerateMappingsTest
-    , NotExistsGeneral
+    , FailedGenerateGeneral
 )
 {
     this->testAnyThrow(
@@ -75,4 +77,4 @@ TEST_F(
     );
 }
 
-//TODO NotExistsMappings
+//TODO FailedGenerateMappingsImpl
