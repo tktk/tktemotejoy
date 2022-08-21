@@ -29,7 +29,16 @@ namespace {
 
             throw std::runtime_error( oStringStream.str() );
         }
-        const auto &    GENERAL = GENERAL_IT->second.get_ref< const Json::object_t & >();
+        const auto &    GENERAL_JSON = GENERAL_IT->second;
+
+        if( GENERAL_JSON.is_object() == false ) {
+            auto    oStringStream = std::ostringstream();
+
+            oStringStream << '"' << ROOT_KEY_GENERAL << '"' << "がオブジェクトではない";
+
+            throw std::runtime_error( oStringStream.str() );
+        }
+        const auto &    GENERAL = GENERAL_JSON.get_ref< const Json::object_t & >();
 
         const auto &    DEFAULT_MAPPING = GENERAL.at( GENERAL_KEY_DEFAULT_MAPPING ).get_ref< const Json::number_unsigned_t & >();
 
