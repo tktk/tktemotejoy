@@ -90,6 +90,22 @@ TEST_F(
     this->test< JsonIsNotUnsigned >( "keyの値が符号なし整数ではない" );
 }
 
-//TODO JsonIsNotString
+TEST_F(
+    JsonErrorTest
+    , JsonIsNotString
+)
+{
+    struct JsonIsNotString
+    {
+        auto operator()(
+        ) const
+        {
+            return jsonIsNotString( "key" );
+        }
+    };
+
+    this->test< JsonIsNotString >( "keyの値が文字列ではない" );
+}
+
 //TODO JsonIsNotArray
 //TODO JsonIsNotObject
