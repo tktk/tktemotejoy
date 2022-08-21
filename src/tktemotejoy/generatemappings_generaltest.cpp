@@ -80,5 +80,17 @@ TEST_F(
     );
 }
 
-//TODO NotExistsDefaultMapping
+TEST_F(
+    GenerateMappings_generalTest
+    , NotExistsDefaultMapping
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {},
+    "mappings" : []
+})"
+    );
+}
+
 //TODO DefaultMappingIsNotUnsignedInteger
