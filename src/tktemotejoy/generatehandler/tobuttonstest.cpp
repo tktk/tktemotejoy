@@ -19,11 +19,26 @@ namespace {
 
 TEST_F(
     GenerateToButtonsTest
+    , NotMatchType
+)
+{
+    this->testNull(
+        R"({
+    "buttons" : [
+        "up"
+    ]
+})"
+    );
+}
+
+TEST_F(
+    GenerateToButtonsTest
     , Up
 )
 {
     this->test(
         R"({
+    "type" : "toButtons",
     "buttons" : [
         "up"
     ]
@@ -39,6 +54,7 @@ TEST_F(
 {
     this->test(
         R"({
+    "type" : "toButtons",
     "buttons" : [
         "down"
     ]
@@ -54,6 +70,7 @@ TEST_F(
 {
     this->test(
         R"({
+    "type" : "toButtons",
     "buttons" : [
         "left"
     ]
@@ -69,6 +86,7 @@ TEST_F(
 {
     this->test(
         R"({
+    "type" : "toButtons",
     "buttons" : [
         "right"
     ]
@@ -84,6 +102,7 @@ TEST_F(
 {
     this->test(
         R"({
+    "type" : "toButtons",
     "buttons" : [
         "circle"
     ]
@@ -99,6 +118,7 @@ TEST_F(
 {
     this->test(
         R"({
+    "type" : "toButtons",
     "buttons" : [
         "cross"
     ]
@@ -114,6 +134,7 @@ TEST_F(
 {
     this->test(
         R"({
+    "type" : "toButtons",
     "buttons" : [
         "triangle"
     ]
@@ -129,6 +150,7 @@ TEST_F(
 {
     this->test(
         R"({
+    "type" : "toButtons",
     "buttons" : [
         "square"
     ]
@@ -144,6 +166,7 @@ TEST_F(
 {
     this->test(
         R"({
+    "type" : "toButtons",
     "buttons" : [
         "triggerL"
     ]
@@ -159,6 +182,7 @@ TEST_F(
 {
     this->test(
         R"({
+    "type" : "toButtons",
     "buttons" : [
         "triggerR"
     ]
@@ -174,6 +198,7 @@ TEST_F(
 {
     this->test(
         R"({
+    "type" : "toButtons",
     "buttons" : [
         "start"
     ]
@@ -189,6 +214,7 @@ TEST_F(
 {
     this->test(
         R"({
+    "type" : "toButtons",
     "buttons" : [
         "select"
     ]
@@ -204,6 +230,7 @@ TEST_F(
 {
     this->test(
         R"({
+    "type" : "toButtons",
     "buttons" : [
         "up",
         "up",
@@ -221,6 +248,7 @@ TEST_F(
 {
     this->testAnyThrow(
         R"({
+    "type" : "toButtons",
     "buttons" : [
         "illegal"
     ]
@@ -235,6 +263,7 @@ TEST_F(
 {
     this->testAnyThrow(
         R"({
+    "type" : "toButtons",
     "button" : [
         "up"
     ]
@@ -249,6 +278,7 @@ TEST_F(
 {
     this->testAnyThrow(
         R"({
+    "type" : "toButtons",
     "buttons" : "up"
 })"
     );

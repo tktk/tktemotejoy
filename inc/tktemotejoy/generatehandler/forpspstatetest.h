@@ -11,24 +11,13 @@
 template< typename GENERATE_HANDLER_UNIQUE_T >
 class GenerateHandlerForPspStateTest : public ::testing::Test
 {
+public:
     void test(
         const std::string &     _JSON_STRING
         , const PspState::Bits  _EXPECTED_BITS
-        , const bool            _GENERATE_HANDLER_UNIQUE_WITH_ASSERT_ANY_THROW
     ) const
     {
         const auto  JSON = Json::parse( _JSON_STRING );
-
-        if( _GENERATE_HANDLER_UNIQUE_WITH_ASSERT_ANY_THROW == true ) {
-            // ASSERT_ARY_THROWで記述するとsegmentation fault
-            try {
-                GENERATE_HANDLER_UNIQUE_T()( JSON );
-
-                ASSERT_FALSE( true );
-            } catch( ... ) {
-                return;
-            }
-        }
 
         auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( JSON );
         ASSERT_NE( nullptr, handlerUnique.get() );
@@ -67,28 +56,29 @@ class GenerateHandlerForPspStateTest : public ::testing::Test
         EXPECT_EQ( _EXPECTED_BITS, bits );
     }
 
-public:
-    void test(
-        const std::string &     _JSON_STRING
-        , const PspState::Bits  _EXPECTED_BITS
-    ) const
-    {
-        this->test(
-            _JSON_STRING
-            , _EXPECTED_BITS
-            , false
-        );
-    }
-
     void testAnyThrow(
         const std::string &     _JSON_STRING
     ) const
     {
-        this->test(
-            _JSON_STRING
-            , 0
-            , true
-        );
+        const auto  JSON = Json::parse( _JSON_STRING );
+
+        // ASSERT_ARY_THROWで記述するとsegmentation fault
+        try {
+            GENERATE_HANDLER_UNIQUE_T()( JSON );
+
+            ASSERT_FALSE( true );
+        } catch( ... ) {
+        }
+    }
+
+    void testNull(
+        const std::string &     _JSON_STRING
+    ) const
+    {
+        const auto  JSON = Json::parse( _JSON_STRING );
+
+        const auto  HANDLER_UNIQUE = GENERATE_HANDLER_UNIQUE_T()( JSON );
+        ASSERT_EQ( nullptr, HANDLER_UNIQUE.get() );
     }
 };
 
