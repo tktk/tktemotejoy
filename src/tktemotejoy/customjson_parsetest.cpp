@@ -5,7 +5,7 @@
 #include <map>
 
 namespace {
-    class ParseCustomJsonTest : public ::testing::Test
+    class CustomJson_parseTest : public ::testing::Test
     {
     public:
         void testArray(
@@ -59,7 +59,7 @@ namespace {
 }
 
 TEST_F(
-    ParseCustomJsonTest
+    CustomJson_parseTest
     , Standard
 )
 {
@@ -78,7 +78,7 @@ TEST_F(
 }
 
 TEST_F(
-    ParseCustomJsonTest
+    CustomJson_parseTest
     , ArrayWithTailComma
 )
 {
@@ -97,7 +97,7 @@ TEST_F(
 }
 
 TEST_F(
-    ParseCustomJsonTest
+    CustomJson_parseTest
     , ObjectWithTailComma
 )
 {
@@ -116,7 +116,7 @@ TEST_F(
 }
 
 TEST_F(
-    ParseCustomJsonTest
+    CustomJson_parseTest
     , WithLineComment
 )
 {
@@ -135,7 +135,7 @@ TEST_F(
 }
 
 TEST_F(
-    ParseCustomJsonTest
+    CustomJson_parseTest
     , WithBlockComment
 )
 {
@@ -155,7 +155,7 @@ TEST_F(
 }
 
 TEST_F(
-    ParseCustomJsonTest
+    CustomJson_parseTest
     , WithLineCommentAndBlockComment
 )
 {
