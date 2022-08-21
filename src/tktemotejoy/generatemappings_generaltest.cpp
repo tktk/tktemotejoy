@@ -93,4 +93,17 @@ TEST_F(
     );
 }
 
-//TODO DefaultMappingIsNotUnsignedInteger
+TEST_F(
+    GenerateMappings_generalTest
+    , DefaultMappingIsNotUnsignedInteger
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : -10
+    },
+    "mappings" : []
+})"
+    );
+}
