@@ -1,18 +1,56 @@
 #include "tktemotejoy/generatemappings.h"
 #include "tktemotejoy/mappings.h"
 #include "tktemotejoy/customjson.h"
+#include <string>
 #include <utility>
+
+namespace {
+    const auto  ROOT_KEY_GENERAL = std::string( "general" );
+    const auto  ROOT_KEY_MAPPINGS = std::string( "mappings" );
+
+    const auto  GENERAL_KEY_DEFAULT_MAPPING = std::string( "defaultMapping" );
+
+    struct General
+    {
+        Mappings::Impl::size_type   defaultMapping;
+    };
+
+    General generateGeneral(
+        const Json::object_t &  _JSON_OBJECT
+    )
+    {
+        const auto &    GENERAL = _JSON_OBJECT.at( ROOT_KEY_GENERAL ).get_ref< const Json::object_t & >();
+        const auto &    DEFAULT_MAPPING = GENERAL.at( GENERAL_KEY_DEFAULT_MAPPING ).get_ref< const Json::number_unsigned_t & >();
+
+        return General{
+            DEFAULT_MAPPING,
+        };
+    }
+
+    Mappings::Impl generateMappingsImpl(
+        const Json::object_t &  _JSON_OBJECT
+    )
+    {
+        //TODO
+        auto    impl = Mappings::Impl();
+        impl.push_back( Mapping() );
+
+        return impl;
+    }
+}
 
 Mappings generateMappings(
     const Json &    _JSON
 )
 {
-    //TODO
-    auto    impl = Mappings::Impl();
-    impl.push_back( Mapping() );
+    const auto &    JSON_OBJECT = _JSON.get_ref< const Json::object_t & >();
+
+    const auto  GENERAL = generateGeneral( JSON_OBJECT );
+
+    auto    impl = generateMappingsImpl( JSON_OBJECT );
 
     return Mappings(
         std::move( impl )
-        , 0
+        , GENERAL.defaultMapping
     );
 }
