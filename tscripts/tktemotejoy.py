@@ -27,6 +27,7 @@ module.DEPENDS = [
     'tktemotejoy_customjson_parsetest',
     'tktemotejoy_generatehandler_generatehandleruniquetest',
     'tktemotejoy_generatehandler_tobuttonstest',
+    'tktemotejoy_generatehandler_pressbuttonhandlerforpspstatetest',
     'tktemotejoy_generatemappingstest',
     'tktemotejoy_generatemappings_generaltest',
     'tktemotejoy_jsonerrortest',
