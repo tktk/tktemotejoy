@@ -44,7 +44,7 @@ std::runtime_error jsonError(
         , _ARGS ...
     );
 
-    oStringStream << "が" << _WHAT;
+    oStringStream << _WHAT;
 
     return std::runtime_error( oStringStream.str() );
 }
@@ -55,7 +55,7 @@ std::runtime_error jsonIsNotExists(
 )
 {
     return jsonError(
-        "存在しない"
+        "が存在しない"
         , _ARGS ...
     );
 }
@@ -65,14 +65,10 @@ std::runtime_error jsonIsNotInteger(
     const ARGS_T & ...  _ARGS
 )
 {
-    //TODO
-    return std::runtime_error( "TODO" );
-/*
     return jsonError(
-        "符号なし整数ではない"
+        "の値が整数ではない"
         , _ARGS ...
     );
-*/
 }
 
 template< typename ... ARGS_T >

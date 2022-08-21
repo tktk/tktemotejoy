@@ -28,7 +28,7 @@ TEST_F(
         ) const
         {
             return jsonError(
-                "エラー"
+                "がエラー"
                 , "key1"
                 , "key2"
                 , "key3"
