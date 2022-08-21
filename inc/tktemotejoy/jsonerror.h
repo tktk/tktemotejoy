@@ -109,14 +109,10 @@ std::runtime_error jsonIsNotObject(
     const ARGS_T & ...  _ARGS
 )
 {
-    //TODO
-    return std::runtime_error( "TODO" );
-/*
     return jsonError(
-        "オブジェクトではない"
+        "の値がオブジェクトではない"
         , _ARGS ...
     );
-*/
 }
 
 #endif  // TKTEMOTEJOY_JSONERROR_H
