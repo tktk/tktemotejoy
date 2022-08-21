@@ -56,6 +56,23 @@ TEST_F(
     this->test< JsonIsNotExists >( "keyが存在しない" );
 }
 
+TEST_F(
+    JsonErrorTest
+    , JsonIsNotInteger
+)
+{
+    struct JsonIsNotInteger
+    {
+        auto operator()(
+        ) const
+        {
+            return jsonIsNotInteger( "key" );
+        }
+    };
+
+    this->test< JsonIsNotInteger >( "keyの値が整数ではない" );
+}
+
 //TODO JsonIsNotInteger
 //TODO JsonIsNotUnsigned
 //TODO JsonIsNotString
