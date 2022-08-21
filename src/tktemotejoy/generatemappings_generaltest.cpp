@@ -67,6 +67,18 @@ TEST_F(
     );
 }
 
-//TODO GeneralIsNotMap
+TEST_F(
+    GenerateMappings_generalTest
+    , GeneralIsNotObject
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : [],
+    "mappings" : []
+})"
+    );
+}
+
 //TODO NotExistsDefaultMapping
 //TODO DefaultMappingIsNotUnsignedInteger
