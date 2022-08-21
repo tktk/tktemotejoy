@@ -30,6 +30,7 @@ module.DEPENDS = [
     'tktemotejoy_generatehandler_pressbuttonhandlerforpspstatetest',
     'tktemotejoy_generatemappingstest',
     'tktemotejoy_generatemappings_generaltest',
+    'tktemotejoy_generatemappings_mappingstest',
     'tktemotejoy_jsonerrortest',
 ]
 
