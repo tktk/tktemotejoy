@@ -13,10 +13,10 @@ namespace {
     struct TestGanarateHandlerUnique
     {
         TestHandlerUnique operator()(
-            const Json::object_t &
+            const Json::object_t &  _OBJECT
         ) const
         {
-            return TestHandlerUnique( new int( 10 ) );
+            return TestHandlerUnique( new int( _OBJECT.at( "key" ).get_ref< const Json::number_integer_t & >() ) );
         }
     };
 
@@ -45,6 +45,7 @@ namespace {
         void test(
             const std::string & _JSON_STRING
             , const bool        _HANDLER_EXPECTED_NOT_NULL
+            , const int         _EXPECTED
         ) const
         {
             const auto  JSON = Json::parse( _JSON_STRING );
@@ -57,7 +58,7 @@ namespace {
 
             if( _HANDLER_EXPECTED_NOT_NULL == true ) {
                 ASSERT_NE( nullptr, handlerUnique.get() );
-                EXPECT_EQ( 10, *handlerUnique );
+                EXPECT_EQ( _EXPECTED, *handlerUnique );
             } else {
                 EXPECT_EQ( nullptr, handlerUnique.get() );
             }
@@ -72,9 +73,11 @@ TEST_F(
 {
     this->test< GetType >(
         R"({
-    "type" : "TYPENAME"
+    "type" : "TYPENAME",
+    "key" : 10
 })"
         , true
+        , 10
     );
 }
 
@@ -85,10 +88,25 @@ TEST_F(
 {
     this->test< GetDiffType >(
         R"({
-    "type" : "TYPENAME"
+    "type" : "TYPENAME",
+    "key" : 10
 })"
         , false
+        , 0
     );
 }
 
-//TODO TypeIsNotString
+TEST_F(
+    GenerateHandlerUniqueTest
+    , TypeIsNotString
+)
+{
+    this->test< GetDiffType >(
+        R"({
+    "type" : [ "TYPENAME" ],
+    "key" : 10
+})"
+        , false
+        , 0
+    );
+}
