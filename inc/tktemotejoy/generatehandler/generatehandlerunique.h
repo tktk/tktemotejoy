@@ -9,11 +9,10 @@ template<
     , typename GENERATE_HANDLER_UNIQUE_T
 >
 HANDLER_UNIQUE_T generateHandlerUnique(
-    const Json::object_t &  _JSON
+    const Json::object_t &  _OBJECT
 )
 {
-    //TODO
-    return HANDLER_UNIQUE_T();
+    return GENERATE_HANDLER_UNIQUE_T()( _OBJECT );
 }
 
 #endif  // TKTEMOTEJOY_GENERATEHANDLER_GENERATEHANDLERUNIQUE_H
