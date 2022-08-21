@@ -54,14 +54,10 @@ std::runtime_error jsonIsNotExists(
     const ARGS_T & ...  _ARGS
 )
 {
-    //TODO
-    return std::runtime_error( "TODO" );
-/*
     return jsonError(
         "存在しない"
         , _ARGS ...
     );
-*/
 }
 
 template< typename ... ARGS_T >
