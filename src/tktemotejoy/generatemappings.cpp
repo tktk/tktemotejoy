@@ -48,7 +48,16 @@ namespace {
 
             throw std::runtime_error( oStringStream.str() );
         }
-        const auto &    DEFAULT_MAPPING = DEFAULT_MAPPING_IT->second.get_ref< const Json::number_unsigned_t & >();
+        const auto &    DEFAULT_MAPPING_JSON = DEFAULT_MAPPING_IT->second;
+
+        if( DEFAULT_MAPPING_JSON.is_number_unsigned() == false ) {
+            auto    oStringStream = std::ostringstream();
+
+            oStringStream << '"' << ROOT_KEY_GENERAL << '"' << "が数値ではない";
+
+            throw std::runtime_error( oStringStream.str() );
+        }
+        const auto &    DEFAULT_MAPPING = DEFAULT_MAPPING_JSON.get_ref< const Json::number_unsigned_t & >();
 
         return General{
             DEFAULT_MAPPING,
