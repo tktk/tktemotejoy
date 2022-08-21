@@ -29,6 +29,7 @@ module.DEPENDS = [
     'tktemotejoy_generatehandler_tobuttonstest',
     'tktemotejoy_generatemappingstest',
     'tktemotejoy_generatemappings_generaltest',
+    'tktemotejoy_jsonerrortest',
 ]
 
 module.BUILDER = cpp.program
