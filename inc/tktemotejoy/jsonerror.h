@@ -4,14 +4,49 @@
 #include <stdexcept>
 #include <string>
 
+template< typename ARG_T >
+void jsonError(
+    std::ostringstream &    _oStringStream
+    , const ARG_T &         _ARG
+)
+{
+    _oStringStream << _ARG;
+}
+
+template<
+    typename ARG_T
+    , typename ... ARGS_T
+>
+void jsonError(
+    std::ostringstream &    _oStringStream
+    , const ARG_T &         _ARG
+    , const ARGS_T & ...    _ARGS
+)
+{
+    _oStringStream << _ARG << '.';
+
+    jsonError(
+        _oStringStream
+        , _ARGS ...
+    );
+}
+
 template< typename ... ARGS_T >
 std::runtime_error jsonError(
     const std::string &     _WHAT
     , const ARGS_T & ...    _ARGS
 )
 {
-    //TODO
-    return std::runtime_error( "key1.key2.key3がエラー" );
+    auto    oStringStream = std::ostringstream();
+
+    jsonError(
+        oStringStream
+        , _ARGS ...
+    );
+
+    oStringStream << "が" << _WHAT;
+
+    return std::runtime_error( oStringStream.str() );
 }
 
 template< typename ... ARGS_T >
