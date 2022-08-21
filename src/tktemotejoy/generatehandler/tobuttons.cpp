@@ -1,19 +1,18 @@
 #include "tktemotejoy/generatehandler/tobuttons.h"
+#include "tktemotejoy/generatehandler/generatehandlerunique.h"
 #include "tktemotejoy/handler/forpspstate/tobuttons.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/pspstate.h"
 #include "tktemotejoy/customjson.h"
+#include <map>
+#include <string>
 #include <sstream>
 #include <stdexcept>
 
 namespace {
-    const auto  KEY_BUTTONS = "buttons";
-}
+    const auto  TYPE = std::string( "toButtons" );
+    const auto  KEY_BUTTONS = std::string( "buttons" );
 
-Mapping::PressButtonHandlerForPspStateUnique generateToButtonsUnique(
-    const Json::object_t &  _OBJECT
-)
-{
     const auto  STRING_TO_BUTTON = std::map< std::string, PspState::Buttons >(
         {
             { "up", PspState::Button::UP },
@@ -31,42 +30,70 @@ Mapping::PressButtonHandlerForPspStateUnique generateToButtonsUnique(
         }
     );
 
-    const auto  OBJECT_END = _OBJECT.end();
-
-    const auto  BUTTONS_IT = _OBJECT.find( KEY_BUTTONS );
-    if( BUTTONS_IT == OBJECT_END ) {
-        auto    oStringStream = std::ostringstream();
-
-        oStringStream << '"' << KEY_BUTTONS << '"' << "が存在しない";
-
-        throw std::runtime_error( oStringStream.str() );
-    }
-    const auto &    BUTTON_STRINGS_JSON = BUTTONS_IT->second;
-
-    if( BUTTON_STRINGS_JSON.is_array() == false ) {
-        auto    oStringStream = std::ostringstream();
-
-        oStringStream << '"' << KEY_BUTTONS << '"' << "がリストではない";
-
-        throw std::runtime_error( oStringStream.str() );
-    }
-    const auto &    BUTTON_STRINGS = BUTTON_STRINGS_JSON.get_ref< const Json::array_t & >();
-
-    auto    buttons = PspState::Buttons( 0 );
-
-    const auto  STRING_TO_BUTTON_END = STRING_TO_BUTTON.end();
-    for( const auto & BUTTON_STRING : BUTTON_STRINGS ) {
-        const auto  IT = STRING_TO_BUTTON.find( BUTTON_STRING );
-        if( IT == STRING_TO_BUTTON_END ) {
-            auto    oStringStream = std::ostringstream();
-
-            oStringStream << "ボタン\"" << BUTTON_STRING << "\"は非対応";
-
-            throw std::runtime_error( oStringStream.str() );
+    struct GetType
+    {
+        const auto & operator()(
+        ) const
+        {
+            return TYPE;
         }
+    };
 
-        buttons |= IT->second;
-    }
+    struct GenerateHandlerUnique
+    {
+        auto operator()(
+            const Json::object_t &  _OBJECT
+        ) const
+        {
+            const auto  OBJECT_END = _OBJECT.end();
 
-    return Mapping::handlerUnique( new ToButtons( buttons ) );
+            const auto  BUTTONS_IT = _OBJECT.find( KEY_BUTTONS );
+            if( BUTTONS_IT == OBJECT_END ) {
+                auto    oStringStream = std::ostringstream();
+
+                oStringStream << '"' << KEY_BUTTONS << '"' << "が存在しない";
+
+                throw std::runtime_error( oStringStream.str() );
+            }
+            const auto &    BUTTON_STRINGS_JSON = BUTTONS_IT->second;
+
+            if( BUTTON_STRINGS_JSON.is_array() == false ) {
+                auto    oStringStream = std::ostringstream();
+
+                oStringStream << '"' << KEY_BUTTONS << '"' << "がリストではない";
+
+                throw std::runtime_error( oStringStream.str() );
+            }
+            const auto &    BUTTON_STRINGS = BUTTON_STRINGS_JSON.get_ref< const Json::array_t & >();
+
+            auto    buttons = PspState::Buttons( 0 );
+
+            const auto  STRING_TO_BUTTON_END = STRING_TO_BUTTON.end();
+            for( const auto & BUTTON_STRING : BUTTON_STRINGS ) {
+                const auto  IT = STRING_TO_BUTTON.find( BUTTON_STRING );
+                if( IT == STRING_TO_BUTTON_END ) {
+                    auto    oStringStream = std::ostringstream();
+
+                    oStringStream << "ボタン\"" << BUTTON_STRING << "\"は非対応";
+
+                    throw std::runtime_error( oStringStream.str() );
+                }
+
+                buttons |= IT->second;
+            }
+
+            return Mapping::handlerUnique( new ToButtons( buttons ) );
+        }
+    };
+}
+
+Mapping::PressButtonHandlerForPspStateUnique generateToButtonsUnique(
+    const Json::object_t &  _OBJECT
+)
+{
+    return generateHandlerUnique<
+        Mapping::PressButtonHandlerForPspStateUnique
+        , GetType
+        , GenerateHandlerUnique
+    >( _OBJECT );
 }
