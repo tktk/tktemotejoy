@@ -95,6 +95,8 @@ bool initializeCommandLineOptions(
     );
     options::notify( variablesMap );
 
+    auto    printHelp = false;
+
 /*
     if( variablesMap.count( OPTION_NAME_HELP ) > 0 ) {
         std::cout << optionsDescription << std::endl;
@@ -103,7 +105,17 @@ bool initializeCommandLineOptions(
     }
 */
     if( variablesMap.count( OPTION_KEY_MAP ) <= 0 ) {
-        std::cout << "マッピングファイルの指定が必要" << std::endl;
+        std::cout << OPTION_DESCRIPTION_MAP << "の指定が必要" << std::endl;
+
+        printHelp = true;
+    }
+    if( variablesMap.count( OPTION_KEY_DEVICE ) <= 0 ) {
+        std::cout << OPTION_DESCRIPTION_DEVICE << "の指定が必要" << std::endl;
+
+        printHelp = true;
+    }
+
+    if( printHelp == true ) {
         std::cout << optionsDescription << std::endl;
 
         return false;
