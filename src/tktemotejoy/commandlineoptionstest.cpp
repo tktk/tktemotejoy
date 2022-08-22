@@ -102,7 +102,29 @@ TEST_F(
     );
 }
 
-//TODO NotExistsPort
+TEST_F(
+    CommandLineOptions_initializeTest
+    , NotExistsPort
+)
+{
+    this->test(
+        {
+            "tktemotejoy",
+            "-m",
+            "MAPFILEPATH",
+            "-i",
+            "IP",
+            "DEVICEFILEPATH",
+        }
+        , true
+        , CommandLineOptions{
+            "MAPFILEPATH",
+            "DEVICEFILEPATH",
+            "IP",
+            10004,
+        }
+    );
+}
 
 TEST_F(
     CommandLineOptions_initializeTest
