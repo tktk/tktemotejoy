@@ -80,5 +80,25 @@ TEST_F(
 
 //TODO NotExistsIp
 //TODO NotExistsPort
-//TODO NotExistsDeviceFilePath
+
+TEST_F(
+    CommandLineOptions_initializeTest
+    , NotExistsDeviceFilePath
+)
+{
+    this->test(
+        {
+            "tktemotejoy",
+            "-m",
+            "MAPFILEPATH",
+            "-i",
+            "IP",
+            "-p",
+            "10",
+        }
+        , false
+        , CommandLineOptions{}
+    );
+}
+
 //TODO Help
