@@ -102,6 +102,12 @@ bool initializeCommandLineOptions(
         return 0;
     }
 */
+    if( variablesMap.count( OPTION_KEY_MAP ) <= 0 ) {
+        std::cout << "マッピングファイルの指定が必要" << std::endl;
+        std::cout << optionsDescription << std::endl;
+
+        return false;
+    }
 
     _commandLineOptions.mapFilePath = variablesMap[ OPTION_KEY_MAP ].as< OptionTypeMap >();
     _commandLineOptions.deviceFilePath = variablesMap[ OPTION_KEY_DEVICE ].as< OptionTypeDevice >();
