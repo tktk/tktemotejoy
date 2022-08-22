@@ -64,7 +64,7 @@ bool initializeCommandLineOptions(
         )
         (
             OPTION_NAME_PORT
-            , options::value< OptionTypePort >()->value_name( OPTION_KEY_PORT )/* ->default_value( OPTION_DEFAULT_PORT ) */
+            , options::value< OptionTypePort >()->value_name( OPTION_KEY_PORT )->default_value( OPTION_DEFAULT_PORT )
             , OPTION_DESCRIPTION_PORT
         )
 /*
