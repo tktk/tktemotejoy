@@ -145,11 +145,16 @@ TEST_F(
 /*
     "def",
 */
-    "ghi"
+    "ghi",
+/*
+    "jkl",
+*/
+    "mno"
 ])"
         , {
             "abc"
             , "ghi"
+            , "mno"
         }
     );
 }
