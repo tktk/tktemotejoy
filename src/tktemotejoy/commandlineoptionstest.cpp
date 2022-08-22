@@ -23,10 +23,12 @@ namespace {
                 )
             );
 
-            EXPECT_EQ( _EXPECTED_COMMAND_LINE_OPTIONS.mapFilePath, commandLineOptions.mapFilePath );
-            EXPECT_EQ( _EXPECTED_COMMAND_LINE_OPTIONS.ip, commandLineOptions.ip );
-            EXPECT_EQ( _EXPECTED_COMMAND_LINE_OPTIONS.port, commandLineOptions.port );
-            EXPECT_EQ( _EXPECTED_COMMAND_LINE_OPTIONS.deviceFilePath, commandLineOptions.deviceFilePath );
+            if( _EXPECTED_INITIALIZED == true ) {
+                EXPECT_EQ( _EXPECTED_COMMAND_LINE_OPTIONS.mapFilePath, commandLineOptions.mapFilePath );
+                EXPECT_EQ( _EXPECTED_COMMAND_LINE_OPTIONS.ip, commandLineOptions.ip );
+                EXPECT_EQ( _EXPECTED_COMMAND_LINE_OPTIONS.port, commandLineOptions.port );
+                EXPECT_EQ( _EXPECTED_COMMAND_LINE_OPTIONS.deviceFilePath, commandLineOptions.deviceFilePath );
+            }
         }
     };
 }
@@ -57,7 +59,25 @@ TEST_F(
     );
 }
 
-//TODO NotExistsMapFilePath
+TEST_F(
+    CommandLineOptions_initializeTest
+    , NotExistsMapFilePath
+)
+{
+    this->test(
+        {
+            "tktemotejoy",
+            "-i",
+            "IP",
+            "-p",
+            "10",
+            "DEVICEFILEPATH",
+        }
+        , false
+        , CommandLineOptions{}
+    );
+}
+
 //TODO NotExistsIp
 //TODO NotExistsPort
 //TODO NotExistsDeviceFilePath
