@@ -107,7 +107,7 @@ bool initializeCommandLineOptions(
     }
 
     if( printHelp == true ) {
-        std::cout << optionsDescription << std::endl;
+        std::cout << optionsDescription;
 
         return false;
     }
