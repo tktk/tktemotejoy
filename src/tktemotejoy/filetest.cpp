@@ -12,4 +12,10 @@ TEST(
     );
 }
 
-//TODO NotFound
+TEST(
+    ReadFileTest
+    , NotFound
+)
+{
+    EXPECT_ANY_THROW( readFile( "notfound" ) );
+}
