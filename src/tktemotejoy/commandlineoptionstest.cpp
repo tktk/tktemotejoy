@@ -146,4 +146,24 @@ TEST_F(
     );
 }
 
-//TODO Help
+TEST_F(
+    CommandLineOptions_initializeTest
+    , Help
+)
+{
+    this->test(
+        {
+            "tktemotejoy",
+            "-m",
+            "MAPFILEPATH",
+            "-i",
+            "IP",
+            "-p",
+            "10",
+            "DEVICEFILEPATH",
+            "--help",
+        }
+        , false
+        , CommandLineOptions{}
+    );
+}
