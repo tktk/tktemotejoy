@@ -10,7 +10,7 @@ DescriptorCloser connectToUsbHostFs(
     , const unsigned short
 );
 
-bool writeToUsbHostFs(
+void writeToUsbHostFs(
     const int
     , const unsigned int
 );

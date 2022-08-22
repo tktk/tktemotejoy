@@ -1,14 +1,26 @@
 #include "tktemotejoy/tousbhostfs.h"
 #include "tktemotejoy/descriptorcloser.h"
 #include <sys/socket.h>
-#include <netdb.h>
 #include <netinet/tcp.h>
+#include <netdb.h>
+#include <unistd.h>
 #include <string>
 #include <cstring>
+#include <cstddef>
 #include <sstream>
 #include <stdexcept>
 
 namespace {
+    enum {
+        JOY_MAGIC = 0x909accf0,
+    };
+
+    struct JoyEvent
+    {
+        alignas( 1 ) unsigned int   magic;
+        alignas( 1 ) unsigned int   value;
+    };
+
     struct DestroyAddrinfo
     {
         void operator()(
@@ -126,11 +138,31 @@ DescriptorCloser connectToUsbHostFs(
     return closer;
 }
 
-bool writeToUsbHostFs(
+void writeToUsbHostFs(
     const int               _SOCKET
     , const unsigned int    _DATA
 )
 {
-    //TODO
-    return false;
+    auto    joyEvent = JoyEvent{
+        JOY_MAGIC,
+        _DATA,
+    };
+    const auto  EVENT_LENGTH = sizeof( joyEvent );
+
+    const auto  EVENT_HEAD = reinterpret_cast< const char * >( &joyEvent );
+
+    auto    totalWritten = std::size_t( 0 );
+
+    while( totalWritten < EVENT_LENGTH ) {
+        const auto  WRITTEN = write(
+            _SOCKET
+            , EVENT_HEAD + totalWritten
+            , EVENT_LENGTH - totalWritten
+        );
+        if( WRITTEN < 0 ) {
+            throw std::runtime_error( "write()が失敗" );
+        }
+
+        totalWritten += WRITTEN;
+    }
 }
