@@ -14,7 +14,7 @@ Json parseCustomJson(
 
     const auto  REMOVE_BLOCK_COMMENT = std::regex_replace(
         REMOVE_LINE_COMMENT
-        , std::regex( R"(/\*(?:.|\s)*\*/)" )
+        , std::regex( R"(/\*(?:.|\s)*?\*/)" )
         , ""
     );
 
