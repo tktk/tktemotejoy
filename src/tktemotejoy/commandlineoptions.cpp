@@ -21,19 +21,18 @@ namespace {
     const auto  OPTION_KEY_IP = "ip";
     const auto  OPTION_NAME_IP = "ip,i";
     const auto  OPTION_DESCRIPTION_IP = "usbhostfs_pcのホスト";
+    const auto  OPTION_DEFAULT_IP = std::string( "localhost" );
 
     using OptionTypePort = unsigned short;
     const auto  OPTION_KEY_PORT = "port";
     const auto  OPTION_NAME_PORT = "port,p";
     const auto  OPTION_DESCRIPTION_PORT = "usbhostfs_pcのポート番号";
+    const auto  OPTION_DEFAULT_PORT = 10004;
 
 /*
     const auto  OPTION_KEY_HELP = "help";
     const auto  OPTION_NAME_HELP = "help";
     const auto  OPTION_DESCRIPTION_HELP = "ヘルプ";
-
-    const auto  DEFAULT_IP = std::string( "localhost" );
-    const auto  DEFAULT_PORT = 10004;
 */
 }
 
@@ -60,12 +59,12 @@ bool initializeCommandLineOptions(
         )
         (
             OPTION_NAME_IP
-            , options::value< OptionTypeIp >()->value_name( OPTION_KEY_IP )/* ->default_value( DEFAULT_IP ) */
+            , options::value< OptionTypeIp >()->value_name( OPTION_KEY_IP )->default_value( OPTION_DEFAULT_IP )
             , OPTION_DESCRIPTION_IP
         )
         (
             OPTION_NAME_PORT
-            , options::value< OptionTypePort >()->value_name( OPTION_KEY_PORT )/* ->default_value( DEFAULT_PORT ) */
+            , options::value< OptionTypePort >()->value_name( OPTION_KEY_PORT )/* ->default_value( OPTION_DEFAULT_PORT ) */
             , OPTION_DESCRIPTION_PORT
         )
 /*
