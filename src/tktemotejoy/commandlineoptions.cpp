@@ -2,7 +2,6 @@
 #include <boost/program_options.hpp>
 #include <string>
 #include <iostream>
-#include <typeinfo>
 
 namespace {
     const auto  OPTION = "オプション";
@@ -29,11 +28,9 @@ namespace {
     const auto  OPTION_DESCRIPTION_PORT = "usbhostfs_pcのポート番号";
     const auto  OPTION_DEFAULT_PORT = 10004;
 
-/*
     const auto  OPTION_KEY_HELP = "help";
     const auto  OPTION_NAME_HELP = "help";
     const auto  OPTION_DESCRIPTION_HELP = "ヘルプ";
-*/
 }
 
 bool initializeCommandLineOptions(
@@ -67,12 +64,10 @@ bool initializeCommandLineOptions(
             , options::value< OptionTypePort >()->value_name( OPTION_KEY_PORT )->default_value( OPTION_DEFAULT_PORT )
             , OPTION_DESCRIPTION_PORT
         )
-/*
         (
             OPTION_NAME_HELP
             , OPTION_DESCRIPTION_HELP
         )
-*/
     ;
 
     auto    positionalOptionsDescription = options::positional_options_description();
@@ -96,22 +91,19 @@ bool initializeCommandLineOptions(
 
     auto    printHelp = false;
 
-/*
     if( variablesMap.count( OPTION_NAME_HELP ) > 0 ) {
-        std::cout << optionsDescription << std::endl;
-
-        return 0;
-    }
-*/
-    if( variablesMap.count( OPTION_KEY_MAP ) <= 0 ) {
-        std::cout << OPTION_DESCRIPTION_MAP << "の指定が必要" << std::endl;
-
         printHelp = true;
-    }
-    if( variablesMap.count( OPTION_KEY_DEVICE ) <= 0 ) {
-        std::cout << OPTION_DESCRIPTION_DEVICE << "の指定が必要" << std::endl;
+    } else {
+        if( variablesMap.count( OPTION_KEY_MAP ) <= 0 ) {
+            std::cout << OPTION_DESCRIPTION_MAP << "の指定が必要" << std::endl;
 
-        printHelp = true;
+            printHelp = true;
+        }
+        if( variablesMap.count( OPTION_KEY_DEVICE ) <= 0 ) {
+            std::cout << OPTION_DESCRIPTION_DEVICE << "の指定が必要" << std::endl;
+
+            printHelp = true;
+        }
     }
 
     if( printHelp == true ) {
