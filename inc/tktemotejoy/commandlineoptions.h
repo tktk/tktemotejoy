@@ -6,15 +6,15 @@
 struct CommandLineOptions
 {
     std::string     mapFilePath;
+    std::string     deviceFilePath;
     std::string     ip;
     unsigned short  port;
-    std::string     deviceFilePath;
 };
 
 bool initializeCommandLineOptions(
     CommandLineOptions &
     , const int
-    , const char **
+    , const char * const *
 );
 
 #endif  // TKTEMOTEJOY_COMMANDLINEOPTIONS_H

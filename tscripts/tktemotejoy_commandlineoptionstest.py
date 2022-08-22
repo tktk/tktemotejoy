@@ -13,3 +13,7 @@ module.SOURCE = [
     'commandlineoptionstest.cpp',
     'commandlineoptions.cpp',
 ]
+
+module.LIB = [
+    'boost_program_options',
+]

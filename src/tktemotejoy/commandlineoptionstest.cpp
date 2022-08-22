@@ -19,7 +19,7 @@ namespace {
                 , initializeCommandLineOptions(
                     commandLineOptions
                     , _ARGS.size()
-                    , const_cast< const char ** >( _ARGS.data() )
+                    , _ARGS.data()
                 )
             );
 
@@ -50,9 +50,9 @@ TEST_F(
         , true
         , CommandLineOptions{
             "MAPFILEPATH",
+            "DEVICEFILEPATH",
             "IP",
             10,
-            "DEVICEFILEPATH",
         }
     );
 }

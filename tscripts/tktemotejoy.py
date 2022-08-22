@@ -62,3 +62,7 @@ module.SOURCE = [
         },
     },
 ]
+
+module.LIB = [
+    'boost_program_options',
+]
