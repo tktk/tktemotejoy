@@ -50,6 +50,8 @@ module.SOURCE = [
     'mapping.cpp',
     'joystickstate.cpp',
     'pspstate.cpp',
+    'tousbhostfs.cpp',
+    'descriptorcloser.cpp',
     {
         'generatehandler' : [
             'tobuttons.cpp',

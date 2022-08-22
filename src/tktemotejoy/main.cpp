@@ -3,6 +3,7 @@
 #include "tktemotejoy/customjson.h"
 #include "tktemotejoy/generatemappings.h"
 #include "tktemotejoy/mappings.h"
+#include "tktemotejoy/tousbhostfs.h"
 #include <string>
 
 namespace {
@@ -33,6 +34,13 @@ int main(
     }
 
     auto    mappings = generateMappingsFromFile( options.mapFilePath );
+
+    int socket_;
+    const auto  SOCKET_CLOSER = connectToUsbHostFs(
+        socket_
+        , options.ip
+        , options.port
+    );
 
     return 0;
 }
