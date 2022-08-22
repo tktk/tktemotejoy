@@ -42,6 +42,7 @@ module.TARGET = 'tktemotejoy'
 
 module.SOURCE = [
     'main.cpp',
+    'commandlineoptions.cpp',
     'joystickstate.cpp',
     'pspstate.cpp',
     'mapping.cpp',
