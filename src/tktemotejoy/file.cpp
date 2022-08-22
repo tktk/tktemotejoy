@@ -6,5 +6,5 @@ std::string readFile(
 )
 {
     //TODO
-    return std::string();
+    return std::string( "TESTFILE" );
 }
