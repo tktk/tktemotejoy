@@ -1,12 +1,12 @@
 #include "tktemotejoy/tousbhostfs.h"
 #include "tktemotejoy/descriptorcloser.h"
+#include <sys/socket.h>
+#include <netdb.h>
+#include <netinet/tcp.h>
 #include <string>
 #include <cstring>
 #include <sstream>
 #include <stdexcept>
-#include <sys/socket.h>
-#include <netdb.h>
-#include <netinet/tcp.h>
 
 namespace {
     struct DestroyAddrinfo
