@@ -43,23 +43,21 @@ module.TARGET = 'tktemotejoy'
 module.SOURCE = [
     'main.cpp',
     'commandlineoptions.cpp',
+    'file.cpp',
+    'customjson.cpp',
+    'generatemappings.cpp',
+    'mappings.cpp',
+    'mapping.cpp',
     'joystickstate.cpp',
     'pspstate.cpp',
-    'mapping.cpp',
-    'mappings.cpp',
     {
+        'generatehandler' : [
+            'tobuttons.cpp',
+            'pressbuttonhandlerforpspstate.cpp',
+        ],
         'handler' : {
             'forpspstate' : [
                 'tobuttons.cpp',
-                'tofixedaxisx.cpp',
-                'tofixedaxisy.cpp',
-                'toaxisx.cpp',
-                'toaxisy.cpp',
-                'jseventaxistopspstateaxis.cpp',
-            ],
-            'forchangemapping' : [
-                'shiftmapping.cpp',
-                'togglemapping.cpp',
             ],
         },
     },
