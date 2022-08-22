@@ -51,6 +51,7 @@ module.SOURCE = [
     'joystickstate.cpp',
     'pspstate.cpp',
     'tousbhostfs.cpp',
+    'joystick.cpp',
     'descriptorcloser.cpp',
     {
         'generatehandler' : [
