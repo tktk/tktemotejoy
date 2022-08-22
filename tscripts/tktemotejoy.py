@@ -5,6 +5,9 @@ from taf.tools import cpp
 
 module.DEPENDS = [
     'tktemotejoy_commandlineoptionstest',
+    'tktemotejoy_filetest',
+    'tktemotejoy_customjson_parsetest',
+    'tktemotejoy_jsonerrortest',
     'tktemotejoy_joystickstate_forpressedbuttonstest',
     'tktemotejoy_joystickstate_foraxestest',
     'tktemotejoy_pspstate_difftest',
@@ -25,14 +28,12 @@ module.DEPENDS = [
     'tktemotejoy_mapping_pressbuttonforchangemappingtest',
     'tktemotejoy_mapping_operateaxisforchangemappingtest',
     'tktemotejoy_mappings_joystickstatetopspstatetest',
-    'tktemotejoy_customjson_parsetest',
     'tktemotejoy_generatehandler_generatehandleruniquetest',
     'tktemotejoy_generatehandler_tobuttonstest',
     'tktemotejoy_generatehandler_pressbuttonhandlerforpspstatetest',
     'tktemotejoy_generatemappingstest',
     'tktemotejoy_generatemappings_generaltest',
     'tktemotejoy_generatemappings_mappingstest',
-    'tktemotejoy_jsonerrortest',
 ]
 
 module.BUILDER = cpp.program
