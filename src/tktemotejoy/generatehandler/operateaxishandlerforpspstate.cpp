@@ -27,7 +27,7 @@ Mapping::OperateAxisHandlerForPspStateUnique generateOperateAxisHandlerForPspSta
 
     const auto  KEY_TYPE = std::string( "type" );
 
-    oStringStream << "非対応のaxes.forPspStateハンドラ : " << '"' << _OBJECT.at( KEY_TYPE ).get_ref< const Json::string_t & >() << '"';
+    oStringStream << "非対応のaxesForPspStateハンドラ : " << '"' << _OBJECT.at( KEY_TYPE ).get_ref< const Json::string_t & >() << '"';
 
     throw std::runtime_error( oStringStream.str() );
 }
