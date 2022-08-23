@@ -52,7 +52,7 @@ TEST_F(
     , NotOperateAxisHandlerForPspState
 )
 {
-    this->testNull(
+    this->testAnyThrow(
         R"({
     "type" : "NOT OPERATE AXIS HANDLER"
 })"
