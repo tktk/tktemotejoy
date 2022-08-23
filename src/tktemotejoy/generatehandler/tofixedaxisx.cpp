@@ -34,13 +34,9 @@ Mapping::PressButtonHandlerForPspStateUnique generateToFixedAxisXUnique(
     const Json::object_t &  _OBJECT
 )
 {
-    //TODO
-    return Mapping::PressButtonHandlerForPspStateUnique();
-/*
     return generateHandlerUnique<
         Mapping::PressButtonHandlerForPspStateUnique
         , GetType
-        , GenerateToAxisUnique< GenerateToAxisXUnique >
+        , GenerateToFixedAxisUnique< GenerateToFixedAxisXUnique >
     >( _OBJECT );
-*/
 }
