@@ -10,23 +10,27 @@ namespace {
     {
         const std::size_t   RETURNS_OPERATOR_CALL;
         const std::size_t & EXPECTED_MAPPING_INDEX;
+        const std::size_t   EXPECTED_CURRENT_MAPPING_INDEX;
 
     public:
         TestHandler(
             const std::size_t       _RETURNS_OPERATOR_CALL
             , const std::size_t &   _EXPECTED_MAPPING_INDEX
+            , const std::size_t     _EXPECTED_CURRENT_MAPPING_INDEX
         )
             : RETURNS_OPERATOR_CALL( _RETURNS_OPERATOR_CALL )
             , EXPECTED_MAPPING_INDEX( _EXPECTED_MAPPING_INDEX )
+            , EXPECTED_CURRENT_MAPPING_INDEX( _EXPECTED_CURRENT_MAPPING_INDEX )
         {
         }
 
         std::size_t operator()(
             std::size_t &       _mappingIndex
-            , const std::size_t _CURRENT_MAPPING_INDEX  //TODO
+            , const std::size_t _CURRENT_MAPPING_INDEX
         ) const override
         {
             EXPECT_EQ( &( this->EXPECTED_MAPPING_INDEX ), &_mappingIndex );
+            EXPECT_EQ( this->EXPECTED_CURRENT_MAPPING_INDEX, _CURRENT_MAPPING_INDEX );
 
             return this->RETURNS_OPERATOR_CALL;
         }
@@ -50,12 +54,14 @@ namespace {
                 new TestHandler(
                     _RETURNS_OPERATOR_CALL1
                     , mappingIndex
+                    , _CURRENT_MAPPING_INDEX
                 )
             );
             auto    handler2Unique = Mapping::PressButtonHandlerForChangeMappingUnique(
                 new TestHandler(
                     _RETURNS_OPERATOR_CALL2
                     , mappingIndex
+                    , _CURRENT_MAPPING_INDEX
                 )
             );
 
