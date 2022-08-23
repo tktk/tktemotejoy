@@ -2,11 +2,11 @@
 #include "tktemotejoy/handler/forchangemapping/dummy.h"
 
 TEST(
-    DummyForChangeMappingTest
+    DummyPressButtonHandlerForChangeMappingTest
     , OperatorCall
 )
 {
-    auto    dummy = DummyForChangeMapping();
+    auto    dummy = DummyPressButtonHandlerForChangeMapping();
 
     auto    mappingIndex = std::size_t( 10 );
 

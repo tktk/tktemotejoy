@@ -4,10 +4,10 @@
 #include "tktemotejoy/mapping.h"
 #include <cstddef>
 
-class DummyForChangeMapping final : public Mapping::PressButtonHandlerForChangeMapping
+class DummyPressButtonHandlerForChangeMapping final : public Mapping::PressButtonHandlerForChangeMapping
 {
 public:
-    DummyForChangeMapping(
+    DummyPressButtonHandlerForChangeMapping(
     );
 
     std::size_t operator()(
