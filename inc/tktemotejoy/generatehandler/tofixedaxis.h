@@ -23,12 +23,9 @@ public:
             throw jsonIsNotExists( KEY_VALUE );
         } else {
             const auto &    VALUE_JSON = IT->second;
-            //TODO
-/*
             if( VALUE_JSON.is_number_integer() == false ) {
                 throw jsonIsNotInteger( KEY_VALUE );
             }
-*/
 
             const auto &    VALUE = VALUE_JSON.get_ref< const Json::number_integer_t & >();
 
