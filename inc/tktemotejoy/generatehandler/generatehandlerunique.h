@@ -2,6 +2,7 @@
 #define TKTEMOTEJOY_GENERATEHANDLER_GENERATEHANDLERUNIQUE_H
 
 #include "tktemotejoy/customjson.h"
+#include "tktemotejoy/jsonerror.h"
 #include <string>
 
 template<
@@ -22,7 +23,7 @@ HANDLER_UNIQUE_T generateHandlerUnique(
 
     const auto &    TYPE = IT->second;
     if( TYPE.is_string() != true ) {
-        return HANDLER_UNIQUE_T();  //TODO 例外を投げる
+        throw jsonIsNotString( KEY_TYPE );
     } else if( TYPE.get_ref< const Json::string_t & >() != GET_TYPE_T()() ) {
         return HANDLER_UNIQUE_T();
     }
