@@ -34,7 +34,7 @@ public:
         }
 */
 
-        return GENERATE_TO_FIXED_AXIS_UNIQUE_T()( 100 );
+        return GENERATE_TO_FIXED_AXIS_UNIQUE_T()( 10 );
     }
 };
 
