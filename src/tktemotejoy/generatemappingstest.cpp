@@ -83,4 +83,16 @@ TEST_F(
     );
 }
 
-//TODO FailedGenerateMappingsImpl
+TEST_F(
+    GenerateMappingsTest
+    , FailedGenerateMappingsImpl
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+})"
+    );
+}

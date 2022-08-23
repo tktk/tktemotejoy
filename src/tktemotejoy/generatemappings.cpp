@@ -126,10 +126,17 @@ Mappings generateMappings(
 
     const auto  GENERAL = generateGeneral( JSON_OBJECT );
 
+    try {
     auto    impl = generateMappingsImpl( JSON_OBJECT );
 
     return Mappings(
         std::move( impl )
         , GENERAL.defaultMapping
     );
+    } catch( ... ) {
+        return Mappings(
+            Mappings::Impl()
+            , GENERAL.defaultMapping
+        );
+    }
 }
