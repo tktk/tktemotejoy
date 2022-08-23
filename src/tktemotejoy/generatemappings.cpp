@@ -15,7 +15,7 @@ namespace {
 
     const auto  GENERAL_KEY_DEFAULT_MAPPING = std::string( "defaultMapping" );
 
-    const auto  MAPPING_KEY_BUTTONS = std::string( "buttons" );
+    const auto  MAPPING_KEY_BUTTONS_FOR_PSP_STATE = std::string( "buttonsForPspState" );
     const auto  MAPPING_KEY_AXES = std::string( "axes" );
 
     struct General
@@ -60,7 +60,6 @@ namespace {
         };
     }
 
-    //TODO 要共通化
     void setButtonHandlers(
         Mapping &                   _mapping
         , const Json::object_t &    _JSON_OBJECT
@@ -80,7 +79,6 @@ namespace {
         }
     }
 
-    //TODO 要共通化
     void setAxisHandlers(
         Mapping &                   _mapping
         , const Json::object_t &    _JSON_OBJECT
@@ -108,9 +106,10 @@ namespace {
 
         const auto  END = _JSON_OBJECT.end();
 
-        const auto  BUTTONS_IT = _JSON_OBJECT.find( MAPPING_KEY_BUTTONS );
-        if( BUTTONS_IT != END ) {
-            const auto &    BUTTONS = BUTTONS_IT->second.get_ref< const Json::object_t & >();
+        //TODO 要共通化
+        const auto  BUTTONS_FOR_PSP_STATE_IT = _JSON_OBJECT.find( MAPPING_KEY_BUTTONS_FOR_PSP_STATE );
+        if( BUTTONS_FOR_PSP_STATE_IT != END ) {
+            const auto &    BUTTONS = BUTTONS_FOR_PSP_STATE_IT->second.get_ref< const Json::object_t & >();
 
             setButtonHandlers(
                 mapping
@@ -118,6 +117,7 @@ namespace {
             );
         }
 
+        //TODO 要共通化
         const auto  AXES_IT = _JSON_OBJECT.find( MAPPING_KEY_AXES );
         if( AXES_IT != END ) {
             const auto &    AXES = AXES_IT->second.get_ref< const Json::object_t & >();
