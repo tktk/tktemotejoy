@@ -1,5 +1,5 @@
-#ifndef TKTEMOTEJOY_GENERATEHANDLER_FORPSPSTATETEST_H   //TODO GENERATEPRESSBUTTONHANDLERFORPSPSTATETEST に変更する
-#define TKTEMOTEJOY_GENERATEHANDLER_FORPSPSTATETEST_H
+#ifndef TKTEMOTEJOY_GENERATEHANDLER_GENERATEPRESSBUTTONHANDLERFORPSPSTATETEST_H
+#define TKTEMOTEJOY_GENERATEHANDLER_GENERATEPRESSBUTTONHANDLERFORPSPSTATETEST_H
 
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/pspstate.h"
@@ -9,7 +9,7 @@
 #include <utility>
 
 template< typename GENERATE_HANDLER_UNIQUE_T >
-class GenerateHandlerForPspStateTest : public ::testing::Test   //TODO GeneratePressButtonHandlerForPspStateTestに変更する
+class GeneratePressButtonHandlerForPspStateTestTmpl : public ::testing::Test
 {
 public:
     void test(
@@ -76,4 +76,4 @@ public:
     }
 };
 
-#endif  // TKTEMOTEJOY_GENERATEHANDLER_FORPSPSTATETEST_H
+#endif  // TKTEMOTEJOY_GENERATEHANDLER_GENERATEPRESSBUTTONHANDLERFORPSPSTATETEST_H

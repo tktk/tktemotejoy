@@ -1,6 +1,6 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/generatehandler/pressbuttonhandlerforpspstate.h"
-#include "tktemotejoy/generatehandler/forpspstatetest.h"
+#include "tktemotejoy/generatehandler/pressbuttonhandlerforpspstatetest.h"
 #include "tktemotejoy/customjson.h"
 
 namespace {
@@ -14,7 +14,7 @@ namespace {
         }
     };
 
-    using GeneratePressButtonHandlerForPspStateTest = GenerateHandlerForPspStateTest< GeneratePressButtonHandlerForPspStateUnique >;
+    using GeneratePressButtonHandlerForPspStateTest = GeneratePressButtonHandlerForPspStateTestTmpl< GeneratePressButtonHandlerForPspStateUnique >;
 }
 
 TEST_F(

@@ -1,20 +1,20 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/generatehandler/tobuttons.h"
-#include "tktemotejoy/generatehandler/forpspstatetest.h"
+#include "tktemotejoy/generatehandler/pressbuttonhandlerforpspstatetest.h"
 #include "tktemotejoy/customjson.h"
 
 namespace {
     struct GenerateToButtonsUnique
     {
         auto operator()(
-            const Json &    _JSON
+            const Json::object_t &  _OBJECT
         ) const
         {
-            return generateToButtonsUnique( _JSON );
+            return generateToButtonsUnique( _OBJECT );
         }
     };
 
-    using GenerateToButtonsTest = GenerateHandlerForPspStateTest< GenerateToButtonsUnique >;
+    using GenerateToButtonsTest = GeneratePressButtonHandlerForPspStateTestTmpl< GenerateToButtonsUnique >;
 }
 
 TEST_F(

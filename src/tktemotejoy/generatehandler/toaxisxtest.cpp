@@ -1,42 +1,22 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/generatehandler/toaxisx.h"
+#include "tktemotejoy/generatehandler/operateaxishandlerforpspstatetest.h"
 #include "tktemotejoy/customjson.h"
-#include <linux/joystick.h>
-#include <string>
 
 namespace {
-    struct TestToAxisX
+    struct GenerateToAxisXUnique
     {
-        const void * DUMMY;
-        const __s16 DEAD_ZONE;
-        const __s16 MAX;
-    };
-
-    class GenerateToAxisXTest : public ::testing::Test
-    {
-    public:
-        void test(
-            const std::string & _JSON_STRING
-            , const __s16       _EXPECTED_DEAD_ZONE
-            , const __s16       _EXPECTED_MAX
-        )
+        auto operator()(
+            const Json::object_t &  _OBJECT
+        ) const
         {
-            const auto  JSON = Json::parse( _JSON_STRING );
-
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
-
-            auto    handlerUnique = generateToAxisXUnique( OBJECT );
-            ASSERT_NE( nullptr, handlerUnique.get() );
-
-            const auto &    TEST_TO_AXIS_X = reinterpret_cast< const TestToAxisX & >( *handlerUnique );
-
-            EXPECT_EQ( _EXPECTED_DEAD_ZONE, TEST_TO_AXIS_X.DEAD_ZONE );
-            EXPECT_EQ( _EXPECTED_MAX, TEST_TO_AXIS_X.MAX );
+            return generateToAxisXUnique( _OBJECT );
         }
     };
+
+    using GenerateToAxisXTest = GenerateOperateAxisHandlerForPspStateTestTmpl< GenerateToAxisXUnique >;
 }
 
-//TODO ToAxisXが生成できているかテストできていない
 TEST_F(
     GenerateToAxisXTest
     , Standard
@@ -48,7 +28,7 @@ TEST_F(
     "deadZone" : 10,
     "max" : 20
 })"
-        , 10
         , 20
+        , 0x80ff0000
     );
 }

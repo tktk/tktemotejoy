@@ -135,11 +135,11 @@ TEST_F(
 
 //TODO AxesForChangeMapping
 //TODO NotExistsMappings
-//TODO MappingsIsNotArray
-//TODO MappingsElementIsNotObject
-//TODO MappingButtonsKeyIsNotInteger
-//TODO MappingButtonsIsNotObject
-//TODO MappingButtonsElementIsNotObject
-//TODO MappingAxesKeyIsNotInteger
-//TODO MappingAxesIsNotObject
-//TODO MappingAxesElementIsNotObject
+//TODO NotArrayMappings
+//TODO NotObjectMappingsElement
+//TODO NotIntegerMappingButtonsKey
+//TODO NotObjectMappingButtons
+//TODO NotObjectMappingButtonsElement
+//TODO NotIntegerMappingAxesKey
+//TODO NotObjectMappingAxes
+//TODO NotObjectMappingAxesElement
