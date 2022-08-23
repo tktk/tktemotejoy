@@ -23,6 +23,6 @@ std::size_t ToChangeMappingHandlersImpl::operator()(
 
     return HANDLER(
         _mappingIndex
-        , 1000  //TODO
+        , _CURRENT_MAPPING_INDEX
     );
 }
