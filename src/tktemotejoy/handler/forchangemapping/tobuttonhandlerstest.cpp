@@ -1,5 +1,5 @@
 #include "tktemotejoy/test.h"
-#include "tktemotejoy/handler/forchangemapping/tochangemappinghandlers.h"
+#include "tktemotejoy/handler/forchangemapping/tobuttonhandlers.h"
 #include "tktemotejoy/mapping.h"
 #include <linux/joystick.h>
 #include <cstddef>
@@ -36,7 +36,7 @@ namespace {
         }
     };
 
-    class ToChangeMappingHandlersTest : public ::testing::Test
+    class ToButtonHandlersForChangeMappingTest : public ::testing::Test
     {
     public:
         void test(
@@ -65,9 +65,9 @@ namespace {
                 )
             );
 
-            auto    toChangeMappingHandlers = ToChangeMappingHandlers(
+            auto    toButtonHandlersForChangeMapping = ToButtonHandlersForChangeMapping(
                 _DEAD_ZONE
-                , ToChangeMappingHandlersImpl(
+                , ToButtonHandlersForChangeMappingImpl(
                     std::move( handler1Unique )
                     , std::move( handler2Unique )
                 )
@@ -75,7 +75,7 @@ namespace {
 
             EXPECT_EQ(
                 _EXPECTED_NEW_MAPPING_INDEX
-                , toChangeMappingHandlers(
+                , toButtonHandlersForChangeMapping(
                     _VALUE
                     , mappingIndex
                     , _CURRENT_MAPPING_INDEX
@@ -86,7 +86,7 @@ namespace {
 }
 
 TEST_F(
-    ToChangeMappingHandlersTest
+    ToButtonHandlersForChangeMappingTest
     , CallHandler1
 )
 {
@@ -101,7 +101,7 @@ TEST_F(
 }
 
 TEST_F(
-    ToChangeMappingHandlersTest
+    ToButtonHandlersForChangeMappingTest
     , CallHandler2
 )
 {
@@ -116,7 +116,7 @@ TEST_F(
 }
 
 TEST_F(
-    ToChangeMappingHandlersTest
+    ToButtonHandlersForChangeMappingTest
     , DeadZone
 )
 {

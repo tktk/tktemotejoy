@@ -7,14 +7,14 @@ module.TYPE = module.test
 
 module.BUILDER = cpp.gtest
 
-module.TARGET = 'tktemotejoy_handler_forchangemapping_tochangemappinghandlerstest'
+module.TARGET = 'tktemotejoy_handler_forchangemapping_tobuttonhandlerstest'
 
 module.SOURCE = [
     {
         'handler' : {
             'forchangemapping' : [
-                'tochangemappinghandlerstest.cpp',
-                'tochangemappinghandlers.cpp',
+                'tobuttonhandlerstest.cpp',
+                'tobuttonhandlers.cpp',
             ],
         },
     },

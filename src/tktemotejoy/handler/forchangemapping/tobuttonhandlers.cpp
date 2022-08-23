@@ -1,10 +1,10 @@
-#include "tktemotejoy/handler/forchangemapping/tochangemappinghandlers.h"
+#include "tktemotejoy/handler/forchangemapping/tobuttonhandlers.h"
 #include "tktemotejoy/mapping.h"
 #include <linux/joystick.h>
 #include <cstddef>
 #include <utility>
 
-ToChangeMappingHandlersImpl::ToChangeMappingHandlersImpl(
+ToButtonHandlersForChangeMappingImpl::ToButtonHandlersForChangeMappingImpl(
     Mapping::PressButtonHandlerForChangeMappingUnique &&    _handler1Unique
     , Mapping::PressButtonHandlerForChangeMappingUnique &&  _handler2Unique
 )
@@ -13,7 +13,7 @@ ToChangeMappingHandlersImpl::ToChangeMappingHandlersImpl(
 {
 }
 
-std::size_t ToChangeMappingHandlersImpl::operator()(
+std::size_t ToButtonHandlersForChangeMappingImpl::operator()(
     const __s16         _VALUE
     , std::size_t &     _mappingIndex
     , const std::size_t _CURRENT_MAPPING_INDEX

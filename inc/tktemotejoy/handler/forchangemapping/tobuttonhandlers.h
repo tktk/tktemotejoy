@@ -1,18 +1,18 @@
-#ifndef TKTEMOTEJOY_HANDLER_FORPSPSTATE_TOCHANGEMAPPINGHANDLERS_H
-#define TKTEMOTEJOY_HANDLER_FORPSPSTATE_TOCHANGEMAPPINGHANDLERS_H
+#ifndef TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_TOBUTTONHANDLERS_H
+#define TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_TOBUTTONHANDLERS_H
 
 #include "tktemotejoy/handler/forchangemapping/withdeadzone.h"
 #include "tktemotejoy/mapping.h"
 #include <linux/joystick.h>
 #include <cstddef>
 
-class ToChangeMappingHandlersImpl final
+class ToButtonHandlersForChangeMappingImpl final
 {
     Mapping::PressButtonHandlerForChangeMappingUnique   handler1Unique;
     Mapping::PressButtonHandlerForChangeMappingUnique   handler2Unique;
 
 public:
-    ToChangeMappingHandlersImpl(
+    ToButtonHandlersForChangeMappingImpl(
         Mapping::PressButtonHandlerForChangeMappingUnique &&
         , Mapping::PressButtonHandlerForChangeMappingUnique &&
     );
@@ -24,6 +24,6 @@ public:
     ) const;
 };
 
-using ToChangeMappingHandlers = WithDeadZoneForChangeMapping< ToChangeMappingHandlersImpl >;
+using ToButtonHandlersForChangeMapping = WithDeadZoneForChangeMapping< ToButtonHandlersForChangeMappingImpl >;
 
-#endif  // TKTEMOTEJOY_HANDLER_FORPSPSTATE_TOCHANGEMAPPINGHANDLERS_H
+#endif  // TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_TOBUTTONHANDLERS_H

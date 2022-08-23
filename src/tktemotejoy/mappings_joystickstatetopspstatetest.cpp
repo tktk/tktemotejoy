@@ -9,7 +9,7 @@
 #include "tktemotejoy/handler/forpspstate/tobuttonhandlers.h"
 #include "tktemotejoy/handler/forchangemapping/shiftmapping.h"
 #include "tktemotejoy/handler/forchangemapping/togglemapping.h"
-#include "tktemotejoy/handler/forchangemapping/tochangemappinghandlers.h"
+#include "tktemotejoy/handler/forchangemapping/tobuttonhandlers.h"
 #include <linux/joystick.h>
 #include <cstddef>
 #include <functional>
@@ -93,9 +93,9 @@ namespace {
                     _mapping.setHandler(
                         2
                         , Mapping::handlerUnique(
-                            new ToChangeMappingHandlers(
+                            new ToButtonHandlersForChangeMapping(
                                 0
-                                , ToChangeMappingHandlersImpl(
+                                , ToButtonHandlersForChangeMappingImpl(
                                     Mapping::handlerUnique( new ShiftMapping( 2 ) )
                                     , Mapping::handlerUnique( new ShiftMapping( 3 ) )
                                 )
