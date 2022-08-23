@@ -4,7 +4,7 @@
 #include "tktemotejoy/pspstate.h"
 
 #include <linux/joystick.h>
-#include <map>
+#include <map>  //TODO vectorに変更し、dummyを詰める
 #include <memory>
 #include <cstddef>
 

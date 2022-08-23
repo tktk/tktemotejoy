@@ -2,11 +2,11 @@
 #include "tktemotejoy/handler/forpspstate/dummy.h"
 
 TEST(
-    DummyForPspStateTest
+    DummyPressButtonHandlerForPspStateTest
     , OperatorCall
 )
 {
-    auto    dummy = DummyForPspState();
+    auto    dummy = DummyPressButtonHandlerForPspState();
 
     auto    pspState = PspState();
 

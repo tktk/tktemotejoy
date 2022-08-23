@@ -3,15 +3,28 @@
 
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/pspstate.h"
+#include <linux/joystick.h>
 
-class DummyForPspState final : public Mapping::PressButtonHandlerForPspState
+class DummyPressButtonHandlerForPspState final : public Mapping::PressButtonHandlerForPspState
 {
 public:
-    DummyForPspState(
+    DummyPressButtonHandlerForPspState(
     );
 
     void operator()(
         PspState &
+    ) const override;
+};
+
+class DummyOperateAxisHandlerForPspState final : public Mapping::OperateAxisHandlerForPspState
+{
+public:
+    DummyOperateAxisHandlerForPspState(
+    );
+
+    void operator()(
+        const __s16
+        , PspState &
     ) const override;
 };
 
