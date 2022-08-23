@@ -1,5 +1,6 @@
 #include "tktemotejoy/generatemappings.h"
 #include "tktemotejoy/generatehandler/pressbuttonhandlerforpspstate.h"
+#include "tktemotejoy/generatehandler/operateaxishandlerforpspstate.h"
 #include "tktemotejoy/mappings.h"
 #include "tktemotejoy/customjson.h"
 #include "tktemotejoy/jsonerror.h"
@@ -15,6 +16,7 @@ namespace {
     const auto  GENERAL_KEY_DEFAULT_MAPPING = std::string( "defaultMapping" );
 
     const auto  MAPPING_KEY_BUTTONS = std::string( "buttons" );
+    const auto  MAPPING_KEY_AXES = std::string( "axes" );
 
     struct General
     {
@@ -58,6 +60,7 @@ namespace {
         };
     }
 
+    //TODO 要共通化
     void setButtonHandlers(
         Mapping &                   _mapping
         , const Json::object_t &    _JSON_OBJECT
@@ -69,6 +72,26 @@ namespace {
             const auto &    JSON_OBJECT = ITEM.second.get_ref< const Json::object_t & >();
 
             auto    handlerForPspStateUnique = generatePressButtonHandlerForPspStateUnique( JSON_OBJECT );
+
+            _mapping.setHandler(
+                INDEX
+                , std::move( handlerForPspStateUnique )
+            );
+        }
+    }
+
+    //TODO 要共通化
+    void setAxisHandlers(
+        Mapping &                   _mapping
+        , const Json::object_t &    _JSON_OBJECT
+    )
+    {
+        for( const auto & ITEM : _JSON_OBJECT ) {
+            const auto  INDEX = std::stoull( ITEM.first );
+
+            const auto &    JSON_OBJECT = ITEM.second.get_ref< const Json::object_t & >();
+
+            auto    handlerForPspStateUnique = generateOperateAxisHandlerForPspStateUnique( JSON_OBJECT );
 
             _mapping.setHandler(
                 INDEX
@@ -92,6 +115,16 @@ namespace {
             setButtonHandlers(
                 mapping
                 , BUTTONS
+            );
+        }
+
+        const auto  AXES_IT = _JSON_OBJECT.find( MAPPING_KEY_AXES );
+        if( AXES_IT != END ) {
+            const auto &    AXES = AXES_IT->second.get_ref< const Json::object_t & >();
+
+            setAxisHandlers(
+                mapping
+                , AXES
             );
         }
 

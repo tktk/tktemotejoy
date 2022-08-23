@@ -62,10 +62,16 @@ module.SOURCE = [
         'generatehandler' : [
             'tobuttons.cpp',
             'pressbuttonhandlerforpspstate.cpp',
+            'toaxisx.cpp',
+            'toaxisy.cpp',
+            'operateaxishandlerforpspstate.cpp',
         ],
         'handler' : {
             'forpspstate' : [
                 'tobuttons.cpp',
+                'toaxisx.cpp',
+                'toaxisy.cpp',
+                'jseventaxistopspstateaxis.cpp',
             ],
         },
     },
