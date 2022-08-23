@@ -25,6 +25,5 @@ std::size_t DummyOperateAxisHandlerForChangeMapping::operator()(
     , const std::size_t _CURRENT_MAPPING_INDEX
 ) const
 {
-    //TODO
-    return 0;
+    return _CURRENT_MAPPING_INDEX;
 }
