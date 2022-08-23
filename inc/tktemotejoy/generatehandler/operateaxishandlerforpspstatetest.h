@@ -1,25 +1,29 @@
-#ifndef TKTEMOTEJOY_GENERATEHANDLER_FORPSPSTATETEST_H   //TODO GENERATEPRESSBUTTONHANDLERFORPSPSTATETEST に変更する
-#define TKTEMOTEJOY_GENERATEHANDLER_FORPSPSTATETEST_H
+#ifndef TKTEMOTEJOY_GENERATEHANDLER_OPERATEAXISHANDLERFORPSPSTATETEST_H
+#define TKTEMOTEJOY_GENERATEHANDLER_OPERATEAXISHANDLERFORPSPSTATETEST_H
 
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/pspstate.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
+#include <linux/joystick.h>
 #include <string>
 #include <utility>
 
 template< typename GENERATE_HANDLER_UNIQUE_T >
-class GenerateHandlerForPspStateTest : public ::testing::Test   //TODO GeneratePressButtonHandlerForPspStateTestに変更する
+class GenerateOperateAxisHandlerForPspStateTestTmpl : public ::testing::Test
 {
 public:
     void test(
         const std::string &     _JSON_STRING
+        , const __s16           _VALUE
         , const PspState::Bits  _EXPECTED_BITS
     ) const
     {
         const auto  JSON = Json::parse( _JSON_STRING );
 
-        auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( JSON );
+        const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
+
+        auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( OBJECT );
         ASSERT_NE( nullptr, handlerUnique.get() );
 
         auto    mapping = Mapping();
@@ -31,8 +35,9 @@ public:
 
         auto    pspState = PspState();
 
-        mapping.pressButton(
+        mapping.operateAxis(
             0
+            , _VALUE
             , pspState
         );
 
@@ -76,4 +81,4 @@ public:
     }
 };
 
-#endif  // TKTEMOTEJOY_GENERATEHANDLER_FORPSPSTATETEST_H
+#endif  // TKTEMOTEJOY_GENERATEHANDLER_OPERATEAXISHANDLERFORPSPSTATETEST_H
