@@ -1,18 +1,18 @@
 #include "tktemotejoy/test.h"
-#include "tktemotejoy/generatehandler/toaxisx.h"
+#include "tktemotejoy/generatehandler/toaxisy.h"
 #include "tktemotejoy/customjson.h"
 #include <linux/joystick.h>
 #include <string>
 
 namespace {
-    struct TestToAxisX
+    struct TestToAxisY
     {
         const void * DUMMY;
         const __s16 DEAD_ZONE;
         const __s16 MAX;
     };
 
-    class GenerateToAxisXTest : public ::testing::Test
+    class GenerateToAxisYTest : public ::testing::Test
     {
     public:
         void test(
@@ -25,26 +25,26 @@ namespace {
 
             const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
 
-            auto    handlerUnique = generateToAxisXUnique( OBJECT );
+            auto    handlerUnique = generateToAxisYUnique( OBJECT );
             ASSERT_NE( nullptr, handlerUnique.get() );
 
-            const auto &    TEST_TO_AXIS_X = reinterpret_cast< const TestToAxisX & >( *handlerUnique );
+            const auto &    TEST_TO_AXIS_Y = reinterpret_cast< const TestToAxisY & >( *handlerUnique );
 
-            EXPECT_EQ( _EXPECTED_DEAD_ZONE, TEST_TO_AXIS_X.DEAD_ZONE );
-            EXPECT_EQ( _EXPECTED_MAX, TEST_TO_AXIS_X.MAX );
+            EXPECT_EQ( _EXPECTED_DEAD_ZONE, TEST_TO_AXIS_Y.DEAD_ZONE );
+            EXPECT_EQ( _EXPECTED_MAX, TEST_TO_AXIS_Y.MAX );
         }
     };
 }
 
-//TODO ToAxisXが生成できているかテストできていない
+//TODO ToAxisYが生成できているかテストできていない
 TEST_F(
-    GenerateToAxisXTest
+    GenerateToAxisYTest
     , Standard
 )
 {
     this->test(
         R"({
-    "type" : "toAxisX",
+    "type" : "toAxisY",
     "deadZone" : 10,
     "max" : 20
 })"

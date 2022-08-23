@@ -34,6 +34,7 @@ module.DEPENDS = [
     'tktemotejoy_generatehandler_withdeadzonetest',
     'tktemotejoy_generatehandler_toaxistest',
     'tktemotejoy_generatehandler_toaxisxtest',
+    'tktemotejoy_generatehandler_toaxisytest',
     'tktemotejoy_generatemappingstest',
     'tktemotejoy_generatemappings_generaltest',
     'tktemotejoy_generatemappings_mappingstest',
