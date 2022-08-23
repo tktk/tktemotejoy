@@ -78,23 +78,22 @@ TEST_F(
     );
 }
 
-//TODO NotExistsMax
-//TODO FailedNotIntegerMax
-/*
 TEST_F(
-    GenerateHandlerWithDeadZoneUniqueTest
-    , NotExistsDeadZone
+    GenerateToAxisUniqueTest
+    , NotExistsMax
 )
 {
     this->test(
         R"({
-    "key" : 20
+    "deadZone" : 10
 })"
-        , true
-        , 0
-        , 20
+        , 10
+        , 32767
     );
 }
+
+//TODO FailedNotIntegerMax
+/*
 
 TEST_F(
     GenerateHandlerWithDeadZoneUniqueTest
