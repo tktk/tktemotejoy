@@ -92,31 +92,29 @@ int main(
             );
         }
 
-        if( ( TYPE & JS_EVENT_INIT ) != 0 ) {
-            continue;
-        }
-
         auto    pspState = PspState();
         mappings.joystickStateToPspState(
             pspState
             , joystickState
         );
 
-        pspState.diff(
-            prevPspState
-            , [
-                &socket_
-            ]
-            (
-                const PspState::Bits &  _BITS
-            )
-            {
-                writeToUsbHostFs(
-                    socket_
-                    , _BITS
-                );
-            }
-        );
+        if( ( TYPE & JS_EVENT_INIT ) == 0 ) {
+            pspState.diff(
+                prevPspState
+                , [
+                    &socket_
+                ]
+                (
+                    const PspState::Bits &  _BITS
+                )
+                {
+                    writeToUsbHostFs(
+                        socket_
+                        , _BITS
+                    );
+                }
+            );
+        }
 
         prevPspState = pspState;
     }
