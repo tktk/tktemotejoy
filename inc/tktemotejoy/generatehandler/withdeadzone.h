@@ -2,6 +2,7 @@
 #define TKTEMOTEJOY_GENERATEHANDLER_WITHDEADZONE_H
 
 #include "tktemotejoy/customjson.h"
+#include "tktemotejoy/jsonerror.h"
 #include <string>
 
 template< typename T >
@@ -20,7 +21,12 @@ public:
         if( IT == _OBJECT.end() ) {
             deadZone = 0;
         } else {
-            const auto &    DEAD_ZONE = IT->second.get_ref< const Json::number_integer_t & >();
+            const auto &    DEAD_ZONE_JSON = IT->second;
+            if( DEAD_ZONE_JSON.is_number_integer() == false ) {
+                throw jsonIsNotInteger( KEY_DEAD_ZONE );
+            }
+
+            const auto &    DEAD_ZONE = DEAD_ZONE_JSON.get_ref< const Json::number_integer_t & >();
 
             deadZone = DEAD_ZONE;
         }
