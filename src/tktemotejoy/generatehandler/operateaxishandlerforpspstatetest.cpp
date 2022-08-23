@@ -31,5 +31,18 @@ TEST_F(
     );
 }
 
-//TODO ToAxisY
+TEST_F(
+    GenerateOperateAxisHandlerForPspStateTest
+    , ToAxisY
+)
+{
+    this->test(
+        R"({
+    "type" : "toAxisY"
+})"
+        , 0x7fff
+        , 0xff800000
+    );
+}
+
 //TODO NotOperateAxisHandlerForPspState
