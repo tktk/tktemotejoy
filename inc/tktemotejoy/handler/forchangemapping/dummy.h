@@ -13,6 +13,7 @@ public:
 
     std::size_t operator()(
         std::size_t &
+        , const std::size_t
     ) const override;
 };
 

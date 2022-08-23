@@ -12,7 +12,10 @@ TEST(
 
     EXPECT_EQ(
         10
-        , shiftMapping( mappingIndex )
+        , shiftMapping(
+            mappingIndex
+            , 30
+        )
     );
 
     EXPECT_EQ( 20, mappingIndex );

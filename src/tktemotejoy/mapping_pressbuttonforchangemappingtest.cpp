@@ -25,7 +25,8 @@ namespace {
         }
 
         std::size_t operator()(
-            std::size_t &   _mappingIndex
+            std::size_t &       _mappingIndex
+            , const std::size_t _CURRENT_MAPPING_INDEX  //TODO
         ) const override
         {
             EXPECT_EQ( this->EXPECTED_MAPPING_INDEX, _mappingIndex );

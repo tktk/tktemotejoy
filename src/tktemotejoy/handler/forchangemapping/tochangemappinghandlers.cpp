@@ -16,10 +16,13 @@ ToChangeMappingHandlersImpl::ToChangeMappingHandlersImpl(
 std::size_t ToChangeMappingHandlersImpl::operator()(
     const __s16         _VALUE
     , std::size_t &     _mappingIndex
-    , const std::size_t
+    , const std::size_t _CURRENT_MAPPING_INDEX
 ) const
 {
     const auto &    HANDLER = *( _VALUE < 0 ? this->handler1Unique : this->handler2Unique );
 
-    return HANDLER( _mappingIndex );
+    return HANDLER(
+        _mappingIndex
+        , 1000  //TODO
+    );
 }

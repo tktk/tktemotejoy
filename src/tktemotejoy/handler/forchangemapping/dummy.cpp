@@ -8,9 +8,11 @@ DummyPressButtonHandlerForChangeMapping::DummyPressButtonHandlerForChangeMapping
 }
 
 std::size_t DummyPressButtonHandlerForChangeMapping::operator()(
-    std::size_t &   _mappingIndex
+    std::size_t &       _mappingIndex
+    , const std::size_t _CURRENT_MAPPING_INDEX
 ) const
 {
+    //TODO
     return _mappingIndex;
 }
 
