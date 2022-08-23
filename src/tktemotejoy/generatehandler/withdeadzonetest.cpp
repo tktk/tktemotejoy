@@ -73,5 +73,19 @@ TEST_F(
     );
 }
 
-//TODO NotExistsDeadZone
+TEST_F(
+    GenerateHandlerWithDeadZoneUniqueTest
+    , NotExistsDeadZone
+)
+{
+    this->test(
+        R"({
+    "key" : 20
+})"
+        , true
+        , 0
+        , 20
+    );
+}
+
 //TODO NotIntegerDeadZone
