@@ -60,7 +60,13 @@ TEST_F(
     );
 }
 
-//TODO NotObject
+TEST_F(
+    GenerateMappingsTest
+    , NotObject
+)
+{
+    this->testAnyThrow( R"("NOT OBJECT")" );
+}
 
 TEST_F(
     GenerateMappingsTest
