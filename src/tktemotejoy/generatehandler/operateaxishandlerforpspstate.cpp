@@ -21,5 +21,5 @@ Mapping::OperateAxisHandlerForPspStateUnique generateOperateAxisHandlerForPspSta
         return handlerUnique;
     }
 
-    throw std::runtime_error( "TODO" );
+    return Mapping::OperateAxisHandlerForPspStateUnique();
 }
