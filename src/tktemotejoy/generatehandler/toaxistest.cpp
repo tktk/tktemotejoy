@@ -92,19 +92,15 @@ TEST_F(
     );
 }
 
-//TODO FailedNotIntegerMax
-/*
-
 TEST_F(
-    GenerateHandlerWithDeadZoneUniqueTest
-    , NotIntegerDeadZone
+    GenerateToAxisUniqueTest
+    , FailedNotIntegerMax
 )
 {
     this->testAnyThrow(
         R"({
-    "deadZone" : "NOT INTEGER",
-    "key" : 20
+    "deadZone" : 10,
+    "max" : "NOT INTEGER"
 })"
     );
 }
-*/
