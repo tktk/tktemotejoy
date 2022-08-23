@@ -45,4 +45,16 @@ TEST_F(
     );
 }
 
-//TODO NotOperateAxisHandlerForPspState
+//TODO ToButtonHandlers
+
+TEST_F(
+    GenerateOperateAxisHandlerForPspStateTest
+    , NotOperateAxisHandlerForPspState
+)
+{
+    this->testNull(
+        R"({
+    "type" : "NOT OPERATE AXIS HANDLER"
+})"
+    );
+}
