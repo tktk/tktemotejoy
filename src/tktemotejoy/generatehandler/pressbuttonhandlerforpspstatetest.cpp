@@ -47,5 +47,18 @@ TEST_F(
     );
 }
 
-//TODO ToFixedAxisY
+TEST_F(
+    GeneratePressButtonHandlerForPspStateTest
+    , ToFixedAxisY
+)
+{
+    this->test(
+        R"({
+    "type" : "toFixedAxisY",
+    "value" : 32767
+})"
+        , 0xff800000
+    );
+}
+
 //TODO NotPressButtonHandlerForPspState
