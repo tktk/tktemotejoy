@@ -70,6 +70,7 @@ module.SOURCE = [
             'toaxisx.cpp',
             'toaxisy.cpp',
             'tofixedaxisx.cpp',
+            'tofixedaxisy.cpp',
             'operateaxishandlerforpspstate.cpp',
         ],
         'handler' : {
@@ -78,6 +79,7 @@ module.SOURCE = [
                 'toaxisx.cpp',
                 'toaxisy.cpp',
                 'tofixedaxisx.cpp',
+                'tofixedaxisy.cpp',
                 'jseventaxistopspstateaxis.cpp',
             ],
         },

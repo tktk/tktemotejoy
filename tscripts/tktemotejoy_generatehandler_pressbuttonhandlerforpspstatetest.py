@@ -16,11 +16,13 @@ module.SOURCE = [
             'pressbuttonhandlerforpspstate.cpp',
             'tobuttons.cpp',
             'tofixedaxisx.cpp',
+            'tofixedaxisy.cpp',
         ],
         'handler' : {
             'forpspstate' : [
                 'tobuttons.cpp',
                 'tofixedaxisx.cpp',
+                'tofixedaxisy.cpp',
                 'jseventaxistopspstateaxis.cpp',
             ],
         },
