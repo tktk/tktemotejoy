@@ -31,7 +31,7 @@ namespace {
         }
     };
 
-    class ToButtonHandlersTest : public ::testing::Test
+    class ToButtonHandlersForPspStateTest : public ::testing::Test
     {
     public:
         void test(
@@ -59,9 +59,9 @@ namespace {
                 )
             );
 
-            auto    toButtonHandlers = ToButtonHandlers(
+            auto    toButtonHandlers = ToButtonHandlersForPspState(
                 _DEAD_ZONE
-                , ToButtonHandlersImpl(
+                , ToButtonHandlersForPspStateImpl(
                     std::move( handler1Unique )
                     , std::move( handler2Unique )
                 )
@@ -79,7 +79,7 @@ namespace {
 }
 
 TEST_F(
-    ToButtonHandlersTest
+    ToButtonHandlersForPspStateTest
     , CallHandler1
 )
 {
@@ -92,7 +92,7 @@ TEST_F(
 }
 
 TEST_F(
-    ToButtonHandlersTest
+    ToButtonHandlersForPspStateTest
     , CallHandler2
 )
 {
@@ -105,7 +105,7 @@ TEST_F(
 }
 
 TEST_F(
-    ToButtonHandlersTest
+    ToButtonHandlersForPspStateTest
     , DeadZone
 )
 {

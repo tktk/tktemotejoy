@@ -66,9 +66,9 @@ namespace {
                     _mapping.setHandler(
                         1
                         , Mapping::handlerUnique(
-                            new ToButtonHandlers(
+                            new ToButtonHandlersForPspState(
                                 0
-                                , ToButtonHandlersImpl(
+                                , ToButtonHandlersForPspStateImpl(
                                     Mapping::handlerUnique( new ToButtons( 0x00b0 ) )
                                     , Mapping::handlerUnique( new ToButtons( 0x0c00 ) )
                                 )

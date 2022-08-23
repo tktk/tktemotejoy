@@ -4,7 +4,7 @@
 #include <linux/joystick.h>
 #include <utility>
 
-ToButtonHandlersImpl::ToButtonHandlersImpl(
+ToButtonHandlersForPspStateImpl::ToButtonHandlersForPspStateImpl(
     Mapping::PressButtonHandlerForPspStateUnique &&     _handler1Unique
     , Mapping::PressButtonHandlerForPspStateUnique &&   _handler2Unique
 )
@@ -13,7 +13,7 @@ ToButtonHandlersImpl::ToButtonHandlersImpl(
 {
 }
 
-void ToButtonHandlersImpl::operator()(
+void ToButtonHandlersForPspStateImpl::operator()(
     const __s16     _VALUE
     , PspState &    _pspState
 ) const

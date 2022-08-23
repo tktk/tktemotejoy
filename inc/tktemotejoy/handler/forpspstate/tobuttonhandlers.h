@@ -6,13 +6,13 @@
 #include "tktemotejoy/mapping.h"
 #include <linux/joystick.h>
 
-class ToButtonHandlersImpl final
+class ToButtonHandlersForPspStateImpl final
 {
     Mapping::PressButtonHandlerForPspStateUnique    handler1Unique;
     Mapping::PressButtonHandlerForPspStateUnique    handler2Unique;
 
 public:
-    ToButtonHandlersImpl(
+    ToButtonHandlersForPspStateImpl(
         Mapping::PressButtonHandlerForPspStateUnique &&
         , Mapping::PressButtonHandlerForPspStateUnique &&
     );
@@ -23,6 +23,6 @@ public:
     ) const;
 };
 
-using ToButtonHandlers = WithDeadZoneForPspState< ToButtonHandlersImpl >;
+using ToButtonHandlersForPspState = WithDeadZoneForPspState< ToButtonHandlersForPspStateImpl >;
 
 #endif  // TKTEMOTEJOY_HANDLER_FORPSPSTATE_TOBUTTONHANDLERS_H
