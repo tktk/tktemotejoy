@@ -3,6 +3,8 @@
 #include "tktemotejoy/generatehandler/toaxisy.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
+#include <sstream>
+#include <string>
 #include <stdexcept>
 
 Mapping::OperateAxisHandlerForPspStateUnique generateOperateAxisHandlerForPspStateUnique(
@@ -21,5 +23,11 @@ Mapping::OperateAxisHandlerForPspStateUnique generateOperateAxisHandlerForPspSta
         return handlerUnique;
     }
 
-    return Mapping::OperateAxisHandlerForPspStateUnique();
+    auto    oStringStream = std::ostringstream();
+
+    const auto  KEY_TYPE = std::string( "type" );
+
+    oStringStream << "非対応のaxes.forPspStateハンドラ : " << '"' << _OBJECT.at( KEY_TYPE ).get_ref< const Json::string_t & >() << '"';
+
+    throw std::runtime_error( oStringStream.str() );
 }
