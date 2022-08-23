@@ -33,6 +33,7 @@ module.DEPENDS = [
     'tktemotejoy_generatehandler_generatehandleruniquetest',
     'tktemotejoy_generatehandler_tobuttonstest',
     'tktemotejoy_generatehandler_tofixedaxistest',
+    'tktemotejoy_generatehandler_tofixedaxisxtest',
     'tktemotejoy_generatehandler_pressbuttonhandlerforpspstatetest',
     'tktemotejoy_generatehandler_withdeadzonetest',
     'tktemotejoy_generatehandler_toaxistest',
