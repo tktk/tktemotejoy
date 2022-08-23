@@ -19,6 +19,7 @@ module.DEPENDS = [
     'tktemotejoy_handler_forpspstate_toaxisytest',
     'tktemotejoy_handler_forpspstate_tobuttonhandlerstest',
     'tktemotejoy_handler_forpspstate_jseventaxistopspstateaxistest',
+    'tktemotejoy_handler_forpspstate_dummytest',
     'tktemotejoy_handler_forchangemapping_shiftmappingtest',
     'tktemotejoy_handler_forchangemapping_togglemappingtest',
     'tktemotejoy_handler_forchangemapping_withdeadzonetest',
