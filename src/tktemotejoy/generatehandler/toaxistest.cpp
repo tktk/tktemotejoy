@@ -1,5 +1,5 @@
 #include "tktemotejoy/test.h"
-#include "tktemotejoy/generatehandler/withdeadzone.h"
+#include "tktemotejoy/generatehandler/toaxis.h"
 #include "tktemotejoy/customjson.h"
 #include <linux/joystick.h>
 #include <string>
@@ -8,35 +8,35 @@
 namespace {
     struct TestHandler
     {
-        const __s16     DEAD_ZONE;
-        const long int  VALUE;
+        const __s16 DEAD_ZONE;
+        const __s16 MAX;
     };
 
-    struct TestGenerateHandlerUnique : public GenerateHandlerWithDeadZoneUnique< TestGenerateHandlerUnique >
+    struct TestGenerateToAxisUnique
     {
-        auto operatorCallImpl(
-            const Json::object_t &  _OBJECT
-            , const __s16           _DEAD_ZONE
+        auto operator()(
+            const __s16     _DEAD_ZONE
+            , const __s16   _MAX
         ) const
         {
-            const auto &    VALUE = _OBJECT.at( "key" ).get_ref< const Json::number_integer_t & >();
-
             return std::unique_ptr< TestHandler >(
                 new TestHandler{
                     _DEAD_ZONE
-                    , VALUE
+                    , _MAX
                 }
             );
         }
     };
 
-    class GenerateHandlerWithDeadZoneUniqueTest : public ::testing::Test
+    using TestGenerateHandlerUnique = GenerateToAxisUnique< TestGenerateToAxisUnique >;
+
+    class GenerateToAxisUniqueTest : public ::testing::Test
     {
     public:
         void test(
             const std::string & _JSON_STRING
             , const __s16       _EXPECTED_DEAD_ZONE
-            , const int         _EXPECTED_VALUE
+            , const __s16       _EXPECTED_MAX
         ) const
         {
             const auto  JSON = Json::parse( _JSON_STRING );
@@ -47,7 +47,7 @@ namespace {
 
             ASSERT_NE( nullptr, handlerUnique.get() );
             EXPECT_EQ( _EXPECTED_DEAD_ZONE, handlerUnique->DEAD_ZONE );
-            EXPECT_EQ( _EXPECTED_VALUE, handlerUnique->VALUE );
+            EXPECT_EQ( _EXPECTED_MAX, handlerUnique->MAX );
         }
 
         void testAnyThrow(
@@ -64,20 +64,23 @@ namespace {
 }
 
 TEST_F(
-    GenerateHandlerWithDeadZoneUniqueTest
+    GenerateToAxisUniqueTest
     , Standard
 )
 {
     this->test(
         R"({
     "deadZone" : 10,
-    "key" : 20
+    "max" : 20
 })"
         , 10
         , 20
     );
 }
 
+//TODO NotExistsMax
+//TODO FailedNotIntegerMax
+/*
 TEST_F(
     GenerateHandlerWithDeadZoneUniqueTest
     , NotExistsDeadZone
@@ -87,6 +90,7 @@ TEST_F(
         R"({
     "key" : 20
 })"
+        , true
         , 0
         , 20
     );
@@ -94,7 +98,7 @@ TEST_F(
 
 TEST_F(
     GenerateHandlerWithDeadZoneUniqueTest
-    , FailedNotIntegerDeadZone
+    , NotIntegerDeadZone
 )
 {
     this->testAnyThrow(
@@ -104,3 +108,4 @@ TEST_F(
 })"
     );
 }
+*/

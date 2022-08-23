@@ -133,7 +133,7 @@ TEST_F(
 
 TEST_F(
     GenerateHandlerUniqueTest
-    , TypeIsNotString
+    , FailedNotStringType
 )
 {
     this->testAnyThrow< GetType >(
