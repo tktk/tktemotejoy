@@ -54,6 +54,17 @@ namespace {
                 EXPECT_EQ( nullptr, handlerUnique.get() );
             }
         }
+
+        void testAnyThrow(
+            const std::string & _JSON_STRING
+        ) const
+        {
+            const auto  JSON = Json::parse( _JSON_STRING );
+
+            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
+
+            EXPECT_ANY_THROW( TestGenerateHandlerUnique()( OBJECT ) );
+        }
     };
 }
 
@@ -88,4 +99,15 @@ TEST_F(
     );
 }
 
-//TODO NotIntegerDeadZone
+TEST_F(
+    GenerateHandlerWithDeadZoneUniqueTest
+    , NotIntegerDeadZone
+)
+{
+    this->testAnyThrow(
+        R"({
+    "deadZone" : "NOT INTEGER",
+    "key" : 20
+})"
+    );
+}
