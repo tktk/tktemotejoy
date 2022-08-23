@@ -63,6 +63,27 @@ namespace {
                 EXPECT_EQ( nullptr, handlerUnique.get() );
             }
         }
+
+        template< typename GET_TYPE_T >
+        void testAnyThrow(
+            const std::string & _JSON_STRING
+        ) const
+        {
+            const auto  JSON = Json::parse( _JSON_STRING );
+
+            const auto  GENERATE_HANDLER_UNIQUE = [
+                &JSON
+            ]
+            {
+                generateHandlerUnique<
+                    TestHandlerUnique
+                    , GET_TYPE_T
+                    , TestGanarateHandlerUnique
+                >( JSON );
+            };
+
+            EXPECT_ANY_THROW( GENERATE_HANDLER_UNIQUE() );
+        }
     };
 }
 
@@ -115,12 +136,10 @@ TEST_F(
     , TypeIsNotString
 )
 {
-    this->test< GetType >(
+    this->testAnyThrow< GetType >(
         R"({
     "type" : [ "TYPENAME" ],
     "key" : 10
 })"
-        , false
-        , 0
     );
 }
