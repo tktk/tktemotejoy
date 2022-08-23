@@ -100,7 +100,7 @@ TEST_F(
 
 TEST_F(
     GenerateMappings_mappingsTest
-    , AxesForPspState   //TODO 要修正
+    , AxesForPspState
 )
 {
     auto    joystickState = JoystickState(
@@ -120,7 +120,7 @@ TEST_F(
     },
     "mappings" : [
         {
-            "axes" : {
+            "axesForPspState" : {
                 "10" : {
                     "type" : "toAxisX"
                 }
