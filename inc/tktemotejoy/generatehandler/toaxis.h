@@ -4,6 +4,7 @@
 #include "tktemotejoy/generatehandler/withdeadzone.h"
 #include "tktemotejoy/customjson.h"
 #include <linux/joystick.h>
+#include <string>
 
 template< typename GENERATE_TO_AXIS_T >
 class GenerateToAxisUnique : public GenerateHandlerWithDeadZoneUnique< GenerateToAxisUnique< GENERATE_TO_AXIS_T > >
@@ -14,10 +15,19 @@ public:
         , const __s16           _DEAD_ZONE
     ) const
     {
-        //TODO
+        const auto  KEY_MAX_ = std::string( "max" );
+
+        __s16   max;
+
+        const auto  IT = _OBJECT.find( KEY_MAX_ );
+        const auto &    MAX_JSON = IT->second;
+        const auto &    MAX = MAX_JSON.get_ref< const Json::number_integer_t & >();
+
+        max = MAX;
+
         return GENERATE_TO_AXIS_T()(
             _DEAD_ZONE
-            , 0
+            , max
         );
     }
 };
