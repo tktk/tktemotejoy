@@ -82,8 +82,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GenerateToFixedAxisUniqueTest
     , FailedNotIntegerValue
@@ -91,9 +89,7 @@ TEST_F(
 {
     this->testAnyThrow(
         R"({
-    "deadZone" : 10,
-    "max" : "NOT INTEGER"
+    "value" : "NOT INTEGER"
 })"
     );
 }
-*/
