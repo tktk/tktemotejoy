@@ -56,6 +56,7 @@ public:
 
         virtual std::size_t operator()(
             std::size_t &
+            //TODO const std::size_tを追加する
         ) const = 0;
     };
 

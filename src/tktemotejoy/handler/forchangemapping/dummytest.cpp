@@ -17,3 +17,24 @@ TEST(
 
     EXPECT_EQ( 10, mappingIndex );
 }
+
+TEST(
+    DummyOperateAxisHandlerForChangeMappingTest
+    , OperatorCall
+)
+{
+    auto    dummy = DummyOperateAxisHandlerForChangeMapping();
+
+    auto    mappingIndex = std::size_t( 10 );
+
+    EXPECT_EQ(
+        30
+        , dummy(
+            20
+            , mappingIndex
+            , 30
+        )
+    );
+
+    EXPECT_EQ( 10, mappingIndex );
+}
