@@ -15,10 +15,12 @@ module.SOURCE = [
             'operateaxishandlerforpspstatetest.cpp',
             'operateaxishandlerforpspstate.cpp',
             'toaxisx.cpp',
+            'toaxisy.cpp',
         ],
         'handler' : {
             'forpspstate' : [
                 'toaxisx.cpp',
+                'toaxisy.cpp',
                 'jseventaxistopspstateaxis.cpp',
             ],
         },
