@@ -25,6 +25,10 @@ public:
             max = DEFAULT_MAX;
         } else {
             const auto &    MAX_JSON = IT->second;
+            if( MAX_JSON.is_number_integer() == false ) {
+                throw jsonIsNotInteger( KEY_MAX_ );
+            }
+
             const auto &    MAX = MAX_JSON.get_ref< const Json::number_integer_t & >();
 
             max = MAX;
