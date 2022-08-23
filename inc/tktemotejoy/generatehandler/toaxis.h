@@ -16,14 +16,19 @@ public:
     ) const
     {
         const auto  KEY_MAX_ = std::string( "max" );
+        const auto  DEFAULT_MAX = __s16( 0x7fff );
 
         __s16   max;
 
         const auto  IT = _OBJECT.find( KEY_MAX_ );
-        const auto &    MAX_JSON = IT->second;
-        const auto &    MAX = MAX_JSON.get_ref< const Json::number_integer_t & >();
+        if( IT == _OBJECT.end() ) {
+            max = DEFAULT_MAX;
+        } else {
+            const auto &    MAX_JSON = IT->second;
+            const auto &    MAX = MAX_JSON.get_ref< const Json::number_integer_t & >();
 
-        max = MAX;
+            max = MAX;
+        }
 
         return GENERATE_TO_AXIS_T()(
             _DEAD_ZONE
