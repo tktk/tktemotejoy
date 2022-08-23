@@ -80,7 +80,7 @@ TEST_F(
     },
     "mappings" : [
         {
-            "buttons" : {
+            "buttonsForPspState" : {
                 "10" : {
                     "type" : "toButtons",
                     "buttons" : [
@@ -100,7 +100,7 @@ TEST_F(
 
 TEST_F(
     GenerateMappings_mappingsTest
-    , AxesForPspState
+    , AxesForPspState   //TODO 要修正
 )
 {
     auto    joystickState = JoystickState(
