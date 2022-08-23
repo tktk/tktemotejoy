@@ -92,7 +92,7 @@ TEST_F(
         R"({
     "general" : {
         "defaultMapping" : 0
-    },
+    }
 })"
     );
 }
