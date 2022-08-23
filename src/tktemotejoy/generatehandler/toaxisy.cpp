@@ -40,13 +40,9 @@ Mapping::OperateAxisHandlerForPspStateUnique generateToAxisYUnique(
     const Json::object_t &  _OBJECT
 )
 {
-    //TODO
-    return Mapping::OperateAxisHandlerForPspStateUnique();
-/*
     return generateHandlerUnique<
         Mapping::OperateAxisHandlerForPspStateUnique
         , GetType
         , GenerateToAxisUnique< GenerateToAxisYUnique >
     >( _OBJECT );
-*/
 }
