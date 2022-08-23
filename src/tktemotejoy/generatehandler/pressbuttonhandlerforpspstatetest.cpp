@@ -61,4 +61,14 @@ TEST_F(
     );
 }
 
-//TODO NotPressButtonHandlerForPspState
+TEST_F(
+    GeneratePressButtonHandlerForPspStateTest
+    , NotPressButtonHandlerForPspState
+)
+{
+    this->testAnyThrow(
+        R"({
+    "type" : "NOT PRESS BUTTON HANDLER"
+})"
+    );
+}
