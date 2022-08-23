@@ -1,4 +1,5 @@
 #include "tktemotejoy/generatehandler/operateaxishandlerforpspstate.h"
+#include "tktemotejoy/generatehandler/toaxisx.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
 
@@ -6,6 +7,5 @@ Mapping::OperateAxisHandlerForPspStateUnique generateOperateAxisHandlerForPspSta
     const Json::object_t &  _OBJECT
 )
 {
-    //TODO
-    return Mapping::OperateAxisHandlerForPspStateUnique();
+    return generateToAxisXUnique( _OBJECT );
 }
