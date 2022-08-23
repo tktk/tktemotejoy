@@ -12,10 +12,9 @@ public:
     ) const
     {
         //TODO
-
         return static_cast< const T * >( this )->operatorCallImpl(
             _OBJECT
-            , 50
+            , 10
         );
     }
 };
