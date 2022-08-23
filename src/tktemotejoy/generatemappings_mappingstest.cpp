@@ -97,7 +97,42 @@ TEST_F(
 }
 
 //TODO ButtonsForChangeMapping
-//TODO AxesForPspState
+
+TEST_F(
+    GenerateMappings_mappingsTest
+    , AxesForPspState
+)
+{
+    auto    joystickState = JoystickState(
+        20
+        , 20
+    );
+
+    joystickState.setAxisState(
+        10
+        , 0x7fff
+    );
+
+    this->test(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+    "mappings" : [
+        {
+            "axes" : {
+                "10" : {
+                    "type" : "toAxisX"
+                }
+            }
+        }
+    ]
+})"
+        , joystickState
+        , 0x80ff0000
+    );
+}
+
 //TODO AxesForChangeMapping
 //TODO NotExistsMappings
 //TODO MappingsIsNotArray
