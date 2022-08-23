@@ -23,12 +23,14 @@ module.SOURCE = [
             'operateaxishandlerforpspstate.cpp',
             'toaxisx.cpp',
             'toaxisy.cpp',
+            'tofixedaxisx.cpp',
         ],
         'handler' : {
             'forpspstate' : [
                 'tobuttons.cpp',
                 'toaxisx.cpp',
                 'toaxisy.cpp',
+                'tofixedaxisx.cpp',
                 'jseventaxistopspstateaxis.cpp',
             ],
         },

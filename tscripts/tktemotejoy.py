@@ -69,6 +69,7 @@ module.SOURCE = [
             'pressbuttonhandlerforpspstate.cpp',
             'toaxisx.cpp',
             'toaxisy.cpp',
+            'tofixedaxisx.cpp',
             'operateaxishandlerforpspstate.cpp',
         ],
         'handler' : {
@@ -76,6 +77,7 @@ module.SOURCE = [
                 'tobuttons.cpp',
                 'toaxisx.cpp',
                 'toaxisy.cpp',
+                'tofixedaxisx.cpp',
                 'jseventaxistopspstateaxis.cpp',
             ],
         },
