@@ -7,6 +7,8 @@
 #include <utility>
 
 namespace {
+    const auto  JSON = std::string( "JSON" );
+
     const auto  ROOT_KEY_GENERAL = std::string( "general" );
     const auto  ROOT_KEY_MAPPINGS = std::string( "mappings" );
 
@@ -117,6 +119,9 @@ Mappings generateMappings(
     const Json &    _JSON
 )
 {
+    if( _JSON.is_object() == false ) {
+        throw jsonIsNotObject( JSON );
+    }
     const auto &    JSON_OBJECT = _JSON.get_ref< const Json::object_t & >();
 
     const auto  GENERAL = generateGeneral( JSON_OBJECT );
