@@ -71,22 +71,19 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GenerateToFixedAxisUniqueTest
     , FailedNotExistsValue
 )
 {
-    this->test(
+    this->testAnyThrow(
         R"({
-    "deadZone" : 10
 })"
-        , 10
-        , 32767
     );
 }
 
+//TODO
+/*
 TEST_F(
     GenerateToFixedAxisUniqueTest
     , FailedNotIntegerValue
