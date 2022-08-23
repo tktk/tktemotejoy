@@ -171,6 +171,7 @@ std::size_t Mapping::pressButton(
         , _CURRENT_MAPPING_INDEX
         , [
             &_mappingIndex
+            , &_CURRENT_MAPPING_INDEX
         ]
         (
             const PressButtonHandlerForChangeMapping &  _HANDLER
@@ -178,7 +179,7 @@ std::size_t Mapping::pressButton(
         {
             return _HANDLER(
                 _mappingIndex
-                , 1000  //TODO
+                , _CURRENT_MAPPING_INDEX
             );
         }
     );
