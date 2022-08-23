@@ -11,14 +11,14 @@ TEST(
     auto    mappingIndex = std::size_t( 10 );
 
     EXPECT_EQ(
-        10
+        20
         , dummy(
             mappingIndex
             , 20
         )
     );
 
-    EXPECT_EQ( 10, mappingIndex );  //TODO
+    EXPECT_EQ( 10, mappingIndex );
 }
 
 TEST(
