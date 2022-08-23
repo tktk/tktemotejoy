@@ -6,8 +6,8 @@
 #include <linux/joystick.h>
 #include <string>
 
-template< typename GENERATE_TO_AXIS_T >
-class GenerateToAxisUnique : public GenerateHandlerWithDeadZoneUnique< GenerateToAxisUnique< GENERATE_TO_AXIS_T > >
+template< typename GENERATE_TO_AXIS_UNIQUE_T >
+class GenerateToAxisUnique : public GenerateHandlerWithDeadZoneUnique< GenerateToAxisUnique< GENERATE_TO_AXIS_UNIQUE_T > >
 {
 public:
     auto operatorCallImpl(
@@ -34,7 +34,7 @@ public:
             max = MAX;
         }
 
-        return GENERATE_TO_AXIS_T()(
+        return GENERATE_TO_AXIS_UNIQUE_T()(
             _DEAD_ZONE
             , max
         );

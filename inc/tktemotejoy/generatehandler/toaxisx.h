@@ -4,7 +4,7 @@
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
 
-Mapping::PressButtonHandlerForPspStateUnique generateToAxisXUnique(
+Mapping::OperateAxisHandlerForPspStateUnique generateToAxisXUnique(
     const Json::object_t &
 );
 

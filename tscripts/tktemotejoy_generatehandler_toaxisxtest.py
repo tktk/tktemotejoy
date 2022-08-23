@@ -9,9 +9,19 @@ module.BUILDER = cpp.gtest
 
 module.TARGET = 'tktemotejoy_generatehandler_toaxisxtest'
 
-module.SOURCE = {
-    'generatehandler' : [
-        'toaxisxtest.cpp',
-        'toaxisx.cpp',
-    ],
-}
+module.SOURCE = [
+    {
+        'generatehandler' : [
+            'toaxisxtest.cpp',
+            'toaxisx.cpp',
+        ],
+        'handler' : {
+            'forpspstate' : [
+                'toaxisx.cpp',
+                'jseventaxistopspstateaxis.cpp',
+            ],
+        },
+    },
+    'mapping.cpp',
+    'pspstate.cpp',
+]
