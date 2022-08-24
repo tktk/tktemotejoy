@@ -160,8 +160,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GenerateToButtonHandlersUniqueTest
     , FailedNotObjectHandler1
@@ -170,10 +168,12 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "deadZone" : 10,
-    "max" : "NOT INTEGER"
+    "handler1" : "NOT OBJECT",
+    "handler2" : {
+        "key" : 30
+    }
 })"
     );
 }
-*/
 
 //TODO FailedNotObjectHandler2
