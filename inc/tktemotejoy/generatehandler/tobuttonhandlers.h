@@ -33,39 +33,42 @@ public:
         const auto  KEY_HANDLER1 = std::string( "handler1" );
         const auto  KEY_HANDLER2 = std::string( "handler2" );
 
-        auto    handler1Unique = HANDLER_UNIQUE_T();
-
-        //TODO
-/*
-        const auto  HANDLER1_IT = _OBJECT.find( KEY_HANDLER1 );
-        if( HANDLER1_IT == _OBJECT.end() ) {
-            handler1Unique = GENERATE_DUMMY_HANDLER_UNIQUE_T()();
-        } else {
-            const auto &    HANDLER = HANDLER1_IT->second.get_ref< const Json::object & >();
-
-            handler1Unique = GENERATE_HANDLER_UNIQUE_T()( HANDLER );
-        }
-*/
-
-        auto    handler2Unique = HANDLER_UNIQUE_T();
-
-        //TODO
-/*
-        const auto  HANDLER2_IT = _OBJECT.find( KEY_HANDLER2 );
-        if( HANDLER2_IT == _OBJECT.end() ) {
-            handler2Unique = GENERATE_DUMMY_HANDLER_UNIQUE_T()();
-        } else {
-            const auto &    HANDLER = HANDLER2_IT->second.get_ref< const Json::object & >();
-
-            handler2Unique = GENERATE_HANDLER_UNIQUE_T()( HANDLER );
-        }
-*/
+        auto    handler1Unique = generateHandler(
+            _OBJECT
+            , KEY_HANDLER1
+        );
+        auto    handler2Unique = generateHandler(
+            _OBJECT
+            , KEY_HANDLER2
+        );
 
         return GENERATE_TO_BUTTON_HANDLERS_UNIQUE_T()(
             _DEAD_ZONE
             , std::move( handler1Unique )
             , std::move( handler2Unique )
         );
+    }
+
+private:
+    auto generateHandler(
+        const Json::object_t &  _OBJECT
+        , const std::string &   _KEY
+    ) const
+    {
+        HANDLER_UNIQUE_T();
+
+        const auto  IT = _OBJECT.find( _KEY );
+/*
+        if( IT == _OBJECT.end() ) {
+            return GENERATE_DUMMY_HANDLER_UNIQUE_T()();
+        } else {
+*/
+            const auto &    HANDLER = IT->second.get_ref< const Json::object_t & >();
+
+            return GENERATE_HANDLER_UNIQUE_T()( HANDLER );
+/*
+        }
+*/
     }
 };
 
