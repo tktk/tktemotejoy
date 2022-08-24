@@ -2,6 +2,7 @@
 #include "tktemotejoy/generatehandler/pressbuttonhandlerforpspstate.h"
 #include "tktemotejoy/generatehandler/pressbuttonhandlerforchangemapping.h"
 #include "tktemotejoy/generatehandler/operateaxishandlerforpspstate.h"
+#include "tktemotejoy/generatehandler/operateaxishandlerforchangemapping.h"
 #include "tktemotejoy/mappings.h"
 #include "tktemotejoy/customjson.h"
 #include "tktemotejoy/jsonerror.h"
@@ -19,6 +20,7 @@ namespace {
     const auto  MAPPING_KEY_BUTTONS_FOR_PSP_STATE = std::string( "buttonsForPspState" );
     const auto  MAPPING_KEY_BUTTONS_FOR_CHANGE_MAPPING = std::string( "buttonsForChangeMapping" );
     const auto  MAPPING_KEY_AXES_FOR_PSP_STATE = std::string( "axesForPspState" );
+    const auto  MAPPING_KEY_AXES_FOR_CHANGE_MAPPING = std::string( "axesForChangeMapping" );
 
     struct General
     {
@@ -92,6 +94,16 @@ namespace {
         }
     };
 
+    struct GenerateOperateAxisHandlerForChangeMappingUnique
+    {
+        auto operator()(
+            const Json::object_t &  _JSON_OBJECT
+        ) const
+        {
+            return generateOperateAxisHandlerForChangeMappingUnique( _JSON_OBJECT );
+        }
+    };
+
     template< typename GENERATE_HANDLER_UNIQUE_T >
     void setHandlers(
         Mapping &                   _mapping
@@ -144,6 +156,12 @@ namespace {
             mapping
             , _JSON_OBJECT
             , MAPPING_KEY_AXES_FOR_PSP_STATE
+        );
+
+        setHandlers< GenerateOperateAxisHandlerForChangeMappingUnique >(
+            mapping
+            , _JSON_OBJECT
+            , MAPPING_KEY_AXES_FOR_CHANGE_MAPPING
         );
 
         return mapping;

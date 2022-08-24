@@ -84,6 +84,8 @@ module.SOURCE = [
             'pressbuttonhandlerforchangemapping.cpp',
             'shiftmapping.cpp',
             'togglemapping.cpp',
+            'tobuttonhandlersforchangemapping.cpp',
+            'operateaxishandlerforchangemapping.cpp',
         ],
         'handler' : {
             'forpspstate' : [
@@ -99,6 +101,8 @@ module.SOURCE = [
             'forchangemapping' : [
                 'shiftmapping.cpp',
                 'togglemapping.cpp',
+                'tobuttonhandlers.cpp',
+                'dummy.cpp',
             ],
         },
     },
