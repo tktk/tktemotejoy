@@ -142,7 +142,24 @@ TEST_F(
     );
 }
 
-//TODO NotExistsHandler2
+TEST_F(
+    GenerateToButtonHandlersUniqueTest
+    , NotExistsHandler2
+)
+{
+    this->test(
+        R"({
+    "deadZone" : 10,
+    "handler1" : {
+        "key" : 20
+    }
+})"
+        , 10
+        , 20
+        , -1
+    );
+}
+
 //TODO
 /*
 TEST_F(
