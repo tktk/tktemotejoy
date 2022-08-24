@@ -44,6 +44,32 @@ TEST_F(
     );
 }
 
-//TODO Handler2 0x80800040
+TEST_F(
+    GenerateToButtonHandlersForPspStateTest
+    , Handler2
+)
+{
+    this->test(
+        R"({
+    "type" : "toButtonHandlers",
+    "deadZone" : 10,
+    "handler1" : {
+        "type" : "toButtons",
+        "buttons" : [
+            "up"
+        ]
+    },
+    "handler2" : {
+        "type" : "toButtons",
+        "buttons" : [
+            "down"
+        ]
+    }
+})"
+        , 20
+        , 0x80800040
+    );
+}
+
 //TODO NotExistsHandler1
 //TODO NotExistsHandler2
