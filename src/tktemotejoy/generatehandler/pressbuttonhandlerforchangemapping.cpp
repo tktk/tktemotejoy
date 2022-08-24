@@ -1,4 +1,5 @@
 #include "tktemotejoy/generatehandler/pressbuttonhandlerforchangemapping.h"
+#include "tktemotejoy/generatehandler/shiftmapping.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
 #include <sstream>
@@ -9,26 +10,16 @@ Mapping::PressButtonHandlerForChangeMappingUnique generatePressButtonHandlerForC
     const Json::object_t &  _OBJECT
 )
 {
+    auto    handlerUnique = Mapping::PressButtonHandlerForChangeMappingUnique();
+
+    handlerUnique = generateShiftMappingUnique( _OBJECT );
+    if( handlerUnique.get() != nullptr ) {
+        return handlerUnique;
+    }
+
     //TODO
     return Mapping::PressButtonHandlerForChangeMappingUnique();
 /*
-    auto    handlerUnique = Mapping::PressButtonHandlerForChangeMappingUnique();
-
-    handlerUnique = generateToButtonsUnique( _OBJECT );
-    if( handlerUnique.get() != nullptr ) {
-        return handlerUnique;
-    }
-
-    handlerUnique = generateToFixedAxisXUnique( _OBJECT );
-    if( handlerUnique.get() != nullptr ) {
-        return handlerUnique;
-    }
-
-    handlerUnique = generateToFixedAxisYUnique( _OBJECT );
-    if( handlerUnique.get() != nullptr ) {
-        return handlerUnique;
-    }
-
     auto    oStringStream = std::ostringstream();
 
     const auto  KEY_TYPE = std::string( "type" );
