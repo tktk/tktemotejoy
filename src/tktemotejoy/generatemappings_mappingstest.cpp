@@ -177,7 +177,52 @@ TEST_F(
     );
 }
 
-//TODO AxesForChangeMapping
+TEST_F(
+    GenerateMappings_mappingsTest
+    , AxesForChangeMapping
+)
+{
+    auto    joystickState = JoystickState(
+        20
+        , 20
+    );
+
+    joystickState.setAxisState(
+        10
+        , 0x7fff
+    );
+
+    this->test(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+    "mappings" : [
+        {
+            "axesForChangeMapping" : {
+                "10" : {
+                    "type" : "toButtonHandlers",
+                    "handler2" : {
+                        "type" : "shiftMapping",
+                        "mapping" : 1
+                    }
+                }
+            }
+        },
+        {
+            "axesForPspState" : {
+                "10" : {
+                    "type" : "toAxisX"
+                }
+            }
+        }
+    ]
+})"
+        , joystickState
+        , 0x80ff0000
+    );
+}
+
 //TODO NotExistsMappings
 //TODO FailedNotArrayMappings
 //TODO FailedNotObjectMappingsElement
