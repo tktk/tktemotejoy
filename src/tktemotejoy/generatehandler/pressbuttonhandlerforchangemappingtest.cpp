@@ -49,8 +49,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GeneratePressButtonHandlerForChangeMappingTest
     , NotPressButtonHandlerForChangeMapping
@@ -62,4 +60,3 @@ TEST_F(
 })"
     );
 }
-*/
