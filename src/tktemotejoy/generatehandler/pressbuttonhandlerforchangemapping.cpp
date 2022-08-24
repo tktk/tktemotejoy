@@ -23,9 +23,6 @@ Mapping::PressButtonHandlerForChangeMappingUnique generatePressButtonHandlerForC
         return handlerUnique;
     }
 
-    //TODO
-    return Mapping::PressButtonHandlerForChangeMappingUnique();
-/*
     auto    oStringStream = std::ostringstream();
 
     const auto  KEY_TYPE = std::string( "type" );
@@ -33,5 +30,4 @@ Mapping::PressButtonHandlerForChangeMappingUnique generatePressButtonHandlerForC
     oStringStream << "非対応のbuttonsForChangeMappingハンドラ : " << '"' << _OBJECT.at( KEY_TYPE ).get_ref< const Json::string_t & >() << '"';
 
     throw std::runtime_error( oStringStream.str() );
-*/
 }
