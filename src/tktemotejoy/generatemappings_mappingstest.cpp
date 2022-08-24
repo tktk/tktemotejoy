@@ -96,7 +96,51 @@ TEST_F(
     );
 }
 
-//TODO ButtonsForChangeMapping
+TEST_F(
+    GenerateMappings_mappingsTest
+    , ButtonsForChangeMapping
+)
+{
+    auto    joystickState = JoystickState(
+        20
+        , 20
+    );
+
+    joystickState.setButtonState(
+        10
+        , 1
+    );
+
+    this->test(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+    "mappings" : [
+        {
+            "buttonsForChangeMapping" : {
+                "10" : {
+                    "type" : "shiftMapping",
+                    "mapping" : 1
+                }
+            }
+        },
+        {
+            "buttonsForPspState" : {
+                "10" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "up"
+                    ]
+                }
+            }
+        }
+    ]
+})"
+        , joystickState
+        , 0x80800010
+    );
+}
 
 TEST_F(
     GenerateMappings_mappingsTest
