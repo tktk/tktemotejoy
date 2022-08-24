@@ -65,9 +65,6 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlersForCha
     const Json::object_t &  _OBJECT
 )
 {
-    //TODO
-    return Mapping::OperateAxisHandlerForChangeMappingUnique();
-/*
     return generateHandlerUnique<
         Mapping::OperateAxisHandlerForChangeMappingUnique
         , GetType
@@ -77,5 +74,4 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlersForCha
             , GenerateDummyPressButtonHandlerForChangeMappingUnique
         >
     >( _OBJECT );
-*/
 }

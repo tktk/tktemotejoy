@@ -14,7 +14,18 @@ module.SOURCE = [
         'generatehandler' : [
             'tobuttonhandlersforchangemappingtest.cpp',
             'tobuttonhandlersforchangemapping.cpp',
+            'pressbuttonhandlerforchangemapping.cpp',
+            'togglemapping.cpp',
+            'shiftmapping.cpp',
         ],
+        'handler' : {
+            'forchangemapping' : [
+                'tobuttonhandlers.cpp',
+                'togglemapping.cpp',
+                'shiftmapping.cpp',
+                'dummy.cpp',
+            ],
+        },
     },
     'mapping.cpp',
 ]
