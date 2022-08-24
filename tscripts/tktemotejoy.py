@@ -45,6 +45,7 @@ module.DEPENDS = [
     'tktemotejoy_generatehandler_shiftmappingtest',
     'tktemotejoy_generatehandler_togglemappingtest',
     'tktemotejoy_generatehandler_pressbuttonhandlerforchangemappingtest',
+    'tktemotejoy_generatehandler_tobuttonhandlerstest',
     'tktemotejoy_generatemappingstest',
     'tktemotejoy_generatemappings_generaltest',
     'tktemotejoy_generatemappings_mappingstest',

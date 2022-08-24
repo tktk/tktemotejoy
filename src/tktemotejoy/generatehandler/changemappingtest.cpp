@@ -40,8 +40,8 @@ namespace {
             const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
 
             auto    handlerUnique = TestGenerateHandlerUnique()( OBJECT );
-
             ASSERT_NE( nullptr, handlerUnique.get() );
+
             EXPECT_EQ( _EXPECTED_MAPPING_INDEX, handlerUnique->MAPPING_INDEX );
         }
 
