@@ -176,4 +176,18 @@ TEST_F(
     );
 }
 
-//TODO FailedNotObjectHandler2
+TEST_F(
+    GenerateToButtonHandlersUniqueTest
+    , FailedNotObjectHandler2
+)
+{
+    this->testAnyThrow(
+        R"({
+    "deadZone" : 10,
+    "handler1" : {
+        "key" : 20
+    },
+    "handler2" : "NOT OBJECT"
+})"
+    );
+}
