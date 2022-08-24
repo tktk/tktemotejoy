@@ -34,13 +34,9 @@ Mapping::PressButtonHandlerForChangeMappingUnique generateToggleMappingUnique(
     const Json::object_t &  _OBJECT
 )
 {
-    //TODO
-    return Mapping::PressButtonHandlerForChangeMappingUnique();
-/*
     return generateHandlerUnique<
         Mapping::PressButtonHandlerForChangeMappingUnique
         , GetType
         , GenerateChangeMappingUnique< GenerateToggleMappingUnique >
     >( _OBJECT );
-*/
 }
