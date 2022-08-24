@@ -29,6 +29,7 @@ Mapping::PressButtonHandlerForPspStateUnique generatePressButtonHandlerForPspSta
         return handlerUnique;
     }
 
+    //TODO 要共通化
     auto    oStringStream = std::ostringstream();
 
     const auto  KEY_TYPE = std::string( "type" );
