@@ -56,11 +56,7 @@ namespace {
         auto operator()(
         ) const
         {
-            //TODO
-            return Mapping::PressButtonHandlerForChangeMappingUnique();
-/*
             return Mapping::handlerUnique( new DummyPressButtonHandlerForChangeMapping() );
-*/
         }
     };
 }
