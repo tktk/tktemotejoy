@@ -31,7 +31,7 @@ public:
         const auto &    MAPPING = MAPPING_JSON.get_ref< const Json::number_integer_t & >();
 */
 
-        return GENERATE_CHANGE_MAPPING_UNIQUE_T()( 100 );
+        return GENERATE_CHANGE_MAPPING_UNIQUE_T()( 10 );
     }
 };
 
