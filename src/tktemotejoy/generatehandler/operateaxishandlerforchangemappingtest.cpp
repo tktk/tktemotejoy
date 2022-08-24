@@ -42,8 +42,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GenerateOperateAxisHandlerForChangeMappingTest
     , NotOperateAxisHandlerForChangeMapping
@@ -55,4 +53,3 @@ TEST_F(
 })"
     );
 }
-*/
