@@ -56,11 +56,7 @@ namespace {
         auto operator()(
         ) const
         {
-            //TODO
-            return Mapping::PressButtonHandlerForPspStateUnique();
-/*
             return Mapping::handlerUnique( new DummyPressButtonHandlerForPspState() );
-*/
         }
     };
 }
