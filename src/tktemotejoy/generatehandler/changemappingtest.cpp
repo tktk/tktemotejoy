@@ -71,8 +71,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GenerateChangeMappingUniqueTest
     , FailedNotExistsMapping
@@ -83,7 +81,6 @@ TEST_F(
 })"
     );
 }
-*/
 
 TEST_F(
     GenerateChangeMappingUniqueTest
