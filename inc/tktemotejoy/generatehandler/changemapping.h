@@ -14,14 +14,15 @@ public:
         const Json::object_t &  _OBJECT
     ) const
     {
-        //TODO
-/*
-        const auto  KEY_MAPPING = std::string( "max" );
+        const auto  KEY_MAPPING = std::string( "mapping" );
 
         const auto  IT = _OBJECT.find( KEY_MAPPING );
+        //TODO
+/*
         if( IT == _OBJECT.end() ) {
             throw jsonIsNotExists( KEY_MAPPING );
         }
+*/
 
         const auto &    MAPPING_JSON = IT->second;
         if( MAPPING_JSON.is_number_unsigned() == false ) {
@@ -29,9 +30,8 @@ public:
         }
 
         const auto &    MAPPING = MAPPING_JSON.get_ref< const Json::number_integer_t & >();
-*/
 
-        return GENERATE_CHANGE_MAPPING_UNIQUE_T()( 10 );
+        return GENERATE_CHANGE_MAPPING_UNIQUE_T()( MAPPING );
     }
 };
 
