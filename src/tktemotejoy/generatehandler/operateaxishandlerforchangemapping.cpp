@@ -12,14 +12,14 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateOperateAxisHandlerForC
 {
     auto    handlerUnique = Mapping::OperateAxisHandlerForChangeMappingUnique();
 
-    return handlerUnique;
-    //TODO
-/*
-    handlerUnique = generateShiftMappingUnique( _OBJECT );
+    handlerUnique = generateToButtonHandlersForChangeMappingUnique( _OBJECT );
     if( handlerUnique.get() != nullptr ) {
         return handlerUnique;
     }
 
+    return handlerUnique;
+    //TODO
+/*
     handlerUnique = generateToggleMappingUnique( _OBJECT );
     if( handlerUnique.get() != nullptr ) {
         return handlerUnique;

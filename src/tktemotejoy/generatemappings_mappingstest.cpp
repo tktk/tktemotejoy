@@ -179,11 +179,17 @@ TEST_F(
 
 //TODO AxesForChangeMapping
 //TODO NotExistsMappings
-//TODO NotArrayMappings
-//TODO NotObjectMappingsElement
-//TODO NotIntegerMappingButtonsKey
-//TODO NotObjectMappingButtons
-//TODO NotObjectMappingButtonsElement
-//TODO NotIntegerMappingAxesKey
-//TODO NotObjectMappingAxes
-//TODO NotObjectMappingAxesElement
+//TODO FailedNotArrayMappings
+//TODO FailedNotObjectMappingsElement
+//TODO FailedNotIntegerMappingButtonsForPspStateKey
+//TODO FailedNotObjectMappingButtonsForPspState
+//TODO FailedNotObjectMappingButtonsForPspStateElement
+//TODO FailedNotIntegerMappingButtonsForChangeMappingKey
+//TODO FailedNotObjectMappingButtonsForChangeMapping
+//TODO FailedNotObjectMappingButtonsForChangeMappingElement
+//TODO FailedNotIntegerMappingAxesForPspStateKey
+//TODO FailedNotObjectMappingAxesForPspState
+//TODO FailedNotObjectMappingAxesForPspStateElement
+//TODO FailedNotIntegerMappingAxesForChangeMappingKey
+//TODO FailedNotObjectMappingAxesForChangeMapping
+//TODO FailedNotObjectMappingAxesForChangeMappingElement
