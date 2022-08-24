@@ -34,11 +34,7 @@ namespace {
                     _DEAD_ZONE
                     , ToButtonHandlersForChangeMappingImpl(
                         std::move( _handler1Unique )
-                        //TODO
-                        , Mapping::PressButtonHandlerForChangeMappingUnique()
-/*
                         , std::move( _handler2Unique )
-*/
                     )
                 )
             );
