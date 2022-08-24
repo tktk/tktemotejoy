@@ -1,6 +1,9 @@
 #include "tktemotejoy/generatehandler/tobuttonhandlersforpspstate.h"
 #include "tktemotejoy/generatehandler/generatehandlerunique.h"
+#include "tktemotejoy/generatehandler/tobuttonhandlers.h"
+#include "tktemotejoy/generatehandler/pressbuttonhandlerforpspstate.h"
 #include "tktemotejoy/handler/forpspstate/tobuttonhandlers.h"
+#include "tktemotejoy/handler/forpspstate/dummy.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
 #include <linux/joystick.h>
@@ -31,10 +34,37 @@ namespace {
                     _DEAD_ZONE
                     , ToButtonHandlersForPspStateImpl(
                         std::move( _handler1Unique )
+                        //TODO
+                        , Mapping::PressButtonHandlerForPspStateUnique()
+/*
                         , std::move( _handler2Unique )
+*/
                     )
                 )
             );
+        }
+    };
+
+    struct GeneratePressButtonHandlerForPspStateUnique
+    {
+        auto operator()(
+            const Json::object_t &  _OBJECT
+        ) const
+        {
+            return generatePressButtonHandlerForPspStateUnique( _OBJECT );
+        }
+    };
+
+    struct GenerateDummyPressButtonHandlerForPspStateUnique
+    {
+        auto operator()(
+        ) const
+        {
+            //TODO
+            return Mapping::PressButtonHandlerForPspStateUnique();
+/*
+            return Mapping::handlerUnique( new DummyPressButtonHandlerForPspState() );
+*/
         }
     };
 }
@@ -43,13 +73,13 @@ Mapping::OperateAxisHandlerForPspStateUnique generateToButtonHandlersForPspState
     const Json::object_t &  _OBJECT
 )
 {
-    //TODO
-    return Mapping::OperateAxisHandlerForPspStateUnique();
-/*
     return generateHandlerUnique<
         Mapping::OperateAxisHandlerForPspStateUnique
         , GetType
-        , GenerateToAxisUnique< GenerateToAxisXUnique >
+        , GenerateToButtonHandlersUnique<
+            GenerateToButtonHandlersForPspStateUnique
+            , GeneratePressButtonHandlerForPspStateUnique
+            , GenerateDummyPressButtonHandlerForPspStateUnique
+        >
     >( _OBJECT );
-*/
 }
