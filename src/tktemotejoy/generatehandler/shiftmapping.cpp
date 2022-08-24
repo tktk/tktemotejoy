@@ -34,13 +34,9 @@ Mapping::PressButtonHandlerForChangeMappingUnique generateShiftMappingUnique(
     const Json::object_t &  _OBJECT
 )
 {
-    //TODO
-    return Mapping::PressButtonHandlerForChangeMappingUnique();
-/*
     return generateHandlerUnique<
         Mapping::PressButtonHandlerForChangeMappingUnique
         , GetType
-        , GenerateToFixedAxisUnique< GenerateShiftMappingUnique >
+        , GenerateChangeMappingUnique< GenerateShiftMappingUnique >
     >( _OBJECT );
-*/
 }
