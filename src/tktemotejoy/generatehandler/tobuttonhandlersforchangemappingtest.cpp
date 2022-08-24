@@ -42,8 +42,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GenerateToButtonHandlersForChangeMappingTest
     , Handler2
@@ -54,23 +52,23 @@ TEST_F(
     "type" : "toButtonHandlers",
     "deadZone" : 10,
     "handler1" : {
-        "type" : "toButtons",
-        "buttons" : [
-            "up"
-        ]
+        "type" : "toggleMapping",
+        "mapping" : 20
     },
     "handler2" : {
-        "type" : "toButtons",
-        "buttons" : [
-            "down"
-        ]
+        "type" : "toggleMapping",
+        "mapping" : 30
     }
 })"
-        , 20
-        , 0x80800040
+        , 40
+        , 50
+        , 30
+        , 30
     );
 }
 
+//TODO
+/*
 TEST_F(
     GenerateToButtonHandlersForChangeMappingTest
     , NotExistsHandler
