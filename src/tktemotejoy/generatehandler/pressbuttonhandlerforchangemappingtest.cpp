@@ -33,7 +33,22 @@ TEST_F(
     );
 }
 
-//TODO ToggleMapping
+TEST_F(
+    GeneratePressButtonHandlerForChangeMappingTest
+    , ToggleMapping
+)
+{
+    this->test(
+        R"({
+    "type" : "toggleMapping",
+    "mapping" : 10
+})"
+        , 20
+        , 10
+        , 10
+    );
+}
+
 //TODO
 /*
 TEST_F(
