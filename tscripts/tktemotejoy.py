@@ -43,6 +43,7 @@ module.DEPENDS = [
     'tktemotejoy_generatehandler_operateaxishandlerforpspstatetest',
     'tktemotejoy_generatehandler_changemappingtest',
     'tktemotejoy_generatehandler_shiftmappingtest',
+    'tktemotejoy_generatehandler_togglemappingtest',
     'tktemotejoy_generatemappingstest',
     'tktemotejoy_generatemappings_generaltest',
     'tktemotejoy_generatemappings_mappingstest',
