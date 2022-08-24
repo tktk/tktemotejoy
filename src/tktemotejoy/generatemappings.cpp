@@ -128,8 +128,6 @@ namespace {
     {
         auto    mapping = Mapping();
 
-        const auto  END = _JSON_OBJECT.end();
-
         setHandlers< GeneratePressButtonHandlerForPspStateUnique >(
             mapping
             , _JSON_OBJECT
