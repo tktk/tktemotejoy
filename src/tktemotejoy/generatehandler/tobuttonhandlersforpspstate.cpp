@@ -34,11 +34,7 @@ namespace {
                     _DEAD_ZONE
                     , ToButtonHandlersForPspStateImpl(
                         std::move( _handler1Unique )
-                        //TODO
-                        , Mapping::PressButtonHandlerForPspStateUnique()
-/*
                         , std::move( _handler2Unique )
-*/
                     )
                 )
             );
