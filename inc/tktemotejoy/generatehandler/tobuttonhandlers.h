@@ -10,7 +10,6 @@
 
 template<
     typename GENERATE_TO_BUTTON_HANDLERS_UNIQUE_T
-    , typename HANDLER_UNIQUE_T
     , typename GENERATE_HANDLER_UNIQUE_T
     , typename GENERATE_DUMMY_HANDLER_UNIQUE_T
 >
@@ -18,7 +17,6 @@ class GenerateToButtonHandlersUnique
     : public GenerateHandlerWithDeadZoneUnique<
         GenerateToButtonHandlersUnique<
             GENERATE_TO_BUTTON_HANDLERS_UNIQUE_T
-            , HANDLER_UNIQUE_T
             , GENERATE_HANDLER_UNIQUE_T
             , GENERATE_DUMMY_HANDLER_UNIQUE_T
         >
@@ -37,7 +35,7 @@ public:
             _OBJECT
             , KEY_HANDLER1
         );
-        auto    handler2Unique = generateHandler(
+        auto    handler2Unique = generateHandler_old(
             _OBJECT
             , KEY_HANDLER2
         );
@@ -55,8 +53,22 @@ private:
         , const std::string &   _KEY
     ) const
     {
-        HANDLER_UNIQUE_T();
+        const auto  IT = _OBJECT.find( _KEY );
+        if( IT == _OBJECT.end() ) {
+            return GENERATE_DUMMY_HANDLER_UNIQUE_T()();
+        } else {
+            const auto &    HANDLER = IT->second.get_ref< const Json::object_t & >();
 
+            return GENERATE_HANDLER_UNIQUE_T()( HANDLER );
+        }
+    }
+
+    //REMOVEME
+    auto generateHandler_old(
+        const Json::object_t &  _OBJECT
+        , const std::string &   _KEY
+    ) const
+    {
         const auto  IT = _OBJECT.find( _KEY );
 /*
         if( IT == _OBJECT.end() ) {

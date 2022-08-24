@@ -62,7 +62,6 @@ namespace {
 
     using TestGenerateHandlerUnique_ = GenerateToButtonHandlersUnique<
         TestGenerateToButtonHandlersUnique
-        , TestHandlerUnique
         , TestGenerateHandlerUnique
         , TestGenerateDummyHandlerUnique
     >;
