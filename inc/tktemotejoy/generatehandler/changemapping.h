@@ -17,12 +17,9 @@ public:
         const auto  KEY_MAPPING = std::string( "mapping" );
 
         const auto  IT = _OBJECT.find( KEY_MAPPING );
-        //TODO
-/*
         if( IT == _OBJECT.end() ) {
             throw jsonIsNotExists( KEY_MAPPING );
         }
-*/
 
         const auto &    MAPPING_JSON = IT->second;
         if( MAPPING_JSON.is_number_unsigned() == false ) {
