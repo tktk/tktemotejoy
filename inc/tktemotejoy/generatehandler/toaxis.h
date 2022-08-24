@@ -3,6 +3,7 @@
 
 #include "tktemotejoy/generatehandler/withdeadzone.h"
 #include "tktemotejoy/customjson.h"
+#include "tktemotejoy/jsonerror.h"
 #include <linux/joystick.h>
 #include <string>
 
