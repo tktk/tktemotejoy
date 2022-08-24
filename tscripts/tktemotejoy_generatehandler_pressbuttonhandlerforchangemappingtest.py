@@ -15,10 +15,12 @@ module.SOURCE = [
             'pressbuttonhandlerforchangemappingtest.cpp',
             'pressbuttonhandlerforchangemapping.cpp',
             'shiftmapping.cpp',
+            'togglemapping.cpp',
         ],
         'handler' : {
             'forchangemapping' : [
                 'shiftmapping.cpp',
+                'togglemapping.cpp',
             ],
         },
     },
