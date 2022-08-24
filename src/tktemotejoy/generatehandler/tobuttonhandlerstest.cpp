@@ -106,7 +106,7 @@ namespace {
 
 TEST_F(
     GenerateToButtonHandlersUniqueTest
-    , Handler1
+    , Standard
 )
 {
     this->test(
@@ -125,26 +125,30 @@ TEST_F(
     );
 }
 
-//TODO Handler2
-//TODO
-/*
 TEST_F(
     GenerateToButtonHandlersUniqueTest
-    , NotExistsMax
+    , NotExistsHandler1
 )
 {
     this->test(
         R"({
-    "deadZone" : 10
+    "deadZone" : 10,
+    "handler2" : {
+        "key" : 30
+    }
 })"
         , 10
-        , 32767
+        , -1
+        , 30
     );
 }
 
+//TODO NotExistsHandler2
+//TODO
+/*
 TEST_F(
     GenerateToButtonHandlersUniqueTest
-    , FailedNotIntegerMax
+    , FailedNotObjectHandler1
 )
 {
     this->testAnyThrow(
@@ -155,3 +159,5 @@ TEST_F(
     );
 }
 */
+
+//TODO FailedNotObjectHandler2
