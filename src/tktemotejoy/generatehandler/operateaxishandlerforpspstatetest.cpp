@@ -45,7 +45,31 @@ TEST_F(
     );
 }
 
-//TODO ToButtonHandlers
+TEST_F(
+    GenerateOperateAxisHandlerForPspStateTest
+    , ToButtonHandlers
+)
+{
+    this->test(
+        R"({
+    "type" : "toButtonHandlers",
+    "handler1" : {
+        "type" : "toButtons",
+        "buttons" : [
+            "up"
+        ]
+    },
+    "handler2" : {
+        "type" : "toButtons",
+        "buttons" : [
+            "down"
+        ]
+    }
+})"
+        , 0x7fff
+        , 0x80800040
+    );
+}
 
 TEST_F(
     GenerateOperateAxisHandlerForPspStateTest
