@@ -83,6 +83,7 @@ TEST_F(
 })"
     );
 }
+*/
 
 TEST_F(
     GenerateChangeMappingUniqueTest
@@ -91,8 +92,7 @@ TEST_F(
 {
     this->testAnyThrow(
         R"({
-    "value" : "NOT INTEGER"
+    "mapping" : "NOT INTEGER"
 })"
     );
 }
-*/
