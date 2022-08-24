@@ -1,5 +1,6 @@
 #include "tktemotejoy/generatemappings.h"
 #include "tktemotejoy/generatehandler/pressbuttonhandlerforpspstate.h"
+#include "tktemotejoy/generatehandler/pressbuttonhandlerforchangemapping.h"
 #include "tktemotejoy/generatehandler/operateaxishandlerforpspstate.h"
 #include "tktemotejoy/mappings.h"
 #include "tktemotejoy/customjson.h"
@@ -16,6 +17,7 @@ namespace {
     const auto  GENERAL_KEY_DEFAULT_MAPPING = std::string( "defaultMapping" );
 
     const auto  MAPPING_KEY_BUTTONS_FOR_PSP_STATE = std::string( "buttonsForPspState" );
+    const auto  MAPPING_KEY_BUTTONS_FOR_CHANGE_MAPPING = std::string( "buttonsForChangeMapping" );
     const auto  MAPPING_KEY_AXES_FOR_PSP_STATE = std::string( "axesForPspState" );
 
     struct General
@@ -60,40 +62,62 @@ namespace {
         };
     }
 
-    void setButtonHandlers(
-        Mapping &                   _mapping
-        , const Json::object_t &    _JSON_OBJECT
-    )
+    struct GeneratePressButtonHandlerForPspStateUnique
     {
-        for( const auto & ITEM : _JSON_OBJECT ) {
-            const auto  INDEX = std::stoull( ITEM.first );
-
-            const auto &    JSON_OBJECT = ITEM.second.get_ref< const Json::object_t & >();
-
-            auto    handlerForPspStateUnique = generatePressButtonHandlerForPspStateUnique( JSON_OBJECT );
-
-            _mapping.setHandler(
-                INDEX
-                , std::move( handlerForPspStateUnique )
-            );
+        auto operator()(
+            const Json::object_t &  _JSON_OBJECT
+        ) const
+        {
+            return generatePressButtonHandlerForPspStateUnique( _JSON_OBJECT );
         }
-    }
+    };
 
-    void setAxisHandlers(
+    struct GeneratePressButtonHandlerForChangeMappingUnique
+    {
+        auto operator()(
+            const Json::object_t &  _JSON_OBJECT
+        ) const
+        {
+            return generatePressButtonHandlerForChangeMappingUnique( _JSON_OBJECT );
+        }
+    };
+
+    struct GenerateOperateAxisHandlerForPspStateUnique
+    {
+        auto operator()(
+            const Json::object_t &  _JSON_OBJECT
+        ) const
+        {
+            return generateOperateAxisHandlerForPspStateUnique( _JSON_OBJECT );
+        }
+    };
+
+    template< typename GENERATE_HANDLER_UNIQUE_T >
+    void setHandlers(
         Mapping &                   _mapping
         , const Json::object_t &    _JSON_OBJECT
+        , const std::string &       _KEY
     )
     {
-        for( const auto & ITEM : _JSON_OBJECT ) {
+        const auto  IT = _JSON_OBJECT.find( _KEY );
+        if( IT == _JSON_OBJECT.end() ) {
+            return;
+        }
+
+        const auto &    MAPPINGS_JSON = IT->second;
+        const auto &    MAPPINGS = MAPPINGS_JSON.get_ref< const Json::object_t & >();
+
+        for( const auto & ITEM : MAPPINGS ) {
             const auto  INDEX = std::stoull( ITEM.first );
 
-            const auto &    JSON_OBJECT = ITEM.second.get_ref< const Json::object_t & >();
+            const auto &    MAPPING_JSON = ITEM.second;
+            const auto &    MAPPING = MAPPING_JSON.get_ref< const Json::object_t & >();
 
-            auto    handlerForPspStateUnique = generateOperateAxisHandlerForPspStateUnique( JSON_OBJECT );
+            auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( MAPPING );
 
             _mapping.setHandler(
                 INDEX
-                , std::move( handlerForPspStateUnique )
+                , std::move( handlerUnique )
             );
         }
     }
@@ -106,27 +130,23 @@ namespace {
 
         const auto  END = _JSON_OBJECT.end();
 
-        //TODO 要共通化
-        const auto  BUTTONS_FOR_PSP_STATE_IT = _JSON_OBJECT.find( MAPPING_KEY_BUTTONS_FOR_PSP_STATE );
-        if( BUTTONS_FOR_PSP_STATE_IT != END ) {
-            const auto &    BUTTONS_FOR_PSP_STATE = BUTTONS_FOR_PSP_STATE_IT->second.get_ref< const Json::object_t & >();
+        setHandlers< GeneratePressButtonHandlerForPspStateUnique >(
+            mapping
+            , _JSON_OBJECT
+            , MAPPING_KEY_BUTTONS_FOR_PSP_STATE
+        );
 
-            setButtonHandlers(
-                mapping
-                , BUTTONS_FOR_PSP_STATE
-            );
-        }
+        setHandlers< GeneratePressButtonHandlerForChangeMappingUnique >(
+            mapping
+            , _JSON_OBJECT
+            , MAPPING_KEY_BUTTONS_FOR_CHANGE_MAPPING
+        );
 
-        //TODO 要共通化
-        const auto  AXES_FOR_PSP_STATE_IT = _JSON_OBJECT.find( MAPPING_KEY_AXES_FOR_PSP_STATE );
-        if( AXES_FOR_PSP_STATE_IT != END ) {
-            const auto &    AXES_FOR_PSP_STATE = AXES_FOR_PSP_STATE_IT->second.get_ref< const Json::object_t & >();
-
-            setAxisHandlers(
-                mapping
-                , AXES_FOR_PSP_STATE
-            );
-        }
+        setHandlers< GenerateOperateAxisHandlerForPspStateUnique >(
+            mapping
+            , _JSON_OBJECT
+            , MAPPING_KEY_AXES_FOR_PSP_STATE
+        );
 
         return mapping;
     }

@@ -79,6 +79,9 @@ module.SOURCE = [
             'tofixedaxisy.cpp',
             'tobuttonhandlersforpspstate.cpp',
             'operateaxishandlerforpspstate.cpp',
+            'pressbuttonhandlerforchangemapping.cpp',
+            'shiftmapping.cpp',
+            'togglemapping.cpp',
         ],
         'handler' : {
             'forpspstate' : [
@@ -90,6 +93,10 @@ module.SOURCE = [
                 'tobuttonhandlers.cpp',
                 'dummy.cpp',
                 'jseventaxistopspstateaxis.cpp',
+            ],
+            'forchangemapping' : [
+                'shiftmapping.cpp',
+                'togglemapping.cpp',
             ],
         },
     },
