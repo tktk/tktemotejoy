@@ -35,7 +35,7 @@ public:
             _OBJECT
             , KEY_HANDLER1
         );
-        auto    handler2Unique = generateHandler_old(
+        auto    handler2Unique = generateHandler(
             _OBJECT
             , KEY_HANDLER2
         );
@@ -63,22 +63,6 @@ private:
             }
 
             const auto &    HANDLER = HANDLER_JSON.get_ref< const Json::object_t & >();
-
-            return GENERATE_HANDLER_UNIQUE_T()( HANDLER );
-        }
-    }
-
-    //REMOVEME
-    auto generateHandler_old(
-        const Json::object_t &  _OBJECT
-        , const std::string &   _KEY
-    ) const
-    {
-        const auto  IT = _OBJECT.find( _KEY );
-        if( IT == _OBJECT.end() ) {
-            return GENERATE_DUMMY_HANDLER_UNIQUE_T()();
-        } else {
-            const auto &    HANDLER = IT->second.get_ref< const Json::object_t & >();
 
             return GENERATE_HANDLER_UNIQUE_T()( HANDLER );
         }
