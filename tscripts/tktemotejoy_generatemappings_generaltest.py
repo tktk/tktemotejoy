@@ -25,6 +25,7 @@ module.SOURCE = [
             'toaxisy.cpp',
             'tofixedaxisx.cpp',
             'tofixedaxisy.cpp',
+            'tobuttonhandlersforpspstate.cpp',
         ],
         'handler' : {
             'forpspstate' : [
@@ -33,6 +34,8 @@ module.SOURCE = [
                 'toaxisy.cpp',
                 'tofixedaxisx.cpp',
                 'tofixedaxisy.cpp',
+                'tobuttonhandlers.cpp',
+                'dummy.cpp',
                 'jseventaxistopspstateaxis.cpp',
             ],
         },
