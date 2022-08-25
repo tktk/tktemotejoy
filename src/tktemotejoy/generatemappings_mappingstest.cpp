@@ -399,9 +399,68 @@ TEST_F(
     );
 }
 
-//TODO FailedNotObjectMappingAxesForPspState
-//TODO FailedNotUnsignedStringMappingAxesForPspStateKey
-//TODO FailedNotObjectMappingAxesForPspStateElement
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedNotObjectMappingAxesForPspState
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+    "mappings" : [
+        {
+            "axesForPspState" : "NOT OBJECT"
+        }
+    ]
+})"
+    );
+}
+
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedNotUnsignedStringMappingAxesForPspStateKey
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+    "mappings" : [
+        {
+            "axesForPspState" : {
+                "NOT UNSIGNED" : {
+                    "type" : "toAxisX"
+                }
+            }
+        }
+    ]
+})"
+    );
+}
+
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedNotObjectMappingAxesForPspStateElement
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+    "mappings" : [
+        {
+            "axesForPspState" : {
+                "10" : "NOT OBJECT"
+            }
+        }
+    ]
+})"
+    );
+}
 //TODO FailedNotObjectMappingAxesForChangeMapping
 //TODO FailedNotUnsignedStringMappingAxesForChangeMappingKey
 //TODO FailedNotObjectMappingAxesForChangeMappingElement
