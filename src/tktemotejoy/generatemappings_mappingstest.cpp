@@ -461,6 +461,70 @@ TEST_F(
 })"
     );
 }
-//TODO FailedNotObjectMappingAxesForChangeMapping
-//TODO FailedNotUnsignedStringMappingAxesForChangeMappingKey
-//TODO FailedNotObjectMappingAxesForChangeMappingElement
+
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedNotObjectMappingAxesForChangeMapping
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+    "mappings" : [
+        {
+            "axesForChangeMapping" : "NOT OBJECT"
+        }
+    ]
+})"
+    );
+}
+
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedNotUnsignedStringMappingAxesForChangeMappingKey
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+    "mappings" : [
+        {
+            "axesForChangeMapping" : {
+                "NOT UNSIGNED" : {
+                    "type" : "toButtonHandlers",
+                    "handler2" : {
+                        "type" : "shiftMapping",
+                        "mapping" : 1
+                    }
+                }
+            }
+        }
+    ]
+})"
+    );
+}
+
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedNotObjectMappingAxesForChangeMappingElement
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+    "mappings" : [
+        {
+            "axesForChangeMapping" : {
+                "10" : "NOT OBJECT"
+            }
+        }
+    ]
+})"
+    );
+}
