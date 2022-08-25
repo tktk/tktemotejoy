@@ -6,6 +6,7 @@
 #include "tktemotejoy/mappings.h"
 #include "tktemotejoy/customjson.h"
 #include "tktemotejoy/jsonerror.h"
+#include <cstddef>
 #include <string>
 #include <utility>
 
@@ -175,18 +176,27 @@ namespace {
         if( IT == _JSON_OBJECT.end() ) {
             throw jsonIsNotExists( ROOT_KEY_MAPPINGS );
         }
-        const auto &    MAPPINGS = IT->second;
+        const auto &    MAPPINGS_JSON = IT->second;
 
-        if( MAPPINGS.is_array() == false ) {
+        if( MAPPINGS_JSON.is_array() == false ) {
             throw jsonIsNotArray( ROOT_KEY_MAPPINGS );
         }
-        const auto &    MAPPINGS_JSON = MAPPINGS.get_ref< const Json::array_t & >();
+        const auto &    MAPPINGS = MAPPINGS_JSON.get_ref< const Json::array_t & >();
 
+        auto    index = std::size_t( 0 );
         auto    impl = Mappings::Impl();
-        for( const auto & MAPPING_JSON : MAPPINGS_JSON ) {
-            const auto &    JSON_OBJECT = MAPPING_JSON.get_ref< const Json::object_t & >(); //TODO 要エラーチェック
+        for( const auto & MAPPING_JSON : MAPPINGS ) {
+            if( MAPPING_JSON.is_object() == false ) {
+                throw jsonIsNotObject(
+                    ROOT_KEY_MAPPINGS
+                    , index
+                );
+            }
+            const auto &    MAPPING = MAPPING_JSON.get_ref< const Json::object_t & >();
 
-            impl.push_back( generateMapping( JSON_OBJECT ) );
+            impl.push_back( generateMapping( MAPPING ) );
+
+            index++;
         }
 
         return impl;
