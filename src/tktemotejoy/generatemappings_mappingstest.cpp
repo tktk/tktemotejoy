@@ -269,6 +269,8 @@ TEST_F(
     );
 }
 
+//TODO FailedNotObjectMappingButtonsForPspState
+
 TEST_F(
     GenerateMappings_mappingsTest
     , FailedNotUnsignedStringMappingButtonsForPspStateKey
@@ -295,14 +297,13 @@ TEST_F(
     );
 }
 
-//TODO FailedNotObjectMappingButtonsForPspState
 //TODO FailedNotObjectMappingButtonsForPspStateElement
-//TODO FailedNotIntegerMappingButtonsForChangeMappingKey
 //TODO FailedNotObjectMappingButtonsForChangeMapping
+//TODO FailedNotUnsignedStringMappingButtonsForChangeMappingKey
 //TODO FailedNotObjectMappingButtonsForChangeMappingElement
-//TODO FailedNotIntegerMappingAxesForPspStateKey
 //TODO FailedNotObjectMappingAxesForPspState
+//TODO FailedNotUnsignedStringMappingAxesForPspStateKey
 //TODO FailedNotObjectMappingAxesForPspStateElement
-//TODO FailedNotIntegerMappingAxesForChangeMappingKey
 //TODO FailedNotObjectMappingAxesForChangeMapping
+//TODO FailedNotUnsignedStringMappingAxesForChangeMappingKey
 //TODO FailedNotObjectMappingAxesForChangeMappingElement

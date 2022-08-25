@@ -121,6 +121,45 @@ namespace {
         const auto &    MAPPINGS = MAPPINGS_JSON.get_ref< const Json::object_t & >();
 
         for( const auto & ITEM : MAPPINGS ) {
+            auto    index = std::size_t( 0 );
+            try {
+                index = std::stoull( ITEM.first );
+            } catch( ... ) {
+                throw jsonObjectKeyIsNotUnsignedString(
+                    _KEY
+                    , ITEM.first
+                );
+            }
+
+            const auto &    MAPPING_JSON = ITEM.second;
+            const auto &    MAPPING = MAPPING_JSON.get_ref< const Json::object_t & >();
+
+            auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( MAPPING );
+
+            _mapping.setHandler(
+                index
+                , std::move( handlerUnique )
+            );
+        }
+    }
+
+    //REMOVEME
+    template< typename GENERATE_HANDLER_UNIQUE_T >
+    void setHandlers_old(
+        Mapping &                   _mapping
+        , const Json::object_t &    _JSON_OBJECT
+        , const std::string &       _KEY
+    )
+    {
+        const auto  IT = _JSON_OBJECT.find( _KEY );
+        if( IT == _JSON_OBJECT.end() ) {
+            return;
+        }
+
+        const auto &    MAPPINGS_JSON = IT->second;
+        const auto &    MAPPINGS = MAPPINGS_JSON.get_ref< const Json::object_t & >();
+
+        for( const auto & ITEM : MAPPINGS ) {
             const auto  INDEX = std::stoull( ITEM.first );
 
             const auto &    MAPPING_JSON = ITEM.second;
@@ -147,19 +186,19 @@ namespace {
             , MAPPING_KEY_BUTTONS_FOR_PSP_STATE
         );
 
-        setHandlers< GeneratePressButtonHandlerForChangeMappingUnique >(
+        setHandlers_old< GeneratePressButtonHandlerForChangeMappingUnique >(
             mapping
             , _JSON_OBJECT
             , MAPPING_KEY_BUTTONS_FOR_CHANGE_MAPPING
         );
 
-        setHandlers< GenerateOperateAxisHandlerForPspStateUnique >(
+        setHandlers_old< GenerateOperateAxisHandlerForPspStateUnique >(
             mapping
             , _JSON_OBJECT
             , MAPPING_KEY_AXES_FOR_PSP_STATE
         );
 
-        setHandlers< GenerateOperateAxisHandlerForChangeMappingUnique >(
+        setHandlers_old< GenerateOperateAxisHandlerForChangeMappingUnique >(
             mapping
             , _JSON_OBJECT
             , MAPPING_KEY_AXES_FOR_CHANGE_MAPPING
