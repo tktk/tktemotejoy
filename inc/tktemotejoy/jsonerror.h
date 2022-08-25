@@ -115,4 +115,18 @@ std::runtime_error jsonIsNotObject(
     );
 }
 
+template< typename ... ARGS_T >
+std::runtime_error jsonObjectKeyIsNotUnsignedString(
+    const ARGS_T & ...  _ARGS
+)
+{
+    return std::runtime_error( "TODO" );
+/*
+    return jsonError(
+        "の値がオブジェクトではない"
+        , _ARGS ...
+    );
+*/
+}
+
 #endif  // TKTEMOTEJOY_JSONERROR_H

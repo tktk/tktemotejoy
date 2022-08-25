@@ -140,3 +140,20 @@ TEST_F(
 
     this->test< JsonIsNotObject >( "keyの値がオブジェクトではない" );
 }
+
+TEST_F(
+    JsonErrorTest
+    , JsonObjectKeyIsNotUnsignedString
+)
+{
+    struct JsonObjectKeyIsNotUnsignedString
+    {
+        auto operator()(
+        ) const
+        {
+            return jsonObjectKeyIsNotUnsignedString( "key" );
+        }
+    };
+
+    this->test< JsonObjectKeyIsNotUnsignedString >( "keyキーが符号なし整数に変換可能な文字列ではない" );
+}
