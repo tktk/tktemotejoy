@@ -230,15 +230,10 @@ TEST_F(
         , 1
     );
 
-    joystickState1.setAxisState(
-        2
-        , -1
-    );
-
     this->test(
         mappings
         , joystickState1
-        , 0x8080e000
+        , 0xbfff00ba
     );
 
     const auto  JOYSTICK_STATE2 = generateJoystickState();
