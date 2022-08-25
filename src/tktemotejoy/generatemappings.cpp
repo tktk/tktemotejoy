@@ -135,6 +135,12 @@ namespace {
             }
 
             const auto &    MAPPING_JSON = ITEM.second;
+            if( MAPPING_JSON.is_object() == false ) {
+                throw jsonIsNotObject(
+                    _KEY
+                    , index
+                );
+            }
             const auto &    MAPPING = MAPPING_JSON.get_ref< const Json::object_t & >();
 
             auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( MAPPING );
