@@ -269,7 +269,32 @@ TEST_F(
     );
 }
 
-//TODO FailedNotIntegerMappingButtonsForPspStateKey
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedNotUnsignedStringMappingButtonsForPspStateKey
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+    "mappings" : [
+        {
+            "buttonsForPspState" : {
+                "NOT UNSIGNED" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "up"
+                    ]
+                }
+            }
+        }
+    ]
+})"
+    );
+}
+
 //TODO FailedNotObjectMappingButtonsForPspState
 //TODO FailedNotObjectMappingButtonsForPspStateElement
 //TODO FailedNotIntegerMappingButtonsForChangeMappingKey
