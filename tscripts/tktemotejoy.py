@@ -71,6 +71,7 @@ module.SOURCE = [
     'tousbhostfs.cpp',
     'joystick.cpp',
     'descriptorcloser.cpp',
+    'typeerror.cpp',
     {
         'generatehandler' : [
             'tobuttons.cpp',

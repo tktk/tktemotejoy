@@ -3,7 +3,7 @@
 #include "tktemotejoy/generatehandler/togglemapping.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
-#include <sstream>
+#include "tktemotejoy/typeerror.h"
 #include <string>
 #include <stdexcept>
 
@@ -23,12 +23,10 @@ Mapping::PressButtonHandlerForChangeMappingUnique generatePressButtonHandlerForC
         return handlerUnique;
     }
 
-    //TODO 要共通化
-    auto    oStringStream = std::ostringstream();
+    const auto  HANDLERS_TYPE = std::string( "buttonsForChangeMapping" );
 
-    const auto  KEY_TYPE = std::string( "type" );
-
-    oStringStream << "非対応のbuttonsForChangeMappingハンドラ : " << '"' << _OBJECT.at( KEY_TYPE ).get_ref< const Json::string_t & >() << '"';
-
-    throw std::runtime_error( oStringStream.str() );
+    throw typeIsNotSupported(
+        _OBJECT
+        , HANDLERS_TYPE
+    );
 }

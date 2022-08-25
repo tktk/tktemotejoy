@@ -37,4 +37,5 @@ module.SOURCE = [
     },
     'pspstate.cpp',
     'mapping.cpp',
+    'typeerror.cpp',
 ]

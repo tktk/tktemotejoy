@@ -25,4 +25,5 @@ module.SOURCE = [
         },
     },
     'mapping.cpp',
+    'typeerror.cpp',
 ]
