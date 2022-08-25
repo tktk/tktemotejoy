@@ -223,7 +223,20 @@ TEST_F(
     );
 }
 
-//TODO NotExistsMappings
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedNotExistsMappings
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    }
+})"
+    );
+}
+
 //TODO FailedNotArrayMappings
 //TODO FailedNotObjectMappingsElement
 //TODO FailedNotIntegerMappingButtonsForPspStateKey
