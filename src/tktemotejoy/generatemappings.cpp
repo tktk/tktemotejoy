@@ -171,11 +171,17 @@ namespace {
         const Json::object_t &  _JSON_OBJECT
     )
     {
-        const auto &    MAPPING_JSONS = _JSON_OBJECT.at( ROOT_KEY_MAPPINGS ).get_ref< const Json::array_t & >();
+        const auto  IT = _JSON_OBJECT.find( ROOT_KEY_MAPPINGS );
+        if( IT == _JSON_OBJECT.end() ) {
+            throw jsonIsNotExists( ROOT_KEY_MAPPINGS );
+        }
+        const auto &    MAPPINGS_JSON = IT->second;
+
+        const auto &    MAPPING_JSONS = MAPPINGS_JSON.get_ref< const Json::array_t & >();   //TODO 要エラーチェック
 
         auto    impl = Mappings::Impl();
         for( const auto & MAPPING_JSON : MAPPING_JSONS ) {
-            const auto &    JSON_OBJECT = MAPPING_JSON.get_ref< const Json::object_t & >();
+            const auto &    JSON_OBJECT = MAPPING_JSON.get_ref< const Json::object_t & >(); //TODO 要エラーチェック
 
             impl.push_back( generateMapping( JSON_OBJECT ) );
         }
