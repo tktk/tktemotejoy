@@ -201,7 +201,7 @@ namespace {
             , MAPPING_KEY_BUTTONS_FOR_CHANGE_MAPPING
         );
 
-        setHandlers_old< GenerateOperateAxisHandlerForPspStateUnique >(
+        setHandlers< GenerateOperateAxisHandlerForPspStateUnique >(
             mapping
             , _JSON_OBJECT
             , MAPPING_KEY_AXES_FOR_PSP_STATE
