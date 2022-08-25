@@ -335,9 +335,70 @@ TEST_F(
     );
 }
 
-//TODO FailedNotObjectMappingButtonsForChangeMapping
-//TODO FailedNotUnsignedStringMappingButtonsForChangeMappingKey
-//TODO FailedNotObjectMappingButtonsForChangeMappingElement
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedNotObjectMappingButtonsForChangeMapping
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+    "mappings" : [
+        {
+            "buttonsForChangeMapping" : "NOT OBJECT"
+        }
+    ]
+})"
+    );
+}
+
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedNotUnsignedStringMappingButtonsForChangeMappingKey
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+    "mappings" : [
+        {
+            "buttonsForChangeMapping" : {
+                "NOT UNSIGNED" : {
+                    "type" : "shiftMapping",
+                    "mapping" : 1
+                }
+            }
+        }
+    ]
+})"
+    );
+}
+
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedNotObjectMappingButtonsForChangeMappingElement
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+    "mappings" : [
+        {
+            "buttonsForChangeMapping" : {
+                "10" : "NOT OBJECT"
+            }
+        }
+    ]
+})"
+    );
+}
+
 //TODO FailedNotObjectMappingAxesForPspState
 //TODO FailedNotUnsignedStringMappingAxesForPspStateKey
 //TODO FailedNotObjectMappingAxesForPspStateElement
