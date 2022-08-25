@@ -10,10 +10,10 @@ ToggleMapping::ToggleMapping(
 
 std::size_t ToggleMapping::operator()(
     std::size_t &       _mappingIndex
-    , const std::size_t
+    , const std::size_t _CURRENT_MAPPING_INDEX
 ) const
 {
     _mappingIndex = this->MAPPING_INDEX;
 
-    return _mappingIndex;
+    return _CURRENT_MAPPING_INDEX;
 }
