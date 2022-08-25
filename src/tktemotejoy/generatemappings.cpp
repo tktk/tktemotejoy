@@ -175,12 +175,15 @@ namespace {
         if( IT == _JSON_OBJECT.end() ) {
             throw jsonIsNotExists( ROOT_KEY_MAPPINGS );
         }
-        const auto &    MAPPINGS_JSON = IT->second;
+        const auto &    MAPPINGS = IT->second;
 
-        const auto &    MAPPING_JSONS = MAPPINGS_JSON.get_ref< const Json::array_t & >();   //TODO 要エラーチェック
+        if( MAPPINGS.is_array() == false ) {
+            throw jsonIsNotArray( ROOT_KEY_MAPPINGS );
+        }
+        const auto &    MAPPINGS_JSON = MAPPINGS.get_ref< const Json::array_t & >();
 
         auto    impl = Mappings::Impl();
-        for( const auto & MAPPING_JSON : MAPPING_JSONS ) {
+        for( const auto & MAPPING_JSON : MAPPINGS_JSON ) {
             const auto &    JSON_OBJECT = MAPPING_JSON.get_ref< const Json::object_t & >(); //TODO 要エラーチェック
 
             impl.push_back( generateMapping( JSON_OBJECT ) );
