@@ -252,7 +252,23 @@ TEST_F(
     );
 }
 
-//TODO FailedNotObjectMappingsElement
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedNotObjectMappingsElement
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+    "mappings" : [
+        "NOT OBJECT"
+    ]
+})"
+    );
+}
+
 //TODO FailedNotIntegerMappingButtonsForPspStateKey
 //TODO FailedNotObjectMappingButtonsForPspState
 //TODO FailedNotObjectMappingButtonsForPspStateElement
