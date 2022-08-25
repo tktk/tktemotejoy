@@ -195,7 +195,7 @@ namespace {
             , MAPPING_KEY_BUTTONS_FOR_PSP_STATE
         );
 
-        setHandlers_old< GeneratePressButtonHandlerForChangeMappingUnique >(
+        setHandlers< GeneratePressButtonHandlerForChangeMappingUnique >(
             mapping
             , _JSON_OBJECT
             , MAPPING_KEY_BUTTONS_FOR_CHANGE_MAPPING
