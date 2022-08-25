@@ -11,7 +11,7 @@ TEST(
     auto    mappingIndex = std::size_t( 20 );
 
     EXPECT_EQ(
-        10
+        30
         , toggleMapping(
             mappingIndex
             , 30
