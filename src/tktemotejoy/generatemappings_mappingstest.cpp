@@ -314,7 +314,27 @@ TEST_F(
     );
 }
 
-//TODO FailedNotObjectMappingButtonsForPspStateElement
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedNotObjectMappingButtonsForPspStateElement
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+    "mappings" : [
+        {
+            "buttonsForPspState" : {
+                "10" : "NOT OBJECT"
+            }
+        }
+    ]
+})"
+    );
+}
+
 //TODO FailedNotObjectMappingButtonsForChangeMapping
 //TODO FailedNotUnsignedStringMappingButtonsForChangeMappingKey
 //TODO FailedNotObjectMappingButtonsForChangeMappingElement
