@@ -120,13 +120,10 @@ std::runtime_error jsonObjectKeyIsNotUnsignedString(
     const ARGS_T & ...  _ARGS
 )
 {
-    return std::runtime_error( "TODO" );
-/*
     return jsonError(
-        "の値がオブジェクトではない"
+        "キーが符号なし整数に変換可能な文字列ではない"
         , _ARGS ...
     );
-*/
 }
 
 #endif  // TKTEMOTEJOY_JSONERROR_H
