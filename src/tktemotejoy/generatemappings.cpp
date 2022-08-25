@@ -116,8 +116,11 @@ namespace {
         if( IT == _JSON_OBJECT.end() ) {
             return;
         }
-
         const auto &    MAPPINGS_JSON = IT->second;
+
+        if( MAPPINGS_JSON.is_object() == false ) {
+            throw jsonIsNotObject( _KEY );
+        }
         const auto &    MAPPINGS = MAPPINGS_JSON.get_ref< const Json::object_t & >();
 
         for( const auto & ITEM : MAPPINGS ) {
