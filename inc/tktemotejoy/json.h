@@ -2,6 +2,7 @@
 #define TKTEMOTEJOY_JSON_H
 
 #include "tktemotejoy/customjson.h"
+#include "tktemotejoy/jsonerror.h"
 
 template< typename ... PARENT_KEYS_T >
 const Json::array_t & getJsonArray(
@@ -10,13 +11,13 @@ const Json::array_t & getJsonArray(
     , const PARENT_KEYS_T & ... _PARENT_KEYS
 )
 {
-    //TODO
     const auto  IT = _OBJECT.find( _KEY );
-/*
-    if( IT == _JSON_OBJECT.end() ) {
-        throw jsonIsNotExists( ROOT_KEY_MAPPINGS );
+    if( IT == _OBJECT.end() ) {
+        throw jsonIsNotExists(
+            _PARENT_KEYS ...
+            , _KEY
+        );
     }
-*/
     const auto &    JSON = IT->second;
 
     //TODO
