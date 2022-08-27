@@ -19,7 +19,7 @@ namespace {
 
             const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
 
-            const auto &    ARRAY = getJsonArray(
+            const auto &    ARRAY = getJsonArrayFromObject(
                 OBJECT
                 , _KEY
             );
@@ -48,7 +48,7 @@ namespace {
             const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
 
             try {
-                getJsonArray(
+                getJsonArrayFromObject(
                     OBJECT
                     , _KEY
                     , _PARENT_KEY1
@@ -65,7 +65,7 @@ namespace {
 
 TEST_F(
     GetJsonArrayTest
-    , Standard
+    , FromObject
 )
 {
     this->test(
@@ -87,7 +87,7 @@ TEST_F(
 
 TEST_F(
     GetJsonArrayTest
-    , FailedNotExists
+    , FailedNotExistsFromObject
 )
 {
     this->testAnyThrow(
@@ -102,7 +102,7 @@ TEST_F(
 
 TEST_F(
     GetJsonArrayTest
-    , FailedNotArray
+    , FailedNotArrayFromObject
 )
 {
     this->testAnyThrow(

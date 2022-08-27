@@ -6,7 +6,7 @@
 
 //TODO 要共通化
 template< typename ... PARENT_KEYS_T >
-const Json::array_t & getJsonArray(
+const Json::array_t & getJsonArrayFromObject(
     const Json::object_t &      _OBJECT
     , const std::string &       _KEY
     , const PARENT_KEYS_T & ... _PARENT_KEYS

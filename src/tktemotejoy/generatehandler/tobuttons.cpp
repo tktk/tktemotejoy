@@ -47,7 +47,7 @@ namespace {
             const Json::object_t &  _OBJECT
         ) const
         {
-            const auto &    BUTTON_STRINGS = getJsonArray(
+            const auto &    BUTTON_STRINGS = getJsonArrayFromObject(
                 _OBJECT
                 , KEY_BUTTONS
                 , TYPE

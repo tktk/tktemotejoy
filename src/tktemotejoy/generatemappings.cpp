@@ -188,7 +188,7 @@ namespace {
         const Json::object_t &  _OBJECT
     )
     {
-        const auto &    MAPPINGS = getJsonArray(
+        const auto &    MAPPINGS = getJsonArrayFromObject(
             _OBJECT
             , ROOT_KEY_MAPPINGS
         );
