@@ -11,7 +11,21 @@ const Json::array_t & getJsonArray(
 )
 {
     //TODO
-    return *static_cast< const Json::array_t * >( nullptr );
+    const auto  IT = _OBJECT.find( _KEY );
+/*
+    if( IT == _JSON_OBJECT.end() ) {
+        throw jsonIsNotExists( ROOT_KEY_MAPPINGS );
+    }
+*/
+    const auto &    JSON = IT->second;
+
+    //TODO
+/*
+    if( JSON.is_array() == false ) {
+        throw jsonIsNotArray( ROOT_KEY_MAPPINGS );
+    }
+*/
+    return JSON.get_ref< const Json::array_t & >();
 }
 
 #endif  // TKTEMOTEJOY_JSON_H
