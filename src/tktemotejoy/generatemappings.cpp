@@ -107,16 +107,14 @@ namespace {
         , const std::string &       _KEY
     )
     {
-        const auto  IT = _OBJECT.find( _KEY );
-        if( IT == _OBJECT.end() ) {
+        const auto  MAPPINGS_PTR = getJsonObjectFromObjectNotRequired(
+            _OBJECT
+            , _KEY
+        );
+        if( MAPPINGS_PTR == nullptr ) {
             return;
         }
-        const auto &    MAPPINGS_JSON = IT->second;
-
-        if( MAPPINGS_JSON.is_object() == false ) {
-            throw jsonIsNotObject( _KEY );
-        }
-        const auto &    MAPPINGS = MAPPINGS_JSON.get_ref< const Json::object_t & >();
+        const auto &    MAPPINGS = *MAPPINGS_PTR;
 
         for( const auto & ITEM : MAPPINGS ) {
             auto    index = std::size_t( 0 );
