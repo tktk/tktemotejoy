@@ -2,23 +2,54 @@
 #include "tktemotejoy/json.h"
 #include "tktemotejoy/customjson.h"
 #include <string>
-#include <vector>
+#include <map>
 #include <stdexcept>
 
 namespace {
     class GetJsonObjectTest : public ::testing::Test
     {
-    public:
-        void test(
+        struct GetJsonObject
+        {
+            const auto & operator()(
+                const Json &            _JSON
+                , const std::string &   _KEY
+            ) const
+            {
+                return getJsonObject(
+                    _JSON
+                    , _KEY
+                );
+            }
+        };
+
+        struct GetJsonObjectFromObject
+        {
+            const auto & operator()(
+                const Json &            _JSON
+                , const std::string &   _KEY
+            ) const
+            {
+                const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
+
+                return getJsonObject(
+                    OBJECT
+                    , _KEY
+                );
+            }
+        };
+
+        template< typename GET_JSON_OBJECT_T >
+        void test_(
             const std::string &                                 _JSON_STRING
+            , const std::string &                               _KEY
             , const std::map< std::string, Json::string_t > &   _EXPECTED_OBJECT
         ) const
         {
             const auto  JSON = Json::parse( _JSON_STRING );
 
-            const auto &    OBJECT = getJsonObject(
+            const auto &    OBJECT = GET_JSON_OBJECT_T()(
                 JSON
-                , "key"
+                , _KEY
             );
 
             ASSERT_EQ( _EXPECTED_OBJECT.size(), OBJECT.size() );
@@ -28,11 +59,37 @@ namespace {
                 const auto  IT = _EXPECTED_OBJECT.find( ITEM.first );
                 ASSERT_NE( EXPECTED_OBJECT_END, IT );
 
-                const auto &    J = ITEM.second;
+                const auto &    J = static_cast< const Json & >( ITEM.second ); // キャストを消すとコンパイルエラー
 
                 ASSERT_TRUE( J.is_string() );
                 EXPECT_EQ( IT->second, J.get_ref< const Json::string_t & >() );
             }
+        }
+
+    public:
+        void test(
+            const std::string &                                 _JSON_STRING
+            , const std::map< std::string, Json::string_t > &   _EXPECTED_OBJECT
+        ) const
+        {
+            this->test_< GetJsonObject >(
+                _JSON_STRING
+                , "key"
+                , _EXPECTED_OBJECT
+            );
+        }
+
+        void test(
+            const std::string &                                 _JSON_STRING
+            , const std::string &                               _KEY
+            , const std::map< std::string, Json::string_t > &   _EXPECTED_OBJECT
+        ) const
+        {
+            this->test_< GetJsonObjectFromObject >(
+                _JSON_STRING
+                , _KEY
+                , _EXPECTED_OBJECT
+            );
         }
 
         void testAnyThrow(
@@ -63,7 +120,7 @@ namespace {
 
 TEST_F(
     GetJsonObjectTest
-    , Standard
+    , FromJson
 )
 {
     this->test(
@@ -72,6 +129,28 @@ TEST_F(
     "key2" : "def",
     "key3" : "ghi"
 })"
+        , {
+            { "key1", "abc" }
+            , { "key2", "def" }
+            , { "key3", "ghi" }
+        }
+    );
+}
+
+TEST_F(
+    GetJsonObjectTest
+    , FromJsonObject
+)
+{
+    this->test(
+        R"({
+    "key" : {
+        "key1" : "abc",
+        "key2" : "def",
+        "key3" : "ghi"
+    }
+})"
+        , "key"
         , {
             { "key1", "abc" }
             , { "key2", "def" }

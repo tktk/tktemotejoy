@@ -32,6 +32,17 @@ const Json::array_t & getJsonArray(
 
 template< typename ... PARENT_KEYS_T >
 const Json::object_t & getJsonObject(
+    const Json::object_t &      _OBJECT
+    , const std::string &       _KEY
+    , const PARENT_KEYS_T & ... _PARENT_KEYS
+)
+{
+    //TODO
+    return *static_cast< const Json::object_t * >( nullptr );
+}
+
+template< typename ... PARENT_KEYS_T >
+const Json::object_t & getJsonObject(
     const Json &                _JSON
     , const std::string &       _KEY
     , const PARENT_KEYS_T & ... _PARENT_KEYS
