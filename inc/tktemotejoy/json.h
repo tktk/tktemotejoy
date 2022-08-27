@@ -120,7 +120,18 @@ const Json::object_t * getJsonObjectFromObjectNotRequired(
 )
 {
     //TODO
-    return nullptr;
+    const auto  IT = _OBJECT.find( _KEY );
+/*
+    if( IT == _OBJECT.end() ) {
+        throw jsonIsNotExists(
+            _PARENT_KEYS ...
+            , _KEY
+        );
+    }
+*/
+    const auto &    JSON = IT->second;
+
+    return &( JSON.get_ref< const Json::object_t & >() );
 }
 
 #endif  // TKTEMOTEJOY_JSON_H
