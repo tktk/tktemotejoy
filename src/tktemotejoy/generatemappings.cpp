@@ -33,16 +33,10 @@ namespace {
         const Json::object_t &  _OBJECT
     )
     {
-        const auto  GENERAL_IT = _OBJECT.find( ROOT_KEY_GENERAL );
-        if( GENERAL_IT == _OBJECT.end() ) {
-            throw jsonIsNotExists( ROOT_KEY_GENERAL );
-        }
-        const auto &    GENERAL_JSON = GENERAL_IT->second;
-
-        if( GENERAL_JSON.is_object() == false ) {
-            throw jsonIsNotObject( ROOT_KEY_GENERAL );
-        }
-        const auto &    GENERAL = GENERAL_JSON.get_ref< const Json::object_t & >();
+        const auto &    GENERAL = getJsonObjectFromObject(
+            _OBJECT
+            , ROOT_KEY_GENERAL
+        );
 
         const auto  DEFAULT_MAPPING_IT = GENERAL.find( GENERAL_KEY_DEFAULT_MAPPING );
         if( DEFAULT_MAPPING_IT == GENERAL.end() ) {
