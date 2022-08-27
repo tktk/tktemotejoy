@@ -136,7 +136,7 @@ namespace {
             }
 
             const auto &    MAPPING_JSON = ITEM.second;
-            const auto &    MAPPING = getJsonObject(
+            const auto &    MAPPING = getJsonObjectFromJson(
                 MAPPING_JSON
                 , _KEY
                 , index
@@ -196,7 +196,7 @@ namespace {
         auto    index = std::size_t( 0 );
         auto    impl = Mappings::Impl();
         for( const auto & MAPPING_JSON : MAPPINGS ) {
-            const auto &    MAPPING = getJsonObject(
+            const auto &    MAPPING = getJsonObjectFromJson(
                 MAPPING_JSON
                 , ROOT_KEY_MAPPINGS
                 , index
@@ -215,7 +215,7 @@ Mappings generateMappings(
     const Json &    _JSON
 )
 {
-    const auto &    OBJECT = getJsonObject(
+    const auto &    OBJECT = getJsonObjectFromJson(
         _JSON
         , JSON
     );

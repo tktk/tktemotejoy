@@ -59,7 +59,7 @@ private:
             return GENERATE_DUMMY_HANDLER_UNIQUE_T()();
         } else {
             const auto &    HANDLER_JSON = IT->second;
-            const auto &    HANDLER = getJsonObject(
+            const auto &    HANDLER = getJsonObjectFromJson(
                 HANDLER_JSON
                 , _KEY
             );

@@ -8,21 +8,21 @@
 namespace {
     class GetJsonObjectTest : public ::testing::Test
     {
-        struct GetJsonObject
+        struct GetJsonObjectFromJson
         {
             const auto & operator()(
                 const Json &            _JSON
                 , const std::string &   _KEY
             ) const
             {
-                return getJsonObject(
+                return getJsonObjectFromJson(
                     _JSON
                     , _KEY
                 );
             }
         };
 
-        struct GetJsonObjectFromObject
+        struct GetJsonObject
         {
             const auto & operator()(
                 const Json &            _JSON
@@ -72,7 +72,7 @@ namespace {
             , const std::map< std::string, Json::string_t > &   _EXPECTED_OBJECT
         ) const
         {
-            this->test_< GetJsonObject >(
+            this->test_< GetJsonObjectFromJson >(
                 _JSON_STRING
                 , "key"
                 , _EXPECTED_OBJECT
@@ -85,7 +85,7 @@ namespace {
             , const std::map< std::string, Json::string_t > &   _EXPECTED_OBJECT
         ) const
         {
-            this->test_< GetJsonObjectFromObject >(
+            this->test_< GetJsonObject >(
                 _JSON_STRING
                 , _KEY
                 , _EXPECTED_OBJECT
@@ -103,7 +103,7 @@ namespace {
             const auto  JSON = Json::parse( _JSON_STRING );
 
             try {
-                getJsonObject(
+                getJsonObjectFromJson(
                     JSON
                     , _KEY
                     , _PARENT_KEY1
