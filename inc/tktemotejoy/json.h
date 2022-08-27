@@ -88,20 +88,27 @@ const Json::object_t & getJsonObjectFromObject(
     , const PARENT_KEYS_T & ... _PARENT_KEYS
 )
 {
+    //TODO
     const auto  IT = _OBJECT.find( _KEY );
+/*
     if( IT == _OBJECT.end() ) {
         throw jsonIsNotExists(
             _PARENT_KEYS ...
             , _KEY
         );
     }
+*/
     const auto &    JSON = IT->second;
 
+    //TODO
+    return JSON.get_ref< const Json::object_t & >();
+/*
     return getJsonObjectFromJson(
         JSON
         , _KEY
         , _PARENT_KEYS ...
     );
+*/
 }
 
 #endif  // TKTEMOTEJOY_JSON_H

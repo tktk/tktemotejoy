@@ -139,6 +139,20 @@ TEST_F(
 
 TEST_F(
     GetJsonObjectTest
+    , FailedNotObjectFromJson
+)
+{
+    this->testAnyThrow(
+        R"("NOT OBJECT")"
+        , "key"
+        , "parentKey1"
+        , "parentKey2"
+        , "parentKey1.parentKey2.keyの値がオブジェクトではない"
+    );
+}
+
+TEST_F(
+    GetJsonObjectTest
     , FromObject
 )
 {
@@ -161,17 +175,17 @@ TEST_F(
 
 TEST_F(
     GetJsonObjectTest
-    , FailedNotObjectFromJson
+    , FailedNotExistsFromObject
 )
 {
     this->testAnyThrow(
-        R"("NOT OBJECT")"
+        R"({
+})"
         , "key"
         , "parentKey1"
         , "parentKey2"
-        , "parentKey1.parentKey2.keyの値がオブジェクトではない"
+        , "parentKey1.parentKey2.keyが存在しない"
     );
 }
 
-//TODO FailedNotExistsFromObject
 //TODO FailedNotObjectFromObject
