@@ -22,7 +22,7 @@ namespace {
             }
         };
 
-        struct GetJsonObject
+        struct GetJsonObjectFromObject
         {
             const auto & operator()(
                 const Json &            _JSON
@@ -31,7 +31,7 @@ namespace {
             {
                 const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
 
-                return getJsonObject(
+                return getJsonObjectFromObject(
                     OBJECT
                     , _KEY
                 );
@@ -85,7 +85,7 @@ namespace {
             , const std::map< std::string, Json::string_t > &   _EXPECTED_OBJECT
         ) const
         {
-            this->test_< GetJsonObject >(
+            this->test_< GetJsonObjectFromObject >(
                 _JSON_STRING
                 , _KEY
                 , _EXPECTED_OBJECT
@@ -139,7 +139,7 @@ TEST_F(
 
 TEST_F(
     GetJsonObjectTest
-    , FromJsonObject
+    , FromObject
 )
 {
     this->test(
@@ -161,7 +161,7 @@ TEST_F(
 
 TEST_F(
     GetJsonObjectTest
-    , FailedNotObject
+    , FailedNotObjectFromJson
 )
 {
     this->testAnyThrow(
@@ -172,3 +172,6 @@ TEST_F(
         , "parentKey1.parentKey2.keyの値がオブジェクトではない"
     );
 }
+
+//TODO FailedNotExistsFromObject
+//TODO FailedNotObjectFromObject
