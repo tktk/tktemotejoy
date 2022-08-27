@@ -125,7 +125,13 @@ const Json::object_t * getJsonObjectFromObjectNotRequired(
     }
     const auto &    JSON = IT->second;
 
-    return &( JSON.get_ref< const Json::object_t & >() );
+    return &(
+        getJsonObjectFromJson(
+            JSON
+            , _KEY
+            , _PARENT_KEYS ...
+        )
+    );
 }
 
 #endif  // TKTEMOTEJOY_JSON_H
