@@ -229,4 +229,18 @@ TEST_F(
     );
 }
 
-//TODO FailedNotObjectFromObject
+TEST_F(
+    GetJsonObjectTest
+    , FailedNotObjectFromObject
+)
+{
+    this->testAnyThrowFromObject(
+        R"({
+    "key" : "NOT OBJECT"
+})"
+        , "key"
+        , "parentKey1"
+        , "parentKey2"
+        , "parentKey1.parentKey2.keyの値がオブジェクトではない"
+    );
+}
