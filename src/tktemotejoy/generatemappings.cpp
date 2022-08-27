@@ -136,13 +136,11 @@ namespace {
             }
 
             const auto &    MAPPING_JSON = ITEM.second;
-            if( MAPPING_JSON.is_object() == false ) {
-                throw jsonIsNotObject(
-                    _KEY
-                    , index
-                );
-            }
-            const auto &    MAPPING = MAPPING_JSON.get_ref< const Json::object_t & >();
+            const auto &    MAPPING = getJsonObject(
+                MAPPING_JSON
+                , _KEY
+                , index
+            );
 
             auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( MAPPING );
 
@@ -198,13 +196,11 @@ namespace {
         auto    index = std::size_t( 0 );
         auto    impl = Mappings::Impl();
         for( const auto & MAPPING_JSON : MAPPINGS ) {
-            if( MAPPING_JSON.is_object() == false ) {
-                throw jsonIsNotObject(
-                    ROOT_KEY_MAPPINGS
-                    , index
-                );
-            }
-            const auto &    MAPPING = MAPPING_JSON.get_ref< const Json::object_t & >();
+            const auto &    MAPPING = getJsonObject(
+                MAPPING_JSON
+                , ROOT_KEY_MAPPINGS
+                , index
+            );
 
             impl.push_back( generateMapping( MAPPING ) );
 
@@ -219,14 +215,14 @@ Mappings generateMappings(
     const Json &    _JSON
 )
 {
-    if( _JSON.is_object() == false ) {
-        throw jsonIsNotObject( JSON );
-    }
-    const auto &    JSON_OBJECT = _JSON.get_ref< const Json::object_t & >();
+    const auto &    OBJECT = getJsonObject(
+        _JSON
+        , JSON
+    );
 
-    const auto  GENERAL = generateGeneral( JSON_OBJECT );
+    const auto  GENERAL = generateGeneral( OBJECT );
 
-    auto    impl = generateMappingsImpl( JSON_OBJECT );
+    auto    impl = generateMappingsImpl( OBJECT );
 
     return Mappings(
         std::move( impl )
