@@ -188,6 +188,24 @@ namespace {
                 , _EXPECTED_WHAT
             );
         }
+
+        void testNullFromObjectNotRequired(
+            const std::string &     _JSON_STRING
+            , const std::string &   _KEY
+        )
+        {
+            const auto  JSON = Json::parse( _JSON_STRING );
+
+            EXPECT_EQ(
+                nullptr
+                , &(
+                    GetJsonObjectFromObjectNotRequired()(
+                        JSON
+                        , _KEY
+                    )
+                )
+            );
+        }
     };
 }
 
@@ -296,5 +314,17 @@ TEST_F(
             , { "key2", "def" }
             , { "key3", "ghi" }
         }
+    );
+}
+
+TEST_F(
+    GetJsonObjectTest
+    , NotExistsNotRequired
+)
+{
+    this->testNullFromObjectNotRequired(
+        R"({
+})"
+        , "key"
     );
 }
