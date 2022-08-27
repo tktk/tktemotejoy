@@ -112,4 +112,15 @@ const Json::object_t & getJsonObjectFromObject(
     );
 }
 
+template< typename ... PARENT_KEYS_T >
+const Json::object_t * getJsonObjectFromObjectNotRequired(
+    const Json::object_t &      _OBJECT
+    , const std::string &       _KEY
+    , const PARENT_KEYS_T & ... _PARENT_KEYS
+)
+{
+    //TODO
+    return nullptr;
+}
+
 #endif  // TKTEMOTEJOY_JSON_H

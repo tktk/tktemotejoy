@@ -44,6 +44,25 @@ namespace {
             }
         };
 
+        struct GetJsonObjectFromObjectNotRequired
+        {
+            template< typename ... PARENT_KEYS_T >
+            const auto & operator()(
+                const Json &                _JSON
+                , const std::string &       _KEY
+                , const PARENT_KEYS_T & ... _PARENT_KEYS
+            ) const
+            {
+                const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
+
+                return *getJsonObjectFromObjectNotRequired(
+                    OBJECT
+                    , _KEY
+                    , _PARENT_KEYS ...
+                );
+            }
+        };
+
         template< typename GET_JSON_OBJECT_T >
         void test(
             const std::string &                                 _JSON_STRING
@@ -98,7 +117,7 @@ namespace {
         }
 
     public:
-        void test(
+        void testFromJson(
             const std::string &                                 _JSON_STRING
             , const std::map< std::string, Json::string_t > &   _EXPECTED_OBJECT
         ) const
@@ -110,13 +129,26 @@ namespace {
             );
         }
 
-        void test(
+        void testFromObject(
             const std::string &                                 _JSON_STRING
             , const std::string &                               _KEY
             , const std::map< std::string, Json::string_t > &   _EXPECTED_OBJECT
         ) const
         {
             this->test< GetJsonObjectFromObject >(
+                _JSON_STRING
+                , _KEY
+                , _EXPECTED_OBJECT
+            );
+        }
+
+        void testFromObjectNotRequired(
+            const std::string &                                 _JSON_STRING
+            , const std::string &                               _KEY
+            , const std::map< std::string, Json::string_t > &   _EXPECTED_OBJECT
+        ) const
+        {
+            this->test< GetJsonObjectFromObjectNotRequired >(
                 _JSON_STRING
                 , _KEY
                 , _EXPECTED_OBJECT
@@ -164,7 +196,7 @@ TEST_F(
     , FromJson
 )
 {
-    this->test(
+    this->testFromJson(
         R"({
     "key1" : "abc",
     "key2" : "def",
@@ -197,7 +229,7 @@ TEST_F(
     , FromObject
 )
 {
-    this->test(
+    this->testFromObject(
         R"({
     "key" : {
         "key1" : "abc",
@@ -242,5 +274,27 @@ TEST_F(
         , "parentKey1"
         , "parentKey2"
         , "parentKey1.parentKey2.keyの値がオブジェクトではない"
+    );
+}
+
+TEST_F(
+    GetJsonObjectTest
+    , FromObjectNotRequired
+)
+{
+    this->testFromObjectNotRequired(
+        R"({
+    "key" : {
+        "key1" : "abc",
+        "key2" : "def",
+        "key3" : "ghi"
+    }
+})"
+        , "key"
+        , {
+            { "key1", "abc" }
+            , { "key2", "def" }
+            , { "key3", "ghi" }
+        }
     );
 }
