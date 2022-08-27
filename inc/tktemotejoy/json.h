@@ -30,4 +30,14 @@ const Json::array_t & getJsonArray(
     return JSON.get_ref< const Json::array_t & >();
 }
 
+template< typename ... KEYS_T >
+const Json::object_t & getJsonObject(
+    const Json &            _JSON
+    , const KEYS_T & ...    _KEYS
+)
+{
+    //TODO
+    return *static_cast< const Json::object_t * >( nullptr );
+}
+
 #endif  // TKTEMOTEJOY_JSON_H
