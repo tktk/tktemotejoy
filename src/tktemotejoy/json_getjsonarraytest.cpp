@@ -100,125 +100,18 @@ TEST_F(
     );
 }
 
-//TODO FailedNotArray
-
-/*
 TEST_F(
-    JsonErrorTest
-    , JsonIsNotExists
+    GetJsonArrayTest
+    , FailedNotArray
 )
 {
-    struct JsonIsNotExists
-    {
-        auto operator()(
-        ) const
-        {
-            return jsonIsNotExists( "key" );
-        }
-    };
-
-    this->test< JsonIsNotExists >( "keyが存在しない" );
+    this->testAnyThrow(
+        R"({
+    "key" : "NOT ARRAY"
+})"
+        , "key"
+        , "parentKey1"
+        , "parentKey2"
+        , "parentKey1.parentKey2.keyの値が配列ではない"
+    );
 }
-
-TEST_F(
-    JsonErrorTest
-    , JsonIsNotInteger
-)
-{
-    struct JsonIsNotInteger
-    {
-        auto operator()(
-        ) const
-        {
-            return jsonIsNotInteger( "key" );
-        }
-    };
-
-    this->test< JsonIsNotInteger >( "keyの値が整数ではない" );
-}
-
-TEST_F(
-    JsonErrorTest
-    , JsonIsNotUnsigned
-)
-{
-    struct JsonIsNotUnsigned
-    {
-        auto operator()(
-        ) const
-        {
-            return jsonIsNotUnsigned( "key" );
-        }
-    };
-
-    this->test< JsonIsNotUnsigned >( "keyの値が符号なし整数ではない" );
-}
-
-TEST_F(
-    JsonErrorTest
-    , JsonIsNotString
-)
-{
-    struct JsonIsNotString
-    {
-        auto operator()(
-        ) const
-        {
-            return jsonIsNotString( "key" );
-        }
-    };
-
-    this->test< JsonIsNotString >( "keyの値が文字列ではない" );
-}
-
-TEST_F(
-    JsonErrorTest
-    , JsonIsNotArray
-)
-{
-    struct JsonIsNotArray
-    {
-        auto operator()(
-        ) const
-        {
-            return jsonIsNotArray( "key" );
-        }
-    };
-
-    this->test< JsonIsNotArray >( "keyの値が配列ではない" );
-}
-
-TEST_F(
-    JsonErrorTest
-    , JsonIsNotObject
-)
-{
-    struct JsonIsNotObject
-    {
-        auto operator()(
-        ) const
-        {
-            return jsonIsNotObject( "key" );
-        }
-    };
-
-    this->test< JsonIsNotObject >( "keyの値がオブジェクトではない" );
-}
-
-TEST_F(
-    JsonErrorTest
-    , JsonObjectKeyIsNotUnsignedString
-)
-{
-    struct JsonObjectKeyIsNotUnsignedString
-    {
-        auto operator()(
-        ) const
-        {
-            return jsonObjectKeyIsNotUnsignedString( "key" );
-        }
-    };
-
-    this->test< JsonObjectKeyIsNotUnsignedString >( "keyキーが符号なし整数に変換可能な文字列ではない" );
-}
-*/
