@@ -36,8 +36,12 @@ const Json::object_t & getJsonObject(
     , const KEYS_T & ...    _KEYS
 )
 {
-    //TODO
-    return *static_cast< const Json::object_t * >( nullptr );
+/*
+    if( _JSON.is_object() == false ) {
+        throw jsonIsNotObject( _KEYS ... );
+    }
+*/
+    return _JSON.get_ref< const Json::object_t & >();
 }
 
 #endif  // TKTEMOTEJOY_JSON_H
