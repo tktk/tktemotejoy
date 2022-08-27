@@ -119,16 +119,10 @@ const Json::object_t * getJsonObjectFromObjectNotRequired(
     , const PARENT_KEYS_T & ... _PARENT_KEYS
 )
 {
-    //TODO
     const auto  IT = _OBJECT.find( _KEY );
-/*
     if( IT == _OBJECT.end() ) {
-        throw jsonIsNotExists(
-            _PARENT_KEYS ...
-            , _KEY
-        );
+        return nullptr;
     }
-*/
     const auto &    JSON = IT->second;
 
     return &( JSON.get_ref< const Json::object_t & >() );
