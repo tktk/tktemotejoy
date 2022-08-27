@@ -131,4 +131,16 @@ TEST_F(
     );
 }
 
-//TODO NotExistsFromObjectNotRequired
+TEST_F(
+    GetJsonFromObjectTest
+    , NotExistsFromObjectNotRequired
+)
+{
+    this->testFromObjectNotRequired(
+        R"({
+})"
+        , "key"
+        , "DEFAULT"
+        , "DEFAULT"
+    );
+}
