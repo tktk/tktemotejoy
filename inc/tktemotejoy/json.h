@@ -20,12 +20,13 @@ const Json::array_t & getJsonArray(
     }
     const auto &    JSON = IT->second;
 
-    //TODO
-/*
     if( JSON.is_array() == false ) {
-        throw jsonIsNotArray( ROOT_KEY_MAPPINGS );
+        throw jsonIsNotArray(
+            _PARENT_KEYS ...
+            , _KEY
+        );
     }
-*/
+
     return JSON.get_ref< const Json::array_t & >();
 }
 
