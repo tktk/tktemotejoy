@@ -54,17 +54,15 @@ private:
         , const std::string &   _KEY
     ) const
     {
-        const auto  IT = _OBJECT.find( _KEY );
-        if( IT == _OBJECT.end() ) {
+        const auto  HANDLER_PTR = getJsonObjectFromObjectNotRequired(
+            _OBJECT
+            , _KEY
+        );
+
+        if( HANDLER_PTR == nullptr ) {
             return GENERATE_DUMMY_HANDLER_UNIQUE_T()();
         } else {
-            const auto &    HANDLER_JSON = IT->second;
-            const auto &    HANDLER = getJsonObjectFromJson(
-                HANDLER_JSON
-                , _KEY
-            );
-
-            return GENERATE_HANDLER_UNIQUE_T()( HANDLER );
+            return GENERATE_HANDLER_UNIQUE_T()( *HANDLER_PTR );
         }
     }
 };
