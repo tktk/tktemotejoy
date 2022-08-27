@@ -43,14 +43,9 @@ const auto & getJsonFromObjectNotRequired(
 )
 {
     const auto  IT = _OBJECT.find( _KEY );
-/*
     if( IT == _OBJECT.end() ) {
-        throw jsonIsNotExists(
-            _PARENT_KEYS ...
-            , _KEY
-        );
+        return _DEFAULT;
     }
-*/
     const auto &    JSON = IT->second;
 
     return GET_JSON_T()(
