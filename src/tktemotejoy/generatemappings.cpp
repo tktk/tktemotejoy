@@ -5,6 +5,7 @@
 #include "tktemotejoy/generatehandler/operateaxishandlerforchangemapping.h"
 #include "tktemotejoy/mappings.h"
 #include "tktemotejoy/customjson.h"
+#include "tktemotejoy/json.h"
 #include "tktemotejoy/jsonerror.h"
 #include <cstddef>
 #include <string>
@@ -29,11 +30,11 @@ namespace {
     };
 
     General generateGeneral(
-        const Json::object_t &  _JSON_OBJECT
+        const Json::object_t &  _OBJECT
     )
     {
-        const auto  GENERAL_IT = _JSON_OBJECT.find( ROOT_KEY_GENERAL );
-        if( GENERAL_IT == _JSON_OBJECT.end() ) {
+        const auto  GENERAL_IT = _OBJECT.find( ROOT_KEY_GENERAL );
+        if( GENERAL_IT == _OBJECT.end() ) {
             throw jsonIsNotExists( ROOT_KEY_GENERAL );
         }
         const auto &    GENERAL_JSON = GENERAL_IT->second;
@@ -68,52 +69,52 @@ namespace {
     struct GeneratePressButtonHandlerForPspStateUnique
     {
         auto operator()(
-            const Json::object_t &  _JSON_OBJECT
+            const Json::object_t &  _OBJECT
         ) const
         {
-            return generatePressButtonHandlerForPspStateUnique( _JSON_OBJECT );
+            return generatePressButtonHandlerForPspStateUnique( _OBJECT );
         }
     };
 
     struct GeneratePressButtonHandlerForChangeMappingUnique
     {
         auto operator()(
-            const Json::object_t &  _JSON_OBJECT
+            const Json::object_t &  _OBJECT
         ) const
         {
-            return generatePressButtonHandlerForChangeMappingUnique( _JSON_OBJECT );
+            return generatePressButtonHandlerForChangeMappingUnique( _OBJECT );
         }
     };
 
     struct GenerateOperateAxisHandlerForPspStateUnique
     {
         auto operator()(
-            const Json::object_t &  _JSON_OBJECT
+            const Json::object_t &  _OBJECT
         ) const
         {
-            return generateOperateAxisHandlerForPspStateUnique( _JSON_OBJECT );
+            return generateOperateAxisHandlerForPspStateUnique( _OBJECT );
         }
     };
 
     struct GenerateOperateAxisHandlerForChangeMappingUnique
     {
         auto operator()(
-            const Json::object_t &  _JSON_OBJECT
+            const Json::object_t &  _OBJECT
         ) const
         {
-            return generateOperateAxisHandlerForChangeMappingUnique( _JSON_OBJECT );
+            return generateOperateAxisHandlerForChangeMappingUnique( _OBJECT );
         }
     };
 
     template< typename GENERATE_HANDLER_UNIQUE_T >
     void setHandlers(
         Mapping &                   _mapping
-        , const Json::object_t &    _JSON_OBJECT
+        , const Json::object_t &    _OBJECT
         , const std::string &       _KEY
     )
     {
-        const auto  IT = _JSON_OBJECT.find( _KEY );
-        if( IT == _JSON_OBJECT.end() ) {
+        const auto  IT = _OBJECT.find( _KEY );
+        if( IT == _OBJECT.end() ) {
             return;
         }
         const auto &    MAPPINGS_JSON = IT->second;
@@ -153,32 +154,32 @@ namespace {
     }
 
     Mapping generateMapping(
-        const Json::object_t &  _JSON_OBJECT
+        const Json::object_t &  _OBJECT
     )
     {
         auto    mapping = Mapping();
 
         setHandlers< GeneratePressButtonHandlerForPspStateUnique >(
             mapping
-            , _JSON_OBJECT
+            , _OBJECT
             , MAPPING_KEY_BUTTONS_FOR_PSP_STATE
         );
 
         setHandlers< GeneratePressButtonHandlerForChangeMappingUnique >(
             mapping
-            , _JSON_OBJECT
+            , _OBJECT
             , MAPPING_KEY_BUTTONS_FOR_CHANGE_MAPPING
         );
 
         setHandlers< GenerateOperateAxisHandlerForPspStateUnique >(
             mapping
-            , _JSON_OBJECT
+            , _OBJECT
             , MAPPING_KEY_AXES_FOR_PSP_STATE
         );
 
         setHandlers< GenerateOperateAxisHandlerForChangeMappingUnique >(
             mapping
-            , _JSON_OBJECT
+            , _OBJECT
             , MAPPING_KEY_AXES_FOR_CHANGE_MAPPING
         );
 
@@ -186,19 +187,13 @@ namespace {
     }
 
     Mappings::Impl generateMappingsImpl(
-        const Json::object_t &  _JSON_OBJECT
+        const Json::object_t &  _OBJECT
     )
     {
-        const auto  IT = _JSON_OBJECT.find( ROOT_KEY_MAPPINGS );
-        if( IT == _JSON_OBJECT.end() ) {
-            throw jsonIsNotExists( ROOT_KEY_MAPPINGS );
-        }
-        const auto &    MAPPINGS_JSON = IT->second;
-
-        if( MAPPINGS_JSON.is_array() == false ) {
-            throw jsonIsNotArray( ROOT_KEY_MAPPINGS );
-        }
-        const auto &    MAPPINGS = MAPPINGS_JSON.get_ref< const Json::array_t & >();
+        const auto &    MAPPINGS = getJsonArray(
+            _OBJECT
+            , ROOT_KEY_MAPPINGS
+        );
 
         auto    index = std::size_t( 0 );
         auto    impl = Mappings::Impl();
