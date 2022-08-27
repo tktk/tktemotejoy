@@ -15,7 +15,22 @@ const auto & getJsonFromObject(
 )
 {
     //TODO
-    return _KEY;
+    const auto  IT = _OBJECT.find( _KEY );
+/*
+    if( IT == _OBJECT.end() ) {
+        throw jsonIsNotExists(
+            _PARENT_KEYS ...
+            , _KEY
+        );
+    }
+*/
+    const auto &    JSON = IT->second;
+
+    return GET_JSON_T()(
+        JSON
+        , _KEY
+        , _PARENT_KEYS ...
+    );
 }
 
 //TODO 要共通化
