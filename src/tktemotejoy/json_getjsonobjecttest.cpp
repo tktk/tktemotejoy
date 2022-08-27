@@ -10,23 +10,28 @@ namespace {
     {
         struct GetJsonObjectFromJson
         {
+            template< typename ... PARENT_KEYS_T >
             const auto & operator()(
-                const Json &            _JSON
-                , const std::string &   _KEY
+                const Json &                _JSON
+                , const std::string &       _KEY
+                , const PARENT_KEYS_T & ... _PARENT_KEYS
             ) const
             {
                 return getJsonObjectFromJson(
                     _JSON
                     , _KEY
+                    , _PARENT_KEYS ...
                 );
             }
         };
 
         struct GetJsonObjectFromObject
         {
+            template< typename ... PARENT_KEYS_T >
             const auto & operator()(
-                const Json &            _JSON
-                , const std::string &   _KEY
+                const Json &                _JSON
+                , const std::string &       _KEY
+                , const PARENT_KEYS_T & ... _PARENT_KEYS
             ) const
             {
                 const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
@@ -34,12 +39,13 @@ namespace {
                 return getJsonObjectFromObject(
                     OBJECT
                     , _KEY
+                    , _PARENT_KEYS ...
                 );
             }
         };
 
         template< typename GET_JSON_OBJECT_T >
-        void test_(
+        void test(
             const std::string &                                 _JSON_STRING
             , const std::string &                               _KEY
             , const std::map< std::string, Json::string_t > &   _EXPECTED_OBJECT
@@ -66,13 +72,38 @@ namespace {
             }
         }
 
+        template< typename GET_JSON_OBJECT_T >
+        void testAnyThrow(
+            const std::string &     _JSON_STRING
+            , const std::string &   _KEY
+            , const std::string &   _PARENT_KEY1
+            , const std::string &   _PARENT_KEY2
+            , const std::string &   _EXPECTED_WHAT
+        )
+        {
+            const auto  JSON = Json::parse( _JSON_STRING );
+
+            try {
+                GET_JSON_OBJECT_T()(
+                    JSON
+                    , _KEY
+                    , _PARENT_KEY1
+                    , _PARENT_KEY2
+                );
+
+                ASSERT_FALSE( true );   // ここに到達してはいけない
+            } catch( const std::runtime_error & _EX ) {
+                EXPECT_STREQ( _EXPECTED_WHAT.c_str(), _EX.what() );
+            }
+        }
+
     public:
         void test(
             const std::string &                                 _JSON_STRING
             , const std::map< std::string, Json::string_t > &   _EXPECTED_OBJECT
         ) const
         {
-            this->test_< GetJsonObjectFromJson >(
+            this->test< GetJsonObjectFromJson >(
                 _JSON_STRING
                 , "key"
                 , _EXPECTED_OBJECT
@@ -85,14 +116,14 @@ namespace {
             , const std::map< std::string, Json::string_t > &   _EXPECTED_OBJECT
         ) const
         {
-            this->test_< GetJsonObjectFromObject >(
+            this->test< GetJsonObjectFromObject >(
                 _JSON_STRING
                 , _KEY
                 , _EXPECTED_OBJECT
             );
         }
 
-        void testAnyThrow(
+        void testAnyThrowFromJson(
             const std::string &     _JSON_STRING
             , const std::string &   _KEY
             , const std::string &   _PARENT_KEY1
@@ -100,20 +131,30 @@ namespace {
             , const std::string &   _EXPECTED_WHAT
         )
         {
-            const auto  JSON = Json::parse( _JSON_STRING );
+            this->testAnyThrow< GetJsonObjectFromJson >(
+                _JSON_STRING
+                , _KEY
+                , _PARENT_KEY1
+                , _PARENT_KEY2
+                , _EXPECTED_WHAT
+            );
+        }
 
-            try {
-                getJsonObjectFromJson(
-                    JSON
-                    , _KEY
-                    , _PARENT_KEY1
-                    , _PARENT_KEY2
-                );
-
-                ASSERT_FALSE( true );   // ここに到達してはいけない
-            } catch( const std::runtime_error & _EX ) {
-                EXPECT_STREQ( _EXPECTED_WHAT.c_str(), _EX.what() );
-            }
+        void testAnyThrowFromObject(
+            const std::string &     _JSON_STRING
+            , const std::string &   _KEY
+            , const std::string &   _PARENT_KEY1
+            , const std::string &   _PARENT_KEY2
+            , const std::string &   _EXPECTED_WHAT
+        )
+        {
+            this->testAnyThrow< GetJsonObjectFromObject >(
+                _JSON_STRING
+                , _KEY
+                , _PARENT_KEY1
+                , _PARENT_KEY2
+                , _EXPECTED_WHAT
+            );
         }
     };
 }
@@ -142,7 +183,7 @@ TEST_F(
     , FailedNotObjectFromJson
 )
 {
-    this->testAnyThrow(
+    this->testAnyThrowFromJson(
         R"("NOT OBJECT")"
         , "key"
         , "parentKey1"
@@ -178,7 +219,7 @@ TEST_F(
     , FailedNotExistsFromObject
 )
 {
-    this->testAnyThrow(
+    this->testAnyThrowFromObject(
         R"({
 })"
         , "key"

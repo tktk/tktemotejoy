@@ -80,7 +80,6 @@ const Json::object_t & getJsonObjectFromJson(
     return _JSON.get_ref< const Json::object_t & >();
 }
 
-//TODO 要共通化
 template< typename ... PARENT_KEYS_T >
 const Json::object_t & getJsonObjectFromObject(
     const Json::object_t &      _OBJECT
@@ -88,16 +87,13 @@ const Json::object_t & getJsonObjectFromObject(
     , const PARENT_KEYS_T & ... _PARENT_KEYS
 )
 {
-    //TODO
     const auto  IT = _OBJECT.find( _KEY );
-/*
     if( IT == _OBJECT.end() ) {
         throw jsonIsNotExists(
             _PARENT_KEYS ...
             , _KEY
         );
     }
-*/
     const auto &    JSON = IT->second;
 
     //TODO
