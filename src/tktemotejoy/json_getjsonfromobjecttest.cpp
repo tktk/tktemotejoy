@@ -86,8 +86,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GetJsonFromObjectTest
     , FailedNotExists
@@ -102,4 +100,3 @@ TEST_F(
         , "parentKey1.parentKey2.keyが存在しない"
     );
 }
-*/
