@@ -30,17 +30,19 @@ const Json::array_t & getJsonArray(
     return JSON.get_ref< const Json::array_t & >();
 }
 
-template< typename ... KEYS_T >
+template< typename ... PARENT_KEYS_T >
 const Json::object_t & getJsonObject(
-    const Json &            _JSON
-    , const KEYS_T & ...    _KEYS
+    const Json &                _JSON
+    , const std::string &       _KEY
+    , const PARENT_KEYS_T & ... _PARENT_KEYS
 )
 {
-/*
     if( _JSON.is_object() == false ) {
-        throw jsonIsNotObject( _KEYS ... );
+        throw jsonIsNotObject(
+            _PARENT_KEYS ...
+            , _KEY
+        );
     }
-*/
     return _JSON.get_ref< const Json::object_t & >();
 }
 
