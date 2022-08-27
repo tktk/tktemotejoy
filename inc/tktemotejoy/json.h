@@ -4,6 +4,20 @@
 #include "tktemotejoy/customjson.h"
 #include "tktemotejoy/jsonerror.h"
 
+template<
+    typename GET_JSON_T
+    , typename ... PARENT_KEYS_T
+>
+const auto & getJsonFromObject(
+    const Json::object_t &      _OBJECT
+    , const std::string &       _KEY
+    , const PARENT_KEYS_T & ... _PARENT_KEYS
+)
+{
+    //TODO
+    return _KEY;
+}
+
 //TODO 要共通化
 template< typename ... PARENT_KEYS_T >
 const Json::array_t & getJsonArrayFromObject(
