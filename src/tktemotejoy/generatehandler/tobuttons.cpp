@@ -4,6 +4,7 @@
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/pspstate.h"
 #include "tktemotejoy/customjson.h"
+#include "tktemotejoy/json.h"
 #include "tktemotejoy/jsonerror.h"
 #include <map>
 #include <string>
@@ -46,24 +47,11 @@ namespace {
             const Json::object_t &  _OBJECT
         ) const
         {
-            const auto  OBJECT_END = _OBJECT.end();
-
-            const auto  BUTTONS_IT = _OBJECT.find( KEY_BUTTONS );
-            if( BUTTONS_IT == OBJECT_END ) {
-                throw jsonIsNotExists(
-                    TYPE
-                    , KEY_BUTTONS
-                );
-            }
-            const auto &    BUTTON_STRINGS_JSON = BUTTONS_IT->second;
-
-            if( BUTTON_STRINGS_JSON.is_array() == false ) {
-                throw jsonIsNotArray(
-                    TYPE
-                    , KEY_BUTTONS
-                );
-            }
-            const auto &    BUTTON_STRINGS = BUTTON_STRINGS_JSON.get_ref< const Json::array_t & >();
+            const auto &    BUTTON_STRINGS = getJsonArray(
+                _OBJECT
+                , KEY_BUTTONS
+                , TYPE
+            );
 
             auto    buttons = PspState::Buttons( 0 );
 
