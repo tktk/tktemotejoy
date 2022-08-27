@@ -189,6 +189,23 @@ namespace {
             );
         }
 
+        void testAnyThrowFromObjectNotRequired(
+            const std::string &     _JSON_STRING
+            , const std::string &   _KEY
+            , const std::string &   _PARENT_KEY1
+            , const std::string &   _PARENT_KEY2
+            , const std::string &   _EXPECTED_WHAT
+        )
+        {
+            this->testAnyThrow< GetJsonObjectFromObjectNotRequired >(
+                _JSON_STRING
+                , _KEY
+                , _PARENT_KEY1
+                , _PARENT_KEY2
+                , _EXPECTED_WHAT
+            );
+        }
+
         void testNullFromObjectNotRequired(
             const std::string &     _JSON_STRING
             , const std::string &   _KEY
@@ -326,5 +343,21 @@ TEST_F(
         R"({
 })"
         , "key"
+    );
+}
+
+TEST_F(
+    GetJsonObjectTest
+    , FailedNotObjectFromObjectNotRequired
+)
+{
+    this->testAnyThrowFromObjectNotRequired(
+        R"({
+    "key" : "NOT OBJECT"
+})"
+        , "key"
+        , "parentKey1"
+        , "parentKey2"
+        , "parentKey1.parentKey2.keyの値がオブジェクトではない"
     );
 }
