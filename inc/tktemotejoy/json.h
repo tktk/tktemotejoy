@@ -30,6 +30,38 @@ const auto & getJsonFromObject(
     );
 }
 
+template<
+    typename GET_JSON_T
+    , typename DEFAULT_T
+    , typename ... PARENT_KEYS_T
+>
+const auto & getJsonFromObjectNotRequired(
+    const Json::object_t &      _OBJECT
+    , const DEFAULT_T &         _DEFAULT
+    , const std::string &       _KEY
+    , const PARENT_KEYS_T & ... _PARENT_KEYS
+)
+{
+    //TODO
+    return _DEFAULT;
+/*
+    const auto  IT = _OBJECT.find( _KEY );
+    if( IT == _OBJECT.end() ) {
+        throw jsonIsNotExists(
+            _PARENT_KEYS ...
+            , _KEY
+        );
+    }
+    const auto &    JSON = IT->second;
+
+    return GET_JSON_T()(
+        JSON
+        , _KEY
+        , _PARENT_KEYS ...
+    );
+*/
+}
+
 struct GetJsonArrayFromObject
 {
     template< typename ... PARENT_KEYS_T >

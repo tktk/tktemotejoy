@@ -21,7 +21,7 @@ namespace {
     class GetJsonFromObjectTest : public ::testing::Test
     {
     public:
-        void test(
+        void testFromObject(
             const std::string &     _JSON_STRING
             , const std::string &   _KEY
             , const std::string &   _EXPECTED
@@ -33,6 +33,26 @@ namespace {
 
             const auto &    STRING = getJsonFromObject< TestGetJsonString >(
                 OBJECT
+                , _KEY
+            );
+
+            ASSERT_EQ( _EXPECTED, STRING );
+        }
+
+        void testFromObjectNotRequired(
+            const std::string &     _JSON_STRING
+            , const std::string &   _KEY
+            , const std::string &   _DEFAULT
+            , const std::string &   _EXPECTED
+        ) const
+        {
+            const auto  JSON = Json::parse( _JSON_STRING );
+
+            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
+
+            const auto &    STRING = getJsonFromObjectNotRequired< TestGetJsonString >(
+                OBJECT
+                , _DEFAULT
                 , _KEY
             );
 
@@ -69,10 +89,10 @@ namespace {
 
 TEST_F(
     GetJsonFromObjectTest
-    , Standard
+    , FromObject
 )
 {
-    this->test(
+    this->testFromObject(
         R"({
     "key" : "STRING"
 })"
@@ -83,7 +103,7 @@ TEST_F(
 
 TEST_F(
     GetJsonFromObjectTest
-    , FailedNotExists
+    , FailedNotExistsFromObject
 )
 {
     this->testAnyThrow(
@@ -95,3 +115,20 @@ TEST_F(
         , "parentKey1.parentKey2.keyが存在しない"
     );
 }
+
+TEST_F(
+    GetJsonFromObjectTest
+    , FromObjectNotRequired
+)
+{
+    this->testFromObjectNotRequired(
+        R"({
+    "key" : "STRING"
+})"
+        , "key"
+        , "DEFAULT"
+        , "STRING"
+    );
+}
+
+//TODO NotExistsFromObjectNotRequired
