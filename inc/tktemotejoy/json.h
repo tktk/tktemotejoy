@@ -77,8 +77,26 @@ const Json::object_t & getJsonObjectFromJson(
             , _KEY
         );
     }
+
     return _JSON.get_ref< const Json::object_t & >();
 }
+
+struct GetJsonObjectFromObject
+{
+    template< typename ... PARENT_KEYS_T >
+    const auto & operator()(
+        const Json &                _JSON
+        , const std::string &       _KEY
+        , const PARENT_KEYS_T & ... _PARENT_KEYS
+    ) const
+    {
+        return getJsonObjectFromJson(
+            _JSON
+            , _KEY
+            , _PARENT_KEYS ...
+        );
+    }
+};
 
 template< typename ... PARENT_KEYS_T >
 const Json::object_t & getJsonObjectFromObject(
@@ -87,24 +105,11 @@ const Json::object_t & getJsonObjectFromObject(
     , const PARENT_KEYS_T & ... _PARENT_KEYS
 )
 {
-    const auto  IT = _OBJECT.find( _KEY );
-    if( IT == _OBJECT.end() ) {
-        throw jsonIsNotExists(
-            _PARENT_KEYS ...
-            , _KEY
-        );
-    }
-    const auto &    JSON = IT->second;
-
-    //TODO
-    return JSON.get_ref< const Json::object_t & >();
-/*
-    return getJsonObjectFromJson(
-        JSON
+    return getJsonFromObject< GetJsonObjectFromObject >(
+        _OBJECT
         , _KEY
         , _PARENT_KEYS ...
     );
-*/
 }
 
 #endif  // TKTEMOTEJOY_JSON_H
