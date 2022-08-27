@@ -3,6 +3,7 @@
 
 #include "tktemotejoy/generatehandler/withdeadzone.h"
 #include "tktemotejoy/customjson.h"
+#include "tktemotejoy/json.h"
 #include "tktemotejoy/jsonerror.h"
 #include <linux/joystick.h>
 #include <string>
@@ -58,11 +59,10 @@ private:
             return GENERATE_DUMMY_HANDLER_UNIQUE_T()();
         } else {
             const auto &    HANDLER_JSON = IT->second;
-            if( HANDLER_JSON.is_object() == false ) {
-                throw jsonIsNotObject( _KEY );
-            }
-
-            const auto &    HANDLER = HANDLER_JSON.get_ref< const Json::object_t & >();
+            const auto &    HANDLER = getJsonObject(
+                HANDLER_JSON
+                , _KEY
+            );
 
             return GENERATE_HANDLER_UNIQUE_T()( HANDLER );
         }
