@@ -144,15 +144,10 @@ const Json::object_t * getJsonObjectFromObjectNotRequired(
     , const PARENT_KEYS_T & ... _PARENT_KEYS
 )
 {
-    const auto  IT = _OBJECT.find( _KEY );
-    if( IT == _OBJECT.end() ) {
-        return nullptr;
-    }
-    const auto &    JSON = IT->second;
-
     return &(
-        getJsonObjectFromJson(
-            JSON
+        getJsonFromObjectNotRequired< GetJsonObjectFromObject >(
+            _OBJECT
+            , *static_cast< const Json::object_t * >( nullptr )
             , _KEY
             , _PARENT_KEYS ...
         )
