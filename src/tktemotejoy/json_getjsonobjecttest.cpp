@@ -16,7 +16,10 @@ namespace {
         {
             const auto  JSON = Json::parse( _JSON_STRING );
 
-            const auto &    OBJECT = getJsonObject( JSON );
+            const auto &    OBJECT = getJsonObject(
+                JSON
+                , "key"
+            );
 
             ASSERT_EQ( _EXPECTED_OBJECT.size(), OBJECT.size() );
 
@@ -34,8 +37,9 @@ namespace {
 
         void testAnyThrow(
             const std::string &     _JSON_STRING
-            , const std::string &   _KEY1
-            , const std::string &   _KEY2
+            , const std::string &   _KEY
+            , const std::string &   _PARENT_KEY1
+            , const std::string &   _PARENT_KEY2
             , const std::string &   _EXPECTED_WHAT
         )
         {
@@ -44,8 +48,9 @@ namespace {
             try {
                 getJsonObject(
                     JSON
-                    , _KEY1
-                    , _KEY2
+                    , _KEY
+                    , _PARENT_KEY1
+                    , _PARENT_KEY2
                 );
 
                 ASSERT_FALSE( true );   // ここに到達してはいけない
@@ -75,21 +80,16 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GetJsonObjectTest
     , FailedNotObject
 )
 {
     this->testAnyThrow(
-        R"({
-    "key" : "NOT ARRAY"
-})"
+        R"("NOT OBJECT")"
         , "key"
         , "parentKey1"
         , "parentKey2"
-        , "parentKey1.parentKey2.keyの値が配列ではない"
+        , "parentKey1.parentKey2.keyの値がオブジェクトではない"
     );
 }
-*/
