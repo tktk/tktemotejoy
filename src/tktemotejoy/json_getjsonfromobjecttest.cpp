@@ -5,9 +5,9 @@
 #include <stdexcept>
 
 namespace {
-    template< typename ... PARENT_KEYS_T >
     struct TestGetJsonString
     {
+        template< typename ... PARENT_KEYS_T >
         const auto & operator()(
             const Json &                _JSON
             , const std::string &
@@ -31,7 +31,7 @@ namespace {
 
             const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
 
-            const auto &    STRING = getJsonFromObject< TestGetJsonString<> >(
+            const auto &    STRING = getJsonFromObject< TestGetJsonString >(
                 OBJECT
                 , _KEY
             );
@@ -52,12 +52,7 @@ namespace {
             const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
 
             try {
-                getJsonFromObject<
-                    TestGetJsonString<
-                        const std::string &
-                        , const std::string &
-                    >
-                >(
+                getJsonFromObject< TestGetJsonString >(
                     OBJECT
                     , _KEY
                     , _PARENT_KEY1
