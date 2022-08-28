@@ -223,24 +223,19 @@ const Json::number_integer_t & getJsonIntegerFromObject(
 }
 
 template< typename ... PARENT_KEYS_T >
-const Json::number_integer_t & getJsonIntegerFromObjectNotRequired(
-    const Json::object_t &              _OBJECT
-    , const Json::number_integer_t &    _DEFAULT
-    , const std::string &               _KEY
-    , const PARENT_KEYS_T & ...         _PARENT_KEYS
+Json::number_integer_t getJsonIntegerFromObjectNotRequired(
+    const Json::object_t &          _OBJECT
+    , const Json::number_integer_t  _DEFAULT
+    , const std::string &           _KEY
+    , const PARENT_KEYS_T & ...     _PARENT_KEYS
 )
 {
-    const auto  IT = _OBJECT.find( _KEY );
-    const auto &    JSON = IT->second;
-
-    return JSON.get_ref< const Json::number_integer_t & >();
-/*
-    return getJsonFromObject< GetJsonIntegerFromObjectNotRequired >(
+    return getJsonFromObjectNotRequired< GetJsonIntegerFromObject >(
         _OBJECT
+        , _DEFAULT
         , _KEY
         , _PARENT_KEYS ...
     );
-*/
 }
 
 #endif  // TKTEMOTEJOY_JSON_H

@@ -27,7 +27,7 @@ namespace {
     struct GetJsonIntegerFromObjectNotRequired
     {
         template< typename ... ARGS_T >
-        const auto & operator()(
+        auto operator()(
             const Json &            _JSON
             , const ARGS_T & ...    _ARGS
         ) const
