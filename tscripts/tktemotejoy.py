@@ -10,6 +10,7 @@ module.DEPENDS = [
     'tktemotejoy_json_getjsonfromobjecttest',
     'tktemotejoy_json_getjsonarraytest',
     'tktemotejoy_json_getjsonobjecttest',
+    'tktemotejoy_json_getjsonunsignedtest',
     'tktemotejoy_jsonerrortest',
     'tktemotejoy_joystickstate_forpressedbuttonstest',
     'tktemotejoy_joystickstate_foraxestest',

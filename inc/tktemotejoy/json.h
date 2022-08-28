@@ -154,4 +154,24 @@ const Json::object_t * getJsonObjectFromObjectNotRequired(
     );
 }
 
+const Json::number_unsigned_t tmp = 100;
+
+template< typename ... PARENT_KEYS_T >
+const Json::number_unsigned_t & getJsonUnsignedFromObject(
+    const Json::object_t &      _OBJECT
+    , const std::string &       _KEY
+    , const PARENT_KEYS_T & ... _PARENT_KEYS
+)
+{
+    //TODO
+    return tmp;
+/*
+    return getJsonFromObject< GetJsonObjectFromObject >(
+        _OBJECT
+        , _KEY
+        , _PARENT_KEYS ...
+    );
+*/
+}
+
 #endif  // TKTEMOTEJOY_JSON_H
