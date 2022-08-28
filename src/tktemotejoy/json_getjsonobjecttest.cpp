@@ -77,18 +77,7 @@ namespace {
                 , _KEY
             );
 
-            ASSERT_EQ( _EXPECTED_OBJECT.size(), OBJECT.size() );
-
-            const auto  EXPECTED_OBJECT_END = _EXPECTED_OBJECT.end();
-            for( const auto & ITEM : OBJECT ) {
-                const auto  IT = _EXPECTED_OBJECT.find( ITEM.first );
-                ASSERT_NE( EXPECTED_OBJECT_END, IT );
-
-                const auto &    J = static_cast< const Json & >( ITEM.second ); // キャストを消すとコンパイルエラー
-
-                ASSERT_TRUE( J.is_string() );
-                EXPECT_EQ( IT->second, J.get_ref< const Json::string_t & >() );
-            }
+            ASSERT_EQ( _EXPECTED_OBJECT, OBJECT );
         }
 
         template< typename GET_JSON_OBJECT_T >

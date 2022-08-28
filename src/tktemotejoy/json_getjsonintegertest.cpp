@@ -2,31 +2,32 @@
 #include "tktemotejoy/json.h"
 #include "tktemotejoy/customjson.h"
 #include <string>
-#include <vector>
 #include <stdexcept>
 
 namespace {
-    class GetJsonArrayTest : public ::testing::Test
+    class GetJsonIntegerTest : public ::testing::Test
     {
     public:
         void test(
-            const std::string &                     _JSON_STRING
-            , const std::string &                   _KEY
-            , const std::vector< Json::string_t > & _EXPECTED_ARRAY
+            const std::string &                 _JSON_STRING
+            , const std::string &               _KEY
+            , const Json::number_integer_t &    _EXPECTED_INTEGER
         ) const
         {
             const auto  JSON = Json::parse( _JSON_STRING );
 
             const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
 
-            const auto &    ARRAY = getJsonArrayFromObject(
-                OBJECT
-                , _KEY
+            EXPECT_EQ(
+                _EXPECTED_INTEGER
+                , getJsonIntegerFromObject(
+                    OBJECT
+                    , _KEY
+                )
             );
-
-            ASSERT_EQ( _EXPECTED_ARRAY, ARRAY );
         }
 
+/*
         void testAnyThrow(
             const std::string &     _JSON_STRING
             , const std::string &   _KEY
@@ -40,7 +41,7 @@ namespace {
             const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
 
             try {
-                getJsonArrayFromObject(
+                getJsonIntegerFromObject(
                     OBJECT
                     , _KEY
                     , _PARENT_KEY1
@@ -52,33 +53,28 @@ namespace {
                 EXPECT_STREQ( _EXPECTED_WHAT.c_str(), _EX.what() );
             }
         }
+*/
     };
 }
 
 TEST_F(
-    GetJsonArrayTest
+    GetJsonIntegerTest
     , FromObject
 )
 {
     this->test(
         R"({
-    "key" : [
-        "abc",
-        "def",
-        "ghi"
-    ]
+    "key" : 10
 })"
         , "key"
-        , {
-            "abc"
-            , "def"
-            , "ghi"
-        }
+        , 10
     );
 }
 
+//TODO
+/*
 TEST_F(
-    GetJsonArrayTest
+    GetJsonIntegerTest
     , FailedNotExistsFromObject
 )
 {
@@ -93,17 +89,18 @@ TEST_F(
 }
 
 TEST_F(
-    GetJsonArrayTest
-    , FailedNotArrayFromObject
+    GetJsonIntegerTest
+    , FailedNotIntegerFromObject
 )
 {
     this->testAnyThrow(
         R"({
-    "key" : "NOT ARRAY"
+    "key" : "NOT INTEGER"
 })"
         , "key"
         , "parentKey1"
         , "parentKey2"
-        , "parentKey1.parentKey2.keyの値が配列ではない"
+        , "parentKey1.parentKey2.keyの値が符号なし整数ではない"
     );
 }
+*/

@@ -188,4 +188,24 @@ const Json::number_unsigned_t & getJsonUnsignedFromObject(
     );
 }
 
+const auto  tmp = Json::number_integer_t( 100 );    //REMOVEME
+
+template< typename ... PARENT_KEYS_T >
+const Json::number_integer_t & getJsonIntegerFromObject(
+    const Json::object_t &      _OBJECT
+    , const std::string &       _KEY
+    , const PARENT_KEYS_T & ... _PARENT_KEYS
+)
+{
+    //TODO
+    return tmp;
+/*
+    return getJsonFromObject< GetJsonIntegerFromObject >(
+        _OBJECT
+        , _KEY
+        , _PARENT_KEYS ...
+    );
+*/
+}
+
 #endif  // TKTEMOTEJOY_JSON_H
