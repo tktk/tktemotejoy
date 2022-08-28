@@ -163,15 +163,12 @@ struct GetJsonUnsignedFromObject
         , const PARENT_KEYS_T & ... _PARENT_KEYS
     ) const
     {
-        //TODO
-/*
-        if( _JSON.is_array() == false ) {
-            throw jsonIsNotArray(
+        if( _JSON.is_number_unsigned() == false ) {
+            throw jsonIsNotUnsigned(
                 _PARENT_KEYS ...
                 , _KEY
             );
         }
-*/
 
         return _JSON.get_ref< const Json::number_unsigned_t & >();
     }
