@@ -197,15 +197,12 @@ struct GetJsonIntegerFromObject
         , const PARENT_KEYS_T & ... _PARENT_KEYS
     ) const
     {
-        //TODO
-/*
         if( _JSON.is_number_integer() == false ) {
             throw jsonIsNotInteger(
                 _PARENT_KEYS ...
                 , _KEY
             );
         }
-*/
 
         return _JSON.get_ref< const Json::number_integer_t & >();
     }
