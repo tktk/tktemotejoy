@@ -7,6 +7,25 @@
 #include <stdexcept>
 
 namespace {
+    struct GetJsonObjectFromJson
+    {
+        template< typename ... PARENT_KEYS_T >
+        const auto & operator()(
+            const Json &                _JSON
+            , const std::string &       _KEY
+            , const PARENT_KEYS_T & ... _PARENT_KEYS
+        ) const
+        {
+            return getJsonObjectFromJson(
+                _JSON
+                , _KEY
+                , _PARENT_KEYS ...
+            );
+        }
+    };
+
+    using GetJsonObjectFromJsonTest = GetJsonTest< GetJsonObjectFromJson >;
+
     struct GetJsonObjectFromObject
     {
         template< typename ... PARENT_KEYS_T >
@@ -32,23 +51,6 @@ namespace {
 namespace {
     class GetJsonObjectTest : public ::testing::Test
     {
-        struct GetJsonObjectFromJson
-        {
-            template< typename ... PARENT_KEYS_T >
-            const auto & operator()(
-                const Json &                _JSON
-                , const std::string &       _KEY
-                , const PARENT_KEYS_T & ... _PARENT_KEYS
-            ) const
-            {
-                return getJsonObjectFromJson(
-                    _JSON
-                    , _KEY
-                    , _PARENT_KEYS ...
-                );
-            }
-        };
-
         struct GetJsonObjectFromObjectNotRequired
         {
             template< typename ... PARENT_KEYS_T >
@@ -111,18 +113,6 @@ namespace {
         }
 
     public:
-        void testFromJson(
-            const std::string &                                 _JSON_STRING
-            , const std::map< std::string, Json::string_t > &   _EXPECTED_OBJECT
-        ) const
-        {
-            this->test< GetJsonObjectFromJson >(
-                _JSON_STRING
-                , "key"
-                , _EXPECTED_OBJECT
-            );
-        }
-
         void testFromObjectNotRequired(
             const std::string &                                 _JSON_STRING
             , const std::string &                               _KEY
@@ -133,23 +123,6 @@ namespace {
                 _JSON_STRING
                 , _KEY
                 , _EXPECTED_OBJECT
-            );
-        }
-
-        void testAnyThrowFromJson(
-            const std::string &     _JSON_STRING
-            , const std::string &   _KEY
-            , const std::string &   _PARENT_KEY1
-            , const std::string &   _PARENT_KEY2
-            , const std::string &   _EXPECTED_WHAT
-        )
-        {
-            this->testAnyThrow< GetJsonObjectFromJson >(
-                _JSON_STRING
-                , _KEY
-                , _PARENT_KEY1
-                , _PARENT_KEY2
-                , _EXPECTED_WHAT
             );
         }
 
@@ -191,17 +164,18 @@ namespace {
 }
 
 TEST_F(
-    GetJsonObjectTest
+    GetJsonObjectFromJsonTest
     , FromJson
 )
 {
-    this->testFromJson(
+    this->test(
         R"({
     "key1" : "abc",
     "key2" : "def",
     "key3" : "ghi"
 })"
-        , {
+        , ""
+        , Json::object_t{
             { "key1", "abc" }
             , { "key2", "def" }
             , { "key3", "ghi" }
@@ -210,11 +184,11 @@ TEST_F(
 }
 
 TEST_F(
-    GetJsonObjectTest
-    , FailedNotObjectFromJson
+    GetJsonObjectFromJsonTest
+    , FailedNotObject
 )
 {
-    this->testAnyThrowFromJson(
+    this->testAnyThrow(
         R"("NOT OBJECT")"
         , "key"
         , "parentKey1"
