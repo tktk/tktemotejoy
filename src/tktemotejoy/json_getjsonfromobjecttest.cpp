@@ -3,7 +3,6 @@
 #include "tktemotejoy/jsontest.h"
 #include "tktemotejoy/customjson.h"
 #include <string>
-#include <stdexcept>
 
 namespace {
     struct TestGetJsonString
@@ -40,73 +39,26 @@ namespace {
 
     using GetJsonFromObjectTest = GetJsonTest< GetJsonFromObject >;
 
-    class GetJsonFromObjectTest_old : public ::testing::Test
+    struct GetJsonFromObjectNotRequired
     {
-    public:
-        void testFromObject(
-            const std::string &     _JSON_STRING
-            , const std::string &   _KEY
-            , const std::string &   _EXPECTED
+        template< typename ... PARENT_KEYS_T >
+        const auto & operator()(
+            const Json &                _JSON
+            , const std::string &       _KEY
+            , const PARENT_KEYS_T & ... _PARENT_KEYS
         ) const
         {
-            const auto  JSON = Json::parse( _JSON_STRING );
+            const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
 
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
-
-            const auto &    STRING = getJsonFromObject< TestGetJsonString >(
+            return getJsonFromObjectNotRequired< TestGetJsonString >(
                 OBJECT
                 , _KEY
+                , _PARENT_KEYS ...
             );
-
-            ASSERT_EQ( _EXPECTED, STRING );
-        }
-
-        void testFromObjectNotRequired(
-            const std::string &     _JSON_STRING
-            , const std::string &   _KEY
-            , const std::string &   _DEFAULT
-            , const std::string &   _EXPECTED
-        ) const
-        {
-            const auto  JSON = Json::parse( _JSON_STRING );
-
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
-
-            const auto &    STRING = getJsonFromObjectNotRequired< TestGetJsonString >(
-                OBJECT
-                , _DEFAULT
-                , _KEY
-            );
-
-            ASSERT_EQ( _EXPECTED, STRING );
-        }
-
-        void testAnyThrow(
-            const std::string &     _JSON_STRING
-            , const std::string &   _KEY
-            , const std::string &   _PARENT_KEY1
-            , const std::string &   _PARENT_KEY2
-            , const std::string &   _EXPECTED_WHAT
-        )
-        {
-            const auto  JSON = Json::parse( _JSON_STRING );
-
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
-
-            try {
-                getJsonFromObject< TestGetJsonString >(
-                    OBJECT
-                    , _KEY
-                    , _PARENT_KEY1
-                    , _PARENT_KEY2
-                );
-
-                ASSERT_FALSE( true );   // ここに到達してはいけない
-            } catch( const std::runtime_error & _EX ) {
-                EXPECT_STREQ( _EXPECTED_WHAT.c_str(), _EX.what() );
-            }
         }
     };
+
+    using GetJsonFromObjectNotRequiredTest = GetJsonTest< GetJsonFromObjectNotRequired >;
 }
 
 TEST_F(
@@ -125,7 +77,7 @@ TEST_F(
 
 TEST_F(
     GetJsonFromObjectTest
-    , FailedNotExistsFromObject
+    , FailedNotExists
 )
 {
     this->testAnyThrow(
@@ -139,30 +91,30 @@ TEST_F(
 }
 
 TEST_F(
-    GetJsonFromObjectTest_old
+    GetJsonFromObjectNotRequiredTest
     , FromObjectNotRequired
 )
 {
-    this->testFromObjectNotRequired(
+    this->testNotRequired(
         R"({
     "key" : "STRING"
 })"
         , "key"
-        , "DEFAULT"
-        , "STRING"
+        , Json::string_t( "DEFAULT" )
+        , Json::string_t( "STRING" )
     );
 }
 
 TEST_F(
-    GetJsonFromObjectTest_old
-    , NotExistsFromObjectNotRequired
+    GetJsonFromObjectNotRequiredTest
+    , NotExists
 )
 {
-    this->testFromObjectNotRequired(
+    this->testNotRequired(
         R"({
 })"
         , "key"
-        , "DEFAULT"
-        , "DEFAULT"
+        , Json::string_t( "DEFAULT" )
+        , Json::string_t( "DEFAULT" )
     );
 }

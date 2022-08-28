@@ -52,6 +52,26 @@ public:
         }
     }
 
+    template< typename EXPECTED_T >
+    void testNotRequired(
+        const std::string &     _JSON_STRING
+        , const std::string &   _KEY
+        , const EXPECTED_T &    _DEFAULT
+        , const EXPECTED_T &    _EXPECTED
+    ) const
+    {
+        const auto  JSON = Json::parse( _JSON_STRING );
+
+        EXPECT_EQ(
+            _EXPECTED
+            , GET_JSON_T()(
+                JSON
+                , _DEFAULT
+                , _KEY
+            )
+        );
+    }
+
     void testNull(
         const std::string &     _JSON_STRING
         , const std::string &   _KEY
