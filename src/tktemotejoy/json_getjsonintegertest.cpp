@@ -98,11 +98,24 @@ TEST_F(
         R"({
     "key" : 10
 })"
-        , 0
+        , 20
         , "key"
         , 10
     );
 }
 
-//TODO NotExists
+TEST_F(
+    GetJsonIntegerFromObjectNotRequiredTest
+    , NotExists
+)
+{
+    this->test(
+        R"({
+})"
+        , 20
+        , "key"
+        , 20
+    );
+}
+
 //TODO FailedNotInteger
