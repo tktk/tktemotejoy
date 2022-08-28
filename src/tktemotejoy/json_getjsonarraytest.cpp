@@ -1,58 +1,28 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/json.h"
+#include "tktemotejoy/jsontest.h"
 #include "tktemotejoy/customjson.h"
 #include <string>
-#include <vector>
-#include <stdexcept>
 
 namespace {
-    class GetJsonArrayTest : public ::testing::Test
+    struct GetJsonArray
     {
-    public:
-        void test(
-            const std::string &                     _JSON_STRING
-            , const std::string &                   _KEY
-            , const std::vector< Json::string_t > & _EXPECTED_ARRAY
+        template< typename ... PARENT_KEYS_T >
+        const auto & operator()(
+            const Json::object_t &      _OBJECT
+            , const std::string &       _KEY
+            , const PARENT_KEYS_T & ... _PARENT_KEYS
         ) const
         {
-            const auto  JSON = Json::parse( _JSON_STRING );
-
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
-
-            const auto &    ARRAY = getJsonArrayFromObject(
-                OBJECT
+            return getJsonArrayFromObject(
+                _OBJECT
                 , _KEY
+                , _PARENT_KEYS ...
             );
-
-            ASSERT_EQ( _EXPECTED_ARRAY, ARRAY );
-        }
-
-        void testAnyThrow(
-            const std::string &     _JSON_STRING
-            , const std::string &   _KEY
-            , const std::string &   _PARENT_KEY1
-            , const std::string &   _PARENT_KEY2
-            , const std::string &   _EXPECTED_WHAT
-        )
-        {
-            const auto  JSON = Json::parse( _JSON_STRING );
-
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
-
-            try {
-                getJsonArrayFromObject(
-                    OBJECT
-                    , _KEY
-                    , _PARENT_KEY1
-                    , _PARENT_KEY2
-                );
-
-                ASSERT_FALSE( true );   // ここに到達してはいけない
-            } catch( const std::runtime_error & _EX ) {
-                EXPECT_STREQ( _EXPECTED_WHAT.c_str(), _EX.what() );
-            }
         }
     };
+
+    using GetJsonArrayTest = GetJsonTest< GetJsonArray >;
 }
 
 TEST_F(
@@ -69,7 +39,7 @@ TEST_F(
     ]
 })"
         , "key"
-        , {
+        , Json::array_t{
             "abc"
             , "def"
             , "ghi"
