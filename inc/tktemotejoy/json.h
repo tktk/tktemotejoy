@@ -188,8 +188,6 @@ const Json::number_unsigned_t & getJsonUnsignedFromObject(
     );
 }
 
-const auto  tmp = Json::number_integer_t( 100 );    //REMOVEME
-
 template< typename ... PARENT_KEYS_T >
 const Json::number_integer_t & getJsonIntegerFromObject(
     const Json::object_t &      _OBJECT
@@ -198,7 +196,10 @@ const Json::number_integer_t & getJsonIntegerFromObject(
 )
 {
     //TODO
-    return tmp;
+    const auto  IT = _OBJECT.find( _KEY );
+    const auto &    JSON = IT->second;
+
+    return JSON.get_ref< const Json::number_integer_t & >();
 /*
     return getJsonFromObject< GetJsonIntegerFromObject >(
         _OBJECT
