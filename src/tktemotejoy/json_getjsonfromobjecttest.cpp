@@ -1,5 +1,6 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/json.h"
+#include "tktemotejoy/jsontest.h"
 #include "tktemotejoy/customjson.h"
 #include <string>
 #include <stdexcept>
@@ -18,7 +19,28 @@ namespace {
         }
     };
 
-    class GetJsonFromObjectTest : public ::testing::Test
+    struct GetJsonFromObject
+    {
+        template< typename ... PARENT_KEYS_T >
+        const auto & operator()(
+            const Json &                _JSON
+            , const std::string &       _KEY
+            , const PARENT_KEYS_T & ... _PARENT_KEYS
+        ) const
+        {
+            const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
+
+            return getJsonFromObject< TestGetJsonString >(
+                OBJECT
+                , _KEY
+                , _PARENT_KEYS ...
+            );
+        }
+    };
+
+    using GetJsonFromObjectTest = GetJsonTest< GetJsonFromObject >;
+
+    class GetJsonFromObjectTest_old : public ::testing::Test
     {
     public:
         void testFromObject(
@@ -92,7 +114,7 @@ TEST_F(
     , FromObject
 )
 {
-    this->testFromObject(
+    this->test(
         R"({
     "key" : "STRING"
 })"
@@ -117,7 +139,7 @@ TEST_F(
 }
 
 TEST_F(
-    GetJsonFromObjectTest
+    GetJsonFromObjectTest_old
     , FromObjectNotRequired
 )
 {
@@ -132,7 +154,7 @@ TEST_F(
 }
 
 TEST_F(
-    GetJsonFromObjectTest
+    GetJsonFromObjectTest_old
     , NotExistsFromObjectNotRequired
 )
 {

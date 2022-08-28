@@ -3,8 +3,6 @@
 #include "tktemotejoy/jsontest.h"
 #include "tktemotejoy/customjson.h"
 #include <string>
-#include <map>
-#include <stdexcept>
 
 namespace {
     struct GetJsonObjectFromJson
