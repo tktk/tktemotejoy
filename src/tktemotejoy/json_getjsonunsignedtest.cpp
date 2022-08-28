@@ -84,8 +84,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GetJsonUnsignedTest
     , FailedNotUnsignedFromObject
@@ -93,12 +91,11 @@ TEST_F(
 {
     this->testAnyThrow(
         R"({
-    "key" : "NOT ARRAY"
+    "key" : "NOT UNSIGNED"
 })"
         , "key"
         , "parentKey1"
         , "parentKey2"
-        , "parentKey1.parentKey2.keyの値が配列ではない"
+        , "parentKey1.parentKey2.keyの値が符号なし整数ではない"
     );
 }
-*/
