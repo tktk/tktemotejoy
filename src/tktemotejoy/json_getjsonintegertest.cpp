@@ -118,4 +118,19 @@ TEST_F(
     );
 }
 
-//TODO FailedNotInteger
+TEST_F(
+    GetJsonIntegerFromObjectNotRequiredTest
+    , FailedNotInteger
+)
+{
+    this->testAnyThrow(
+        R"({
+    "key" : "NOT INTEGER"
+})"
+        , 20
+        , "key"
+        , "parentKey1"
+        , "parentKey2"
+        , "parentKey1.parentKey2.keyの値が整数ではない"
+    );
+}
