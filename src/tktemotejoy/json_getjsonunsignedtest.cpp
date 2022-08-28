@@ -1,58 +1,28 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/json.h"
+#include "tktemotejoy/jsontest.h"
 #include "tktemotejoy/customjson.h"
 #include <string>
-#include <stdexcept>
 
 namespace {
-    class GetJsonUnsignedTest : public ::testing::Test
+    struct GetJsonUnsigned
     {
-    public:
-        void test(
-            const std::string &                 _JSON_STRING
-            , const std::string &               _KEY
-            , const Json::number_unsigned_t &   _EXPECTED_UNSIGNED
+        template< typename ... PARENT_KEYS_T >
+        const auto & operator()(
+            const Json::object_t &      _OBJECT
+            , const std::string &       _KEY
+            , const PARENT_KEYS_T & ... _PARENT_KEYS
         ) const
         {
-            const auto  JSON = Json::parse( _JSON_STRING );
-
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
-
-            EXPECT_EQ(
-                _EXPECTED_UNSIGNED
-                , getJsonUnsignedFromObject(
-                    OBJECT
-                    , _KEY
-                )
+            return getJsonUnsignedFromObject(
+                _OBJECT
+                , _KEY
+                , _PARENT_KEYS ...
             );
         }
-
-        void testAnyThrow(
-            const std::string &     _JSON_STRING
-            , const std::string &   _KEY
-            , const std::string &   _PARENT_KEY1
-            , const std::string &   _PARENT_KEY2
-            , const std::string &   _EXPECTED_WHAT
-        )
-        {
-            const auto  JSON = Json::parse( _JSON_STRING );
-
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
-
-            try {
-                getJsonUnsignedFromObject(
-                    OBJECT
-                    , _KEY
-                    , _PARENT_KEY1
-                    , _PARENT_KEY2
-                );
-
-                ASSERT_FALSE( true );   // ここに到達してはいけない
-            } catch( const std::runtime_error & _EX ) {
-                EXPECT_STREQ( _EXPECTED_WHAT.c_str(), _EX.what() );
-            }
-        }
     };
+
+    using GetJsonUnsignedTest = GetJsonTest< GetJsonUnsigned >;
 }
 
 TEST_F(
