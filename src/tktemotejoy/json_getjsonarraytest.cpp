@@ -9,13 +9,15 @@ namespace {
     {
         template< typename ... PARENT_KEYS_T >
         const auto & operator()(
-            const Json::object_t &      _OBJECT
+            const Json &                _JSON
             , const std::string &       _KEY
             , const PARENT_KEYS_T & ... _PARENT_KEYS
         ) const
         {
+            const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
+
             return getJsonArrayFromObject(
-                _OBJECT
+                OBJECT
                 , _KEY
                 , _PARENT_KEYS ...
             );

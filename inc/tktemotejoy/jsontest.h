@@ -19,12 +19,10 @@ public:
     {
         const auto  JSON = Json::parse( _JSON_STRING );
 
-        const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
-
         EXPECT_EQ(
             _EXPECTED
             , GET_JSON_T()(
-                OBJECT
+                JSON
                 , _KEY
             )
         );
@@ -40,11 +38,9 @@ public:
     {
         const auto  JSON = Json::parse( _JSON_STRING );
 
-        const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
-
         try {
             GET_JSON_T()(
-                OBJECT
+                JSON
                 , _KEY
                 , _PARENT_KEY1
                 , _PARENT_KEY2
