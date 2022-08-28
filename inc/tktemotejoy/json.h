@@ -222,8 +222,6 @@ const Json::number_integer_t & getJsonIntegerFromObject(
     );
 }
 
-const auto  tmp = Json::number_integer_t( 100 );    //REMOVEME
-
 template< typename ... PARENT_KEYS_T >
 const Json::number_integer_t & getJsonIntegerFromObjectNotRequired(
     const Json::object_t &              _OBJECT
@@ -232,8 +230,10 @@ const Json::number_integer_t & getJsonIntegerFromObjectNotRequired(
     , const PARENT_KEYS_T & ...         _PARENT_KEYS
 )
 {
-    //TODO
-    return tmp;
+    const auto  IT = _OBJECT.find( _KEY );
+    const auto &    JSON = IT->second;
+
+    return JSON.get_ref< const Json::number_integer_t & >();
 /*
     return getJsonFromObject< GetJsonIntegerFromObjectNotRequired >(
         _OBJECT
