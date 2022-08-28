@@ -51,6 +51,24 @@ public:
             EXPECT_STREQ( _EXPECTED_WHAT.c_str(), _EX.what() );
         }
     }
+
+    void testNull(
+        const std::string &     _JSON_STRING
+        , const std::string &   _KEY
+    ) const
+    {
+        const auto  JSON = Json::parse( _JSON_STRING );
+
+        EXPECT_EQ(
+            nullptr
+            , &(
+                GET_JSON_T()(
+                    JSON
+                    , _KEY
+                )
+            )
+        );
+    }
 };
 
 #endif  // TKTEMOTEJOY_JSONTEST_H
