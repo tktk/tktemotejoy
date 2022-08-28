@@ -222,19 +222,6 @@ const Json::number_integer_t & getJsonIntegerFromObject(
     );
 }
 
-struct GetJsonIntegerFromObject_removeme
-{
-    template< typename ... PARENT_KEYS_T >
-    const auto & operator()(
-        const Json &                _JSON
-        , const std::string &       _KEY
-        , const PARENT_KEYS_T & ... _PARENT_KEYS
-    ) const
-    {
-        return _JSON.get_ref< const Json::number_integer_t & >();
-    }
-};
-
 template< typename ... PARENT_KEYS_T >
 Json::number_integer_t getJsonIntegerFromObjectNotRequired(
     const Json::object_t &          _OBJECT
@@ -243,7 +230,7 @@ Json::number_integer_t getJsonIntegerFromObjectNotRequired(
     , const PARENT_KEYS_T & ...     _PARENT_KEYS
 )
 {
-    return getJsonFromObjectNotRequired< GetJsonIntegerFromObject_removeme >(
+    return getJsonFromObjectNotRequired< GetJsonIntegerFromObject >(
         _OBJECT
         , _DEFAULT
         , _KEY
