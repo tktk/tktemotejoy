@@ -58,7 +58,7 @@ namespace {
         }
     };
 
-    using GetJsonFromObjectNotRequiredTest = GetJsonTest< GetJsonFromObjectNotRequired >;
+    using GetJsonFromObjectNotRequiredTest = GetJsonNotRequiredTest< GetJsonFromObjectNotRequired >;
 }
 
 TEST_F(
@@ -95,12 +95,12 @@ TEST_F(
     , FromObjectNotRequired
 )
 {
-    this->testNotRequired(
+    this->test(
         R"({
     "key" : "STRING"
 })"
-        , "key"
         , Json::string_t( "DEFAULT" )
+        , "key"
         , Json::string_t( "STRING" )
     );
 }
@@ -110,11 +110,11 @@ TEST_F(
     , NotExists
 )
 {
-    this->testNotRequired(
+    this->test(
         R"({
 })"
-        , "key"
         , Json::string_t( "DEFAULT" )
+        , "key"
         , Json::string_t( "DEFAULT" )
     );
 }
