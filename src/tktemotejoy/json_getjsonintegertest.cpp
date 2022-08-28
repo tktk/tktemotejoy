@@ -5,30 +5,47 @@
 #include <string>
 
 namespace {
-    struct GetJsonInteger
+    struct GetJsonIntegerFromObject
     {
-        template< typename ... PARENT_KEYS_T >
+        template< typename ... ARGS_T >
         const auto & operator()(
-            const Json &                _JSON
-            , const std::string &       _KEY
-            , const PARENT_KEYS_T & ... _PARENT_KEYS
+            const Json &            _JSON
+            , const ARGS_T & ...    _ARGS
         ) const
         {
             const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
 
             return getJsonIntegerFromObject(
                 OBJECT
-                , _KEY
-                , _PARENT_KEYS ...
+                , _ARGS ...
             );
         }
     };
 
-    using GetJsonIntegerTest = GetJsonTest< GetJsonInteger >;
+    using GetJsonIntegerFromObjectTest = GetJsonTest< GetJsonIntegerFromObject >;
+
+    struct GetJsonIntegerFromObjectNotRequired
+    {
+        template< typename ... ARGS_T >
+        const auto & operator()(
+            const Json &            _JSON
+            , const ARGS_T & ...    _ARGS
+        ) const
+        {
+            const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
+
+            return getJsonIntegerFromObjectNotRequired(
+                OBJECT
+                , _ARGS ...
+            );
+        }
+    };
+
+    using GetJsonIntegerFromObjectNotRequiredTest = GetJsonNotRequiredTest< GetJsonIntegerFromObjectNotRequired >;
 }
 
 TEST_F(
-    GetJsonIntegerTest
+    GetJsonIntegerFromObjectTest
     , FromObject
 )
 {
@@ -42,8 +59,8 @@ TEST_F(
 }
 
 TEST_F(
-    GetJsonIntegerTest
-    , FailedNotExistsFromObject
+    GetJsonIntegerFromObjectTest
+    , FailedNotExists
 )
 {
     this->testAnyThrow(
@@ -57,8 +74,8 @@ TEST_F(
 }
 
 TEST_F(
-    GetJsonIntegerTest
-    , FailedNotIntegerFromObject
+    GetJsonIntegerFromObjectTest
+    , FailedNotInteger
 )
 {
     this->testAnyThrow(
@@ -71,3 +88,21 @@ TEST_F(
         , "parentKey1.parentKey2.keyの値が整数ではない"
     );
 }
+
+TEST_F(
+    GetJsonIntegerFromObjectNotRequiredTest
+    , FromObjectNotRequired
+)
+{
+    this->test(
+        R"({
+    "key" : 10
+})"
+        , 0
+        , "key"
+        , 10
+    );
+}
+
+//TODO NotExists
+//TODO FailedNotInteger

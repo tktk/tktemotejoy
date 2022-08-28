@@ -7,11 +7,10 @@
 namespace {
     struct TestGetJsonString
     {
-        template< typename ... PARENT_KEYS_T >
+        template< typename ... ARGS_T >
         const auto & operator()(
-            const Json &                _JSON
-            , const std::string &
-            , const PARENT_KEYS_T & ...
+            const Json &            _JSON
+            , const ARGS_T & ...
         ) const
         {
             return _JSON.get_ref< const Json::string_t & >();
@@ -20,19 +19,17 @@ namespace {
 
     struct GetJsonFromObject
     {
-        template< typename ... PARENT_KEYS_T >
+        template< typename ... ARGS_T >
         const auto & operator()(
-            const Json &                _JSON
-            , const std::string &       _KEY
-            , const PARENT_KEYS_T & ... _PARENT_KEYS
+            const Json &            _JSON
+            , const ARGS_T & ...    _ARGS
         ) const
         {
             const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
 
             return getJsonFromObject< TestGetJsonString >(
                 OBJECT
-                , _KEY
-                , _PARENT_KEYS ...
+                , _ARGS ...
             );
         }
     };
@@ -41,19 +38,17 @@ namespace {
 
     struct GetJsonFromObjectNotRequired
     {
-        template< typename ... PARENT_KEYS_T >
+        template< typename ... ARGS_T >
         const auto & operator()(
-            const Json &                _JSON
-            , const std::string &       _KEY
-            , const PARENT_KEYS_T & ... _PARENT_KEYS
+            const Json &            _JSON
+            , const ARGS_T & ...    _ARGS
         ) const
         {
             const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
 
             return getJsonFromObjectNotRequired< TestGetJsonString >(
                 OBJECT
-                , _KEY
-                , _PARENT_KEYS ...
+                , _ARGS ...
             );
         }
     };

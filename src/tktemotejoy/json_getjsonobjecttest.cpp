@@ -7,17 +7,15 @@
 namespace {
     struct GetJsonObjectFromJson
     {
-        template< typename ... PARENT_KEYS_T >
+        template< typename ... ARGS_T >
         const auto & operator()(
-            const Json &                _JSON
-            , const std::string &       _KEY
-            , const PARENT_KEYS_T & ... _PARENT_KEYS
+            const Json &            _JSON
+            , const ARGS_T & ...    _ARGS
         ) const
         {
             return getJsonObjectFromJson(
                 _JSON
-                , _KEY
-                , _PARENT_KEYS ...
+                , _ARGS ...
             );
         }
     };
@@ -26,19 +24,17 @@ namespace {
 
     struct GetJsonObjectFromObject
     {
-        template< typename ... PARENT_KEYS_T >
+        template< typename ... ARGS_T >
         const auto & operator()(
-            const Json &                _JSON
-            , const std::string &       _KEY
-            , const PARENT_KEYS_T & ... _PARENT_KEYS
+            const Json &            _JSON
+            , const ARGS_T & ...    _ARGS
         ) const
         {
             const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
 
             return getJsonObjectFromObject(
                 OBJECT
-                , _KEY
-                , _PARENT_KEYS ...
+                , _ARGS ...
             );
         }
     };
@@ -47,19 +43,17 @@ namespace {
 
     struct GetJsonObjectFromObjectNotRequired
     {
-        template< typename ... PARENT_KEYS_T >
+        template< typename ... ARGS_T >
         const auto & operator()(
-            const Json &                _JSON
-            , const std::string &       _KEY
-            , const PARENT_KEYS_T & ... _PARENT_KEYS
+            const Json &            _JSON
+            , const ARGS_T & ...    _ARGS
         ) const
         {
             const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
 
             return *getJsonObjectFromObjectNotRequired(
                 OBJECT
-                , _KEY
-                , _PARENT_KEYS ...
+                , _ARGS ...
             );
         }
     };
