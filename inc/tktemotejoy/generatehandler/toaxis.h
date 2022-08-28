@@ -3,7 +3,7 @@
 
 #include "tktemotejoy/generatehandler/withdeadzone.h"
 #include "tktemotejoy/customjson.h"
-#include "tktemotejoy/jsonerror.h"
+#include "tktemotejoy/json.h"
 #include <linux/joystick.h>
 #include <string>
 
@@ -19,25 +19,15 @@ public:
         const auto  KEY_MAX_ = std::string( "max" );
         const auto  DEFAULT_MAX = __s16( 0x7fff );
 
-        __s16   max;
-
-        const auto  IT = _OBJECT.find( KEY_MAX_ );
-        if( IT == _OBJECT.end() ) {
-            max = DEFAULT_MAX;
-        } else {
-            const auto &    MAX_JSON = IT->second;
-            if( MAX_JSON.is_number_integer() == false ) {
-                throw jsonIsNotInteger( KEY_MAX_ );
-            }
-
-            const auto &    MAX = MAX_JSON.get_ref< const Json::number_integer_t & >();
-
-            max = MAX;
-        }
+        const auto  MAX = getJsonIntegerFromObjectNotRequired(
+            _OBJECT
+            , DEFAULT_MAX
+            , KEY_MAX_
+        );
 
         return GENERATE_TO_AXIS_UNIQUE_T()(
             _DEAD_ZONE
-            , max
+            , MAX
         );
     }
 };
