@@ -84,8 +84,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GetJsonIntegerTest
     , FailedNotIntegerFromObject
@@ -98,7 +96,6 @@ TEST_F(
         , "key"
         , "parentKey1"
         , "parentKey2"
-        , "parentKey1.parentKey2.keyの値が符号なし整数ではない"
+        , "parentKey1.parentKey2.keyの値が整数ではない"
     );
 }
-*/
