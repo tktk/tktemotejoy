@@ -154,8 +154,6 @@ const Json::object_t * getJsonObjectFromObjectNotRequired(
     );
 }
 
-const Json::number_unsigned_t tmp = 100;
-
 template< typename ... PARENT_KEYS_T >
 const Json::number_unsigned_t & getJsonUnsignedFromObject(
     const Json::object_t &      _OBJECT
@@ -164,7 +162,18 @@ const Json::number_unsigned_t & getJsonUnsignedFromObject(
 )
 {
     //TODO
-    return tmp;
+    const auto  IT = _OBJECT.find( _KEY );
+/*
+    if( IT == _OBJECT.end() ) {
+        throw jsonIsNotExists(
+            _PARENT_KEYS ...
+            , _KEY
+        );
+    }
+*/
+    const auto &    JSON = IT->second;
+
+    return JSON.get_ref< const Json::number_unsigned_t & >();
 /*
     return getJsonFromObject< GetJsonObjectFromObject >(
         _OBJECT
