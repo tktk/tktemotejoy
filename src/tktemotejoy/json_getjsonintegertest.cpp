@@ -27,7 +27,6 @@ namespace {
             );
         }
 
-/*
         void testAnyThrow(
             const std::string &     _JSON_STRING
             , const std::string &   _KEY
@@ -53,7 +52,6 @@ namespace {
                 EXPECT_STREQ( _EXPECTED_WHAT.c_str(), _EX.what() );
             }
         }
-*/
     };
 }
 
@@ -71,8 +69,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GetJsonIntegerTest
     , FailedNotExistsFromObject
@@ -88,6 +84,8 @@ TEST_F(
     );
 }
 
+//TODO
+/*
 TEST_F(
     GetJsonIntegerTest
     , FailedNotIntegerFromObject
