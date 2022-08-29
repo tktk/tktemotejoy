@@ -8,7 +8,7 @@ from waflib.Tools import waf_unit_test
 import os.path
 
 APPNAME = 'tktemote'
-VERSION = '0.1.1'
+VERSION = '0.2.0'
 
 out = 'build'
 

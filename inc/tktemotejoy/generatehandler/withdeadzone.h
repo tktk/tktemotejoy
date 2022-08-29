@@ -17,7 +17,7 @@ public:
         const auto  KEY_DEAD_ZONE = std::string( "deadZone" );
         const auto  DEFAULT_DEAD_ZONE = __s16( 0 );
 
-        const auto  DEAD_ZONE = getJsonIntegerFromObjectWithDefault(
+        const auto &    DEAD_ZONE = getJsonIntegerFromObjectWithDefault(
             _OBJECT
             , DEFAULT_DEAD_ZONE
             , KEY_DEAD_ZONE
