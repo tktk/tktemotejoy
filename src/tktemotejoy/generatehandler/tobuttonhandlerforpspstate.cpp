@@ -51,16 +51,12 @@ Mapping::OperateAxisHandlerForPspStateUnique generateToButtonHandlerForPspStateU
     const Json::object_t &  _OBJECT
 )
 {
-    //TODO
-    return Mapping::OperateAxisHandlerForPspStateUnique();
-/*
     return generateHandlerUnique<
         Mapping::OperateAxisHandlerForPspStateUnique
         , GetType
-        , GenerateToButtonHandlersUnique<
+        , GenerateToButtonHandlerUnique<
             GenerateToButtonHandlerForPspStateUnique
             , GeneratePressButtonHandlerForPspStateUnique
         >
     >( _OBJECT );
-*/
 }
