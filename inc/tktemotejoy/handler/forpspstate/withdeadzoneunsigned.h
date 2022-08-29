@@ -28,12 +28,14 @@ public:
         , PspState &    _pspState
     ) const override
     {
-        if( static_cast< const __u16 & >( _VALUE ) <= this->DEAD_ZONE ) {
+        const auto &    VALUE = static_cast< const __u16 & >( _VALUE );
+
+        if( VALUE <= this->DEAD_ZONE ) {
             return;
         }
 
         this->HANDLER(
-            _VALUE
+            VALUE
             , _pspState
         );
     }

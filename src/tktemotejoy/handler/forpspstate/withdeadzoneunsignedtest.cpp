@@ -8,13 +8,13 @@ namespace {
     {
         bool &  called;
 
-        const __s16         EXPECTED_VALUE;
+        const __u16         EXPECTED_VALUE;
         const PspState &    EXPECTED_PSP_STATE;
 
     public:
         TestHandler(
             bool &              _called
-            , const __s16       _EXPECTED_VALUE
+            , const __u16       _EXPECTED_VALUE
             , const PspState &  _EXPECTED_PSP_STATE
         )
             : called( _called )
@@ -24,7 +24,7 @@ namespace {
         }
 
         void operator()(
-            const __s16     _VALUE
+            const __u16     _VALUE
             , PspState &    _pspState
         ) const
         {
@@ -41,7 +41,7 @@ namespace {
         void test(
             const __u16     _DEAD_ZONE
             , const __s16   _VALUE
-            , const __s16   _EXPECTED_VALUE
+            , const __u16   _EXPECTED_VALUE
             , const bool    _EXPECTED_CALLED
         ) const
         {
