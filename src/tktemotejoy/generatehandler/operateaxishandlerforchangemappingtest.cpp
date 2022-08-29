@@ -42,7 +42,26 @@ TEST_F(
     );
 }
 
-//TODO ToButtonHandler
+TEST_F(
+    GenerateOperateAxisHandlerForChangeMappingTest
+    , ToButtonHandler
+)
+{
+    this->test(
+        R"({
+    "type" : "toButtonHandler",
+    "deadZone" : 50000,
+    "handler" : {
+        "type" : "toggleMapping",
+        "mapping" : 10
+    }
+})"
+        , 60000
+        , 20
+        , 10
+        , 20
+    );
+}
 
 TEST_F(
     GenerateOperateAxisHandlerForChangeMappingTest
