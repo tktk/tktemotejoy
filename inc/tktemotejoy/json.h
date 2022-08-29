@@ -253,11 +253,11 @@ const Json::number_integer_t & getJsonIntegerFromObject(
 }
 
 template< typename ... PARENT_KEYS_T >
-Json::number_integer_t getJsonIntegerFromObjectWithDefault(
-    const Json::object_t &          _OBJECT
-    , const Json::number_integer_t  _DEFAULT
-    , const std::string &           _KEY
-    , const PARENT_KEYS_T & ...     _PARENT_KEYS
+const Json::number_integer_t & getJsonIntegerFromObjectWithDefault(
+    const Json::object_t &              _OBJECT
+    , const Json::number_integer_t &    _DEFAULT
+    , const std::string &               _KEY
+    , const PARENT_KEYS_T & ...         _PARENT_KEYS
 )
 {
     return getJsonFromObjectWithDefault< GetJsonIntegerFromObject >(
