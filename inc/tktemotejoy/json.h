@@ -229,7 +229,9 @@ const Json::number_unsigned_t & getJsonUnsignedFromObjectWithDefault(
 )
 {
     //TODO
-    return tmp;
+    const auto  IT = _OBJECT.find( _KEY );
+    const auto &    JSON = IT->second;
+    return JSON.get_ref< const Json::number_unsigned_t & >();
 /*
     return getJsonFromObjectWithDefault< GetJsonUnsignedFromObject >(
         _OBJECT
