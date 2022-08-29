@@ -27,7 +27,6 @@ public:
         , const __u16           _DEAD_ZONE
     ) const
     {
-/*
         const auto  KEY_HANDLER = std::string( "handler" );
 
         const auto &    OBJECT = getJsonObjectFromObject(
@@ -36,15 +35,10 @@ public:
         );
 
         auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( OBJECT );
-*/
 
         return GENERATE_TO_BUTTON_HANDLER_UNIQUE_T()(
-            100
-            , nullptr
-/*
             _DEAD_ZONE
             , std::move( handlerUnique )
-*/
         );
     }
 };
