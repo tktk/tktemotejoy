@@ -41,8 +41,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GetJsonStringFromObjectNotRequiredTest
     , NotExists
@@ -51,12 +49,13 @@ TEST_F(
     this->test(
         R"({
 })"
-        , 20
         , "key"
-        , 20
+        , static_cast< const std::string * >( nullptr )
     );
 }
 
+//TODO
+/*
 TEST_F(
     GetJsonStringFromObjectNotRequiredTest
     , FailedNotString
