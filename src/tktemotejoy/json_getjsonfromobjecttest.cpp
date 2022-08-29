@@ -120,8 +120,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GetJsonFromObjectNotRequiredTest
     , NotExists
@@ -130,12 +128,10 @@ TEST_F(
     this->test(
         R"({
 })"
-        , Json::string_t( "DEFAULT" )
         , "key"
-        , Json::string_t( "DEFAULT" )
+        , static_cast< const Json::string_t * >( nullptr )
     );
 }
-*/
 
 TEST_F(
     GetJsonFromObjectWithDefaultTest
