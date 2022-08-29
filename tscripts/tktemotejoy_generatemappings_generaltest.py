@@ -32,6 +32,7 @@ module.SOURCE = [
             'shiftmapping.cpp',
             'togglemapping.cpp',
             'tobuttonhandlersforchangemapping.cpp',
+            'tobuttonhandlerforchangemapping.cpp',
             'operateaxishandlerforchangemapping.cpp',
         ],
         'handler' : {
@@ -50,6 +51,7 @@ module.SOURCE = [
                 'shiftmapping.cpp',
                 'togglemapping.cpp',
                 'tobuttonhandlers.cpp',
+                'tobuttonhandler.cpp',
                 'dummy.cpp',
             ],
         },

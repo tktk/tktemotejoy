@@ -15,6 +15,7 @@ module.SOURCE = [
             'operateaxishandlerforchangemappingtest.cpp',
             'operateaxishandlerforchangemapping.cpp',
             'tobuttonhandlersforchangemapping.cpp',
+            'tobuttonhandlerforchangemapping.cpp',
             'pressbuttonhandlerforchangemapping.cpp',
             'shiftmapping.cpp',
             'togglemapping.cpp',
@@ -22,6 +23,7 @@ module.SOURCE = [
         'handler' : {
             'forchangemapping' : [
                 'tobuttonhandlers.cpp',
+                'tobuttonhandler.cpp',
                 'shiftmapping.cpp',
                 'togglemapping.cpp',
                 'dummy.cpp',

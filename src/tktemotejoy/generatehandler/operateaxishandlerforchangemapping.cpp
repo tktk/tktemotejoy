@@ -1,5 +1,6 @@
 #include "tktemotejoy/generatehandler/pressbuttonhandlerforchangemapping.h"
 #include "tktemotejoy/generatehandler/tobuttonhandlersforchangemapping.h"
+#include "tktemotejoy/generatehandler/tobuttonhandlerforchangemapping.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
 #include "tktemotejoy/typeerror.h"
@@ -13,6 +14,11 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateOperateAxisHandlerForC
     auto    handlerUnique = Mapping::OperateAxisHandlerForChangeMappingUnique();
 
     handlerUnique = generateToButtonHandlersForChangeMappingUnique( _OBJECT );
+    if( handlerUnique.get() != nullptr ) {
+        return handlerUnique;
+    }
+
+    handlerUnique = generateToButtonHandlerForChangeMappingUnique( _OBJECT );
     if( handlerUnique.get() != nullptr ) {
         return handlerUnique;
     }
