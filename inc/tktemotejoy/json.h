@@ -177,13 +177,10 @@ const Json::object_t * getJsonObjectFromObjectNotRequired(
     , const PARENT_KEYS_T & ... _PARENT_KEYS
 )
 {
-    return &(
-        getJsonFromObjectWithDefault< GetJsonObjectFromObject >(
-            _OBJECT
-            , *static_cast< const Json::object_t * >( nullptr )
-            , _KEY
-            , _PARENT_KEYS ...
-        )
+    return getJsonFromObjectNotRequired< GetJsonObjectFromObject >(
+        _OBJECT
+        , _KEY
+        , _PARENT_KEYS ...
     );
 }
 
