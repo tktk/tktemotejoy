@@ -118,4 +118,19 @@ TEST_F(
     );
 }
 
-//TODO FailedNotUnsigned
+TEST_F(
+    GetJsonUnsignedFromObjectWithDefaultTest
+    , FailedNotUnsigned
+)
+{
+    this->testAnyThrow(
+        R"({
+    "key" : "NOT UNSIGNED"
+})"
+        , 20
+        , "key"
+        , "parentKey1"
+        , "parentKey2"
+        , "parentKey1.parentKey2.keyの値が符号なし整数ではない"
+    );
+}
