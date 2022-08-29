@@ -2,6 +2,7 @@
 #include "tktemotejoy/generatehandler/toaxisx.h"
 #include "tktemotejoy/generatehandler/toaxisy.h"
 #include "tktemotejoy/generatehandler/tobuttonhandlersforpspstate.h"
+#include "tktemotejoy/generatehandler/tobuttonhandlerforpspstate.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
 #include "tktemotejoy/typeerror.h"
@@ -25,6 +26,11 @@ Mapping::OperateAxisHandlerForPspStateUnique generateOperateAxisHandlerForPspSta
     }
 
     handlerUnique = generateToButtonHandlersForPspStateUnique( _OBJECT );
+    if( handlerUnique.get() != nullptr ) {
+        return handlerUnique;
+    }
+
+    handlerUnique = generateToButtonHandlerForPspStateUnique( _OBJECT );
     if( handlerUnique.get() != nullptr ) {
         return handlerUnique;
     }
