@@ -76,17 +76,16 @@ const auto & getJsonFromObjectWithDefault(
     , const PARENT_KEYS_T & ... _PARENT_KEYS
 )
 {
-    const auto  IT = _OBJECT.find( _KEY );
-    if( IT == _OBJECT.end() ) {
-        return _DEFAULT;
-    }
-    const auto &    JSON = IT->second;
-
-    return GET_JSON_T()(
-        JSON
+    const auto  JSON_PTR = getJsonFromObjectNotRequired< GET_JSON_T >(
+        _OBJECT
         , _KEY
         , _PARENT_KEYS ...
     );
+    if( JSON_PTR == nullptr ) {
+        return _DEFAULT;
+    }
+
+    return *JSON_PTR;
 }
 
 struct GetJsonArrayFromObject
