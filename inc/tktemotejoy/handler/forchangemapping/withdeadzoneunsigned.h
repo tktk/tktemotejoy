@@ -29,15 +29,14 @@ public:
         , const std::size_t _CURRENT_MAPPING_INDEX
     ) const override
     {
-        //TODO
-/*
-        if( std::abs( _VALUE ) <= this->DEAD_ZONE ) {
+        const auto &    VALUE = static_cast< const __u16 & >( _VALUE );
+
+        if( VALUE <= this->DEAD_ZONE ) {
             return _CURRENT_MAPPING_INDEX;
         }
-*/
 
         return this->HANDLER(
-            _VALUE
+            VALUE
             , _mappingIndex
             , _CURRENT_MAPPING_INDEX
         );
