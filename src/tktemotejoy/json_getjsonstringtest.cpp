@@ -54,8 +54,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GetJsonStringFromObjectNotRequiredTest
     , FailedNotString
@@ -63,13 +61,11 @@ TEST_F(
 {
     this->testAnyThrow(
         R"({
-    "key" : "NOT INTEGER"
+    "key" : [ "NOT STRING" ]
 })"
-        , 20
         , "key"
         , "parentKey1"
         , "parentKey2"
-        , "parentKey1.parentKey2.keyの値が整数ではない"
+        , "parentKey1.parentKey2.keyの値が文字列ではない"
     );
 }
-*/
