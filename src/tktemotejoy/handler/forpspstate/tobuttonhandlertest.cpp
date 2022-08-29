@@ -78,8 +78,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     ToButtonHandlerForPspStateTest
     , DeadZone
@@ -91,4 +89,3 @@ TEST_F(
         , false
     );
 }
-*/
