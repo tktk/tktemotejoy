@@ -101,8 +101,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     WithDeadZoneUnsignedForChangeMappingTest
     , DeadZone
@@ -118,4 +116,3 @@ TEST_F(
         , false
     );
 }
-*/
