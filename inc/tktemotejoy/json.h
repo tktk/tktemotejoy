@@ -277,15 +277,12 @@ struct GetJsonStringFromObject
         , const PARENT_KEYS_T & ... _PARENT_KEYS
     ) const
     {
-        //TODO
-/*
         if( _JSON.is_string() == false ) {
             throw jsonIsNotString(
                 _PARENT_KEYS ...
                 , _KEY
             );
         }
-*/
 
         return _JSON.get_ref< const Json::string_t & >();
     }
