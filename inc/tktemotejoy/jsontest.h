@@ -96,8 +96,6 @@ public:
         }
     }
 
-/*
-    template< typename EXPECTED_T >
     void testAnyThrow(
         const std::string &     _JSON_STRING
         , const std::string &   _KEY
@@ -111,7 +109,6 @@ public:
         try {
             GET_JSON_NOT_REQUIRED_T()(
                 JSON
-                , _DEFAULT
                 , _KEY
                 , _PARENT_KEY1
                 , _PARENT_KEY2
@@ -122,7 +119,6 @@ public:
             EXPECT_STREQ( _EXPECTED_WHAT.c_str(), _EX.what() );
         }
     }
-*/
 };
 
 template< typename GET_JSON_WITH_DEFAULT_T >
