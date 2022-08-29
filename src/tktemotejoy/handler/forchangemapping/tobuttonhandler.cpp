@@ -17,12 +17,8 @@ std::size_t ToButtonHandlerForChangeMappingImpl::operator()(
     , const std::size_t _CURRENT_MAPPING_INDEX
 ) const
 {
-    //TODO
-    return 0;
-/*
-    ( *( this->handlerUnique ) )(
+    return ( *( this->handlerUnique ) )(
         _mappingIndex
         , _CURRENT_MAPPING_INDEX
     );
-*/
 }
