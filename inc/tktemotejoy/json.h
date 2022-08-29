@@ -275,8 +275,10 @@ const Json::string_t * getJsonStringFromObjectNotRequired(
     , const PARENT_KEYS_T & ... _PARENT_KEYS
 )
 {
-    //TODO
-    return nullptr;
+    const auto  IT = _OBJECT.find( _KEY );
+    const auto &    JSON = IT->second;
+
+    return &( JSON.get_ref< const Json::string_t & >() );
 }
 
 #endif  // TKTEMOTEJOY_JSON_H
