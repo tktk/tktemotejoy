@@ -36,7 +36,7 @@ namespace {
 
     using GetJsonFromObjectTest = GetJsonTest< GetJsonFromObject >;
 
-    struct GetJsonFromObjectNotRequired
+    struct GetJsonFromObjectWithDefault
     {
         template< typename ... ARGS_T >
         const auto & operator()(
@@ -46,14 +46,14 @@ namespace {
         {
             const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
 
-            return getJsonFromObjectNotRequired< TestGetJsonString >(
+            return getJsonFromObjectWithDefault< TestGetJsonString >(
                 OBJECT
                 , _ARGS ...
             );
         }
     };
 
-    using GetJsonFromObjectNotRequiredTest = GetJsonNotRequiredTest< GetJsonFromObjectNotRequired >;
+    using GetJsonFromObjectWithDefaultTest = GetJsonWithDefaultTest< GetJsonFromObjectWithDefault >;
 }
 
 TEST_F(
@@ -85,9 +85,11 @@ TEST_F(
     );
 }
 
+//TODO GetJsonFromObjectNotRequiredTest
+
 TEST_F(
-    GetJsonFromObjectNotRequiredTest
-    , FromObjectNotRequired
+    GetJsonFromObjectWithDefaultTest
+    , FromObjectWithDefault
 )
 {
     this->test(
@@ -101,7 +103,7 @@ TEST_F(
 }
 
 TEST_F(
-    GetJsonFromObjectNotRequiredTest
+    GetJsonFromObjectWithDefaultTest
     , NotExists
 )
 {

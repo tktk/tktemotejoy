@@ -71,8 +71,8 @@ public:
     }
 };
 
-template< typename GET_JSON_NOT_REQUIRED_T >
-class GetJsonNotRequiredTest : public ::testing::Test
+template< typename GET_JSON_WITH_DEFAULT_T >
+class GetJsonWithDefaultTest : public ::testing::Test
 {
 public:
     template< typename EXPECTED_T >
@@ -87,7 +87,7 @@ public:
 
         EXPECT_EQ(
             _EXPECTED
-            , GET_JSON_NOT_REQUIRED_T()(
+            , GET_JSON_WITH_DEFAULT_T()(
                 JSON
                 , _DEFAULT
                 , _KEY
@@ -108,7 +108,7 @@ public:
         const auto  JSON = Json::parse( _JSON_STRING );
 
         try {
-            GET_JSON_NOT_REQUIRED_T()(
+            GET_JSON_WITH_DEFAULT_T()(
                 JSON
                 , _DEFAULT
                 , _KEY

@@ -35,7 +35,7 @@ template<
     , typename DEFAULT_T
     , typename ... PARENT_KEYS_T
 >
-const auto & getJsonFromObjectNotRequired(
+const auto & getJsonFromObjectWithDefault(
     const Json::object_t &      _OBJECT
     , const DEFAULT_T &         _DEFAULT
     , const std::string &       _KEY
@@ -145,7 +145,7 @@ const Json::object_t * getJsonObjectFromObjectNotRequired(
 )
 {
     return &(
-        getJsonFromObjectNotRequired< GetJsonObjectFromObject >(
+        getJsonFromObjectWithDefault< GetJsonObjectFromObject >(
             _OBJECT
             , *static_cast< const Json::object_t * >( nullptr )
             , _KEY
@@ -230,7 +230,7 @@ Json::number_integer_t getJsonIntegerFromObjectNotRequired(
     , const PARENT_KEYS_T & ...     _PARENT_KEYS
 )
 {
-    return getJsonFromObjectNotRequired< GetJsonIntegerFromObject >(
+    return getJsonFromObjectWithDefault< GetJsonIntegerFromObject >(
         _OBJECT
         , _DEFAULT
         , _KEY

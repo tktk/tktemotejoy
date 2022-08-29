@@ -41,7 +41,7 @@ namespace {
         }
     };
 
-    using GetJsonIntegerFromObjectNotRequiredTest = GetJsonNotRequiredTest< GetJsonIntegerFromObjectNotRequired >;
+    using GetJsonIntegerFromObjectNotRequiredTest = GetJsonWithDefaultTest< GetJsonIntegerFromObjectNotRequired >;
 }
 
 TEST_F(
