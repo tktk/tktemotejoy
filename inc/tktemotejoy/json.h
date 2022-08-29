@@ -268,6 +268,29 @@ const Json::number_integer_t & getJsonIntegerFromObjectWithDefault(
     );
 }
 
+struct GetJsonStringFromObject
+{
+    template< typename ... PARENT_KEYS_T >
+    const auto & operator()(
+        const Json &                _JSON
+        , const std::string &       _KEY
+        , const PARENT_KEYS_T & ... _PARENT_KEYS
+    ) const
+    {
+        //TODO
+/*
+        if( _JSON.is_string() == false ) {
+            throw jsonIsNotString(
+                _PARENT_KEYS ...
+                , _KEY
+            );
+        }
+*/
+
+        return _JSON.get_ref< const Json::string_t & >();
+    }
+};
+
 template< typename ... PARENT_KEYS_T >
 const Json::string_t * getJsonStringFromObjectNotRequired(
     const Json::object_t &      _OBJECT
@@ -275,10 +298,11 @@ const Json::string_t * getJsonStringFromObjectNotRequired(
     , const PARENT_KEYS_T & ... _PARENT_KEYS
 )
 {
-    const auto  IT = _OBJECT.find( _KEY );
-    const auto &    JSON = IT->second;
-
-    return &( JSON.get_ref< const Json::string_t & >() );
+    return getJsonFromObjectNotRequired< GetJsonStringFromObject >(
+        _OBJECT
+        , _KEY
+        , _PARENT_KEYS ...
+    );
 }
 
 #endif  // TKTEMOTEJOY_JSON_H
