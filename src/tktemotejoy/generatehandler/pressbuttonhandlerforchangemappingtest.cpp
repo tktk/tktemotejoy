@@ -51,7 +51,7 @@ TEST_F(
 
 TEST_F(
     GeneratePressButtonHandlerForChangeMappingTest
-    , NotPressButtonHandlerForChangeMapping
+    , FailedNotPressButtonHandlerForChangeMapping
 )
 {
     this->testAnyThrow(

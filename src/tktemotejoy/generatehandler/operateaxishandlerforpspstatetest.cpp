@@ -73,7 +73,28 @@ TEST_F(
 
 TEST_F(
     GenerateOperateAxisHandlerForPspStateTest
-    , NotOperateAxisHandlerForPspState
+    , ToButtonHandler
+)
+{
+    this->test(
+        R"({
+    "type" : "toButtonHandler",
+    "deadZone" : 60000,
+    "handler" : {
+        "type" : "toButtons",
+        "buttons" : [
+            "down"
+        ]
+    }
+})"
+        , 0xffff
+        , 0x80800040
+    );
+}
+
+TEST_F(
+    GenerateOperateAxisHandlerForPspStateTest
+    , FailedNotOperateAxisHandlerForPspState
 )
 {
     this->testAnyThrow(

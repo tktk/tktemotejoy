@@ -63,7 +63,7 @@ TEST_F(
 
 TEST_F(
     GeneratePressButtonHandlerForPspStateTest
-    , NotPressButtonHandlerForPspState
+    , FailedNotPressButtonHandlerForPspState
 )
 {
     this->testAnyThrow(
