@@ -218,6 +218,28 @@ const Json::number_unsigned_t & getJsonUnsignedFromObject(
     );
 }
 
+const auto  tmp = Json::number_unsigned_t( 100 );   //REMOVEME
+
+template< typename ... PARENT_KEYS_T >
+const Json::number_unsigned_t & getJsonUnsignedFromObjectWithDefault(
+    const Json::object_t &              _OBJECT
+    , const Json::number_unsigned_t &   _DEFAULT
+    , const std::string &               _KEY
+    , const PARENT_KEYS_T & ...         _PARENT_KEYS
+)
+{
+    //TODO
+    return tmp;
+/*
+    return getJsonFromObjectWithDefault< GetJsonUnsignedFromObject >(
+        _OBJECT
+        , _DEFAULT
+        , _KEY
+        , _PARENT_KEYS ...
+    );
+*/
+}
+
 struct GetJsonIntegerFromObject
 {
     template< typename ... PARENT_KEYS_T >

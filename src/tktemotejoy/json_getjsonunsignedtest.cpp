@@ -5,7 +5,7 @@
 #include <string>
 
 namespace {
-    struct GetJsonUnsigned
+    struct GetJsonUnsignedFromObject
     {
         template< typename ... ARGS_T >
         const auto & operator()(
@@ -22,11 +22,30 @@ namespace {
         }
     };
 
-    using GetJsonUnsignedTest = GetJsonTest< GetJsonUnsigned >;
+    using GetJsonUnsignedFromObjectTest = GetJsonTest< GetJsonUnsignedFromObject >;
+
+    struct GetJsonUnsignedFromObjectWithDefault
+    {
+        template< typename ... ARGS_T >
+        auto operator()(
+            const Json &            _JSON
+            , const ARGS_T & ...    _ARGS
+        ) const
+        {
+            const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
+
+            return getJsonUnsignedFromObjectWithDefault(
+                OBJECT
+                , _ARGS ...
+            );
+        }
+    };
+
+    using GetJsonUnsignedFromObjectWithDefaultTest = GetJsonWithDefaultTest< GetJsonUnsignedFromObjectWithDefault >;
 }
 
 TEST_F(
-    GetJsonUnsignedTest
+    GetJsonUnsignedFromObjectTest
     , FromObject
 )
 {
@@ -40,8 +59,8 @@ TEST_F(
 }
 
 TEST_F(
-    GetJsonUnsignedTest
-    , FailedNotExistsFromObject
+    GetJsonUnsignedFromObjectTest
+    , FailedNotExists
 )
 {
     this->testAnyThrow(
@@ -55,8 +74,8 @@ TEST_F(
 }
 
 TEST_F(
-    GetJsonUnsignedTest
-    , FailedNotUnsignedFromObject
+    GetJsonUnsignedFromObjectTest
+    , FailedNotUnsigned
 )
 {
     this->testAnyThrow(
@@ -69,3 +88,21 @@ TEST_F(
         , "parentKey1.parentKey2.keyの値が符号なし整数ではない"
     );
 }
+
+TEST_F(
+    GetJsonUnsignedFromObjectWithDefaultTest
+    , FromObject
+)
+{
+    this->test(
+        R"({
+    "key" : 10
+})"
+        , 20
+        , "key"
+        , 10
+    );
+}
+
+//TODO NotExists
+//TODO FailedNotUnsigned
