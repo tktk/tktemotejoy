@@ -19,7 +19,7 @@ public:
         const auto  KEY_MAX_ = std::string( "max" );
         const auto  DEFAULT_MAX = __s16( 0x7fff );
 
-        const auto  MAX = getJsonIntegerFromObjectNotRequired(
+        const auto  MAX = getJsonIntegerFromObjectWithDefault(
             _OBJECT
             , DEFAULT_MAX
             , KEY_MAX_
