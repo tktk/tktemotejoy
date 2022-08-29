@@ -268,4 +268,15 @@ const Json::number_integer_t & getJsonIntegerFromObjectWithDefault(
     );
 }
 
+template< typename ... PARENT_KEYS_T >
+const Json::string_t * getJsonStringFromObjectNotRequired(
+    const Json::object_t &      _OBJECT
+    , const std::string &       _KEY
+    , const PARENT_KEYS_T & ... _PARENT_KEYS
+)
+{
+    //TODO
+    return nullptr;
+}
+
 #endif  // TKTEMOTEJOY_JSON_H
