@@ -16,8 +16,5 @@ void ToButtonHandlerForPspStateImpl::operator()(
     , PspState &    _pspState
 ) const
 {
-    //TODO
-/*
     ( *( this->handlerUnique ) )( _pspState );
-*/
 }
