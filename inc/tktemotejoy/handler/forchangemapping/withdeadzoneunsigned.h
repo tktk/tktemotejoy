@@ -30,18 +30,17 @@ public:
     ) const override
     {
         //TODO
-        return 0;
 /*
         if( std::abs( _VALUE ) <= this->DEAD_ZONE ) {
             return _CURRENT_MAPPING_INDEX;
         }
+*/
 
         return this->HANDLER(
             _VALUE
             , _mappingIndex
             , _CURRENT_MAPPING_INDEX
         );
-*/
     }
 };
 
