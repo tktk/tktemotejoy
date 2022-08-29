@@ -74,24 +74,22 @@ TEST_F(
 )
 {
     this->test(
-        40000
-        , 50000
-        , 50000
+        50000
+        , 60000
+        , 60000
         , true
     );
 }
 
-/*
 TEST_F(
     WithDeadZoneUnsignedForPspStateTest
     , DeadZone
 )
 {
     this->test(
-        1000
-        , 1000
+        50000
+        , 40000
         , 0
         , false
     );
 }
-*/
