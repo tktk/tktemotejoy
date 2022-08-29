@@ -15,8 +15,6 @@ auto getJsonFromObjectNotRequired(
 )
 {
     const auto  IT = _OBJECT.find( _KEY );
-    //TODO
-/*
     if( IT == _OBJECT.end() ) {
         return static_cast<
             decltype(
@@ -30,7 +28,6 @@ auto getJsonFromObjectNotRequired(
             )
         >( nullptr );
     }
-*/
     const auto &    JSON = IT->second;
 
     return &(
