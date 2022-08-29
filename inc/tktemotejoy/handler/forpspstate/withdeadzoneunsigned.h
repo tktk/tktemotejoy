@@ -28,12 +28,9 @@ public:
         , PspState &    _pspState
     ) const override
     {
-        //TODO
-/*
-        if( std::abs( _VALUE ) <= this->DEAD_ZONE ) {
+        if( static_cast< const __u16 & >( _VALUE ) <= this->DEAD_ZONE ) {
             return;
         }
-*/
 
         this->HANDLER(
             _VALUE
