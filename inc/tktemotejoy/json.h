@@ -4,8 +4,6 @@
 #include "tktemotejoy/customjson.h"
 #include "tktemotejoy/jsonerror.h"
 
-const auto  tmp = Json::string_t( "TODO" ); //REMOVEME
-
 template<
     typename GET_JSON_T
     , typename ... PARENT_KEYS_T
@@ -16,13 +14,23 @@ auto getJsonFromObjectNotRequired(
     , const PARENT_KEYS_T & ... _PARENT_KEYS
 )
 {
-    //TODO
-    return &tmp;
-/*
     const auto  IT = _OBJECT.find( _KEY );
+    //TODO
+/*
     if( IT == _OBJECT.end() ) {
-        return nullptr;
+        return static_cast<
+            decltype(
+                &(
+                    GET_JSON_T()(
+                        IT->second
+                        , _KEY
+                        , _PARENT_KEYS ...
+                    )
+                )
+            )
+        >( nullptr );
     }
+*/
     const auto &    JSON = IT->second;
 
     return &(
@@ -32,7 +40,6 @@ auto getJsonFromObjectNotRequired(
             , _PARENT_KEYS ...
         )
     );
-*/
 }
 
 template<
