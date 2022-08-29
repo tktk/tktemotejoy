@@ -49,20 +49,19 @@ const auto & getJsonFromObject(
     , const PARENT_KEYS_T & ... _PARENT_KEYS
 )
 {
-    const auto  IT = _OBJECT.find( _KEY );
-    if( IT == _OBJECT.end() ) {
+    const auto  JSON_PTR = getJsonFromObjectNotRequired< GET_JSON_T >(
+        _OBJECT
+        , _KEY
+        , _PARENT_KEYS ...
+    );
+    if( JSON_PTR == nullptr ) {
         throw jsonIsNotExists(
             _PARENT_KEYS ...
             , _KEY
         );
     }
-    const auto &    JSON = IT->second;
 
-    return GET_JSON_T()(
-        JSON
-        , _KEY
-        , _PARENT_KEYS ...
-    );
+    return *JSON_PTR;
 }
 
 template<
