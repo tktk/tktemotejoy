@@ -2,7 +2,7 @@
 #define TKTEMOTEJOY_GENERATEHANDLER_GENERATEHANDLERUNIQUE_H
 
 #include "tktemotejoy/customjson.h"
-#include "tktemotejoy/jsonerror.h"
+#include "tktemotejoy/json.h"
 #include <string>
 
 template<
@@ -16,15 +16,15 @@ HANDLER_UNIQUE_T generateHandlerUnique(
 {
     const auto  KEY_TYPE = std::string( "type" );
 
-    const auto  IT = _OBJECT.find( KEY_TYPE );
-    if( IT == _OBJECT.end() ) {
+    const auto  TYPE_PTR = getJsonStringFromObjectNotRequired(
+        _OBJECT
+        , KEY_TYPE
+    );
+    if( TYPE_PTR == nullptr ) {
         return HANDLER_UNIQUE_T();
     }
 
-    const auto &    TYPE = IT->second;
-    if( TYPE.is_string() != true ) {
-        throw jsonIsNotString( KEY_TYPE );
-    } else if( TYPE.get_ref< const Json::string_t & >() != GET_TYPE_T()() ) {
+    if( *TYPE_PTR != GET_TYPE_T()() ) {
         return HANDLER_UNIQUE_T();
     }
 
