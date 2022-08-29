@@ -104,5 +104,18 @@ TEST_F(
     );
 }
 
-//TODO NotExists
+TEST_F(
+    GetJsonUnsignedFromObjectWithDefaultTest
+    , NotExists
+)
+{
+    this->test(
+        R"({
+})"
+        , 20
+        , "key"
+        , 20
+    );
+}
+
 //TODO FailedNotUnsigned
