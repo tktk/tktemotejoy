@@ -51,16 +51,12 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChan
     const Json::object_t &  _OBJECT
 )
 {
-    //TODO
-    return Mapping::OperateAxisHandlerForChangeMappingUnique();
-/*
     return generateHandlerUnique<
         Mapping::OperateAxisHandlerForChangeMappingUnique
         , GetType
-        , GenerateToButtonHandlersUnique<
+        , GenerateToButtonHandlerUnique<
             GenerateToButtonHandlerForChangeMappingUnique
             , GeneratePressButtonHandlerForChangeMappingUnique
         >
     >( _OBJECT );
-*/
 }
