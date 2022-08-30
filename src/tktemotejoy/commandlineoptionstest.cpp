@@ -51,6 +51,8 @@ TEST_F(
             "-p",
             "10",
             "DEVICEFILEPATH",
+            "OTHERARGS1",
+            "OTHERARGS2",
         }
         , true
         , CommandLineOptions{
