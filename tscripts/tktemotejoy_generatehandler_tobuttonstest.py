@@ -18,6 +18,7 @@ module.SOURCE = [
         'handler' : {
             'forpspstate' : [
                 'tobuttons.cpp',
+                'dummy.cpp',
             ],
         },
     },

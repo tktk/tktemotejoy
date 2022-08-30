@@ -12,4 +12,11 @@ module.TARGET = 'tktemotejoy_mapping_pressbuttonforchangemappingtest'
 module.SOURCE = [
     'mapping_pressbuttonforchangemappingtest.cpp',
     'mapping.cpp',
+    {
+        'handler' : {
+            'forpspstate' : [
+                'dummy.cpp',
+            ],
+        },
+    },
 ]

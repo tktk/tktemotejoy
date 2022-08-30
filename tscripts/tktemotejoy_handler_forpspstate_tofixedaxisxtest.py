@@ -16,6 +16,7 @@ module.SOURCE = [
                 'tofixedaxisxtest.cpp',
                 'tofixedaxisx.cpp',
                 'jseventaxistopspstateaxis.cpp',
+                'dummy.cpp',
             ],
         },
     },

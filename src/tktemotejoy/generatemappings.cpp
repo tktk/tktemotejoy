@@ -190,7 +190,7 @@ namespace {
                 , index
             );
 
-            impl.push_back( generateMapping( MAPPING ) );
+            impl.emplace_back( generateMapping( MAPPING ) );
 
             index++;
         }

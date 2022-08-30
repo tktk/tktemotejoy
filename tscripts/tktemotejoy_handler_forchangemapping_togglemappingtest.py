@@ -16,6 +16,9 @@ module.SOURCE = [
                 'togglemappingtest.cpp',
                 'togglemapping.cpp',
             ],
+            'forpspstate' : [
+                'dummy.cpp',
+            ],
         },
     },
     'mapping.cpp',

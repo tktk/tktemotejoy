@@ -16,6 +16,9 @@ module.SOURCE = [
                 'shiftmappingtest.cpp',
                 'shiftmapping.cpp',
             ],
+            'forpspstate' : [
+                'dummy.cpp',
+            ],
         },
     },
     'mapping.cpp',

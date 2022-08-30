@@ -16,6 +16,9 @@ module.SOURCE = [
                 'tobuttonhandlertest.cpp',
                 'tobuttonhandler.cpp',
             ],
+            'forpspstate' : [
+                'dummy.cpp',
+            ],
         },
     },
     'mapping.cpp',

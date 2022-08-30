@@ -32,7 +32,7 @@ namespace {
     {
         auto    mappingsImpl = Mappings::Impl();
 
-        mappingsImpl.push_back(
+        mappingsImpl.emplace_back(
             generateMapping(
                 [](
                     Mapping &   _mapping
@@ -79,7 +79,7 @@ namespace {
             )
         );
 
-        mappingsImpl.push_back(
+        mappingsImpl.emplace_back(
             generateMapping(
                 [](
                     Mapping &   _mapping
@@ -106,7 +106,7 @@ namespace {
             )
         );
 
-        mappingsImpl.push_back(
+        mappingsImpl.emplace_back(
             generateMapping(
                 [](
                     Mapping &   _mapping

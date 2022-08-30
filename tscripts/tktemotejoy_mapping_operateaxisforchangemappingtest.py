@@ -12,4 +12,11 @@ module.TARGET = 'tktemotejoy_mapping_operateaxisforchangemappingtest'
 module.SOURCE = [
     'mapping_operateaxisforchangemappingtest.cpp',
     'mapping.cpp',
+    {
+        'handler' : {
+            'forpspstate' : [
+                'dummy.cpp',
+            ],
+        },
+    },
 ]

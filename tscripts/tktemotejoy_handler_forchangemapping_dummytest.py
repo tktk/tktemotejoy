@@ -16,6 +16,9 @@ module.SOURCE = [
                 'dummytest.cpp',
                 'dummy.cpp',
             ],
+            'forpspstate' : [
+                'dummy.cpp',
+            ],
         },
     },
     'mapping.cpp',

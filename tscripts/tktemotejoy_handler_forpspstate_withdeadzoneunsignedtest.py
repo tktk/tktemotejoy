@@ -14,6 +14,7 @@ module.SOURCE = [
         'handler' : {
             'forpspstate' : [
                 'withdeadzoneunsignedtest.cpp',
+                'dummy.cpp',
             ],
         },
     },

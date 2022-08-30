@@ -13,4 +13,11 @@ module.SOURCE = [
     'mapping_pressbuttonforpspstatetest.cpp',
     'mapping.cpp',
     'pspstate.cpp',
+    {
+        'handler' : {
+            'forpspstate' : [
+                'dummy.cpp',
+            ],
+        },
+    },
 ]

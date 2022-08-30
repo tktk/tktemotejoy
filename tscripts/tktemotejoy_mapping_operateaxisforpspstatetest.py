@@ -13,4 +13,11 @@ module.SOURCE = [
     'mapping_operateaxisforpspstatetest.cpp',
     'mapping.cpp',
     'pspstate.cpp',
+    {
+        'handler' : {
+            'forpspstate' : [
+                'dummy.cpp',
+            ],
+        },
+    },
 ]

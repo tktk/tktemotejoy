@@ -19,6 +19,7 @@ module.SOURCE = [
             'forpspstate' : [
                 'toaxisy.cpp',
                 'jseventaxistopspstateaxis.cpp',
+                'dummy.cpp',
             ],
         },
     },

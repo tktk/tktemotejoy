@@ -4,7 +4,8 @@
 #include "tktemotejoy/pspstate.h"
 
 #include <linux/joystick.h>
-#include <map>
+#include <vector>
+#include <map>  //REMOVEME
 #include <memory>
 #include <cstddef>
 
@@ -24,10 +25,7 @@ public:
 
     using PressButtonHandlerForPspStateUnique = std::unique_ptr< PressButtonHandlerForPspState >;
 
-    using PressButtonHandlersForPspState = std::map<
-        std::size_t
-        , PressButtonHandlerForPspStateUnique
-    >;
+    using PressButtonHandlersForPspState = std::vector< PressButtonHandlerForPspStateUnique >;
 
     class OperateAxisHandlerForPspState
     {
@@ -123,9 +121,13 @@ private:
     OperateAxisHandlersForChangeMapping operateAxisHandlersForChangeMapping;
 
 public:
+    Mapping(
+        //TODO ボタン数、軸数を指定する
+    );
+
     void setHandler(
-        const PressButtonHandlersForPspState::key_type
-        , PressButtonHandlersForPspState::mapped_type &&
+        const PressButtonHandlersForPspState::size_type
+        , PressButtonHandlersForPspState::value_type &&
     );
 
     void setHandler(
@@ -144,7 +146,7 @@ public:
     );
 
     void pressButton(
-        const PressButtonHandlersForPspState::key_type
+        const PressButtonHandlersForPspState::size_type
         , PspState &
     ) const;
 
