@@ -203,6 +203,22 @@ namespace {
 }
 
 Mappings generateMappings(
+    const Json &        _JSON
+    , const std::size_t _BUTTONS
+    , const std::size_t _AXES
+)
+{
+    //TODO
+    auto    impl = Mappings::Impl();
+
+    return Mappings(
+        std::move( impl )
+        , 0
+    );
+}
+
+//REMOVEME
+Mappings generateMappings(
     const Json &    _JSON
 )
 {

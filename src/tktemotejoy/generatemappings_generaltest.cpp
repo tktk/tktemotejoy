@@ -26,7 +26,11 @@ namespace {
         {
             const auto  JSON = Json::parse( _JSON_STRING );
 
-            auto    mappings = generateMappings( JSON );
+            auto    mappings = generateMappings(
+                JSON
+                , 0
+                , 0
+            );
 
             const auto &    TEST_MAPPINGS = reinterpret_cast< const TestMappings & >( mappings );
 
@@ -39,7 +43,13 @@ namespace {
         {
             const auto  JSON = Json::parse( _JSON_STRING );
 
-            EXPECT_ANY_THROW( generateMappings( JSON ) );
+            EXPECT_ANY_THROW(
+                generateMappings(
+                    JSON
+                    , 0
+                    , 0
+                )
+            );
         }
     };
 }
@@ -62,7 +72,7 @@ TEST_F(
 
 TEST_F(
     GenerateMappings_generalTest
-    , NotExistsGeneral
+    , FailedNotExistsGeneral
 )
 {
     this->testAnyThrow(
@@ -74,7 +84,7 @@ TEST_F(
 
 TEST_F(
     GenerateMappings_generalTest
-    , GeneralIsNotObject
+    , FailedNotObjectGeneral
 )
 {
     this->testAnyThrow(
@@ -87,7 +97,7 @@ TEST_F(
 
 TEST_F(
     GenerateMappings_generalTest
-    , NotExistsDefaultMapping
+    , FailedNotExistsDefaultMapping
 )
 {
     this->testAnyThrow(
@@ -100,7 +110,7 @@ TEST_F(
 
 TEST_F(
     GenerateMappings_generalTest
-    , DefaultMappingIsNotUnsignedInteger
+    , FailedNotUnsignedDefaultMapping
 )
 {
     this->testAnyThrow(

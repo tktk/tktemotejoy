@@ -16,7 +16,11 @@ namespace {
         {
             const auto  JSON = Json::parse( _JSON_STRING );
 
-            auto    mappings = generateMappings( JSON );
+            auto    mappings = generateMappings(
+                JSON
+                , 10
+                , 20
+            );
 
             auto    pspState = PspState();
 
@@ -37,7 +41,13 @@ namespace {
         {
             const auto  JSON = Json::parse( _JSON_STRING );
 
-            EXPECT_ANY_THROW( generateMappings( JSON ) );
+            EXPECT_ANY_THROW(
+                generateMappings(
+                    JSON
+                    , 0
+                    , 0
+                )
+            );
         }
     };
 }
