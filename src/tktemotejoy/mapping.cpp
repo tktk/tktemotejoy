@@ -111,7 +111,7 @@ Mapping::Mapping(
         generateHandlers<
             Mapping::PressButtonHandlersForChangeMapping
             , DummyPressButtonHandlerForChangeMapping
-        >( 0 )
+        >( _BUTTONS )
     )
     , operateAxisHandlersForPspState(
         generateHandlers<
