@@ -3,9 +3,6 @@
 #include "tktemotejoy/generatehandler/tobuttonhandlerforchangemapping.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
-#include "tktemotejoy/typeerror.h"
-#include <string>
-#include <stdexcept>
 
 Mapping::OperateAxisHandlerForChangeMappingUnique generateOperateAxisHandlerForChangeMappingUnique(
     const Json::object_t &  _OBJECT
@@ -23,10 +20,5 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateOperateAxisHandlerForC
         return handlerUnique;
     }
 
-    const auto  HANDLERS_TYPE = std::string( "axesForChangeMapping" );
-
-    throw typeIsNotSupported(
-        _OBJECT
-        , HANDLERS_TYPE
-    );
+    return handlerUnique;
 }
