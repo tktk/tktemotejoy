@@ -7,6 +7,7 @@
 #include "tktemotejoy/customjson.h"
 #include "tktemotejoy/json.h"
 #include "tktemotejoy/jsonerror.h"
+#include "tktemotejoy/typeerror.h"
 #include <cstddef>
 #include <string>
 #include <utility>
@@ -124,6 +125,12 @@ namespace {
             );
 
             auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( MAPPING );
+            if( handlerUnique.get() == nullptr ) {
+                throw typeIsNotSupported(
+                    MAPPING
+                    , _KEY
+                );
+            }
 
             _mapping.setHandler(
                 index
