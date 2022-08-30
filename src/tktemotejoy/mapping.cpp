@@ -69,35 +69,6 @@ Mapping::OperateAxisHandlerForChangeMapping::~OperateAxisHandlerForChangeMapping
 }
 
 Mapping::Mapping(
-)
-    : pressButtonHandlersForPspState(
-        generateHandlers<
-            Mapping::PressButtonHandlersForPspState
-            , DummyPressButtonHandlerForPspState
-        >( 100 )    //TODO
-    )
-    , pressButtonHandlersForChangeMapping(
-        generateHandlers<
-            Mapping::PressButtonHandlersForChangeMapping
-            , DummyPressButtonHandlerForChangeMapping
-        >( 100 )    //TODO
-    )
-    , operateAxisHandlersForPspState(
-        generateHandlers<
-            Mapping::OperateAxisHandlersForPspState
-            , DummyOperateAxisHandlerForPspState
-        >( 200 )    //TODO
-    )
-    , operateAxisHandlersForChangeMapping(
-        generateHandlers<
-            Mapping::OperateAxisHandlersForChangeMapping
-            , DummyOperateAxisHandlerForChangeMapping
-        >( 200 )    //TODO
-    )
-{
-}
-
-Mapping::Mapping(
     const std::size_t   _BUTTONS
     , const std::size_t _AXES
 )

@@ -26,7 +26,10 @@ public:
         auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( JSON );
         ASSERT_NE( nullptr, handlerUnique.get() );
 
-        auto    mapping = Mapping();
+        auto    mapping = Mapping(
+            0
+            , 1
+        );
 
         mapping.setHandler(
             0

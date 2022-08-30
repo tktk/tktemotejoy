@@ -110,10 +110,6 @@ private:
     OperateAxisHandlersForChangeMapping operateAxisHandlersForChangeMapping;
 
 public:
-    //REMOVEME
-    Mapping(
-    );
-
     Mapping(
         const std::size_t
         , const std::size_t

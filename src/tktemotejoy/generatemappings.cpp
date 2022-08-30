@@ -143,7 +143,10 @@ namespace {
         const Json::object_t &  _OBJECT
     )
     {
-        auto    mapping = Mapping();
+        auto    mapping = Mapping(
+            100 //TODO
+            , 200   //TODO
+        );
 
         setHandlers< GeneratePressButtonHandlerForPspStateUnique >(
             mapping

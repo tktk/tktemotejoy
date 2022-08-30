@@ -20,7 +20,10 @@ namespace {
         const std::function< void ( Mapping & ) > & _INITIALIZE_PROC
     )
     {
-        auto    mapping = Mapping();
+        auto    mapping = Mapping(
+            10
+            , 10
+        );
 
         _INITIALIZE_PROC( mapping );
 
