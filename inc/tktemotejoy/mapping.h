@@ -41,10 +41,7 @@ public:
 
     using OperateAxisHandlerForPspStateUnique = std::unique_ptr< OperateAxisHandlerForPspState >;
 
-    using OperateAxisHandlersForPspState = std::map<
-        std::size_t
-        , OperateAxisHandlerForPspStateUnique
-    >;
+    using OperateAxisHandlersForPspState = std::vector< OperateAxisHandlerForPspStateUnique >;
 
     class PressButtonHandlerForChangeMapping
     {
@@ -132,8 +129,8 @@ public:
     );
 
     void setHandler(
-        const OperateAxisHandlersForPspState::key_type
-        , OperateAxisHandlersForPspState::mapped_type &&
+        const OperateAxisHandlersForPspState::size_type
+        , OperateAxisHandlersForPspState::value_type &&
     );
 
     void setHandler(
@@ -153,7 +150,7 @@ public:
     ) const;
 
     void operateAxis(
-        const OperateAxisHandlersForPspState::key_type
+        const OperateAxisHandlersForPspState::size_type
         , const __s16
         , PspState &
     ) const;

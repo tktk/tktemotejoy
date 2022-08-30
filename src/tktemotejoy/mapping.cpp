@@ -74,25 +74,6 @@ namespace {
         typename HANDLERS_T
         , typename CALL_HANDLER_T
     >
-    auto callHandlerForPspState_old(
-        const HANDLERS_T &                      _HANDLERS
-        , const typename HANDLERS_T::key_type   _KEY
-        , const CALL_HANDLER_T &                _CALL_HANDLER
-    )
-    {
-        return callHandler_old< void >(
-            _HANDLERS
-            , _KEY
-            , _CALL_HANDLER
-            , []{}
-        );
-    }
-
-    //REMOVEME
-    template<
-        typename HANDLERS_T
-        , typename CALL_HANDLER_T
-    >
     auto callHandlerForChangeMapping_old(
         const HANDLERS_T &                      _HANDLERS
         , const typename HANDLERS_T::key_type   _KEY
@@ -148,6 +129,12 @@ Mapping::Mapping(
             , DummyPressButtonHandlerForChangeMapping
         >( 100 )    //TODO
     )
+    , operateAxisHandlersForPspState(
+        generateHandlers<
+            Mapping::OperateAxisHandlersForPspState
+            , DummyOperateAxisHandlerForPspState
+        >( 200 )    //TODO
+    )
 {
 }
 
@@ -176,15 +163,14 @@ void Mapping::setHandler(
 }
 
 void Mapping::setHandler(
-    const OperateAxisHandlersForPspState::key_type      _KEY
-    , OperateAxisHandlersForPspState::mapped_type &&    _mappedUnique
+    const OperateAxisHandlersForPspState::size_type _INDEX
+    , OperateAxisHandlersForPspState::value_type && _handlerUnique
 )
 {
-    this->operateAxisHandlersForPspState.insert(
-        {
-            _KEY,
-            std::move( _mappedUnique ),
-        }
+    setHandler_(
+        this->operateAxisHandlersForPspState
+        , _INDEX
+        , std::move( _handlerUnique )
     );
 }
 
@@ -247,14 +233,14 @@ std::size_t Mapping::pressButton(
 }
 
 void Mapping::operateAxis(
-    const OperateAxisHandlersForPspState::key_type  _KEY
+    const OperateAxisHandlersForPspState::size_type _INDEX
     , const __s16                                   _VALUE
     , PspState &                                    _pspState
 ) const
 {
-    callHandlerForPspState_old(
+    callHandler(
         this->operateAxisHandlersForPspState
-        , _KEY
+        , _INDEX
         , [
             &_VALUE
             , &_pspState
