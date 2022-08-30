@@ -9,8 +9,11 @@ module.BUILDER = cpp.gtest
 
 module.TARGET = 'tktemotejoy_generatehandler_tobuttonhandlertest'
 
-module.SOURCE = {
-    'generatehandler' : [
-        'tobuttonhandlertest.cpp',
-    ],
-}
+module.SOURCE = [
+    {
+        'generatehandler' : [
+            'tobuttonhandlertest.cpp',
+        ],
+    },
+    'typeerror.cpp',
+]
