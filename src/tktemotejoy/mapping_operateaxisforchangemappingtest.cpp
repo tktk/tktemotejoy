@@ -49,8 +49,8 @@ namespace {
     {
     public:
         void test(
-            const int           _SET_HANDLER_KEY
-            , const int         _PRESS_BUTTON_KEY
+            const std::size_t   _SET_HANDLER_INDEX
+            , const std::size_t _OPERATE_AXIS_INDEX
             , const __s16       _VALUE
             , const std::size_t _MAPPING_INDEX
             , const std::size_t _CURRENT_MAPPING_INDEX
@@ -75,17 +75,20 @@ namespace {
                 )
             );
 
-            auto    mapping = Mapping();
+            auto    mapping = Mapping(
+                0
+                , _OPERATE_AXIS_INDEX + 1
+            );
 
             mapping.setHandler(
-                _SET_HANDLER_KEY
+                _SET_HANDLER_INDEX
                 , std::move( handlerUnique )
             );
 
             EXPECT_EQ(
                 _EXPECTED_NEW_MAPPING_INDEX
                 , mapping.operateAxis(
-                    _PRESS_BUTTON_KEY
+                    _OPERATE_AXIS_INDEX
                     , _VALUE
                     , mappingIndex
                     , _CURRENT_MAPPING_INDEX
