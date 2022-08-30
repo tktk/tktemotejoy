@@ -53,6 +53,7 @@ namespace {
             , const std::size_t _MAPPING_INDEX
             , const std::size_t _CURRENT_MAPPING_INDEX
             , const std::size_t _RETURNS_MAPPING_INDEX
+            , const __u16       _EXPECTED_VALUE
             , const std::size_t _EXPECTED_NEW_MAPPING_INDEX
             , const bool        _EXPECTED_CALLED
         ) const
@@ -65,7 +66,7 @@ namespace {
                 , TestHandler(
                     called
                     , _RETURNS_MAPPING_INDEX
-                    , _VALUE
+                    , _EXPECTED_VALUE
                     , mappingIndex
                     , _CURRENT_MAPPING_INDEX
                 )
@@ -92,10 +93,11 @@ TEST_F(
 {
     this->test(
         50000
-        , 60000
+        , 60000 ^ 0x8000
         , 10
         , 20
         , 30
+        , 60000
         , 30
         , true
     );
@@ -108,10 +110,11 @@ TEST_F(
 {
     this->test(
         50000
-        , 40000
+        , 40000 ^ 0x8000
         , 10
         , 20
         , 30
+        , 40000
         , 20
         , false
     );
