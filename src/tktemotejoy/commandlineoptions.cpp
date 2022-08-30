@@ -28,12 +28,6 @@ bool initializeCommandLineOptions(
     auto    existsMapFilePath = false;
     auto    existsDeviceFilePath = false;
 
-    //TODO
-/*
-    auto    existsIllegalOption = false;
-    auto    illegalOptionKey = 0;
-*/
-
     auto    printHelp = false;
 
     auto    argv = const_cast< char * const * >( _ARGV );
@@ -67,12 +61,8 @@ bool initializeCommandLineOptions(
             break;
 
         default:
-        //TODO
-/*
-            existsIllegalOption = true;
-            illegalOptionKey = OPTION_KEY;
+            printHelp = true;
             goto LOOP_END;
-*/
             break;
         }
     }
@@ -84,15 +74,6 @@ bool initializeCommandLineOptions(
     }
 
     if( printHelp == false ) {
-        //TODO
-/*
-        if( existsIllegalOption == true ) {
-            std::cerr << "無効なオプション : '" << char( illegalOptionKey ) << '\'' << std::endl;
-
-            printHelp = true;
-        }
-*/
-
         if( existsMapFilePath == false ) {
             std::cerr << "マッピングファイルの指定が必要" << std::endl;
 
