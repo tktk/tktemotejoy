@@ -117,7 +117,7 @@ Mapping::Mapping(
         generateHandlers<
             Mapping::OperateAxisHandlersForPspState
             , DummyOperateAxisHandlerForPspState
-        >( 0 )
+        >( _AXES )
     )
     , operateAxisHandlersForChangeMapping(
         generateHandlers<
