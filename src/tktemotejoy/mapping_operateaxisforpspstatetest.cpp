@@ -2,6 +2,7 @@
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/pspstate.h"
 #include <linux/joystick.h>
+#include <cstddef>
 
 namespace {
     class TestHandlerForPspState final : public Mapping::OperateAxisHandlerForPspState
@@ -39,11 +40,11 @@ namespace {
     {
     public:
         void test(
-            const int       _SET_HANDLER_KEY
-            , const int     _OPERATE_AXIS_KEY
-            , const __s16   _VALUE
-            , const __s16   _EXPECTED_VALUE
-            , const int     _EXPECTED_CALLED_COUNT
+            const std::size_t   _SET_HANDLER_INDEX
+            , const std::size_t _OPERATE_AXIS_INDEX
+            , const __s16       _VALUE
+            , const __s16       _EXPECTED_VALUE
+            , const int         _EXPECTED_CALLED_COUNT
         ) const
         {
             auto    calledCount = 0;
@@ -57,15 +58,18 @@ namespace {
                 )
             );
 
-            auto    mapping = Mapping();
+            auto    mapping = Mapping(
+                0
+                , _OPERATE_AXIS_INDEX + 1
+            );
 
             mapping.setHandler(
-                _SET_HANDLER_KEY
+                _SET_HANDLER_INDEX
                 , std::move( handlerUnique )
             );
 
             mapping.operateAxis(
-                _OPERATE_AXIS_KEY
+                _OPERATE_AXIS_INDEX
                 , _VALUE
                 , pspState
             );
