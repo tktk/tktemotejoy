@@ -4,7 +4,7 @@
 #include "tktemotejoy/generatehandler/withdeadzone.h"
 #include "tktemotejoy/customjson.h"
 #include "tktemotejoy/json.h"
-#include "tktemotejoy/jsonerror.h"
+#include "tktemotejoy/typeerror.h"
 #include <linux/joystick.h>
 #include <string>
 #include <utility>
@@ -36,6 +36,12 @@ public:
             _OBJECT
             , KEY_HANDLER1
         );
+        if( handler1Unique.get() == nullptr ) {
+            throw typeIsUnsupported(
+                _OBJECT
+                , KEY_HANDLER1
+            );
+        }
         auto    handler2Unique = generateHandler(
             _OBJECT
             , KEY_HANDLER2
