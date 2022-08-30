@@ -4,7 +4,7 @@
 #include <string>
 #include <sstream>
 
-std::runtime_error typeIsNotSupported(
+std::runtime_error typeIsUnsupported(
     const Json::object_t &  _OBJECT
     , const std::string &   _HANDLERS_TYPE
 )

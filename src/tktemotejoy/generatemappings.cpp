@@ -126,7 +126,7 @@ namespace {
 
             auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( MAPPING );
             if( handlerUnique.get() == nullptr ) {
-                throw typeIsNotSupported(
+                throw typeIsUnsupported(
                     MAPPING
                     , _KEY
                 );
