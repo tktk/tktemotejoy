@@ -1,11 +1,15 @@
 #include "tktemotejoy/pspstate.h"
 
 namespace {
-    struct Bits_
+    union Bits_
     {
-        alignas( 1 ) unsigned short buttons;
-        alignas( 1 ) unsigned char  axisX;
-        alignas( 1 ) unsigned char  axisY;
+        struct
+        {
+            alignas( 1 ) unsigned short buttons;
+            alignas( 1 ) unsigned char  axisX;
+            alignas( 1 ) unsigned char  axisY;
+        };
+        PspState::Bits  bits;
     };
 
     enum {
