@@ -5,7 +5,6 @@
 
 #include <linux/joystick.h>
 #include <vector>
-#include <map>  //REMOVEME
 #include <memory>
 #include <cstddef>
 
@@ -74,10 +73,7 @@ public:
 
     using OperateAxisHandlerForChangeMappingUnique = std::unique_ptr< OperateAxisHandlerForChangeMapping >;
 
-    using OperateAxisHandlersForChangeMapping = std::map<
-        std::size_t
-        , OperateAxisHandlerForChangeMappingUnique
-    >;
+    using OperateAxisHandlersForChangeMapping = std::vector< OperateAxisHandlerForChangeMappingUnique >;
 
     inline static auto handlerUnique(
         PressButtonHandlerForPspState * _handler
@@ -134,8 +130,8 @@ public:
     );
 
     void setHandler(
-        const OperateAxisHandlersForChangeMapping::key_type
-        , OperateAxisHandlersForChangeMapping::mapped_type &&
+        const OperateAxisHandlersForChangeMapping::size_type
+        , OperateAxisHandlersForChangeMapping::value_type &&
     );
 
     void pressButton(
@@ -156,7 +152,7 @@ public:
     ) const;
 
     std::size_t operateAxis(
-        const OperateAxisHandlersForChangeMapping::key_type
+        const OperateAxisHandlersForChangeMapping::size_type
         , const __s16
         , std::size_t &
         , const std::size_t

@@ -46,53 +46,6 @@ namespace {
     {
         return _CALL_HANDLER( *( _HANDLERS.at( _INDEX ) ) );
     }
-
-    //REMOVEME
-    template<
-        typename RETURNS_T
-        , typename HANDLERS_T
-        , typename CALL_HANDLER_T
-        , typename NOT_FOUND_T
-    >
-    RETURNS_T callHandler_old(
-        const HANDLERS_T &                      _HANDLERS
-        , const typename HANDLERS_T::key_type   _KEY
-        , const CALL_HANDLER_T &                _CALL_HANDLER
-        , const NOT_FOUND_T &                   _NOT_FOUND
-    )
-    {
-        const auto  IT = _HANDLERS.find( _KEY );
-        if( IT == _HANDLERS.end() ) {
-            return _NOT_FOUND();
-        }
-
-        return _CALL_HANDLER( *( IT->second ) );
-    }
-
-    //REMOVEME
-    template<
-        typename HANDLERS_T
-        , typename CALL_HANDLER_T
-    >
-    auto callHandlerForChangeMapping_old(
-        const HANDLERS_T &                      _HANDLERS
-        , const typename HANDLERS_T::key_type   _KEY
-        , const std::size_t                     _CURRENT_MAPPING_INDEX
-        , const CALL_HANDLER_T &                _CALL_HANDLER
-    )
-    {
-        return callHandler_old< std::size_t >(
-            _HANDLERS
-            , _KEY
-            , _CALL_HANDLER
-            , [
-                &_CURRENT_MAPPING_INDEX
-            ]
-            {
-                return _CURRENT_MAPPING_INDEX;
-            }
-        );
-    }
 }
 
 Mapping::PressButtonHandlerForPspState::~PressButtonHandlerForPspState(
@@ -135,6 +88,12 @@ Mapping::Mapping(
             , DummyOperateAxisHandlerForPspState
         >( 200 )    //TODO
     )
+    , operateAxisHandlersForChangeMapping(
+        generateHandlers<
+            Mapping::OperateAxisHandlersForChangeMapping
+            , DummyOperateAxisHandlerForChangeMapping
+        >( 200 )    //TODO
+    )
 {
 }
 
@@ -175,15 +134,14 @@ void Mapping::setHandler(
 }
 
 void Mapping::setHandler(
-    const OperateAxisHandlersForChangeMapping::key_type     _KEY
-    , OperateAxisHandlersForChangeMapping::mapped_type &&   _mappedUnique
+    const OperateAxisHandlersForChangeMapping::size_type    _INDEX
+    , OperateAxisHandlersForChangeMapping::value_type &&    _handlerUnique
 )
 {
-    this->operateAxisHandlersForChangeMapping.insert(
-        {
-            _KEY,
-            std::move( _mappedUnique ),
-        }
+    setHandler_(
+        this->operateAxisHandlersForChangeMapping
+        , _INDEX
+        , std::move( _handlerUnique )
     );
 }
 
@@ -258,16 +216,15 @@ void Mapping::operateAxis(
 }
 
 std::size_t Mapping::operateAxis(
-    const OperateAxisHandlersForChangeMapping::key_type _KEY
-    , const __s16                                       _VALUE
-    , std::size_t &                                     _mappingIndex
-    , const std::size_t                                 _CURRENT_MAPPING_INDEX
+    const OperateAxisHandlersForChangeMapping::size_type    _KEY
+    , const __s16                                           _VALUE
+    , std::size_t &                                         _mappingIndex
+    , const std::size_t                                     _CURRENT_MAPPING_INDEX
 ) const
 {
-    return callHandlerForChangeMapping_old(
+    return callHandler(
         this->operateAxisHandlersForChangeMapping
         , _KEY
-        , _CURRENT_MAPPING_INDEX
         , [
             &_VALUE
             , &_mappingIndex
