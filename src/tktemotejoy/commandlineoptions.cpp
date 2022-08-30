@@ -70,7 +70,7 @@ bool initializeCommandLineOptions(
 
     if( _ARGC - optind >= 1 ) {
         existsDeviceFilePath = true;
-        _commandLineOptions.deviceFilePath = std::string( _ARGV[ _ARGC - 1 ] );
+        _commandLineOptions.deviceFilePath = std::string( _ARGV[ optind ] );
     }
 
     if( printHelp == false ) {
