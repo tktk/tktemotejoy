@@ -45,8 +45,8 @@ namespace {
     {
     public:
         void test(
-            const int           _SET_HANDLER_KEY
-            , const int         _PRESS_BUTTON_KEY
+            const std::size_t   _SET_HANDLER_INDEX
+            , const std::size_t _PRESS_BUTTON_INDEX
             , const std::size_t _MAPPING_INDEX
             , const std::size_t _CURRENT_MAPPING_INDEX
             , const std::size_t _RETURNS_MAPPING_INDEX
@@ -66,17 +66,20 @@ namespace {
                 )
             );
 
-            auto    mapping = Mapping();
+            auto    mapping = Mapping(
+                _PRESS_BUTTON_INDEX + 1
+                , 0
+            );
 
             mapping.setHandler(
-                _SET_HANDLER_KEY
+                _SET_HANDLER_INDEX
                 , std::move( handlerUnique )
             );
 
             EXPECT_EQ(
                 _EXPECTED_NEW_MAPPING_INDEX
                 , mapping.pressButton(
-                    _PRESS_BUTTON_KEY
+                    _PRESS_BUTTON_INDEX
                     , mappingIndex
                     , _CURRENT_MAPPING_INDEX
                 )
