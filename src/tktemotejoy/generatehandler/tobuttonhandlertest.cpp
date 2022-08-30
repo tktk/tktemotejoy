@@ -20,7 +20,11 @@ namespace {
             const Json::object_t &  _OBJECT
         ) const
         {
-            const auto &    VALUE = _OBJECT.at( "key" ).get_ref< const Json::number_integer_t & >();
+            const auto  IT = _OBJECT.find( "key" );
+            if( IT == _OBJECT.end() ) {
+                return TestHandlerUnique();
+            }
+            const auto &    VALUE = IT->second.get_ref< const Json::number_integer_t & >();
 
             return TestHandlerUnique( new TestHandler{ static_cast< const int >( VALUE ) } );
         }
@@ -125,6 +129,20 @@ TEST_F(
         R"({
     "deadZone" : 10,
     "handler" : "NOT OBJECT"
+})"
+    );
+}
+
+TEST_F(
+    GenerateToButtonHandlerUniqueTest
+    , FailedUnsupportedHandler
+)
+{
+    this->testAnyThrow(
+        R"({
+    "deadZone" : 10,
+    "handler" : {
+    }
 })"
     );
 }

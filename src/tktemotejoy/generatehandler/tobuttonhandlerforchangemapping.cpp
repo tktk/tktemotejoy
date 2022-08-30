@@ -54,7 +54,7 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChan
     return generateHandlerUnique<
         Mapping::OperateAxisHandlerForChangeMappingUnique
         , GetType
-        , GenerateToButtonHandlerUnique<
+        , GenerateToButtonHandlerUnique_old<
             GenerateToButtonHandlerForChangeMappingUnique
             , GeneratePressButtonHandlerForChangeMappingUnique
         >
