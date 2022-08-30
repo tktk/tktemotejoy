@@ -11,9 +11,4 @@ Mappings generateMappings(
     , const std::size_t &
 );
 
-//REMOVEME
-Mappings generateMappings(
-    const Json &
-);
-
 #endif  // TKTEMOTEJOY_GENERATEMAPPINGS_H

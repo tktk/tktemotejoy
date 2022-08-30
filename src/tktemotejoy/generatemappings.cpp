@@ -236,16 +236,3 @@ Mappings generateMappings(
         , GENERAL.defaultMapping
     );
 }
-
-//REMOVEME
-Mappings generateMappings(
-    const Json &    _JSON
-)
-{
-    auto    impl = Mappings::Impl();
-
-    return Mappings(
-        std::move( impl )
-        , 0
-    );
-}
