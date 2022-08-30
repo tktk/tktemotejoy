@@ -49,39 +49,4 @@ public:
     }
 };
 
-//REMOVEME
-template<
-    typename GENERATE_TO_BUTTON_HANDLER_UNIQUE_T
-    , typename GENERATE_HANDLER_UNIQUE_T
->
-class GenerateToButtonHandlerUnique_old
-    : public GenerateHandlerWithDeadZoneUnsignedUnique<
-        GenerateToButtonHandlerUnique_old<
-            GENERATE_TO_BUTTON_HANDLER_UNIQUE_T
-            , GENERATE_HANDLER_UNIQUE_T
-        >
-    >
-{
-public:
-    auto operatorCallImpl(
-        const Json::object_t &  _OBJECT
-        , const __u16           _DEAD_ZONE
-    ) const
-    {
-        const auto  KEY_HANDLER = std::string( "handler" );
-
-        const auto &    OBJECT = getJsonObjectFromObject(
-            _OBJECT
-            , KEY_HANDLER
-        );
-
-        auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( OBJECT );
-
-        return GENERATE_TO_BUTTON_HANDLER_UNIQUE_T()(
-            _DEAD_ZONE
-            , std::move( handlerUnique )
-        );
-    }
-};
-
 #endif  // TKTEMOTEJOY_GENERATEHANDLER_TOBUTTONHANDLER_H
