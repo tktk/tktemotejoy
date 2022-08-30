@@ -337,6 +337,29 @@ TEST_F(
 
 TEST_F(
     GenerateMappings_mappingsTest
+    , FailedUnsupportedHandlerMappingButtonsForPspStateElement
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+    "mappings" : [
+        {
+            "buttonsForPspState" : {
+                "10" : {
+                    "type" : "UNSUPPORTED TYPE"
+                }
+            }
+        }
+    ]
+})"
+    );
+}
+
+TEST_F(
+    GenerateMappings_mappingsTest
     , FailedNotObjectMappingButtonsForChangeMapping
 )
 {
@@ -392,6 +415,29 @@ TEST_F(
         {
             "buttonsForChangeMapping" : {
                 "10" : "NOT OBJECT"
+            }
+        }
+    ]
+})"
+    );
+}
+
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedUnsupportedHandlerMappingButtonsForChangeMappingElement
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+    "mappings" : [
+        {
+            "buttonsForChangeMapping" : {
+                "10" : {
+                    "type" : "UNSUPPORTED TYPE"
+                }
             }
         }
     ]
@@ -464,6 +510,29 @@ TEST_F(
 
 TEST_F(
     GenerateMappings_mappingsTest
+    , FailedUnsupportedHandlerMappingAxesForPspStateElement
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+    "mappings" : [
+        {
+            "axesForPspState" : {
+                "10" : {
+                    "type" : "UNSUPPORTED TYPE"
+                }
+            }
+        }
+    ]
+})"
+    );
+}
+
+TEST_F(
+    GenerateMappings_mappingsTest
     , FailedNotObjectMappingAxesForChangeMapping
 )
 {
@@ -522,6 +591,29 @@ TEST_F(
         {
             "axesForChangeMapping" : {
                 "10" : "NOT OBJECT"
+            }
+        }
+    ]
+})"
+    );
+}
+
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedUnsupportedHandlerMappingAxesForChangeMappingElement
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 0
+    },
+    "mappings" : [
+        {
+            "axesForChangeMapping" : {
+                "10" : {
+                    "type" : "UNSUPPORTED TYPE"
+                }
             }
         }
     ]
