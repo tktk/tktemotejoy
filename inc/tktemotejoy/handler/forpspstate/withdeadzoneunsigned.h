@@ -28,7 +28,7 @@ public:
         , PspState &    _pspState
     ) const override
     {
-        const auto &    VALUE = static_cast< const __u16 & >( _VALUE );
+        const auto  VALUE = __u16( _VALUE ^ 0x8000 );
 
         if( VALUE <= this->DEAD_ZONE ) {
             return;
