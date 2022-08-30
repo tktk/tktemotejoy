@@ -3,12 +3,17 @@
 #include "tktemotejoy/mappings.h"
 #include "tktemotejoy/customjson.h"
 #include <string>
+#include <array>
 
 namespace {
-    struct TestMappings
+    union TestMappings
     {
-        const Mappings::Impl        IMPL;
-        Mappings::Impl::size_type   mappingIndex;
+        struct
+        {
+            std::array< char, sizeof( Mappings::Impl ) > impl;
+            Mappings::Impl::size_type   mappingIndex;
+        };
+        Mappings  mappings;
     };
 
     class GenerateMappings_generalTest : public ::testing::Test
