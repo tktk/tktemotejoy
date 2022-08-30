@@ -2,6 +2,7 @@
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/pspstate.h"
 #include <linux/joystick.h>
+#include <cstddef>
 
 namespace {
     class TestHandlerForPspState final : public Mapping::PressButtonHandlerForPspState
@@ -34,9 +35,9 @@ namespace {
     {
     public:
         void test(
-            const int   _SET_HANDLER_KEY
-            , const int _PRESS_BUTTON_KEY
-            , const int _EXPECTED_CALLED_COUNT
+            const std::size_t   _SET_HANDLER_INDEX
+            , const std::size_t _PRESS_BUTTON_INDEX
+            , const int         _EXPECTED_CALLED_COUNT
         ) const
         {
             auto    calledCount = 0;
@@ -49,15 +50,18 @@ namespace {
                 )
             );
 
-            auto    mapping = Mapping();
+            auto    mapping = Mapping(
+                _PRESS_BUTTON_INDEX + 1
+                , 0
+            );
 
             mapping.setHandler(
-                _SET_HANDLER_KEY
+                _SET_HANDLER_INDEX
                 , std::move( handlerUnique )
             );
 
             mapping.pressButton(
-                _PRESS_BUTTON_KEY
+                _PRESS_BUTTON_INDEX
                 , pspState
             );
 

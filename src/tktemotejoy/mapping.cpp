@@ -97,6 +97,37 @@ Mapping::Mapping(
 {
 }
 
+Mapping::Mapping(
+    const std::size_t   _BUTTONS
+    , const std::size_t _AXES
+)
+    : pressButtonHandlersForPspState(
+        generateHandlers<
+            Mapping::PressButtonHandlersForPspState
+            , DummyPressButtonHandlerForPspState
+        >( 0 )
+    )
+    , pressButtonHandlersForChangeMapping(
+        generateHandlers<
+            Mapping::PressButtonHandlersForChangeMapping
+            , DummyPressButtonHandlerForChangeMapping
+        >( 0 )
+    )
+    , operateAxisHandlersForPspState(
+        generateHandlers<
+            Mapping::OperateAxisHandlersForPspState
+            , DummyOperateAxisHandlerForPspState
+        >( 0 )
+    )
+    , operateAxisHandlersForChangeMapping(
+        generateHandlers<
+            Mapping::OperateAxisHandlersForChangeMapping
+            , DummyOperateAxisHandlerForChangeMapping
+        >( 0 )
+    )
+{
+}
+
 void Mapping::setHandler(
     const PressButtonHandlersForPspState::size_type _INDEX
     , PressButtonHandlersForPspState::value_type && _handlerUnique

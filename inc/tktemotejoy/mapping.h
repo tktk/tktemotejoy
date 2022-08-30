@@ -110,8 +110,13 @@ private:
     OperateAxisHandlersForChangeMapping operateAxisHandlersForChangeMapping;
 
 public:
+    //REMOVEME
     Mapping(
-        //TODO ボタン数、軸数を指定する
+    );
+
+    Mapping(
+        const std::size_t
+        , const std::size_t
     );
 
     void setHandler(
