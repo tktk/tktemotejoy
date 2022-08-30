@@ -213,4 +213,19 @@ TEST_F(
     );
 }
 
-//TODO FailedNotUnsupportHandler2
+TEST_F(
+    GenerateToButtonHandlersUniqueTest
+    , FailedNotUnsupportHandler2
+)
+{
+    this->testAnyThrow(
+        R"({
+    "deadZone" : 10,
+    "handler1" : {
+        "key" : 20
+    },
+    "handler2" : {
+    }
+})"
+    );
+}
