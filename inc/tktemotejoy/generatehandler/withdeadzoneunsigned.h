@@ -15,7 +15,7 @@ public:
     ) const
     {
         const auto  KEY_DEAD_ZONE = std::string( "deadZone" );
-        const auto  DEFAULT_DEAD_ZONE = Json::number_unsigned_t( 0 );   //TODO 1にする
+        const auto  DEFAULT_DEAD_ZONE = Json::number_unsigned_t( 1 );
 
         const auto &    DEAD_ZONE = getJsonUnsignedFromObjectWithDefault(
             _OBJECT
