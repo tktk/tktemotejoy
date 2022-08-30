@@ -3,9 +3,6 @@
 #include "tktemotejoy/generatehandler/togglemapping.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
-#include "tktemotejoy/typeerror.h"
-#include <string>
-#include <stdexcept>
 
 Mapping::PressButtonHandlerForChangeMappingUnique generatePressButtonHandlerForChangeMappingUnique(
     const Json::object_t &  _OBJECT
@@ -23,10 +20,5 @@ Mapping::PressButtonHandlerForChangeMappingUnique generatePressButtonHandlerForC
         return handlerUnique;
     }
 
-    const auto  HANDLERS_TYPE = std::string( "buttonsForChangeMapping" );
-
-    throw typeIsNotSupported(
-        _OBJECT
-        , HANDLERS_TYPE
-    );
+    return handlerUnique;
 }
