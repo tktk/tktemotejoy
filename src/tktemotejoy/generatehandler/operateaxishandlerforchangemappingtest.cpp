@@ -65,10 +65,10 @@ TEST_F(
 
 TEST_F(
     GenerateOperateAxisHandlerForChangeMappingTest
-    , FailedNotOperateAxisHandlerForChangeMapping
+    , NotOperateAxisHandlerForChangeMapping
 )
 {
-    this->testAnyThrow(
+    this->testNull(
         R"({
     "type" : "NOT PRESS BUTTON HANDLER"
 })"
