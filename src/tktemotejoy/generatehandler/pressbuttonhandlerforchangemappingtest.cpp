@@ -51,10 +51,10 @@ TEST_F(
 
 TEST_F(
     GeneratePressButtonHandlerForChangeMappingTest
-    , FailedNotPressButtonHandlerForChangeMapping
+    , NotPressButtonHandlerForChangeMapping
 )
 {
-    this->testAnyThrow(
+    this->testNull(
         R"({
     "type" : "NOT PRESS BUTTON HANDLER"
 })"
