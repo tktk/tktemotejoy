@@ -15,7 +15,7 @@ public:
     ) const
     {
         const auto  KEY_DEAD_ZONE = std::string( "deadZone" );
-        const auto  DEFAULT_DEAD_ZONE = __u16( 0 );
+        const auto  DEFAULT_DEAD_ZONE = Json::number_unsigned_t( 0 );   //TODO 1にする
 
         const auto &    DEAD_ZONE = getJsonUnsignedFromObjectWithDefault(
             _OBJECT
@@ -23,9 +23,11 @@ public:
             , KEY_DEAD_ZONE
         );
 
+        const auto  DEAD_ZONE_U16 = __u16( DEAD_ZONE );
+
         return static_cast< const T * >( this )->operatorCallImpl(
             _OBJECT
-            , DEAD_ZONE
+            , DEAD_ZONE_U16
         );
     }
 };

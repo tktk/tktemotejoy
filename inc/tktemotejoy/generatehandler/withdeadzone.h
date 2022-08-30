@@ -15,7 +15,7 @@ public:
     ) const
     {
         const auto  KEY_DEAD_ZONE = std::string( "deadZone" );
-        const auto  DEFAULT_DEAD_ZONE = __s16( 0 );
+        const auto  DEFAULT_DEAD_ZONE = Json::number_integer_t( 0 );
 
         const auto &    DEAD_ZONE = getJsonIntegerFromObjectWithDefault(
             _OBJECT
@@ -23,9 +23,11 @@ public:
             , KEY_DEAD_ZONE
         );
 
+        const auto  DEAD_ZONE_S16 = __s16( DEAD_ZONE );
+
         return static_cast< const T * >( this )->operatorCallImpl(
             _OBJECT
-            , DEAD_ZONE
+            , DEAD_ZONE_S16
         );
     }
 };

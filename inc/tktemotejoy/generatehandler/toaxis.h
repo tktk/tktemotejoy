@@ -17,7 +17,7 @@ public:
     ) const
     {
         const auto  KEY_MAX_ = std::string( "max" );
-        const auto  DEFAULT_MAX = __s16( 0x7fff );
+        const auto  DEFAULT_MAX = Json::number_integer_t( 0x7fff );
 
         const auto &    MAX = getJsonIntegerFromObjectWithDefault(
             _OBJECT
@@ -25,9 +25,11 @@ public:
             , KEY_MAX_
         );
 
+        const auto  MAX_S16 = __s16( MAX );
+
         return GENERATE_TO_AXIS_UNIQUE_T()(
             _DEAD_ZONE
-            , MAX
+            , MAX_S16
         );
     }
 };
