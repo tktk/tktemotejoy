@@ -5,9 +5,6 @@
 #include "tktemotejoy/generatehandler/tobuttonhandlerforpspstate.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
-#include "tktemotejoy/typeerror.h"
-#include <string>
-#include <stdexcept>
 
 Mapping::OperateAxisHandlerForPspStateUnique generateOperateAxisHandlerForPspStateUnique(
     const Json::object_t &  _OBJECT
@@ -35,10 +32,5 @@ Mapping::OperateAxisHandlerForPspStateUnique generateOperateAxisHandlerForPspSta
         return handlerUnique;
     }
 
-    const auto  HANDLERS_TYPE = std::string( "axesForPspState" );
-
-    throw typeIsNotSupported(
-        _OBJECT
-        , HANDLERS_TYPE
-    );
+    return handlerUnique;
 }
