@@ -4,9 +4,6 @@
 #include "tktemotejoy/generatehandler/tofixedaxisy.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
-#include "tktemotejoy/typeerror.h"
-#include <string>
-#include <stdexcept>
 
 Mapping::PressButtonHandlerForPspStateUnique generatePressButtonHandlerForPspStateUnique(
     const Json::object_t &  _OBJECT
@@ -29,10 +26,5 @@ Mapping::PressButtonHandlerForPspStateUnique generatePressButtonHandlerForPspSta
         return handlerUnique;
     }
 
-    const auto  HANDLERS_TYPE = std::string( "buttonsForPspState" );
-
-    throw typeIsNotSupported(
-        _OBJECT
-        , HANDLERS_TYPE
-    );
+    return handlerUnique;
 }
