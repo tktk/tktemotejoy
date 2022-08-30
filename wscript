@@ -8,7 +8,7 @@ from waflib.Tools import waf_unit_test
 import os.path
 
 APPNAME = 'tktemote'
-VERSION = '0.2.0'
+VERSION = '0.2.1'
 
 out = 'build'
 
@@ -27,15 +27,6 @@ cpp.INCLUDES = [
         'single_include',
     ),
 ]
-
-CXXFLAGS_GCC_COMMON_DEFAULT = [
-    '-Wall',
-    '-fvisibility=hidden',
-    '-std=c++17',
-]
-
-cpp.CXXFLAGS_GCC_DEBUG = CXXFLAGS_GCC_COMMON_DEFAULT + cpp.CXXFLAGS_GCC_DEBUG_DEFAULT
-cpp.CXXFLAGS_GCC_RELEASE = CXXFLAGS_GCC_COMMON_DEFAULT + cpp.CXXFLAGS_GCC_RELEASE_DEFAULT
 
 taf.POST_FUNCTIONS = [
     waf_unit_test.summary,
