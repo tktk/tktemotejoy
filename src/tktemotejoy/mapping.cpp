@@ -123,7 +123,7 @@ Mapping::Mapping(
         generateHandlers<
             Mapping::OperateAxisHandlersForChangeMapping
             , DummyOperateAxisHandlerForChangeMapping
-        >( 0 )
+        >( _AXES )
     )
 {
 }
