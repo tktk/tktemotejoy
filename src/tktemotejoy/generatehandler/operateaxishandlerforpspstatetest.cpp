@@ -94,10 +94,10 @@ TEST_F(
 
 TEST_F(
     GenerateOperateAxisHandlerForPspStateTest
-    , FailedNotOperateAxisHandlerForPspState
+    , NotOperateAxisHandlerForPspState
 )
 {
-    this->testAnyThrow(
+    this->testNull(
         R"({
     "type" : "NOT OPERATE AXIS HANDLER"
 })"
