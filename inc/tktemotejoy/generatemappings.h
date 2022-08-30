@@ -7,8 +7,8 @@
 
 Mappings generateMappings(
     const Json &
-    , const std::size_t
-    , const std::size_t
+    , const std::size_t &
+    , const std::size_t &
 );
 
 //REMOVEME

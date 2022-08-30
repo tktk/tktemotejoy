@@ -141,11 +141,13 @@ namespace {
 
     Mapping generateMapping(
         const Json::object_t &  _OBJECT
+        , const std::size_t &   _BUTTONS
+        , const std::size_t &   _AXES
     )
     {
         auto    mapping = Mapping(
-            100 //TODO
-            , 200   //TODO
+            _BUTTONS
+            , _AXES
         );
 
         setHandlers< GeneratePressButtonHandlerForPspStateUnique >(
@@ -177,6 +179,8 @@ namespace {
 
     Mappings::Impl generateMappingsImpl(
         const Json::object_t &  _OBJECT
+        , const std::size_t &   _BUTTONS
+        , const std::size_t &   _AXES
     )
     {
         const auto &    MAPPINGS = getJsonArrayFromObject(
@@ -193,7 +197,13 @@ namespace {
                 , index
             );
 
-            impl.emplace_back( generateMapping( MAPPING ) );
+            impl.emplace_back(
+                generateMapping(
+                    MAPPING
+                    , _BUTTONS
+                    , _AXES
+                )
+            );
 
             index++;
         }
@@ -203,23 +213,9 @@ namespace {
 }
 
 Mappings generateMappings(
-    const Json &        _JSON
-    , const std::size_t _BUTTONS
-    , const std::size_t _AXES
-)
-{
-    //TODO
-    auto    impl = Mappings::Impl();
-
-    return Mappings(
-        std::move( impl )
-        , 0
-    );
-}
-
-//REMOVEME
-Mappings generateMappings(
-    const Json &    _JSON
+    const Json &            _JSON
+    , const std::size_t &   _BUTTONS
+    , const std::size_t &   _AXES
 )
 {
     const auto &    OBJECT = getJsonObjectFromJson(
@@ -229,10 +225,27 @@ Mappings generateMappings(
 
     const auto  GENERAL = generateGeneral( OBJECT );
 
-    auto    impl = generateMappingsImpl( OBJECT );
+    auto    impl = generateMappingsImpl(
+        OBJECT
+        , _BUTTONS
+        , _AXES
+    );
 
     return Mappings(
         std::move( impl )
         , GENERAL.defaultMapping
+    );
+}
+
+//REMOVEME
+Mappings generateMappings(
+    const Json &    _JSON
+)
+{
+    auto    impl = Mappings::Impl();
+
+    return Mappings(
+        std::move( impl )
+        , 0
     );
 }
