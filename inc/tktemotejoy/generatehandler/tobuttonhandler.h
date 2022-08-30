@@ -37,7 +37,7 @@ public:
         auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( OBJECT );
         if( handlerUnique.get() == nullptr ) {
             throw typeIsUnsupported(
-                _OBJECT
+                OBJECT
                 , KEY_HANDLER
             );
         }

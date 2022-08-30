@@ -36,12 +36,6 @@ public:
             _OBJECT
             , KEY_HANDLER1
         );
-        if( handler1Unique.get() == nullptr ) {
-            throw typeIsUnsupported(
-                _OBJECT
-                , KEY_HANDLER1
-            );
-        }
         auto    handler2Unique = generateHandler(
             _OBJECT
             , KEY_HANDLER2
@@ -64,12 +58,20 @@ private:
             _OBJECT
             , _KEY
         );
-
         if( HANDLER_PTR == nullptr ) {
             return GENERATE_DUMMY_HANDLER_UNIQUE_T()();
-        } else {
-            return GENERATE_HANDLER_UNIQUE_T()( *HANDLER_PTR );
         }
+        const auto &    HANDLER = *HANDLER_PTR;
+
+        auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( HANDLER );
+        if( handlerUnique.get() == nullptr ) {
+            throw typeIsUnsupported(
+                HANDLER
+                , _KEY
+            );
+        }
+
+        return handlerUnique;
     }
 };
 
