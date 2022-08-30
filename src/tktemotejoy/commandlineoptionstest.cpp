@@ -64,25 +64,6 @@ TEST_F(
 
 TEST_F(
     CommandLineOptions_initializeTest
-    , NotExistsMapFilePath
-)
-{
-    this->test(
-        {
-            "tktemotejoy",
-            "-i",
-            "IP",
-            "-p",
-            "10",
-            "DEVICEFILEPATH",
-        }
-        , false
-        , CommandLineOptions{}
-    );
-}
-
-TEST_F(
-    CommandLineOptions_initializeTest
     , NotExistsIp
 )
 {
@@ -131,7 +112,48 @@ TEST_F(
 
 TEST_F(
     CommandLineOptions_initializeTest
-    , NotExistsDeviceFilePath
+    , Help
+)
+{
+    this->test(
+        {
+            "tktemotejoy",
+            "-m",
+            "MAPFILEPATH",
+            "-i",
+            "IP",
+            "-p",
+            "10",
+            "DEVICEFILEPATH",
+            "-h",
+        }
+        , false
+        , CommandLineOptions{}
+    );
+}
+
+TEST_F(
+    CommandLineOptions_initializeTest
+    , FailedNotExistsMapFilePath
+)
+{
+    this->test(
+        {
+            "tktemotejoy",
+            "-i",
+            "IP",
+            "-p",
+            "10",
+            "DEVICEFILEPATH",
+        }
+        , false
+        , CommandLineOptions{}
+    );
+}
+
+TEST_F(
+    CommandLineOptions_initializeTest
+    , FailedNotExistsDeviceFilePath
 )
 {
     this->test(
@@ -151,7 +173,7 @@ TEST_F(
 
 TEST_F(
     CommandLineOptions_initializeTest
-    , Help
+    , FailedContainsIllegalOption
 )
 {
     this->test(
@@ -163,8 +185,8 @@ TEST_F(
             "IP",
             "-p",
             "10",
+            "-X",
             "DEVICEFILEPATH",
-            "-h",
         }
         , false
         , CommandLineOptions{}
