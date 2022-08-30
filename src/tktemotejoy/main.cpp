@@ -7,30 +7,23 @@
 #include "tktemotejoy/tousbhostfs.h"
 #include "tktemotejoy/joystick.h"
 #include <string>
-#include <iostream>
+#include <cstddef>
 
 namespace {
     Mappings generateMappingsFromFile(
-        const std::string & _FILE_PATH
+        const std::string &     _FILE_PATH
+        , const std::size_t &   _BUTTONS
+        , const std::size_t &   _AXES
     )
     {
         const auto  JSON_STRING = readFile( _FILE_PATH );
 
         const auto  JSON = parseCustomJson( JSON_STRING );
 
-        return generateMappings( JSON );
-    }
-
-    JoystickState generateJoystickState(
-        const int   _DESCRIPTOR
-    )
-    {
-        const auto  BUTTONS = getJoystickButtons( _DESCRIPTOR );
-        const auto  AXES = getJoystickAxes( _DESCRIPTOR );
-
-        return JoystickState(
-            BUTTONS
-            , AXES
+        return generateMappings(
+            JSON
+            , _BUTTONS
+            , _AXES
         );
     }
 }
@@ -49,7 +42,20 @@ int main(
         return 1;
     }
 
-    auto    mappings = generateMappingsFromFile( options.mapFilePath );
+    int joystick;
+    const auto  JOYSTICK_CLOSER = openJoystick(
+        joystick
+        , options.deviceFilePath
+    );
+
+    const auto  BUTTONS = getJoystickButtons( joystick );
+    const auto  AXES = getJoystickAxes( joystick );
+
+    auto    mappings = generateMappingsFromFile(
+        options.mapFilePath
+        , BUTTONS
+        , AXES
+    );
 
     int socket_;
     const auto  SOCKET_CLOSER = connectToUsbHostFs(
@@ -58,13 +64,10 @@ int main(
         , options.port
     );
 
-    int joystick;
-    const auto  JOYSTICK_CLOSER = openJoystick(
-        joystick
-        , options.deviceFilePath
+    auto    joystickState = JoystickState(
+        BUTTONS
+        , AXES
     );
-
-    auto    joystickState = generateJoystickState( joystick );
 
     auto    prevPspState = PspState();
 
