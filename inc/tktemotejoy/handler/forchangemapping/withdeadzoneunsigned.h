@@ -29,7 +29,7 @@ public:
         , const std::size_t _CURRENT_MAPPING_INDEX
     ) const override
     {
-        const auto &    VALUE = static_cast< const __u16 & >( _VALUE );
+        const auto  VALUE = __u16( _VALUE ^ 0x8000 );
 
         if( VALUE <= this->DEAD_ZONE ) {
             return _CURRENT_MAPPING_INDEX;
