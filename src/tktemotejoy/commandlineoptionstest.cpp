@@ -1,6 +1,7 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/commandlineoptions.h"
 #include <vector>
+#include <unistd.h>
 
 namespace {
     class CommandLineOptions_initializeTest : public ::testing::Test
@@ -13,6 +14,8 @@ namespace {
         ) const
         {
             auto    commandLineOptions = CommandLineOptions();
+
+            optind = 1;
 
             EXPECT_EQ(
                 _EXPECTED_INITIALIZED
@@ -161,7 +164,7 @@ TEST_F(
             "-p",
             "10",
             "DEVICEFILEPATH",
-            "--help",
+            "-h",
         }
         , false
         , CommandLineOptions{}
