@@ -18,6 +18,7 @@ module.SOURCE = [
         'handler' : {
             'forchangemapping' : [
                 'shiftmapping.cpp',
+                'dummy.cpp',
             ],
             'forpspstate' : [
                 'dummy.cpp',

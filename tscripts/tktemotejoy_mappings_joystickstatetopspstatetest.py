@@ -29,6 +29,7 @@ module.SOURCE = [
                 'shiftmapping.cpp',
                 'togglemapping.cpp',
                 'tobuttonhandlers.cpp',
+                'dummy.cpp',
             ],
         },
     },

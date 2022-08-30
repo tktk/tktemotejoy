@@ -21,6 +21,7 @@ module.SOURCE = [
             'forchangemapping' : [
                 'shiftmapping.cpp',
                 'togglemapping.cpp',
+                'dummy.cpp',
             ],
             'forpspstate' : [
                 'dummy.cpp',

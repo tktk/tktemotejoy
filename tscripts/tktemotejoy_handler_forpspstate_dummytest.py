@@ -16,6 +16,9 @@ module.SOURCE = [
                 'dummytest.cpp',
                 'dummy.cpp',
             ],
+            'forchangemapping' : [
+                'dummy.cpp',
+            ],
         },
     },
     'mapping.cpp',

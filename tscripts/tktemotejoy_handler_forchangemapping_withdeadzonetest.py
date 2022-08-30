@@ -14,6 +14,7 @@ module.SOURCE = [
         'handler' : {
             'forchangemapping' : [
                 'withdeadzonetest.cpp',
+                'dummy.cpp',
             ],
             'forpspstate' : [
                 'dummy.cpp',

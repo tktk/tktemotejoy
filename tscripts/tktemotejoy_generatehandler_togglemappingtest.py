@@ -18,6 +18,7 @@ module.SOURCE = [
         'handler' : {
             'forchangemapping' : [
                 'togglemapping.cpp',
+                'dummy.cpp',
             ],
             'forpspstate' : [
                 'dummy.cpp',

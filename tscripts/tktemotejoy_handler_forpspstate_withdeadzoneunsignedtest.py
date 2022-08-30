@@ -16,6 +16,9 @@ module.SOURCE = [
                 'withdeadzoneunsignedtest.cpp',
                 'dummy.cpp',
             ],
+            'forchangemapping' : [
+                'dummy.cpp',
+            ],
         },
     },
     'mapping.cpp',

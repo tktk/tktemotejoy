@@ -35,6 +35,9 @@ module.SOURCE = [
                 'tofixedaxisy.cpp',
                 'jseventaxistopspstateaxis.cpp',
             ],
+            'forchangemapping' : [
+                'dummy.cpp',
+            ],
         },
     },
     'pspstate.cpp',

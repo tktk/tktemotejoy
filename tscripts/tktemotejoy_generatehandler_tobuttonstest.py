@@ -20,6 +20,9 @@ module.SOURCE = [
                 'tobuttons.cpp',
                 'dummy.cpp',
             ],
+            'forchangemapping' : [
+                'dummy.cpp',
+            ],
         },
     },
     'pspstate.cpp',

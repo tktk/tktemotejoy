@@ -15,6 +15,7 @@ module.SOURCE = [
             'forchangemapping' : [
                 'togglemappingtest.cpp',
                 'togglemapping.cpp',
+                'dummy.cpp',
             ],
             'forpspstate' : [
                 'dummy.cpp',

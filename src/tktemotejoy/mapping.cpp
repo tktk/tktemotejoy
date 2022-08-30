@@ -1,5 +1,6 @@
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/handler/forpspstate/dummy.h"
+#include "tktemotejoy/handler/forchangemapping/dummy.h"
 #include <linux/joystick.h>
 #include <cstddef>
 #include <utility>
@@ -43,24 +44,7 @@ namespace {
         , const CALL_HANDLER_T &                _CALL_HANDLER
     )
     {
-        _CALL_HANDLER( *( _HANDLERS.at( _INDEX ) ) );
-    }
-
-    template<
-        typename HANDLERS_T
-        , typename CALL_HANDLER_T
-    >
-    auto callHandlerForPspState(
-        const HANDLERS_T &                      _HANDLERS
-        , const typename HANDLERS_T::size_type  _INDEX
-        , const CALL_HANDLER_T &                _CALL_HANDLER
-    )
-    {
-        callHandler(
-            _HANDLERS
-            , _INDEX
-            , _CALL_HANDLER
-        );
+        return _CALL_HANDLER( *( _HANDLERS.at( _INDEX ) ) );
     }
 
     //REMOVEME
@@ -158,6 +142,12 @@ Mapping::Mapping(
             , DummyPressButtonHandlerForPspState
         >( 100 )    //TODO
     )
+    , pressButtonHandlersForChangeMapping(
+        generateHandlers<
+            Mapping::PressButtonHandlersForChangeMapping
+            , DummyPressButtonHandlerForChangeMapping
+        >( 100 )    //TODO
+    )
 {
 }
 
@@ -174,15 +164,14 @@ void Mapping::setHandler(
 }
 
 void Mapping::setHandler(
-    const PressButtonHandlersForChangeMapping::key_type     _KEY
-    , PressButtonHandlersForChangeMapping::mapped_type &&   _mappedUnique
+    const PressButtonHandlersForChangeMapping::size_type    _INDEX
+    , PressButtonHandlersForChangeMapping::value_type &&    _handlerUnique
 )
 {
-    this->pressButtonHandlersForChangeMapping.insert(
-        {
-            _KEY,
-            std::move( _mappedUnique ),
-        }
+    setHandler_(
+        this->pressButtonHandlersForChangeMapping
+        , _INDEX
+        , std::move( _handlerUnique )
     );
 }
 
@@ -217,7 +206,7 @@ void Mapping::pressButton(
     , PspState &                                    _pspState
 ) const
 {
-    callHandlerForPspState(
+    callHandler(
         this->pressButtonHandlersForPspState
         , _INDEX
         , [
@@ -233,15 +222,14 @@ void Mapping::pressButton(
 }
 
 std::size_t Mapping::pressButton(
-    const PressButtonHandlersForChangeMapping::key_type _KEY
-    , std::size_t &                                     _mappingIndex
-    , const std::size_t                                 _CURRENT_MAPPING_INDEX
+    const PressButtonHandlersForChangeMapping::size_type    _INDEX
+    , std::size_t &                                         _mappingIndex
+    , const std::size_t                                     _CURRENT_MAPPING_INDEX
 ) const
 {
-    return callHandlerForChangeMapping_old(
+    return callHandler(
         this->pressButtonHandlersForChangeMapping
-        , _KEY
-        , _CURRENT_MAPPING_INDEX
+        , _INDEX
         , [
             &_mappingIndex
             , &_CURRENT_MAPPING_INDEX

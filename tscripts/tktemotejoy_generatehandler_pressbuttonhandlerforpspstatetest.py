@@ -26,6 +26,9 @@ module.SOURCE = [
                 'jseventaxistopspstateaxis.cpp',
                 'dummy.cpp',
             ],
+            'forchangemapping' : [
+                'dummy.cpp',
+            ],
         },
     },
     'pspstate.cpp',

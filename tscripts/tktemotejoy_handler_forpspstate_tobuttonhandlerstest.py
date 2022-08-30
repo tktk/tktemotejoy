@@ -17,6 +17,9 @@ module.SOURCE = [
                 'tobuttonhandlers.cpp',
                 'dummy.cpp',
             ],
+            'forchangemapping' : [
+                'dummy.cpp',
+            ],
         },
     },
     'mapping.cpp',

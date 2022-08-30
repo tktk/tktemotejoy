@@ -15,6 +15,7 @@ module.SOURCE = [
             'forchangemapping' : [
                 'tobuttonhandlerstest.cpp',
                 'tobuttonhandlers.cpp',
+                'dummy.cpp',
             ],
             'forpspstate' : [
                 'dummy.cpp',

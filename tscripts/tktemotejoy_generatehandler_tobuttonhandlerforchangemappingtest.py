@@ -23,6 +23,7 @@ module.SOURCE = [
                 'tobuttonhandler.cpp',
                 'togglemapping.cpp',
                 'shiftmapping.cpp',
+                'dummy.cpp',
             ],
             'forpspstate' : [
                 'dummy.cpp',

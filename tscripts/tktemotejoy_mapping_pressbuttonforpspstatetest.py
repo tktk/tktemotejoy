@@ -18,6 +18,9 @@ module.SOURCE = [
             'forpspstate' : [
                 'dummy.cpp',
             ],
+            'forchangemapping' : [
+                'dummy.cpp',
+            ],
         },
     },
 ]
