@@ -19,7 +19,7 @@ namespace {
 bool initializeCommandLineOptions(
     CommandLineOptions &    _commandLineOptions
     , const int             _ARGC
-    , const char * const *  _ARGV
+    , char * const *        _argv
 )
 {
     _commandLineOptions.ip = OPTION_DEFAULT_IP;
@@ -30,11 +30,10 @@ bool initializeCommandLineOptions(
 
     auto    printHelp = false;
 
-    auto    argv = const_cast< char * const * >( _ARGV );
     while( true ) {
         const auto  OPTION_KEY = getopt(
             _ARGC
-            , argv
+            , _argv
             , "m:i:p:h"
         );
         if( OPTION_KEY < 0 ) {
@@ -70,7 +69,7 @@ bool initializeCommandLineOptions(
 
     if( _ARGC - optind >= 1 ) {
         existsDeviceFilePath = true;
-        _commandLineOptions.deviceFilePath = std::string( _ARGV[ optind ] );
+        _commandLineOptions.deviceFilePath = std::string( _argv[ optind ] );
     }
 
     if( printHelp == false ) {
@@ -87,7 +86,7 @@ bool initializeCommandLineOptions(
     }
 
     if( printHelp == true ) {
-        std::cerr << "使い方: " << _ARGV[ 0 ] << " [オプション]... デバイスファイル" << std::endl;
+        std::cerr << "使い方: " << _argv[ 0 ] << " [オプション]... デバイスファイル" << std::endl;
         std::cerr << "オプション:" << std::endl;
         std::cerr << "-m map    : マッピングファイル" << std::endl;
         std::cerr << "-i ip     : usbhostfs_pcのホスト (初期値:" << OPTION_DEFAULT_IP << ')' << std::endl;

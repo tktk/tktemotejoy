@@ -14,7 +14,7 @@ struct CommandLineOptions
 bool initializeCommandLineOptions(
     CommandLineOptions &
     , const int
-    , const char * const *
+    , char * const *
 );
 
 #endif  // TKTEMOTEJOY_COMMANDLINEOPTIONS_H

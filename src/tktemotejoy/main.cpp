@@ -36,15 +36,15 @@ namespace {
 }
 
 int main(
-    const int       _ARGC
-    , const char ** _ARGV
+    const int           _ARGC
+    , char * const *    _argv
 )
 {
     auto    options = CommandLineOptions();
     if( initializeCommandLineOptions(
         options
         , _ARGC
-        , _ARGV
+        , _argv
     ) == false ) {
         return 1;
     }

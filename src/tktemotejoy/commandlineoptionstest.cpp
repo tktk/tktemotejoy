@@ -22,7 +22,7 @@ namespace {
                 , initializeCommandLineOptions(
                     commandLineOptions
                     , _ARGS.size()
-                    , _ARGS.data()
+                    , const_cast< char * const * >( _ARGS.data() )
                 )
             );
 
