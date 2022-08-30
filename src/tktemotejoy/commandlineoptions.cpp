@@ -1,36 +1,19 @@
 #include "tktemotejoy/commandlineoptions.h"
-#include <boost/program_options.hpp>
+#include <unistd.h>
 #include <string>
 #include <iostream>
 
 namespace {
-    const auto  OPTION = "オプション";
+    enum {
+        OPTION_KEY_MAP = 'm',
+        OPTION_KEY_IP = 'i',
+        OPTION_KEY_PORT = 'p',
+        OPTION_KEY_HELP = 'h',
+    };
 
-    using OptionTypeMap = std::string;
-    const auto  OPTION_KEY_MAP = "map";
-    const auto  OPTION_NAME_MAP = "map,m";
-    const auto  OPTION_DESCRIPTION_MAP = "マッピングファイル";
-
-    using OptionTypeDevice = std::string;
-    const auto  OPTION_KEY_DEVICE = "device";
-    const auto  OPTION_NAME_DEVICE = "device,d";
-    const auto  OPTION_DESCRIPTION_DEVICE = "ゲームパッドのデバイスファイル";
-
-    using OptionTypeIp = std::string;
-    const auto  OPTION_KEY_IP = "ip";
-    const auto  OPTION_NAME_IP = "ip,i";
-    const auto  OPTION_DESCRIPTION_IP = "usbhostfs_pcのホスト";
     const auto  OPTION_DEFAULT_IP = std::string( "localhost" );
-
-    using OptionTypePort = unsigned short;
-    const auto  OPTION_KEY_PORT = "port";
-    const auto  OPTION_NAME_PORT = "port,p";
-    const auto  OPTION_DESCRIPTION_PORT = "usbhostfs_pcのポート番号";
     const auto  OPTION_DEFAULT_PORT = 10004;
 
-    const auto  OPTION_KEY_HELP = "help";
-    const auto  OPTION_NAME_HELP = "help";
-    const auto  OPTION_DESCRIPTION_HELP = "ヘルプ";
 }
 
 bool initializeCommandLineOptions(
@@ -39,83 +22,99 @@ bool initializeCommandLineOptions(
     , const char * const *  _ARGV
 )
 {
-    namespace options = boost::program_options;
+    _commandLineOptions.ip = OPTION_DEFAULT_IP;
+    _commandLineOptions.port = OPTION_DEFAULT_PORT;
 
-    auto    optionsDescription = options::options_description( OPTION );
+    auto    existsMapFilePath = false;
+    auto    existsDeviceFilePath = false;
 
-    optionsDescription.add_options()
-        (
-            OPTION_NAME_MAP
-            , options::value< OptionTypeMap >()->value_name( OPTION_KEY_MAP )
-            , OPTION_DESCRIPTION_MAP
-        )
-        (
-            OPTION_NAME_DEVICE
-            , options::value< OptionTypeDevice >()->value_name( OPTION_KEY_DEVICE )
-            , OPTION_DESCRIPTION_DEVICE
-        )
-        (
-            OPTION_NAME_IP
-            , options::value< OptionTypeIp >()->value_name( OPTION_KEY_IP )->default_value( OPTION_DEFAULT_IP )
-            , OPTION_DESCRIPTION_IP
-        )
-        (
-            OPTION_NAME_PORT
-            , options::value< OptionTypePort >()->value_name( OPTION_KEY_PORT )->default_value( OPTION_DEFAULT_PORT )
-            , OPTION_DESCRIPTION_PORT
-        )
-        (
-            OPTION_NAME_HELP
-            , OPTION_DESCRIPTION_HELP
-        )
-    ;
-
-    auto    positionalOptionsDescription = options::positional_options_description();
-    positionalOptionsDescription.add(
-        OPTION_KEY_DEVICE
-        , -1
-    );
-
-    auto    variablesMap = options::variables_map();
-    options::store(
-        options::command_line_parser(
-            _ARGC
-            , _ARGV
-        )
-            .options( optionsDescription )
-            .positional( positionalOptionsDescription )
-            .run()
-        , variablesMap
-    );
-    options::notify( variablesMap );
+    //TODO
+/*
+    auto    existsIllegalOption = false;
+    auto    illegalOptionKey = 0;
+*/
 
     auto    printHelp = false;
 
-    if( variablesMap.count( OPTION_NAME_HELP ) > 0 ) {
-        printHelp = true;
-    } else {
-        if( variablesMap.count( OPTION_KEY_MAP ) <= 0 ) {
-            std::cout << OPTION_DESCRIPTION_MAP << "の指定が必要" << std::endl;
+    auto    argv = const_cast< char * const * >( _ARGV );
+    while( true ) {
+        const auto  OPTION_KEY = getopt(
+            _ARGC
+            , argv
+            , "m:i:p:h"
+        );
+        if( OPTION_KEY < 0 ) {
+            break;
+        }
+
+        switch( OPTION_KEY ) {
+        case OPTION_KEY_MAP:
+            existsMapFilePath = true;
+            _commandLineOptions.mapFilePath = std::string( optarg );
+            break;
+
+        case OPTION_KEY_IP:
+            _commandLineOptions.ip = std::string( optarg );
+            break;
+
+        case OPTION_KEY_PORT:
+            _commandLineOptions.port = std::stoul( optarg );
+            break;
+
+        case OPTION_KEY_HELP:
+            printHelp = true;
+            goto LOOP_END;
+            break;
+
+        default:
+        //TODO
+/*
+            existsIllegalOption = true;
+            illegalOptionKey = OPTION_KEY;
+            goto LOOP_END;
+*/
+            break;
+        }
+    }
+    LOOP_END:
+
+    if( _ARGC - optind >= 1 ) {
+        existsDeviceFilePath = true;
+        _commandLineOptions.deviceFilePath = std::string( _ARGV[ _ARGC - 1 ] );
+    }
+
+    if( printHelp == false ) {
+        //TODO
+/*
+        if( existsIllegalOption == true ) {
+            std::cerr << "無効なオプション : '" << char( illegalOptionKey ) << '\'' << std::endl;
 
             printHelp = true;
         }
-        if( variablesMap.count( OPTION_KEY_DEVICE ) <= 0 ) {
-            std::cout << OPTION_DESCRIPTION_DEVICE << "の指定が必要" << std::endl;
+*/
+
+        if( existsMapFilePath == false ) {
+            std::cerr << "マッピングファイルの指定が必要" << std::endl;
+
+            printHelp = true;
+        }
+        if( existsDeviceFilePath == false ) {
+            std::cerr << "ゲームパッドのデバイスファイルの指定が必要" << std::endl;
 
             printHelp = true;
         }
     }
 
     if( printHelp == true ) {
-        std::cout << optionsDescription;
+        std::cerr << "使い方: " << _ARGV[ 0 ] << " [オプション]... デバイスファイル" << std::endl;
+        std::cerr << "オプション:" << std::endl;
+        std::cerr << "-m map    : マッピングファイル" << std::endl;
+        std::cerr << "-i ip     : usbhostfs_pcのホスト (初期値:" << OPTION_DEFAULT_IP << ')' << std::endl;
+        std::cerr << "-p port   : usbhostfs_pcのポート番号 (初期値:" << OPTION_DEFAULT_PORT << ')' << std::endl;
+        std::cerr << "-h        : ヘルプ" << std::endl;
 
         return false;
     }
-
-    _commandLineOptions.mapFilePath = variablesMap[ OPTION_KEY_MAP ].as< OptionTypeMap >();
-    _commandLineOptions.deviceFilePath = variablesMap[ OPTION_KEY_DEVICE ].as< OptionTypeDevice >();
-    _commandLineOptions.ip = variablesMap[ OPTION_KEY_IP ].as< OptionTypeIp >();
-    _commandLineOptions.port = variablesMap[ OPTION_KEY_PORT ].as< OptionTypePort >();
 
     return true;
 }
