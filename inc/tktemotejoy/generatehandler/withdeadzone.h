@@ -17,7 +17,7 @@ public:
         const auto  KEY_DEAD_ZONE = std::string( "deadZone" );
         const auto  DEFAULT_DEAD_ZONE = Json::number_integer_t( 0 );
 
-        const auto &    DEAD_ZONE = getJsonIntegerFromObjectWithDefault(
+        const auto &    DEAD_ZONE = getJsonIntegerFromObjectWithDefault(    //TODO 符号なし整数に変更する
             _OBJECT
             , DEFAULT_DEAD_ZONE
             , KEY_DEAD_ZONE

@@ -15,19 +15,20 @@ public:
     ) const
     {
         const auto  KEY_DEAD_ZONE = std::string( "deadZone" );
-        const auto  DEFAULT_DEAD_ZONE = Json::number_unsigned_t( 1 );
+        const auto  DEFAULT = Json::number_unsigned_t( 0 );
+        const auto  BASE = -32767;
 
         const auto &    DEAD_ZONE = getJsonUnsignedFromObjectWithDefault(
             _OBJECT
-            , DEFAULT_DEAD_ZONE
+            , DEFAULT
             , KEY_DEAD_ZONE
         );
 
-        const auto  DEAD_ZONE_U16 = __u16( DEAD_ZONE );
+        const auto  DEAD_ZONE_S16 = __s16( BASE + DEAD_ZONE );
 
         return static_cast< const T * >( this )->operatorCallImpl(
             _OBJECT
-            , DEAD_ZONE_U16
+            , DEAD_ZONE_S16
         );
     }
 };
