@@ -8,7 +8,7 @@ namespace {
     {
         bool &              called;
         const std::size_t   RETURNS_MAPPING_INDEX;
-        const __u16         EXPECTED_VALUE;
+        const __s16         EXPECTED_VALUE;
         const std::size_t & EXPECTED_MAPPING_INDEX;
         const std::size_t   EXPECTED_CURRENT_MAPPING_INDEX;
 
@@ -16,7 +16,7 @@ namespace {
         TestHandler(
             bool &                  _called
             , const std::size_t     _RETURNS_MAPPING_INDEX
-            , const __u16           _EXPECTED_VALUE
+            , const __s16           _EXPECTED_VALUE
             , const std::size_t &   _EXPECTED_MAPPING_INDEX
             , const std::size_t     _EXPECTED_CURRENT_MAPPING_INDEX
         )
@@ -29,7 +29,7 @@ namespace {
         }
 
         std::size_t operator()(
-            const __u16         _VALUE
+            const __s16         _VALUE
             , std::size_t &     _mappingIndex
             , const std::size_t _CURRENT_MAPPING_INDEX
         ) const
@@ -48,12 +48,12 @@ namespace {
     {
     public:
         void test(
-            const __u16         _DEAD_ZONE
+            const __s16         _DEAD_ZONE
             , const __s16       _VALUE
             , const std::size_t _MAPPING_INDEX
             , const std::size_t _CURRENT_MAPPING_INDEX
             , const std::size_t _RETURNS_MAPPING_INDEX
-            , const __u16       _EXPECTED_VALUE
+            , const __s16       _EXPECTED_VALUE
             , const std::size_t _EXPECTED_NEW_MAPPING_INDEX
             , const bool        _EXPECTED_CALLED
         ) const
@@ -92,12 +92,12 @@ TEST_F(
 )
 {
     this->test(
-        50000
-        , 60000 ^ 0x8000
+        -30000
+        , -20000
         , 10
         , 20
         , 30
-        , 60000
+        , -20000
         , 30
         , true
     );
@@ -109,12 +109,12 @@ TEST_F(
 )
 {
     this->test(
-        50000
-        , 40000 ^ 0x8000
+        0
+        , -10000
         , 10
         , 20
         , 30
-        , 40000
+        , 0
         , 20
         , false
     );
