@@ -35,7 +35,7 @@ namespace {
     {
     public:
         void test(
-            const __u16     _DEAD_ZONE
+            const __s16     _DEAD_ZONE
             , const __s16   _VALUE
             , const bool    _EXPECTED_CALLED_HANDLER
         ) const

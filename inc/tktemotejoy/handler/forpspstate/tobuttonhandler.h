@@ -16,7 +16,7 @@ public:
     );
 
     void operator()(
-        const __u16
+        const __s16
         , PspState &
     ) const;
 };
