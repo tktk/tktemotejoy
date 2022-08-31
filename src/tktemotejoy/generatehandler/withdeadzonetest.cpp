@@ -94,12 +94,12 @@ TEST_F(
 
 TEST_F(
     GenerateHandlerWithDeadZoneUniqueTest
-    , FailedNotIntegerDeadZone
+    , FailedNotUnsignedDeadZone
 )
 {
     this->testAnyThrow(
         R"({
-    "deadZone" : "NOT INTEGER",
+    "deadZone" : -10,
     "key" : 20
 })"
     );
