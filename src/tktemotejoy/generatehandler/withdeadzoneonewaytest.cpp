@@ -70,10 +70,10 @@ TEST_F(
 {
     this->test(
         R"({
-    "deadZone" : 10,
+    "deadZone" : 10000,
     "key" : 20
 })"
-        , 10
+        , -22767
         , 20
     );
 }
@@ -87,14 +87,14 @@ TEST_F(
         R"({
     "key" : 20
 })"
-        , 1
+        , -32767
         , 20
     );
 }
 
 TEST_F(
     GenerateHandlerWithDeadZoneOneWayUniqueTest
-    , FailedNotIntegerDeadZone
+    , FailedNotUnsignedDeadZone
 )
 {
     this->testAnyThrow(
