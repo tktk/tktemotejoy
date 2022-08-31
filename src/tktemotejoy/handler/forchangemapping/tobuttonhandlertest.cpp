@@ -40,7 +40,7 @@ namespace {
     {
     public:
         void test(
-            const __u16         _DEAD_ZONE
+            const __s16         _DEAD_ZONE
             , const __s16       _VALUE
             , const std::size_t _RETURNS_OPERATOR_CALL
             , const std::size_t _CURRENT_MAPPING_INDEX

@@ -16,7 +16,7 @@ public:
     );
 
     std::size_t operator()(
-        const __u16
+        const __s16
         , std::size_t &
         , const std::size_t
     ) const;
