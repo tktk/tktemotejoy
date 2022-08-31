@@ -25,13 +25,13 @@ TEST_F(
     this->test(
         R"({
     "type" : "toButtonHandler",
-    "deadZone" : 50000,
+    "deadZone" : 10000,
     "handler" : {
         "type" : "toggleMapping",
         "mapping" : 10
     }
 })"
-        , 60000 ^ 0x8000
+        , -10000
         , 20
         , 10
         , 20
