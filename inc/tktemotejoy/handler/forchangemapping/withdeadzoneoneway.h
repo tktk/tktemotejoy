@@ -9,13 +9,13 @@
 template< typename HANDLER_T >
 class WithDeadZoneOneWayForChangeMapping final : public Mapping::OperateAxisHandlerForChangeMapping
 {
-    const __u16 DEAD_ZONE;
+    const __s16 DEAD_ZONE;
 
     const HANDLER_T HANDLER;
 
 public:
     WithDeadZoneOneWayForChangeMapping(
-        const __u16     _DEAD_ZONE
+        const __s16     _DEAD_ZONE
         , HANDLER_T &&  _handler
     )
         : DEAD_ZONE( _DEAD_ZONE )
@@ -29,14 +29,12 @@ public:
         , const std::size_t _CURRENT_MAPPING_INDEX
     ) const override
     {
-        const auto  VALUE = __u16( _VALUE ^ 0x8000 );
-
-        if( VALUE <= this->DEAD_ZONE ) {
+        if( _VALUE <= this->DEAD_ZONE ) {
             return _CURRENT_MAPPING_INDEX;
         }
 
         return this->HANDLER(
-            VALUE
+            _VALUE
             , _mappingIndex
             , _CURRENT_MAPPING_INDEX
         );
