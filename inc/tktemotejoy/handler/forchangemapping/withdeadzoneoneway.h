@@ -1,5 +1,5 @@
-#ifndef TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_WITHDEADZONEUNSIGNED_H
-#define TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_WITHDEADZONEUNSIGNED_H
+#ifndef TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_WITHDEADZONEONEWAY_H
+#define TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_WITHDEADZONEONEWAY_H
 
 #include "tktemotejoy/mapping.h"
 #include <linux/joystick.h>
@@ -7,14 +7,14 @@
 #include <utility>
 
 template< typename HANDLER_T >
-class WithDeadZoneUnsignedForChangeMapping final : public Mapping::OperateAxisHandlerForChangeMapping
+class WithDeadZoneOneWayForChangeMapping final : public Mapping::OperateAxisHandlerForChangeMapping
 {
     const __u16 DEAD_ZONE;
 
     const HANDLER_T HANDLER;
 
 public:
-    WithDeadZoneUnsignedForChangeMapping(
+    WithDeadZoneOneWayForChangeMapping(
         const __u16     _DEAD_ZONE
         , HANDLER_T &&  _handler
     )
@@ -43,4 +43,4 @@ public:
     }
 };
 
-#endif  // TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_WITHDEADZONEUNSIGNED_H
+#endif  // TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_WITHDEADZONEONEWAY_H

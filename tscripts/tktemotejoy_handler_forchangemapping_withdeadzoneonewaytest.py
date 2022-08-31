@@ -7,13 +7,13 @@ module.TYPE = module.test
 
 module.BUILDER = cpp.gtest
 
-module.TARGET = 'tktemotejoy_handler_forchangemapping_withdeadzoneunsignedtest'
+module.TARGET = 'tktemotejoy_handler_forchangemapping_withdeadzoneonewaytest'
 
 module.SOURCE = [
     {
         'handler' : {
             'forchangemapping' : [
-                'withdeadzoneunsignedtest.cpp',
+                'withdeadzoneonewaytest.cpp',
                 'dummy.cpp',
             ],
             'forpspstate' : [

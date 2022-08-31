@@ -1,7 +1,7 @@
 #ifndef TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_TOBUTTONHANDLER_H
 #define TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_TOBUTTONHANDLER_H
 
-#include "tktemotejoy/handler/forchangemapping/withdeadzoneunsigned.h"
+#include "tktemotejoy/handler/forchangemapping/withdeadzoneoneway.h"
 #include "tktemotejoy/mapping.h"
 #include <linux/joystick.h>
 #include <cstddef>
@@ -22,6 +22,6 @@ public:
     ) const;
 };
 
-using ToButtonHandlerForChangeMapping = WithDeadZoneUnsignedForChangeMapping< ToButtonHandlerForChangeMappingImpl >;
+using ToButtonHandlerForChangeMapping = WithDeadZoneOneWayForChangeMapping< ToButtonHandlerForChangeMappingImpl >;
 
 #endif  // TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_TOBUTTONHANDLER_H

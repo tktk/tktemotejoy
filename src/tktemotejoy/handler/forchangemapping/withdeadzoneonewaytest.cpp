@@ -1,5 +1,5 @@
 #include "tktemotejoy/test.h"
-#include "tktemotejoy/handler/forchangemapping/withdeadzoneunsigned.h"
+#include "tktemotejoy/handler/forchangemapping/withdeadzoneoneway.h"
 #include <linux/joystick.h>
 #include <cstddef>
 
@@ -44,7 +44,7 @@ namespace {
         }
     };
 
-    class WithDeadZoneUnsignedForChangeMappingTest : public ::testing::Test
+    class WithDeadZoneOneWayForChangeMappingTest : public ::testing::Test
     {
     public:
         void test(
@@ -61,7 +61,7 @@ namespace {
             auto    called = false;
             auto    mappingIndex = _MAPPING_INDEX;
 
-            auto    withDeadZone = WithDeadZoneUnsignedForChangeMapping(
+            auto    withDeadZone = WithDeadZoneOneWayForChangeMapping(
                 _DEAD_ZONE
                 , TestHandler(
                     called
@@ -87,7 +87,7 @@ namespace {
 }
 
 TEST_F(
-    WithDeadZoneUnsignedForChangeMappingTest
+    WithDeadZoneOneWayForChangeMappingTest
     , OutOfDeadZone
 )
 {
@@ -104,7 +104,7 @@ TEST_F(
 }
 
 TEST_F(
-    WithDeadZoneUnsignedForChangeMappingTest
+    WithDeadZoneOneWayForChangeMappingTest
     , DeadZone
 )
 {
