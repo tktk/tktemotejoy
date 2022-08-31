@@ -98,12 +98,12 @@ TEST_F(
 {
     this->test(
         R"({
-    "deadZone" : 10,
+    "deadZone" : 10000,
     "handler" : {
         "key" : 20
     }
 })"
-        , 10
+        , -22767
         , 20
     );
 }
