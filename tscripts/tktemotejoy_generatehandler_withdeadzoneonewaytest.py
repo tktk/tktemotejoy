@@ -7,10 +7,10 @@ module.TYPE = module.test
 
 module.BUILDER = cpp.gtest
 
-module.TARGET = 'tktemotejoy_generatehandler_withdeadzoneunsignedtest'
+module.TARGET = 'tktemotejoy_generatehandler_withdeadzoneonewaytest'
 
 module.SOURCE = {
     'generatehandler' : [
-        'withdeadzoneunsignedtest.cpp',
+        'withdeadzoneonewaytest.cpp',
     ],
 }

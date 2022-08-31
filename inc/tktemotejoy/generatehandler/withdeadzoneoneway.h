@@ -1,5 +1,5 @@
-#ifndef TKTEMOTEJOY_GENERATEHANDLER_WITHDEADZONEUNSIGNED_H
-#define TKTEMOTEJOY_GENERATEHANDLER_WITHDEADZONEUNSIGNED_H
+#ifndef TKTEMOTEJOY_GENERATEHANDLER_WITHDEADZONEONEWAY_H
+#define TKTEMOTEJOY_GENERATEHANDLER_WITHDEADZONEONEWAY_H
 
 #include "tktemotejoy/customjson.h"
 #include "tktemotejoy/json.h"
@@ -7,7 +7,7 @@
 #include <string>
 
 template< typename T >
-class GenerateHandlerWithDeadZoneUnsignedUnique
+class GenerateHandlerWithDeadZoneOneWayUnique
 {
 public:
     auto operator()(
@@ -32,4 +32,4 @@ public:
     }
 };
 
-#endif  // TKTEMOTEJOY_GENERATEHANDLER_WITHDEADZONEUNSIGNED_H
+#endif  // TKTEMOTEJOY_GENERATEHANDLER_WITHDEADZONEONEWAY_H

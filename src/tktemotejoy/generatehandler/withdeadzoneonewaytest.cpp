@@ -1,5 +1,5 @@
 #include "tktemotejoy/test.h"
-#include "tktemotejoy/generatehandler/withdeadzoneunsigned.h"
+#include "tktemotejoy/generatehandler/withdeadzoneoneway.h"
 #include "tktemotejoy/customjson.h"
 #include <linux/joystick.h>
 #include <string>
@@ -12,7 +12,7 @@ namespace {
         const long int  VALUE;
     };
 
-    struct TestGenerateHandlerUnique : public GenerateHandlerWithDeadZoneUnsignedUnique< TestGenerateHandlerUnique >
+    struct TestGenerateHandlerUnique : public GenerateHandlerWithDeadZoneOneWayUnique< TestGenerateHandlerUnique >
     {
         auto operatorCallImpl(
             const Json::object_t &  _OBJECT
@@ -30,7 +30,7 @@ namespace {
         }
     };
 
-    class GenerateHandlerWithDeadZoneUnsignedUniqueTest : public ::testing::Test
+    class GenerateHandlerWithDeadZoneOneWayUniqueTest : public ::testing::Test
     {
     public:
         void test(
@@ -64,7 +64,7 @@ namespace {
 }
 
 TEST_F(
-    GenerateHandlerWithDeadZoneUnsignedUniqueTest
+    GenerateHandlerWithDeadZoneOneWayUniqueTest
     , Standard
 )
 {
@@ -79,7 +79,7 @@ TEST_F(
 }
 
 TEST_F(
-    GenerateHandlerWithDeadZoneUnsignedUniqueTest
+    GenerateHandlerWithDeadZoneOneWayUniqueTest
     , NotExistsDeadZone
 )
 {
@@ -93,7 +93,7 @@ TEST_F(
 }
 
 TEST_F(
-    GenerateHandlerWithDeadZoneUnsignedUniqueTest
+    GenerateHandlerWithDeadZoneOneWayUniqueTest
     , FailedNotIntegerDeadZone
 )
 {

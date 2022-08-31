@@ -1,7 +1,7 @@
 #ifndef TKTEMOTEJOY_GENERATEHANDLER_TOBUTTONHANDLER_H
 #define TKTEMOTEJOY_GENERATEHANDLER_TOBUTTONHANDLER_H
 
-#include "tktemotejoy/generatehandler/withdeadzoneunsigned.h"
+#include "tktemotejoy/generatehandler/withdeadzoneoneway.h"
 #include "tktemotejoy/customjson.h"
 #include "tktemotejoy/json.h"
 #include "tktemotejoy/typeerror.h"
@@ -14,7 +14,7 @@ template<
     , typename GENERATE_HANDLER_UNIQUE_T
 >
 class GenerateToButtonHandlerUnique
-    : public GenerateHandlerWithDeadZoneUnsignedUnique<
+    : public GenerateHandlerWithDeadZoneOneWayUnique<
         GenerateToButtonHandlerUnique<
             GENERATE_TO_BUTTON_HANDLER_UNIQUE_T
             , GENERATE_HANDLER_UNIQUE_T
