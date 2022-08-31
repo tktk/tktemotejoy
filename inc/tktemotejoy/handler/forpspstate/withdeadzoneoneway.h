@@ -9,13 +9,13 @@
 template< typename HANDLER_T >
 class WithDeadZoneOneWayForPspState final : public Mapping::OperateAxisHandlerForPspState
 {
-    const __u16 DEAD_ZONE;
+    const __s16 DEAD_ZONE;
 
     const HANDLER_T HANDLER;
 
 public:
     WithDeadZoneOneWayForPspState(
-        const __u16     _DEAD_ZONE
+        const __s16     _DEAD_ZONE
         , HANDLER_T &&  _handler
     )
         : DEAD_ZONE( _DEAD_ZONE )
@@ -28,14 +28,12 @@ public:
         , PspState &    _pspState
     ) const override
     {
-        const auto  VALUE = __u16( _VALUE ^ 0x8000 );
-
-        if( VALUE <= this->DEAD_ZONE ) {
+        if( _VALUE <= this->DEAD_ZONE ) {
             return;
         }
 
         this->HANDLER(
-            VALUE
+            _VALUE
             , _pspState
         );
     }
