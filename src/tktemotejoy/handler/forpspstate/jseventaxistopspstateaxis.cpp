@@ -17,7 +17,7 @@ PspState::Axis jsEventAxisToPspStateAxis(
     const __s16 _JS_EVENT_AXIS
 )
 {
-    return ( _JS_EVENT_AXIS + JS_EVENT_AXIS_TO_PSP_STATE_AXIS ) >> SHIFT_TO_PSP_STATE_AXIS;
+    return ( _JS_EVENT_AXIS ^ JS_EVENT_AXIS_TO_PSP_STATE_AXIS ) >> SHIFT_TO_PSP_STATE_AXIS;
 }
 
 PspState::Axis jsEventAxisToPspStateAxis(

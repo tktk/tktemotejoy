@@ -1,5 +1,5 @@
-#ifndef TKTEMOTEJOY_HANDLER_FORPSPSTATE_WITHDEADZONEUNSIGNED_H
-#define TKTEMOTEJOY_HANDLER_FORPSPSTATE_WITHDEADZONEUNSIGNED_H
+#ifndef TKTEMOTEJOY_HANDLER_FORPSPSTATE_WITHDEADZONEONEWAY_H
+#define TKTEMOTEJOY_HANDLER_FORPSPSTATE_WITHDEADZONEONEWAY_H
 
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/pspstate.h"
@@ -7,14 +7,14 @@
 #include <utility>
 
 template< typename HANDLER_T >
-class WithDeadZoneUnsignedForPspState final : public Mapping::OperateAxisHandlerForPspState
+class WithDeadZoneOneWayForPspState final : public Mapping::OperateAxisHandlerForPspState
 {
     const __u16 DEAD_ZONE;
 
     const HANDLER_T HANDLER;
 
 public:
-    WithDeadZoneUnsignedForPspState(
+    WithDeadZoneOneWayForPspState(
         const __u16     _DEAD_ZONE
         , HANDLER_T &&  _handler
     )
@@ -41,4 +41,4 @@ public:
     }
 };
 
-#endif  // TKTEMOTEJOY_HANDLER_FORPSPSTATE_WITHDEADZONEUNSIGNED_H
+#endif  // TKTEMOTEJOY_HANDLER_FORPSPSTATE_WITHDEADZONEONEWAY_H

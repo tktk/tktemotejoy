@@ -1,5 +1,5 @@
 #include "tktemotejoy/test.h"
-#include "tktemotejoy/handler/forpspstate/withdeadzoneunsigned.h"
+#include "tktemotejoy/handler/forpspstate/withdeadzoneoneway.h"
 #include "tktemotejoy/pspstate.h"
 #include <linux/joystick.h>
 
@@ -35,7 +35,7 @@ namespace {
         }
     };
 
-    class WithDeadZoneUnsignedForPspStateTest : public ::testing::Test
+    class WithDeadZoneOneWayForPspStateTest : public ::testing::Test
     {
     public:
         void test(
@@ -49,7 +49,7 @@ namespace {
 
             auto    pspState = PspState();
 
-            auto    withDeadZoneUnsigned = WithDeadZoneUnsignedForPspState(
+            auto    withDeadZoneOneWay = WithDeadZoneOneWayForPspState(
                 _DEAD_ZONE
                 , TestHandler(
                     called
@@ -58,7 +58,7 @@ namespace {
                 )
             );
 
-            withDeadZoneUnsigned(
+            withDeadZoneOneWay(
                 _VALUE
                 , pspState
             );
@@ -69,7 +69,7 @@ namespace {
 }
 
 TEST_F(
-    WithDeadZoneUnsignedForPspStateTest
+    WithDeadZoneOneWayForPspStateTest
     , OutOfDeadZone
 )
 {
@@ -82,7 +82,7 @@ TEST_F(
 }
 
 TEST_F(
-    WithDeadZoneUnsignedForPspStateTest
+    WithDeadZoneOneWayForPspStateTest
     , DeadZone
 )
 {
