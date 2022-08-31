@@ -32,14 +32,14 @@ namespace {
 
     struct TestToButtonHandler
     {
-        const __u16             DEAD_ZONE;
+        const __s16             DEAD_ZONE;
         const TestHandlerUnique HANDLER_UNIQUE;
     };
 
     struct TestGenerateToButtonHandlerUnique
     {
         auto operator()(
-            const __u16             _DEAD_ZONE
+            const __s16             _DEAD_ZONE
             , TestHandlerUnique &&  _handlerUnique
         ) const
         {
@@ -62,7 +62,7 @@ namespace {
     public:
         void test(
             const std::string & _JSON_STRING
-            , const __u16       _EXPECTED_DEAD_ZONE
+            , const __s16       _EXPECTED_DEAD_ZONE
             , const int         _EXPECTED_HANDLER_VALUE
         ) const
         {

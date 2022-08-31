@@ -25,7 +25,7 @@ TEST_F(
     this->test(
         R"({
     "type" : "toButtonHandler",
-    "deadZone" : 50000,
+    "deadZone" : 10000,
     "handler" : {
         "type" : "toButtons",
         "buttons" : [
@@ -33,7 +33,7 @@ TEST_F(
         ]
     }
 })"
-        , 60000 ^ 0x8000
+        , -10000
         , 0x80800010
     );
 }

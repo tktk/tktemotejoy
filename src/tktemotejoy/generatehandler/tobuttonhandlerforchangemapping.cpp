@@ -23,7 +23,7 @@ namespace {
     struct GenerateToButtonHandlerForChangeMappingUnique
     {
         auto operator()(
-            const __u16                                             _DEAD_ZONE
+            const __s16                                             _DEAD_ZONE
             , Mapping::PressButtonHandlerForChangeMappingUnique &&  _handlerUnique
         ) const
         {
