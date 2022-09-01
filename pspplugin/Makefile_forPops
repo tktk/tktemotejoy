@@ -1,0 +1,5 @@
+TARGET = tktemotejoy_pops
+
+OBJS += src/tktemotejoy/ctrl_pops.o
+
+include Makefile_common

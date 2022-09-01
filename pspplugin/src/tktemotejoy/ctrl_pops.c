@@ -29,8 +29,10 @@ FromUsbData currentFromUsbData;
 
 static CtrlBufferFunction   originalCtrlPeekBufferPositive;
 static CtrlBufferFunction   originalCtrlPeekBufferNegative;
+/*
 static CtrlBufferFunction   originalCtrlReadBufferPositive;
 static CtrlBufferFunction   originalCtrlReadBufferNegative;
+*/
 
 static unsigned int generateMask(
 )
@@ -129,6 +131,7 @@ static int hookedCtrlPeekBufferNegative(
     );
 }
 
+/*
 static int hookedCtrlReadBufferPositive(
     SceCtrlData *   _ctrlData
     , const int     _COUNT
@@ -154,6 +157,7 @@ static int hookedCtrlReadBufferNegative(
         , originalCtrlReadBufferNegative
     );
 }
+*/
 
 void initializeCtrlFromUsbData(
 )
@@ -178,6 +182,7 @@ int hookCtrlFunctions(
         , &originalCtrlPeekBufferNegative
     )
 
+/*
     // 3つ以上の関数をフックするとPS1のゲームでボタンが反応しなくなる
     // 理由は不明
 
@@ -193,6 +198,7 @@ int hookCtrlFunctions(
         , hookedCtrlReadBufferNegative
         , &originalCtrlReadBufferNegative
     )
+*/
 
     return 0;
 }
