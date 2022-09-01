@@ -7,7 +7,7 @@ USE_KERNEL_LIBC = 1
 USE_KERNEL_LIBS = 1
 
 INCDIR = 
-CFLAGS = -std=gnu11 -Os -G0 -Wall -fno-builtin-printf -Iinc -I../../psplinkusb/usbhostfs
+CFLAGS += -std=gnu11 -Os -G0 -Wall -fno-builtin-printf -Iinc -I../../psplinkusb/usbhostfs
 CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
 ASFLAGS = $(CFLAGS)
 LDFLAGS = -L../../psplinkusb/libusbhostfs_driver

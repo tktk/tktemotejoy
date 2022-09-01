@@ -28,7 +28,7 @@ enum {
     INITIALIZE_VALUE = 0x80800000,
 };
 
-FromUsbData currentFromUsbData;
+static FromUsbData  currentFromUsbData;
 
 static CtrlBufferFunction   originalCtrlPeekBufferPositive;
 static CtrlBufferFunction   originalCtrlPeekBufferNegative;
@@ -51,6 +51,32 @@ static unsigned int generateMask(
 
     return mask;
 }
+
+#ifdef  ENABLE_PSP_ANALOG_PAD
+static unsigned char calcAxisDistance(
+    const unsigned char _AXIS
+)
+{
+    char    distance = _AXIS ^ 0x80;
+
+    if( distance < 0 ) {
+        distance *= -1;
+    }
+
+    return distance;
+}
+
+static unsigned char getMaxAxis(
+    const unsigned char     _AXIS1
+    , const unsigned char   _AXIS2
+)
+{
+    const unsigned char AXIS_DISTANCE1 = calcAxisDistance( _AXIS1 );
+    const unsigned char AXIS_DISTANCE2 = calcAxisDistance( _AXIS2 );
+
+    return AXIS_DISTANCE1 > AXIS_DISTANCE2 ? _AXIS1 : _AXIS2;
+}
+#endif  // ENABLE_PSP_ANALOG_PAD
 
 static void applyFromUsbData(
     SceCtrlData *   _ctrlData
@@ -77,8 +103,19 @@ static void applyFromUsbData(
             ctrlData->Buttons |= buttons;
         }
 
+#ifdef  ENABLE_PSP_ANALOG_PAD
+        ctrlData->Lx = getMaxAxis(
+            ctrlData->Lx
+            , currentFromUsbData.axisX
+        );
+        ctrlData->Ly = getMaxAxis(
+            ctrlData->Ly
+            , currentFromUsbData.axisY
+        );
+#else   // ENABLE_PSP_ANALOG_PAD
         ctrlData->Lx = currentFromUsbData.axisX;
         ctrlData->Ly = currentFromUsbData.axisY;
+#endif  // ENABLE_PSP_ANALOG_PAD
     }
 
     pspSdkEnableInterrupts( STATE );
