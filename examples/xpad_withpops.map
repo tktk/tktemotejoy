@@ -1,0 +1,447 @@
+// xbox360コントローラ向け設定（PS1ゲーム用マッピング付き）
+{
+    "general" : {
+        "defaultMapping" : 1,
+    },
+    "mappings" : [
+        {   // マッピング変更用
+            "buttonsForChangeMapping" : {
+                "0" : {
+                    "type" : "toggleMapping",
+                    "mapping" : 1,
+                },
+                "1" : {
+                    "type" : "toggleMapping",
+                    "mapping" : 2,
+                },
+            },
+        },
+        {   // PSPゲーム用
+            "buttonsForChangeMapping" : {
+                "8" : {
+                    "type" : "shiftMapping",
+                    "mapping" : 0,
+                },
+            },
+            "buttonsForPspState" : {
+                "0" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "cross",
+                    ],
+                },
+                "1" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "circle",
+                    ],
+                },
+                "2" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "square",
+                    ],
+                },
+                "3" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "triangle",
+                    ],
+                },
+                "4" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "triggerL",
+                    ],
+                },
+                "5" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "triggerR",
+                    ],
+                },
+                "6" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "start",
+                    ],
+                },
+                "7" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "select",
+                    ],
+                },
+            },
+            "axesForPspState" : {
+                "0" : {
+                    "type" : "toAxisX",
+                    "max" : 30000,
+                },
+                "1" : {
+                    "type" : "toAxisY",
+                    "max" : 30000,
+                },
+                "2" : {
+                    "type" : "toButtonHandlers",
+                    "deadZone" : 30000,
+                    "handler1" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "left",
+                        ],
+                    },
+                    "handler2" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "right",
+                        ],
+                    },
+                },
+                "3" : {
+                    "type" : "toButtonHandlers",
+                    "deadZone" : 30000,
+                    "handler1" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "up",
+                        ],
+                    },
+                    "handler2" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "down",
+                        ],
+                    },
+                },
+                "6" : {
+                    "type" : "toButtonHandlers",
+                    "handler1" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "left",
+                        ],
+                    },
+                    "handler2" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "right",
+                        ],
+                    },
+                },
+                "7" : {
+                    "type" : "toButtonHandlers",
+                    "handler1" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "up",
+                        ],
+                    },
+                    "handler2" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "down",
+                        ],
+                    },
+                },
+            },
+        },
+        {   // PS1ゲーム用（LRトリガー押下なし）
+            "buttonsForChangeMapping" : {
+                "8" : {
+                    "type" : "shiftMapping",
+                    "mapping" : 0,
+                },
+            },
+            "buttonsForPspState" : {
+                "0" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "cross",
+                    ],
+                },
+                "1" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "circle",
+                    ],
+                },
+                "2" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "square",
+                    ],
+                },
+                "3" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "triangle",
+                    ],
+                },
+                "4" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "triggerL",
+                    ],
+                },
+                "5" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "triggerR",
+                    ],
+                },
+                "6" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "start",
+                    ],
+                },
+                "7" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "select",
+                    ],
+                },
+            },
+            "axesForPspState" : {
+                "4" : {
+                    "type" : "toButtonHandler",
+                    "handler" : {
+                        "type" : "toFixedAxisX",
+                        "value" : 32767,
+                    },
+                },
+                "6" : {
+                    "type" : "toButtonHandlers",
+                    "handler1" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "left",
+                        ],
+                    },
+                    "handler2" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "right",
+                        ],
+                    },
+                },
+                "7" : {
+                    "type" : "toButtonHandlers",
+                    "handler1" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "up",
+                        ],
+                    },
+                    "handler2" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "down",
+                        ],
+                    },
+                },
+            },
+            "axesForChangeMapping" : {
+                "5" : {
+                    "type" : "toButtonHandler",
+                    "handler" : {
+                        "type" : "shiftMapping",
+                        "mapping" : 3,
+                    },
+                },
+            },
+        },
+        {   // PS1ゲーム用（Lトリガーのみ押下）
+            "buttonsForPspState" : {
+                "0" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "cross",
+                    ],
+                },
+                "1" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "circle",
+                    ],
+                },
+                "2" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "square",
+                    ],
+                },
+                "3" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "triangle",
+                    ],
+                },
+                "4" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "triggerL",
+                    ],
+                },
+                "5" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "triggerR",
+                    ],
+                },
+                "6" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "start",
+                    ],
+                },
+                "7" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "select",
+                    ],
+                },
+            },
+            "axesForPspState" : {
+                "5" : {
+                    "type" : "toButtonHandler",
+                    "handler" : {
+                        "type" : "toFixedAxisX",
+                        "value" : -32767,
+                    },
+                },
+                "6" : {
+                    "type" : "toButtonHandlers",
+                    "handler1" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "left",
+                        ],
+                    },
+                    "handler2" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "right",
+                        ],
+                    },
+                },
+                "7" : {
+                    "type" : "toButtonHandlers",
+                    "handler1" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "up",
+                        ],
+                    },
+                    "handler2" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "down",
+                        ],
+                    },
+                },
+            },
+            "axesForChangeMapping" : {
+                "4" : {
+                    "type" : "toButtonHandler",
+                    "handler" : {
+                        "type" : "shiftMapping",
+                        "mapping" : 4,
+                    },
+                },
+            },
+        },
+        {   // PS1ゲーム用（LRトリガー両方押下）
+            "buttonsForPspState" : {
+                "0" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "cross",
+                    ],
+                },
+                "1" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "circle",
+                    ],
+                },
+                "2" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "square",
+                    ],
+                },
+                "3" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "triangle",
+                    ],
+                },
+                "4" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "triggerL",
+                    ],
+                },
+                "5" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "triggerR",
+                    ],
+                },
+                "6" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "start",
+                    ],
+                },
+                "7" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "select",
+                    ],
+                },
+            },
+            "axesForPspState" : {
+                "4" : {
+                    "type" : "toButtonHandler",
+                    "handler" : {
+                        "type" : "toFixedAxisY",
+                        "value" : -32767,
+                    },
+                },
+                "6" : {
+                    "type" : "toButtonHandlers",
+                    "handler1" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "left",
+                        ],
+                    },
+                    "handler2" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "right",
+                        ],
+                    },
+                },
+                "7" : {
+                    "type" : "toButtonHandlers",
+                    "handler1" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "up",
+                        ],
+                    },
+                    "handler2" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "down",
+                        ],
+                    },
+                },
+            },
+        },
+    ],
+}
