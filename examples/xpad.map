@@ -1,0 +1,132 @@
+// xbox360コントローラ向け設定
+{
+    "general" : {
+        "defaultMapping" : 0,
+    },
+    "mappings" : [
+        {
+            "buttonsForPspState" : {
+                "0" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "cross",
+                    ],
+                },
+                "1" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "circle",
+                    ],
+                },
+                "2" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "square",
+                    ],
+                },
+                "3" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "triangle",
+                    ],
+                },
+                "4" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "triggerL",
+                    ],
+                },
+                "5" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "triggerR",
+                    ],
+                },
+                "6" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "start",
+                    ],
+                },
+                "7" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "select",
+                    ],
+                },
+            },
+            "axesForPspState" : {
+                "0" : {
+                    "type" : "toAxisX",
+                    "max" : 30000,
+                },
+                "1" : {
+                    "type" : "toAxisY",
+                    "max" : 30000,
+                },
+                "2" : {
+                    "type" : "toButtonHandlers",
+                    "deadZone" : 30000,
+                    "handler1" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "left",
+                        ],
+                    },
+                    "handler2" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "right",
+                        ],
+                    },
+                },
+                "3" : {
+                    "type" : "toButtonHandlers",
+                    "deadZone" : 30000,
+                    "handler1" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "up",
+                        ],
+                    },
+                    "handler2" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "down",
+                        ],
+                    },
+                },
+                "6" : {
+                    "type" : "toButtonHandlers",
+                    "handler1" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "left",
+                        ],
+                    },
+                    "handler2" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "right",
+                        ],
+                    },
+                },
+                "7" : {
+                    "type" : "toButtonHandlers",
+                    "handler1" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "up",
+                        ],
+                    },
+                    "handler2" : {
+                        "type" : "toButtons",
+                        "buttons" : [
+                            "down",
+                        ],
+                    },
+                },
+            },
+        },
+    ],
+}
