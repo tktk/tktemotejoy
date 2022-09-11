@@ -5,9 +5,11 @@
 #include "tktemotejoy/mappings.h"
 #include "tktemotejoy/joystickstate.h"
 #include "tktemotejoy/tousbhostfs.h"
-#include "tktemotejoy/joystick.h"
+#include "tktemotejoy/evdev.h"
 #include <string>
+#include <algorithm>
 #include <cstddef>
+#include <linux/input.h>
 
 namespace {
     Mappings generateMappingsFromFile(
@@ -26,6 +28,32 @@ namespace {
             , _AXES
         );
     }
+
+    void initializeJoystickState(
+        const int           _DESCRIPTOR
+        , JoystickState &   _joystickState
+    )
+    {
+        const auto  KEY_STATES = generateEvdevKeyStates( _DESCRIPTOR );
+
+        const auto  KEY_STATES_SIZE = KEY_STATES.size();
+        for( auto i = std::size_t( 0 ) ; i < KEY_STATES_SIZE ; i++ ) {
+            _joystickState.setButtonState(
+                i
+                , KEY_STATES.test( i ) == true ? 1 : 0
+            );
+        }
+
+        const auto  ABS_DATA_ARRAY = generateEvdevAbsDataArray( _DESCRIPTOR );
+
+        const auto  ABS_DATA_ARRAY_SIZE = ABS_DATA_ARRAY.size();
+        for( auto i = std::size_t( 0 ) ; i < ABS_DATA_ARRAY_SIZE ; i++ ) {
+            _joystickState.setAxisState(
+                i
+                , ABS_DATA_ARRAY.at( i ).value
+            );
+        }
+    }
 }
 
 int main(
@@ -42,14 +70,8 @@ int main(
         return 1;
     }
 
-    int joystick;
-    const auto  JOYSTICK_CLOSER = openJoystick(
-        joystick
-        , options.deviceFilePath
-    );
-
-    const auto  BUTTONS = getJoystickButtons( joystick );
-    const auto  AXES = getJoystickAxes( joystick );
+    const auto  BUTTONS = EVDEV_BUTTONS;
+    const auto  AXES = EVDEV_AXES;
 
     auto    mappings = generateMappingsFromFile(
         options.mapFilePath
@@ -64,36 +86,61 @@ int main(
         , options.port
     );
 
+    int evdev;
+    const auto  JOYSTICK_CLOSER = openEvdev(
+        evdev
+        , options.deviceFilePath
+    );
+
     auto    joystickState = JoystickState(
         BUTTONS
         , AXES
     );
 
+    initializeJoystickState(
+        evdev
+        , joystickState
+    );
+
     auto    prevPspState = PspState();
 
-    auto    jsEvent = js_event();
+    auto    inputEvents = EvdevInputEvents();
+
+    const auto  INPUT_EVENTS_BEGIN = inputEvents.cbegin();
+
     while( true ) {
-        readJoystick(
-            joystick
-            , jsEvent
+        const auto  READ_EVENTS = readEvdevInputEvents(
+            evdev
+            , inputEvents
         );
 
-        const auto &    TYPE = jsEvent.type;
+        std::for_each(
+            INPUT_EVENTS_BEGIN
+            , INPUT_EVENTS_BEGIN + READ_EVENTS
+            , [
+                &joystickState
+            ]
+            (
+                const input_event & _EVENT
+            )
+            {
+                const auto &    EVENT_TYPE = _EVENT.type;
+                const auto &    EVENT_CODE = _EVENT.code;
+                const auto &    EVENT_VALUE = _EVENT.value;
 
-        const auto &    INDEX = jsEvent.number;
-        const auto &    VALUE = jsEvent.value;
-
-        if( ( TYPE & JS_EVENT_BUTTON ) != 0 ) {
-            joystickState.setButtonState(
-                INDEX
-                , VALUE
-            );
-        } else if( ( TYPE & JS_EVENT_AXIS ) != 0 ) {
-            joystickState.setAxisState(
-                INDEX
-                , VALUE
-            );
-        }
+                if( EVENT_TYPE == EV_KEY ) {
+                    joystickState.setButtonState(
+                        EVENT_CODE
+                        , EVENT_VALUE
+                    );
+                } else if( EVENT_TYPE == EV_ABS ) {
+                    joystickState.setAxisState(
+                        EVENT_CODE
+                        , EVENT_VALUE
+                    );
+                }
+            }
+        );
 
         auto    pspState = PspState();
         mappings.joystickStateToPspState(
@@ -101,23 +148,21 @@ int main(
             , joystickState
         );
 
-        if( ( TYPE & JS_EVENT_INIT ) == 0 ) {
-            pspState.diff(
-                prevPspState
-                , [
-                    &socket_
-                ]
-                (
-                    const PspState::Bits &  _BITS
-                )
-                {
-                    writeToUsbHostFs(
-                        socket_
-                        , _BITS
-                    );
-                }
-            );
-        }
+        pspState.diff(
+            prevPspState
+            , [
+                &socket_
+            ]
+            (
+                const PspState::Bits &  _BITS
+            )
+            {
+                writeToUsbHostFs(
+                    socket_
+                    , _BITS
+                );
+            }
+        );
 
         prevPspState = pspState;
     }
