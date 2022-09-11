@@ -84,6 +84,7 @@ module.SOURCE = [
     'pspstate.cpp',
     'tousbhostfs.cpp',
     'joystick.cpp',
+    'evdev.cpp',
     'descriptorcloser.cpp',
     'typeerror.cpp',
     {
