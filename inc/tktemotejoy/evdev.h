@@ -13,7 +13,7 @@ enum {
 
 using EvdevKeyStates = std::bitset< KEY_MAX >;
 
-struct EvdevAxisState
+struct EvdevAbsData
 {
     alignas( 1 ) int value;
     alignas( 1 ) int min;
@@ -23,8 +23,8 @@ struct EvdevAxisState
     alignas( 1 ) int resolution;
 };
 
-using EvdevAxisStates = std::array<
-    EvdevAxisState
+using EvdevAbsDataArray = std::array<
+    EvdevAbsData
     , ABS_MAX
 >;
 
@@ -42,7 +42,7 @@ EvdevKeyStates generateEvdevKeyStates(
     const int
 );
 
-EvdevAxisStates generateEvdevAxisStates(
+EvdevAbsDataArray generateEvdevAbsDataArray(
     const int
 );
 

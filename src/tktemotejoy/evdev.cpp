@@ -41,12 +41,22 @@ EvdevKeyStates generateEvdevKeyStates(
     return keyStates;
 }
 
-EvdevAxisStates generateEvdevAxisStates(
+EvdevAbsDataArray generateEvdevAbsDataArray(
     const int   _DESCRIPTOR
 )
 {
-    //TODO
-    return EvdevAxisStates();
+    auto    absDataArray = EvdevAbsDataArray();
+
+    const auto  SIZE = absDataArray.size();
+    for( auto i = EvdevAbsDataArray::size_type( 0 ) ; i < SIZE ; i++ ) {
+        ioctl(
+            _DESCRIPTOR
+            , EVIOCGABS( i )
+            , &( absDataArray.at( i ) )
+        );
+    }
+
+    return absDataArray;
 }
 
 EvdevInputEvents::size_type readEvdevInputEvents(
