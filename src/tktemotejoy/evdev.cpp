@@ -64,6 +64,16 @@ EvdevInputEvents::size_type readEvdevInputEvents(
     , EvdevInputEvents &    _inputEvents
 )
 {
-    //TODO
-    return 0;
+    const auto  READ_SIZE = read(
+        _DESCRIPTOR
+        , _inputEvents.data()
+        , sizeof( _inputEvents )
+    );
+    if( READ_SIZE < 0 ) {
+        throw std::runtime_error( "read()が失敗" );
+    }
+
+    const auto  READ_INPUT_EVENTS_COUNT = READ_SIZE / sizeof( EvdevInputEvents::value_type );
+
+    return READ_INPUT_EVENTS_COUNT;
 }
