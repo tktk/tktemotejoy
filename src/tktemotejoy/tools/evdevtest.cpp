@@ -15,14 +15,15 @@ namespace {
             char
             , 256
         >();
+        auto    namePtr = name.data();
 
         ioctl(
             _DESCRIPTOR
             , EVIOCGNAME( name.size() )
-            , name.data()
+            , namePtr
         );
 
-        std::cout << "デバイス名 : " << '"' << name.data() << '"' << std::endl;
+        std::cout << "デバイス名 : " << '"' << namePtr << '"' << std::endl;
     }
 
     template< typename INDICES_T >
@@ -43,33 +44,69 @@ namespace {
     }
 
     void showAvailableKeysCount(
-        const EvdevKeyIndices & _KEY_INDICES
+        const EvdevKeyIndices & _INDICES
     )
     {
-        const auto  COUNT = countAvailableIndices( _KEY_INDICES );
+        const auto  COUNT = countAvailableIndices( _INDICES );
         std::cout << "有効なキー数 : " << COUNT << std::endl;
     }
 
     void showAvailableAbssCount(
-        const EvdevAbsIndices & _ABS_INDICES
+        const EvdevAbsIndices & _INDICES
     )
     {
-        const auto  COUNT = countAvailableIndices( _ABS_INDICES );
+        const auto  COUNT = countAvailableIndices( _INDICES );
         std::cout << "有効な軸数 : " << COUNT << std::endl;
     }
 
-    template< typename INDICES_T >
-    void showAvailableEventIndices(
-        const INDICES_T &   _INDICES
+    void showAvailableKeys(
+        const int                   _DESCRIPTOR
+        , const EvdevKeyIndices &   _INDICES
     )
     {
+        const auto  KEY_STATES = generateEvdevKeyStates( _DESCRIPTOR );
+
         const auto  SIZE = _INDICES.size();
-        for( auto i = typename INDICES_T::size_type( 0 ) ; i < SIZE ; i++ ) {
+        for( auto i = EvdevKeyIndices::size_type( 0 ) ; i < SIZE ; i++ ) {
             const auto & INDEX = _INDICES.at( i );
 
             if( INDEX >= 0 ) {
-                std::cout << INDEX << " : code(" << i << ')' << std::endl;
+                const auto  VALUE = KEY_STATES.test( i ) == true ? 1 : 0;
+
+                std::cout << INDEX
+                    << " : code(" << i
+                    << "), value(" << VALUE
+                    << ')' << std::endl;
             }
+        }
+    }
+
+    void showAvailableAbss(
+        const int                   _DESCRIPTOR
+        , const EvdevAbsIndices &   _INDICES
+    )
+    {
+        const auto  ABS_DATA_ARRAY = generateEvdevAbsDataArray( _DESCRIPTOR );
+
+        const auto  SIZE = _INDICES.size();
+        for( auto i = EvdevKeyIndices::size_type( 0 ) ; i < SIZE ; i++ ) {
+            const auto & INDEX = _INDICES.at( i );
+
+            if( INDEX < 0 ) {
+                continue;
+            }
+
+            const auto &    ABS_DATA = ABS_DATA_ARRAY.at( i );
+
+            std::cout << INDEX
+                << " : code(" << i
+                << "), value(" << ABS_DATA.value
+                << "), min(" << ABS_DATA.min
+                << "), max(" << ABS_DATA.max
+                << "), fuzz(" << ABS_DATA.fuzz
+                << "), flat(" << ABS_DATA.flat
+                << "), resolution(" << ABS_DATA.resolution
+                << ')' << std::endl;
         }
     }
 }
@@ -99,9 +136,15 @@ int main(
     const auto  ABS_INDICES = generateEvdevAbsIndices( evdev );
 
     showAvailableKeysCount( KEY_INDICES );
-    showAvailableEventIndices( KEY_INDICES );
+    showAvailableKeys(
+        evdev
+        , KEY_INDICES
+    );
     showAvailableAbssCount( ABS_INDICES );
-    showAvailableEventIndices( ABS_INDICES );
+    showAvailableAbss(
+        evdev
+        , ABS_INDICES
+    );
 
     auto    inputEvents = EvdevInputEvents();
 
