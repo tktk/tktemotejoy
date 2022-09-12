@@ -83,8 +83,10 @@ EvdevAbsIndices generateEvdevAbsIndices(
     const int   _DESCRIPTOR
 )
 {
-    //TODO
-    return EvdevAbsIndices();
+    return generateEvdevEventIndices<
+        EV_ABS
+        , ABS_MAX
+    >( _DESCRIPTOR );
 }
 
 EvdevKeyStates generateEvdevKeyStates(
