@@ -82,7 +82,7 @@
                     "type" : "toAxisY",
                     "max" : 30000,
                 },
-                "2" : {
+                "3" : {
                     "type" : "toButtonHandlers",
                     "deadZone" : 30000,
                     "handler1" : {
@@ -98,7 +98,7 @@
                         ],
                     },
                 },
-                "3" : {
+                "4" : {
                     "type" : "toButtonHandlers",
                     "deadZone" : 30000,
                     "handler1" : {
@@ -204,9 +204,9 @@
                 },
             },
             "axesForPspState" : {
-                "4" : {
-                    "type" : "toButtonHandler",
-                    "handler" : {
+                "5" : {
+                    "type" : "toButtonHandlers",
+                    "handler2" : {
                         "type" : "toFixedAxisX",
                         "value" : 32767,
                     },
@@ -243,9 +243,9 @@
                 },
             },
             "axesForChangeMapping" : {
-                "5" : {
-                    "type" : "toButtonHandler",
-                    "handler" : {
+                "2" : {
+                    "type" : "toButtonHandlers",
+                    "handler2" : {
                         "type" : "shiftMapping",
                         "mapping" : 3,
                     },
@@ -304,9 +304,9 @@
                 },
             },
             "axesForPspState" : {
-                "5" : {
-                    "type" : "toButtonHandler",
-                    "handler" : {
+                "2" : {
+                    "type" : "toButtonHandlers",
+                    "handler2" : {
                         "type" : "toFixedAxisX",
                         "value" : -32767,
                     },
@@ -343,9 +343,9 @@
                 },
             },
             "axesForChangeMapping" : {
-                "4" : {
-                    "type" : "toButtonHandler",
-                    "handler" : {
+                "5" : {
+                    "type" : "toButtonHandlers",
+                    "handler2" : {
                         "type" : "shiftMapping",
                         "mapping" : 4,
                     },
@@ -404,9 +404,9 @@
                 },
             },
             "axesForPspState" : {
-                "4" : {
-                    "type" : "toButtonHandler",
-                    "handler" : {
+                "5" : {
+                    "type" : "toButtonHandlers",
+                    "handler2" : {
                         "type" : "toFixedAxisY",
                         "value" : -32767,
                     },

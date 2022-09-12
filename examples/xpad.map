@@ -64,7 +64,7 @@
                     "type" : "toAxisY",
                     "max" : 30000,
                 },
-                "2" : {
+                "3" : {
                     "type" : "toButtonHandlers",
                     "deadZone" : 30000,
                     "handler1" : {
@@ -80,7 +80,7 @@
                         ],
                     },
                 },
-                "3" : {
+                "4" : {
                     "type" : "toButtonHandlers",
                     "deadZone" : 30000,
                     "handler1" : {
