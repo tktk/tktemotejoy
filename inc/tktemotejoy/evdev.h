@@ -8,9 +8,6 @@
 #include <string>
 
 enum {
-    EVDEV_BUTTONS = KEY_MAX,    //REMOVEME
-    EVDEV_AXES = ABS_MAX,   //REMOVEME
-
     EVDEV_INPUT_EVENTS_SIZE = 100,
 };
 
@@ -24,7 +21,7 @@ using EvdevAbsIndices = std::array<
     , ABS_MAX
 >;
 
-using EvdevKeyStates = std::bitset< EVDEV_BUTTONS >;
+using EvdevKeyStates = std::bitset< KEY_MAX >;
 
 struct EvdevAbsData
 {
@@ -38,7 +35,7 @@ struct EvdevAbsData
 
 using EvdevAbsDataArray = std::array<
     EvdevAbsData
-    , EVDEV_AXES
+    , ABS_MAX
 >;
 
 using EvdevInputEvents = std::array<
