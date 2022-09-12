@@ -8,11 +8,21 @@
 #include <string>
 
 enum {
-    EVDEV_BUTTONS = KEY_MAX,
-    EVDEV_AXES = ABS_MAX,
+    EVDEV_BUTTONS = KEY_MAX,    //REMOVEME
+    EVDEV_AXES = ABS_MAX,   //REMOVEME
 
     EVDEV_INPUT_EVENTS_SIZE = 100,
 };
+
+using EvdevKeyIndices = std::array<
+    int
+    , KEY_MAX
+>;
+
+using EvdevAbsIndices = std::array<
+    int
+    , ABS_MAX
+>;
 
 using EvdevKeyStates = std::bitset< EVDEV_BUTTONS >;
 
@@ -39,6 +49,14 @@ using EvdevInputEvents = std::array<
 DescriptorCloser openEvdev(
     int &
     , const std::string &
+);
+
+EvdevKeyIndices generateEvdevKeyIndices(
+    const int
+);
+
+EvdevAbsIndices generateEvdevAbsIndices(
+    const int
 );
 
 EvdevKeyStates generateEvdevKeyStates(

@@ -6,6 +6,49 @@
 #include <sstream>
 #include <stdexcept>
 
+namespace {
+    template<
+        int EVENT_TYPE
+        , int EVENT_MAX
+    >
+    std::array< int, EVENT_MAX > generateEvdevEventIndices(
+        const int   _DESCRIPTOR
+    )
+    {
+        using EventIndices = std::array<
+            int
+            , EVENT_MAX
+        >;
+
+        using Event = std::bitset< EVENT_MAX >;
+
+        auto    event = Event();
+
+        ioctl(
+            _DESCRIPTOR
+            , EVIOCGBIT(
+                EVENT_TYPE
+                , sizeof( event )
+            )
+            , &event
+        );
+
+        auto    indices = EventIndices();
+
+        auto    index = 0;
+        for( auto i = std::size_t( 0 ) ; i < EVENT_MAX ; i++ ) {
+            if( event.test( i ) == true ) {
+                indices.at( i ) = index;
+                index++;
+            } else {
+                indices.at( i ) = -1;
+            }
+        }
+
+        return indices;
+    }
+}
+
 DescriptorCloser openEvdev(
     int &                   _descriptor
     , const std::string &   _DEVICE_PATH
@@ -24,6 +67,24 @@ DescriptorCloser openEvdev(
     }
 
     return DescriptorCloser( &_descriptor );
+}
+
+EvdevKeyIndices generateEvdevKeyIndices(
+    const int   _DESCRIPTOR
+)
+{
+    return generateEvdevEventIndices<
+        EV_KEY
+        , KEY_MAX
+    >( _DESCRIPTOR );
+}
+
+EvdevAbsIndices generateEvdevAbsIndices(
+    const int   _DESCRIPTOR
+)
+{
+    //TODO
+    return EvdevAbsIndices();
 }
 
 EvdevKeyStates generateEvdevKeyStates(
