@@ -5,11 +5,31 @@
 #include "tktemotejoy/pspstate.h"
 #include <linux/input.h>
 #include <utility>
+#include <cmath>
 
 template< typename HANDLER_T >
 class WithRangeForPspState final : public Mapping::OperateAxisHandlerForPspState
 {
+    const __s16 MIN;
+    const __s16 DISTANCE_CENTER;
+
     const HANDLER_T HANDLER;
+
+    auto calcDistanceFromMin(
+        const __s16 _VALUE
+    ) const
+    {
+        return std::abs( _VALUE - this->MIN );
+    }
+
+    auto calcDistanceCenter(
+        const __s16 _MAX
+    ) const
+    {
+        const auto  DISTANCE_MIN_TO_MAX = this->calcDistanceFromMin( _MAX + 1 );    // 奇数の場合に中央値を切り上げるため+1
+
+        return DISTANCE_MIN_TO_MAX / 2;
+    }
 
 public:
     WithRangeForPspState(
@@ -18,8 +38,9 @@ public:
         , const __s16   _DEAD_ZONE
         , HANDLER_T &&  _handler
     )
-        //TODO
-        : HANDLER( std::move( _handler ) )
+        : MIN( _MIN )
+        , DISTANCE_CENTER( this->calcDistanceCenter( _MAX ) )
+        , HANDLER( std::move( _handler ) )
     {
     }
 
@@ -28,21 +49,21 @@ public:
         , PspState &    _pspState
     ) const override
     {
+        const auto  DISTANCE_MIN_TO_VALUE = this->calcDistanceFromMin( _VALUE );
+
+        const auto  VALUE_FROM_CENTER = DISTANCE_MIN_TO_VALUE - this->DISTANCE_CENTER;
+
         //TODO
-        this->HANDLER(
-            64
-            , _pspState
-        );
 /*
         if( std::abs( _VALUE ) <= this->DEAD_ZONE ) {
             return;
         }
+*/
 
         this->HANDLER(
-            _VALUE
+            VALUE_FROM_CENTER
             , _pspState
         );
-*/
     }
 };
 
