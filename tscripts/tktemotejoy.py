@@ -21,6 +21,7 @@ module.DEPENDS = [
     'tktemotejoy_handler_forpspstate_tofixedaxisxtest',
     'tktemotejoy_handler_forpspstate_tofixedaxisytest',
     'tktemotejoy_handler_forpspstate_dummytest',
+    'tktemotejoy_handler_forpspstate_withrangetest',
     'tktemotejoy_handler_forpspstate_withdeadzonetest',
     'tktemotejoy_handler_forpspstate_withdeadzoneonewaytest',
     'tktemotejoy_handler_forpspstate_toaxisxtest',
