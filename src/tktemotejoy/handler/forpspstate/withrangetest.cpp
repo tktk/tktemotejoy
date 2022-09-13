@@ -102,35 +102,25 @@ TEST_F(
     );
 }
 
-/*
 TEST_F(
-    WithDeadZoneForPspStateTest
-    , OutOfDeadZoneMinus
-)
-{
-    this->test(
-        0
-        , -2000
-        , -2000
-        , true
-    );
-}
-
-TEST_F(
-    WithDeadZoneForPspStateTest
+    WithRangeForPspStateTest
     , DeadZonePlus
 )
 {
     this->test(
-        1000
-        , 1000
-        , 0
+        0
+        , 255
+        , 10
+        , 138
+        , 64
         , false
     );
 }
 
+//TODO
+/*
 TEST_F(
-    WithDeadZoneForPspStateTest
+    WithRangeForPspStateTest
     , DeadZoneMinus
 )
 {
