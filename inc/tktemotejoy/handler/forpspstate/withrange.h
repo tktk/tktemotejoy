@@ -11,25 +11,31 @@ template< typename HANDLER_T >
 class WithRangeForPspState final : public Mapping::OperateAxisHandlerForPspState
 {
     const __s16 MIN;
-    const __s16 DISTANCE_CENTER;
+    const __s16 DIRECTION;
+    const __s16 MIN_TO_CENTER;
     const __s16 DEAD_ZONE;
 
     const HANDLER_T HANDLER;
 
-    auto calcDistanceFromMin(
-        const __s16 _VALUE
-    ) const
+    static auto calcDirection(
+        const __s16     _MIN
+        , const __s16   _MAX
+    )
     {
-        return std::abs( _VALUE - this->MIN );
+        return _MIN < _MAX ? 1 : -1;
     }
 
-    auto calcDistanceCenter(
-        const __s16 _MAX
-    ) const
+    static auto calcMinToCenter(
+        const __s16     _MIN
+        , const __s16   _MAX
+        , const __s16   _DIRECTION
+    )
     {
-        const auto  DISTANCE_MIN_TO_MAX = this->calcDistanceFromMin( _MAX + 1 );    // 奇数の場合に中央値を切り上げるため+1
+        const auto  MIN_TO_MAX = ( ( _MAX + 1 ) - _MIN ) * _DIRECTION;  // 奇数の場合に中央値を切り上げるため+1
 
-        return DISTANCE_MIN_TO_MAX / 2;
+        const auto  MIN_TO_CENTER = MIN_TO_MAX / 2;
+
+        return MIN_TO_CENTER;
     }
 
 public:
@@ -40,7 +46,19 @@ public:
         , HANDLER_T &&  _handler
     )
         : MIN( _MIN )
-        , DISTANCE_CENTER( this->calcDistanceCenter( _MAX ) )
+        , DIRECTION(
+            WithRangeForPspState::calcDirection(
+                _MIN
+                , _MAX
+            )
+        )
+        , MIN_TO_CENTER(
+            WithRangeForPspState::calcMinToCenter(
+                _MIN
+                , _MAX
+                , this->DIRECTION
+            )
+        )
         , DEAD_ZONE( _DEAD_ZONE )
         , HANDLER( std::move( _handler ) )
     {
@@ -51,9 +69,9 @@ public:
         , PspState &    _pspState
     ) const override
     {
-        const auto  DISTANCE_MIN_TO_VALUE = this->calcDistanceFromMin( _VALUE );
+        const auto  MIN_TO_VALUE = ( _VALUE - this->MIN ) * this->DIRECTION;
 
-        const auto  VALUE_FROM_CENTER = DISTANCE_MIN_TO_VALUE - this->DISTANCE_CENTER;
+        const auto  VALUE_FROM_CENTER = MIN_TO_VALUE - this->MIN_TO_CENTER;
 
         if( std::abs( VALUE_FROM_CENTER ) <= this->DEAD_ZONE ) {
             return;
