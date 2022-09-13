@@ -29,6 +29,10 @@ public:
     ) const override
     {
         //TODO
+        this->HANDLER(
+            64
+            , _pspState
+        );
 /*
         if( std::abs( _VALUE ) <= this->DEAD_ZONE ) {
             return;
