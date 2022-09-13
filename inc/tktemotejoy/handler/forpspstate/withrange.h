@@ -12,6 +12,7 @@ class WithRangeForPspState final : public Mapping::OperateAxisHandlerForPspState
 {
     const __s16 MIN;
     const __s16 DISTANCE_CENTER;
+    const __s16 DEAD_ZONE;
 
     const HANDLER_T HANDLER;
 
@@ -40,6 +41,7 @@ public:
     )
         : MIN( _MIN )
         , DISTANCE_CENTER( this->calcDistanceCenter( _MAX ) )
+        , DEAD_ZONE( _DEAD_ZONE )
         , HANDLER( std::move( _handler ) )
     {
     }
@@ -53,12 +55,9 @@ public:
 
         const auto  VALUE_FROM_CENTER = DISTANCE_MIN_TO_VALUE - this->DISTANCE_CENTER;
 
-        //TODO
-/*
-        if( std::abs( _VALUE ) <= this->DEAD_ZONE ) {
+        if( VALUE_FROM_CENTER <= this->DEAD_ZONE && VALUE_FROM_CENTER >= 0 ) {  //TODO
             return;
         }
-*/
 
         this->HANDLER(
             VALUE_FROM_CENTER
