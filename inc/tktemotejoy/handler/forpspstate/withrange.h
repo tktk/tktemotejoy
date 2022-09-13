@@ -55,7 +55,7 @@ public:
 
         const auto  VALUE_FROM_CENTER = DISTANCE_MIN_TO_VALUE - this->DISTANCE_CENTER;
 
-        if( VALUE_FROM_CENTER <= this->DEAD_ZONE && VALUE_FROM_CENTER >= 0 ) {  //TODO
+        if( std::abs( VALUE_FROM_CENTER ) <= this->DEAD_ZONE ) {
             return;
         }
 
