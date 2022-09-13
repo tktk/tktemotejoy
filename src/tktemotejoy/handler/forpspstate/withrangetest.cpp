@@ -117,18 +117,17 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     WithRangeForPspStateTest
     , DeadZoneMinus
 )
 {
     this->test(
-        1000
-        , -1000
-        , 0
+        0
+        , 255
+        , 10
+        , 118
+        , 64
         , false
     );
 }
-*/
