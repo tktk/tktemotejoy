@@ -87,6 +87,21 @@ TEST_F(
     );
 }
 
+TEST_F(
+    WithRangeForPspStateTest
+    , MaxLesserThanMin
+)
+{
+    this->test(
+        255
+        , 0
+        , 10
+        , 192
+        , -64
+        , true
+    );
+}
+
 /*
 TEST_F(
     WithDeadZoneForPspStateTest
