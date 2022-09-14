@@ -4,7 +4,7 @@
 
 namespace {
     enum {
-        PSP_STATE_AXIS_ZENO = 0x80,
+        PSP_STATE_AXIS_ZERO = 0x80,
         PSP_STATE_AXIS_MIN = 0x00,
         PSP_STATE_AXIS_MAX = 0xff,
     };
@@ -16,7 +16,7 @@ PspState::Axis calcPspStateAxis(
 )
 {
     //TODO
-    return 0;
+    return PSP_STATE_AXIS_ZERO + ( _VALUE * PSP_STATE_AXIS_ZERO / _LIMIT );
 /*
     if( _JS_EVENT_AXIS >= _MAX ) {
         return PSP_STATE_AXIS_MAX;
