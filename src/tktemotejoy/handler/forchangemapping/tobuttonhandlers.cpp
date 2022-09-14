@@ -19,19 +19,12 @@ std::size_t ToButtonHandlersForChangeMapping_newImpl::operator()(
     , const std::size_t _CURRENT_MAPPING_INDEX
 ) const
 {
-    //TODO
-    return ( *( this->handlerMinusUnique ) )(
-        _mappingIndex
-        , _CURRENT_MAPPING_INDEX
-    );
-/*
-    const auto &    HANDLER = *( _VALUE < 0 ? this->handler1Unique : this->handler2Unique );
+    const auto &    HANDLER = *( _VALUE < 0 ? this->handlerMinusUnique : this->handlerPlusUnique );
 
     return HANDLER(
         _mappingIndex
         , _CURRENT_MAPPING_INDEX
     );
-*/
 }
 
 //REMOVEME
