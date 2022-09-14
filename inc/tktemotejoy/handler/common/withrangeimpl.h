@@ -77,11 +77,12 @@ public:
         const auto  VALUE_FROM_CENTER = MIN_TO_VALUE - this->MIN_TO_CENTER;
 
         //TODO
+        if( VALUE_FROM_CENTER <= this->DEAD_ZONE && VALUE_FROM_CENTER >= 0 ) {
 /*
         if( std::abs( VALUE_FROM_CENTER ) <= this->DEAD_ZONE ) {
-            return GENERATE_DEFAULT_VALUE_T()();
-        }
 */
+            return _GENERATE_DEFAULT_VALUE();
+        }
 
         return this->HANDLER(
             VALUE_FROM_CENTER
