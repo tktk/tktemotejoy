@@ -17,7 +17,7 @@ Mapping::OperateAxisHandlerForPspStateUnique generateOperateAxisHandlerForPspSta
         return handlerUnique;
     }
 
-    handlerUnique = generateToAxisYUnique( _OBJECT );
+    handlerUnique = generateToAxisYUnique_new( _OBJECT );
     if( handlerUnique.get() != nullptr ) {
         return handlerUnique;
     }
