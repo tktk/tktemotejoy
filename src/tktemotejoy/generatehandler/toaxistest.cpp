@@ -152,7 +152,24 @@ TEST_F(
     );
 }
 
-//TODO NotExistsLimit
+TEST_F(
+    GenerateToAxisUnique_newTest
+    , NotExistsLimit
+)
+{
+    this->test(
+        R"({
+    "min" : 0,
+    "max" : 255,
+    "deadZone" : 30
+})"
+        , 0
+        , 255
+        , 30
+        , 128
+    );
+}
+
 //TODO FailedNotUnsignedLimit
 
 //REMOVEME
