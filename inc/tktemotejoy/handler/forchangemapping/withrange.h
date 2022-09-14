@@ -33,19 +33,12 @@ public:
         , const std::size_t _CURRENT_MAPPING_INDEX
     ) const override
     {
-        //TODO
-        return 0;
-/*
-        if( std::abs( _VALUE ) <= this->DEAD_ZONE ) {
-            return _CURRENT_MAPPING_INDEX;
-        }
-
-        return this->HANDLER(
-            _VALUE
+        return this->IMPL(
+            []{ return std::size_t( 0 ); }  //TODO
+            , _VALUE
             , _mappingIndex
             , _CURRENT_MAPPING_INDEX
         );
-*/
     }
 };
 
