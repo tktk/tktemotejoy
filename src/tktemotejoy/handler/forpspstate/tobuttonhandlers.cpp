@@ -8,6 +8,7 @@ ToButtonHandlersForPspState_newImpl::ToButtonHandlersForPspState_newImpl(
     Mapping::PressButtonHandlerForPspStateUnique &&     _handlerMinusUnique
     , Mapping::PressButtonHandlerForPspStateUnique &&   _handlerPlusUnique
 )
+    : handlerMinusUnique( std::move( _handlerMinusUnique ) )
 {
 }
 
@@ -17,6 +18,7 @@ void ToButtonHandlersForPspState_newImpl::operator()(
 ) const
 {
     //TODO
+    ( *( this->handlerMinusUnique ) )( _pspState );
 /*
     const auto &    HANDLER = *( _VALUE < 0 ? this->handler1Unique : this->handler2Unique );
 
