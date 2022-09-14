@@ -6,7 +6,7 @@
 #include "tktemotejoy/handler/forpspstate/dummy.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <string>
 
 namespace {
@@ -61,6 +61,26 @@ namespace {
     };
 }
 
+Mapping::OperateAxisHandlerForPspStateUnique generateToButtonHandlersForPspStateUnique_new(
+    const Json::object_t &  _OBJECT
+)
+{
+    //TODO
+    return Mapping::OperateAxisHandlerForPspStateUnique();
+/*
+    return generateHandlerUnique<
+        Mapping::OperateAxisHandlerForPspStateUnique
+        , GetType
+        , GenerateToButtonHandlersUnique<
+            GenerateToButtonHandlersForPspStateUnique
+            , GeneratePressButtonHandlerForPspStateUnique
+            , GenerateDummyPressButtonHandlerForPspStateUnique
+        >
+    >( _OBJECT );
+*/
+}
+
+//REMOVEME
 Mapping::OperateAxisHandlerForPspStateUnique generateToButtonHandlersForPspStateUnique(
     const Json::object_t &  _OBJECT
 )
