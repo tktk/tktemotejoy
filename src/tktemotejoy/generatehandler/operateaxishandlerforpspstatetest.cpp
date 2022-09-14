@@ -57,6 +57,8 @@ TEST_F(
     this->test(
         R"({
     "type" : "toButtonHandlers",
+    "min" : 0,
+    "mak" : 255,
     "handler1" : {
         "type" : "toButtons",
         "buttons" : [
@@ -70,11 +72,12 @@ TEST_F(
         ]
     }
 })"
-        , 0x7fff
-        , 0x80800040
+        , 64
+        , 0x80800010
     );
 }
 
+//FIXME
 TEST_F(
     GenerateOperateAxisHandlerForPspStateTest
     , ToButtonHandler
