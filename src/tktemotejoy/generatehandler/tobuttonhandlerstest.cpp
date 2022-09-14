@@ -213,6 +213,50 @@ TEST_F(
     );
 }
 
+TEST_F(
+    GenerateToButtonHandlersUnique_newTest
+    , NotExistsHandlerMinus
+)
+{
+    this->test(
+        R"({
+    "min" : 10,
+    "max" : 20,
+    "deadZone" : 30,
+    "handlerPlus" : {
+        "key" : 50
+    }
+})"
+        , 10
+        , 20
+        , 30
+        , -1
+        , 50
+    );
+}
+
+TEST_F(
+    GenerateToButtonHandlersUnique_newTest
+    , NotExistsHandlerPlus
+)
+{
+    this->test(
+        R"({
+    "min" : 10,
+    "max" : 20,
+    "deadZone" : 30,
+    "handlerMinus" : {
+        "key" : 40
+    }
+})"
+        , 10
+        , 20
+        , 30
+        , 40
+        , -1
+    );
+}
+
 //REMOVEME
 TEST_F(
     GenerateToButtonHandlersUniqueTest
