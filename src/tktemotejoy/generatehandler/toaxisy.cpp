@@ -4,7 +4,7 @@
 #include "tktemotejoy/handler/forpspstate/toaxisy.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <string>
 
 namespace {
@@ -19,6 +19,27 @@ namespace {
         }
     };
 
+    struct GenerateToAxisYUnique_new
+    {
+        auto operator()(
+            const __s16     _MIN
+            , const __s16   _MAX
+            , const __s16   _DEAD_ZONE
+            , const __s16   _LIMIT
+        ) const
+        {
+            return Mapping::handlerUnique(
+                new ToAxisY_new(
+                    _MIN
+                    , _MAX
+                    , _DEAD_ZONE
+                    , ToAxisY_newImpl( _LIMIT )
+                )
+            );
+        }
+    };
+
+    //REMOVEME
     struct GenerateToAxisYUnique
     {
         auto operator()(
@@ -40,11 +61,10 @@ Mapping::OperateAxisHandlerForPspStateUnique generateToAxisYUnique_new(
     const Json::object_t &  _OBJECT
 )
 {
-    //TODO
     return generateHandlerUnique<
         Mapping::OperateAxisHandlerForPspStateUnique
         , GetType
-        , GenerateToAxisUnique< GenerateToAxisYUnique >
+        , GenerateToAxisUnique_new< GenerateToAxisYUnique_new >
     >( _OBJECT );
 }
 
