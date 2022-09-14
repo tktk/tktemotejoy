@@ -19,6 +19,27 @@ namespace {
         }
     };
 
+    struct GenerateToAxisXUnique_new
+    {
+        auto operator()(
+            const __s16     _MIN
+            , const __s16   _MAX
+            , const __s16   _DEAD_ZONE
+            , const __s16   _LIMIT
+        ) const
+        {
+            return Mapping::handlerUnique(
+                new ToAxisX_new(
+                    _MIN
+                    , _MAX
+                    , _DEAD_ZONE
+                    , ToAxisX_newImpl( _LIMIT )
+                )
+            );
+        }
+    };
+
+    //REMOVEME
     struct GenerateToAxisXUnique
     {
         auto operator()(
@@ -40,11 +61,10 @@ Mapping::OperateAxisHandlerForPspStateUnique generateToAxisXUnique_new(
     const Json::object_t &  _OBJECT
 )
 {
-    //TODO
     return generateHandlerUnique<
         Mapping::OperateAxisHandlerForPspStateUnique
         , GetType
-        , GenerateToAxisUnique< GenerateToAxisXUnique >
+        , GenerateToAxisUnique_new< GenerateToAxisXUnique_new >
     >( _OBJECT );
 }
 
