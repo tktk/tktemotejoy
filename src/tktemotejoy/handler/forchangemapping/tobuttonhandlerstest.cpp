@@ -154,16 +154,16 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     ToButtonHandlersForChangeMapping_newTest
-    , CallHandler2
+    , CallHandlerPlus
 )
 {
     this->test(
         0
-        , 1
+        , 255
+        , 10
+        , 139
         , 10
         , 20
         , 30
@@ -171,6 +171,8 @@ TEST_F(
     );
 }
 
+//TODO
+/*
 TEST_F(
     ToButtonHandlersForChangeMapping_newTest
     , DeadZone
