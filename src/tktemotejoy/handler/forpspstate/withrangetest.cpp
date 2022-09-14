@@ -74,7 +74,7 @@ namespace {
 
 TEST_F(
     WithRangeForPspStateTest
-    , MaxGreaterThanMin
+    , Standard
 )
 {
     this->test(
@@ -89,22 +89,7 @@ TEST_F(
 
 TEST_F(
     WithRangeForPspStateTest
-    , MaxLesserThanMin
-)
-{
-    this->test(
-        255
-        , 0
-        , 10
-        , 192
-        , -64
-        , true
-    );
-}
-
-TEST_F(
-    WithRangeForPspStateTest
-    , DeadZonePlus
+    , DeadZone
 )
 {
     this->test(
@@ -112,22 +97,7 @@ TEST_F(
         , 255
         , 10
         , 138
-        , 64
-        , false
-    );
-}
-
-TEST_F(
-    WithRangeForPspStateTest
-    , DeadZoneMinus
-)
-{
-    this->test(
-        0
-        , 255
-        , 10
-        , 118
-        , 64
+        , 0
         , false
     );
 }
