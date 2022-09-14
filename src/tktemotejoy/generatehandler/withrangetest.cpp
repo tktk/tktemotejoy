@@ -92,7 +92,20 @@ TEST_F(
     );
 }
 
-//TODO Min
+TEST_F(
+    GenerateHandlerWithRangeUniqueTest
+    , NotExistsMin
+)
+{
+    this->testAnyThrow(
+        R"({
+    "max" : 20,
+    "deadZone" : 30,
+    "key" : 40
+})"
+    );
+}
+
 //TODO Max
 
 //TODO
