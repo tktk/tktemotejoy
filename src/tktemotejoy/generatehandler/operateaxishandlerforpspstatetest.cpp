@@ -58,14 +58,14 @@ TEST_F(
         R"({
     "type" : "toButtonHandlers",
     "min" : 0,
-    "mak" : 255,
-    "handler1" : {
+    "max" : 255,
+    "handlerMinus" : {
         "type" : "toButtons",
         "buttons" : [
             "up"
         ]
     },
-    "handler2" : {
+    "handlerPlus" : {
         "type" : "toButtons",
         "buttons" : [
             "down"
