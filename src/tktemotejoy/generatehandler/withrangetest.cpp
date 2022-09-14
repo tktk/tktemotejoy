@@ -150,8 +150,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GenerateHandlerWithRangeUniqueTest
     , NotExistsDeadZone
@@ -159,13 +157,19 @@ TEST_F(
 {
     this->test(
         R"({
-    "key" : 20
+    "min" : 10,
+    "max" : 20,
+    "key" : 40
 })"
-        , 0
+        , 10
         , 20
+        , 0
+        , 40
     );
 }
 
+//TODO
+/*
 TEST_F(
     GenerateHandlerWithRangeUniqueTest
     , FailedNotUnsignedDeadZone
