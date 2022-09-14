@@ -121,7 +121,34 @@ TEST_F(
     );
 }
 
-//TODO Max
+TEST_F(
+    GenerateHandlerWithRangeUniqueTest
+    , FailedNotExistsMax
+)
+{
+    this->testAnyThrow(
+        R"({
+    "min" : 10,
+    "deadZone" : 30,
+    "key" : 40
+})"
+    );
+}
+
+TEST_F(
+    GenerateHandlerWithRangeUniqueTest
+    , FailedNotIntegerMax
+)
+{
+    this->testAnyThrow(
+        R"({
+    "min" : 10,
+    "max" : "NOT INTEGER",
+    "deadZone" : 30,
+    "key" : 40
+})"
+    );
+}
 
 //TODO
 /*
