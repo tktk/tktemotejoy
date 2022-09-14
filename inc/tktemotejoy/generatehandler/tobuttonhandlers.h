@@ -69,15 +69,12 @@ private:
         const auto &    HANDLER = *HANDLER_PTR;
 
         auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( HANDLER );
-        //TODO
-/*
         if( handlerUnique.get() == nullptr ) {
             throw typeIsUnsupported(
                 HANDLER
                 , _KEY
             );
         }
-*/
 
         return handlerUnique;
     }
