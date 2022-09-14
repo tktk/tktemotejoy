@@ -47,19 +47,14 @@ TEST_F(
     );
 }
 
-//TODO OverLimitMinus
-
-//TODO
-/*
 TEST_F(
-    JsEventAxisToPspStateAxisWithMaxTest
-    , LesserThanMin
+    CalcPspStateAxisTest
+    , OverLimitMinus
 )
 {
     this->test(
-        -20002
-        , 20000
+        -258
+        , 256
         , 0x00
     );
 }
-*/
