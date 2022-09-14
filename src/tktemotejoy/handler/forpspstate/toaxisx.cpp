@@ -16,11 +16,12 @@ void ToAxisX_newImpl::operator()(
 ) const
 {
     //TODO
+    _pspState.operateAxisX( 0xc0 );
 /*
     _pspState.operateAxisX(
         jsEventAxisToPspStateAxis(
             _VALUE
-            , this->MAX
+            , this->LIMIT
         )
     );
 */
