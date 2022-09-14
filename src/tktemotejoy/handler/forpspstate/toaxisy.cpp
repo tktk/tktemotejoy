@@ -1,4 +1,5 @@
 #include "tktemotejoy/handler/forpspstate/toaxisy.h"
+#include "tktemotejoy/handler/forpspstate/calcpspstateaxis.h"
 #include "tktemotejoy/handler/forpspstate/jseventaxistopspstateaxis.h"
 #include "tktemotejoy/pspstate.h"
 #include <linux/input.h>
@@ -15,15 +16,12 @@ void ToAxisY_newImpl::operator()(
     , PspState &    _pspState
 ) const
 {
-    //TODO
-/*
     _pspState.operateAxisY(
         calcPspStateAxis(
             _VALUE
             , this->LIMIT
         )
     );
-*/
 }
 
 //REMOVEME

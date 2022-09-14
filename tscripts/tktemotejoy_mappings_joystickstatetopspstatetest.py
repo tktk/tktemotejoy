@@ -22,6 +22,7 @@ module.SOURCE = [
                 'tofixedaxisx.cpp',
                 'toaxisy.cpp',
                 'tobuttonhandlers.cpp',
+                'calcpspstateaxis.cpp',
                 'jseventaxistopspstateaxis.cpp',
                 'dummy.cpp',
             ],
