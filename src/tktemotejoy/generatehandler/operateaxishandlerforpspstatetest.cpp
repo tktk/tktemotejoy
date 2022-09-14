@@ -40,10 +40,12 @@ TEST_F(
 {
     this->test(
         R"({
-    "type" : "toAxisY"
+    "type" : "toAxisY",
+    "min" : 0,
+    "max" : 255
 })"
-        , 0x7fff
-        , 0xff800000
+        , 192
+        , 0xc0800000
     );
 }
 
