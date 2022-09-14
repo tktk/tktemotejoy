@@ -1,8 +1,32 @@
 #include "tktemotejoy/handler/forpspstate/toaxisx.h"
 #include "tktemotejoy/handler/forpspstate/jseventaxistopspstateaxis.h"
 #include "tktemotejoy/pspstate.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 
+ToAxisX_newImpl::ToAxisX_newImpl(
+    const __s16 _LIMIT
+)
+    : LIMIT( _LIMIT )
+{
+}
+
+void ToAxisX_newImpl::operator()(
+    const __s16     _VALUE
+    , PspState &    _pspState
+) const
+{
+    //TODO
+/*
+    _pspState.operateAxisX(
+        jsEventAxisToPspStateAxis(
+            _VALUE
+            , this->MAX
+        )
+    );
+*/
+}
+
+//REMOVEME
 ToAxisXImpl::ToAxisXImpl(
     const __s16 _MAX
 )
@@ -10,6 +34,7 @@ ToAxisXImpl::ToAxisXImpl(
 {
 }
 
+//REMOVEME
 void ToAxisXImpl::operator()(
     const __s16     _VALUE
     , PspState &    _pspState
