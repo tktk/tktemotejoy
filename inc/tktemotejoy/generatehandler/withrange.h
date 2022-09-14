@@ -14,30 +14,40 @@ public:
         const Json::object_t &  _OBJECT
     ) const
     {
-        //TODO
-        return static_cast< const T * >( this )->generateHandler(
-            _OBJECT
-            , 100
-            , 200
-            , 300
-        );
-/*
+        const auto  KEY_MIN_ = std::string( "min" );
+        const auto  KEY_MAX_ = std::string( "max" );
         const auto  KEY_DEAD_ZONE = std::string( "deadZone" );
-        const auto  DEFAULT = Json::number_unsigned_t( 0 );
 
-        const auto &    DEAD_ZONE = getJsonUnsignedFromObjectWithDefault(
+        //TODO
+/*
+        const auto  DEFAULT_DEAD_ZONE = Json::number_integer_t( 0 );
+*/
+
+        const auto &    MIN = getJsonIntegerFromObject(
             _OBJECT
-            , DEFAULT
+            , KEY_MIN_
+        );
+
+        const auto &    MAX = getJsonIntegerFromObject(
+            _OBJECT
+            , KEY_MAX_
+        );
+
+        const auto &    DEAD_ZONE = getJsonIntegerFromObject(
+            _OBJECT
             , KEY_DEAD_ZONE
         );
 
+        const auto  MIN_S16 = __s16( MIN );
+        const auto  MAX_S16 = __s16( MAX );
         const auto  DEAD_ZONE_S16 = __s16( DEAD_ZONE );
 
-        return static_cast< const T * >( this )->operatorCallImpl(
+        return static_cast< const T * >( this )->generateHandler(
             _OBJECT
+            , MIN_S16
+            , MAX_S16
             , DEAD_ZONE_S16
         );
-*/
     }
 };
 
