@@ -24,10 +24,12 @@ TEST_F(
 {
     this->test(
         R"({
-    "type" : "toAxisX"
+    "type" : "toAxisX",
+    "min" : 0,
+    "max" : 255
 })"
-        , 0x7fff
-        , 0x80ff0000
+        , 192
+        , 0x80c00000
     );
 }
 
