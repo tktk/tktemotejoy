@@ -164,7 +164,7 @@ TEST_F(
 
     joystickState.setAxisState(
         10
-        , 0x7fff
+        , 192
     );
 
     this->test(
@@ -176,14 +176,16 @@ TEST_F(
         {
             "axesForPspState" : {
                 "10" : {
-                    "type" : "toAxisX"
+                    "type" : "toAxisX",
+                    "min" : 0,
+                    "max" : 255
                 }
             }
         }
     ]
 })"
         , joystickState
-        , 0x80ff0000
+        , 0x80c00000
     );
 }
 
@@ -199,7 +201,7 @@ TEST_F(
 
     joystickState.setAxisState(
         10
-        , 0x7fff
+        , 192
     );
 
     this->test(
@@ -222,14 +224,16 @@ TEST_F(
         {
             "axesForPspState" : {
                 "10" : {
-                    "type" : "toAxisX"
+                    "type" : "toAxisX",
+                    "min" : 0,
+                    "max" : 255
                 }
             }
         }
     ]
 })"
         , joystickState
-        , 0x80ff0000
+        , 0x80c00000
     );
 }
 
