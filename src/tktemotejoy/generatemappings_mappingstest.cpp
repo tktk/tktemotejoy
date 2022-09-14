@@ -214,7 +214,9 @@ TEST_F(
             "axesForChangeMapping" : {
                 "10" : {
                     "type" : "toButtonHandlers",
-                    "handler2" : {
+                    "min" : 0,
+                    "max" : 255,
+                    "handlerPlus" : {
                         "type" : "shiftMapping",
                         "mapping" : 1
                     }
