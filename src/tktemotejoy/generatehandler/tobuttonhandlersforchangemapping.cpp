@@ -61,6 +61,26 @@ namespace {
     };
 }
 
+Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlersForChangeMappingUnique_new(
+    const Json::object_t &  _OBJECT
+)
+{
+    //TODO
+    return Mapping::OperateAxisHandlerForChangeMappingUnique();
+/*
+    return generateHandlerUnique<
+        Mapping::OperateAxisHandlerForChangeMappingUnique
+        , GetType
+        , GenerateToButtonHandlersUnique<
+            GenerateToButtonHandlersForChangeMappingUnique
+            , GeneratePressButtonHandlerForChangeMappingUnique
+            , GenerateDummyPressButtonHandlerForChangeMappingUnique
+        >
+    >( _OBJECT );
+*/
+}
+
+//REMOVEME
 Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlersForChangeMappingUnique(
     const Json::object_t &  _OBJECT
 )

@@ -4,6 +4,19 @@
 #include "tktemotejoy/customjson.h"
 
 namespace {
+    struct GenerateToButtonHandlersForChangeMappingUnique_new
+    {
+        auto operator()(
+            const Json::object_t &  _OBJECT
+        ) const
+        {
+            return generateToButtonHandlersForChangeMappingUnique_new( _OBJECT );
+        }
+    };
+
+    using GenerateToButtonHandlersForChangeMapping_newTest = GenerateOperateAxisHandlerForChangeMappingTestTmpl< GenerateToButtonHandlersForChangeMappingUnique_new >;
+
+    //REMOVEME
     struct GenerateToButtonHandlersForChangeMappingUnique
     {
         auto operator()(
@@ -14,9 +27,85 @@ namespace {
         }
     };
 
+    //REMOVEME
     using GenerateToButtonHandlersForChangeMappingTest = GenerateOperateAxisHandlerForChangeMappingTestTmpl< GenerateToButtonHandlersForChangeMappingUnique >;
 }
 
+TEST_F(
+    GenerateToButtonHandlersForChangeMapping_newTest
+    , HandlerMinus
+)
+{
+    this->test(
+        R"({
+    "type" : "toButtonHandlers",
+    "min" : 0,
+    "max" : 255,
+    "handlerMinus" : {
+        "type" : "toggleMapping",
+        "mapping" : 20
+    },
+    "handlerPlus" : {
+        "type" : "toggleMapping",
+        "mapping" : 30
+    }
+})"
+        , 64
+        , 50
+        , 20
+        , 50
+    );
+}
+
+TEST_F(
+    GenerateToButtonHandlersForChangeMapping_newTest
+    , HandlerPlus
+)
+{
+    this->test(
+        R"({
+    "type" : "toButtonHandlers",
+    "min" : 0,
+    "max" : 255,
+    "handlerMinus" : {
+        "type" : "toggleMapping",
+        "mapping" : 20
+    },
+    "handlerPlus" : {
+        "type" : "toggleMapping",
+        "mapping" : 30
+    }
+})"
+        , 192
+        , 50
+        , 30
+        , 50
+    );
+}
+
+TEST_F(
+    GenerateToButtonHandlersForChangeMapping_newTest
+    , NotExistsHandler
+)
+{
+    this->test(
+        R"({
+    "type" : "toButtonHandlers",
+    "min" : 0,
+    "max" : 255,
+    "handlerPlus" : {
+        "type" : "toggleMapping",
+        "mapping" : 30
+    }
+})"
+        , 64
+        , 50
+        , 50
+        , 50
+    );
+}
+
+//REMOVEME
 TEST_F(
     GenerateToButtonHandlersForChangeMappingTest
     , Handler1
@@ -42,6 +131,7 @@ TEST_F(
     );
 }
 
+//REMOVEME
 TEST_F(
     GenerateToButtonHandlersForChangeMappingTest
     , Handler2
@@ -67,6 +157,7 @@ TEST_F(
     );
 }
 
+//REMOVEME
 TEST_F(
     GenerateToButtonHandlersForChangeMappingTest
     , NotExistsHandler
