@@ -73,7 +73,10 @@ public:
     ) const
     {
         //TODO
-        return 0;
+        return this->HANDLER(
+            64
+            , _args ...
+        );
 /*
         const auto  MIN_TO_VALUE = ( _VALUE - this->MIN ) * this->DIRECTION;
 
