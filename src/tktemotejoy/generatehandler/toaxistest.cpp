@@ -188,7 +188,20 @@ TEST_F(
     );
 }
 
-//TODO FailedNotUnsignedLimit
+TEST_F(
+    GenerateToAxisUnique_newTest
+    , FailedNotUnsignedLimit
+)
+{
+    this->testAnyThrow(
+        R"({
+    "min" : 10,
+    "max" : 20,
+    "deadZone" : 30,
+    "limit" : -40
+})"
+    );
+}
 
 //REMOVEME
 TEST_F(
