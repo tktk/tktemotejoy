@@ -4,7 +4,7 @@
 #include "tktemotejoy/handler/forpspstate/toaxisx.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <string>
 
 namespace {
@@ -36,6 +36,19 @@ namespace {
     };
 }
 
+Mapping::OperateAxisHandlerForPspStateUnique generateToAxisXUnique_new(
+    const Json::object_t &  _OBJECT
+)
+{
+    //TODO
+    return generateHandlerUnique<
+        Mapping::OperateAxisHandlerForPspStateUnique
+        , GetType
+        , GenerateToAxisUnique< GenerateToAxisXUnique >
+    >( _OBJECT );
+}
+
+//REMOVEME
 Mapping::OperateAxisHandlerForPspStateUnique generateToAxisXUnique(
     const Json::object_t &  _OBJECT
 )

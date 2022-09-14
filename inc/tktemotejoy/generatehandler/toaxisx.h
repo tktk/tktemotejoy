@@ -4,6 +4,10 @@
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
 
+Mapping::OperateAxisHandlerForPspStateUnique generateToAxisXUnique_new(
+    const Json::object_t &
+);
+
 Mapping::OperateAxisHandlerForPspStateUnique generateToAxisXUnique(
     const Json::object_t &
 );
