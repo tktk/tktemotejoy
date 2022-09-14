@@ -158,8 +158,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     ToButtonHandlersForPspState_newTest
     , DeadZone
@@ -167,12 +165,13 @@ TEST_F(
 {
     this->test(
         0
-        , 0
+        , 255
+        , 10
+        , 138
         , false
         , false
     );
 }
-*/
 
 //REMOVEME
 TEST_F(
