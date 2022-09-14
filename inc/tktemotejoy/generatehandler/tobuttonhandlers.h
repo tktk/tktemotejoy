@@ -63,12 +63,9 @@ private:
             _OBJECT
             , _KEY
         );
-        //TODO
-/*
         if( HANDLER_PTR == nullptr ) {
             return GENERATE_DUMMY_HANDLER_UNIQUE_T()();
         }
-*/
         const auto &    HANDLER = *HANDLER_PTR;
 
         auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( HANDLER );
