@@ -18,6 +18,7 @@ module.SOURCE = [
         'handler' : {
             'forpspstate' : [
                 'toaxisx.cpp',
+                'calcpspstateaxis.cpp',
                 'jseventaxistopspstateaxis.cpp',
                 'dummy.cpp',
             ],

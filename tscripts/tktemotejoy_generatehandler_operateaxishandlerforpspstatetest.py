@@ -33,6 +33,7 @@ module.SOURCE = [
                 'tobuttons.cpp',
                 'tofixedaxisx.cpp',
                 'tofixedaxisy.cpp',
+                'calcpspstateaxis.cpp',
                 'jseventaxistopspstateaxis.cpp',
             ],
             'forchangemapping' : [
