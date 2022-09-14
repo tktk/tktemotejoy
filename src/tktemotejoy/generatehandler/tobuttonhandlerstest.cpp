@@ -257,6 +257,42 @@ TEST_F(
     );
 }
 
+TEST_F(
+    GenerateToButtonHandlersUnique_newTest
+    , FailedNotObjectHandlerMinus
+)
+{
+    this->testAnyThrow(
+        R"({
+    "min" : 10,
+    "max" : 20,
+    "deadZone" : 30,
+    "handlerMinus" : "NOT OBJECT",
+    "handlerPlus" : {
+        "key" : 50
+    }
+})"
+    );
+}
+
+TEST_F(
+    GenerateToButtonHandlersUnique_newTest
+    , FailedNotObjectHandlerPlus
+)
+{
+    this->testAnyThrow(
+        R"({
+    "min" : 10,
+    "max" : 20,
+    "deadZone" : 30,
+    "handlerMinus" : {
+        "key" : 40
+    },
+    "handlerPlus" : "NOT OBJECT"
+})"
+    );
+}
+
 //REMOVEME
 TEST_F(
     GenerateToButtonHandlersUniqueTest
