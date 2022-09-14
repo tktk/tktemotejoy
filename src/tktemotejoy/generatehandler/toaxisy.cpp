@@ -36,6 +36,19 @@ namespace {
     };
 }
 
+Mapping::OperateAxisHandlerForPspStateUnique generateToAxisYUnique_new(
+    const Json::object_t &  _OBJECT
+)
+{
+    //TODO
+    return generateHandlerUnique<
+        Mapping::OperateAxisHandlerForPspStateUnique
+        , GetType
+        , GenerateToAxisUnique< GenerateToAxisYUnique >
+    >( _OBJECT );
+}
+
+//REMOVEME
 Mapping::OperateAxisHandlerForPspStateUnique generateToAxisYUnique(
     const Json::object_t &  _OBJECT
 )
