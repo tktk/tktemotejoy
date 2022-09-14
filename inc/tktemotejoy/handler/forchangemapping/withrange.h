@@ -34,7 +34,12 @@ public:
     ) const override
     {
         return this->IMPL(
-            []{ return std::size_t( 0 ); }  //TODO
+            [
+                &_CURRENT_MAPPING_INDEX
+            ]
+            {
+                return _CURRENT_MAPPING_INDEX;
+            }
             , _VALUE
             , _mappingIndex
             , _CURRENT_MAPPING_INDEX
