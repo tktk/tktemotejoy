@@ -18,7 +18,7 @@ public:
         const auto  KEY_MAX_ = std::string( "max" );
         const auto  KEY_DEAD_ZONE = std::string( "deadZone" );
 
-        const auto  DEFAULT_DEAD_ZONE = Json::number_integer_t( 0 );
+        const auto  DEFAULT_DEAD_ZONE = Json::number_unsigned_t( 0 );
 
         const auto &    MIN = getJsonIntegerFromObject(
             _OBJECT
@@ -30,7 +30,7 @@ public:
             , KEY_MAX_
         );
 
-        const auto &    DEAD_ZONE = getJsonIntegerFromObjectWithDefault(
+        const auto &    DEAD_ZONE = getJsonUnsignedFromObjectWithDefault(
             _OBJECT
             , DEFAULT_DEAD_ZONE
             , KEY_DEAD_ZONE
