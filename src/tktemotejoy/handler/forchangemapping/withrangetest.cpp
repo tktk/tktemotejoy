@@ -109,8 +109,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     WithRangeForChangeMappingTest
     , DeadZone
@@ -121,8 +119,11 @@ TEST_F(
         , 255
         , 10
         , 138
+        , 20
+        , 30
+        , 40
+        , 30
         , 0
         , false
     );
 }
-*/
