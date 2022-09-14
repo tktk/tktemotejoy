@@ -92,8 +92,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     WithRangeImplTest
     , MaxLesserThanMin
@@ -103,12 +101,16 @@ TEST_F(
         255
         , 0
         , 10
+        , 20
         , 192
+        , -64
         , -64
         , true
     );
 }
 
+//TODO
+/*
 TEST_F(
     WithRangeImplTest
     , DeadZonePlus
