@@ -21,6 +21,31 @@ namespace {
         }
     };
 
+    struct GenerateToButtonHandlersForPspStateUnique_new
+    {
+        auto operator()(
+            const __s16                                         _MIN
+            , const __s16                                       _MAX
+            , const __s16                                       _DEAD_ZONE
+            , Mapping::PressButtonHandlerForPspStateUnique &&   _handlerMinusUnique
+            , Mapping::PressButtonHandlerForPspStateUnique &&   _handlerPlusUnique
+        ) const
+        {
+            return Mapping::handlerUnique(
+                new ToButtonHandlersForPspState_new(
+                    _MIN
+                    , _MAX
+                    , _DEAD_ZONE
+                    , ToButtonHandlersForPspState_newImpl(
+                        std::move( _handlerMinusUnique )
+                        , std::move( _handlerPlusUnique )
+                    )
+                )
+            );
+        }
+    };
+
+    //REMOVEME
     struct GenerateToButtonHandlersForPspStateUnique
     {
         auto operator()(
@@ -65,19 +90,15 @@ Mapping::OperateAxisHandlerForPspStateUnique generateToButtonHandlersForPspState
     const Json::object_t &  _OBJECT
 )
 {
-    //TODO
-    return Mapping::OperateAxisHandlerForPspStateUnique();
-/*
     return generateHandlerUnique<
         Mapping::OperateAxisHandlerForPspStateUnique
         , GetType
-        , GenerateToButtonHandlersUnique<
-            GenerateToButtonHandlersForPspStateUnique
+        , GenerateToButtonHandlersUnique_new<
+            GenerateToButtonHandlersForPspStateUnique_new
             , GeneratePressButtonHandlerForPspStateUnique
             , GenerateDummyPressButtonHandlerForPspStateUnique
         >
     >( _OBJECT );
-*/
 }
 
 //REMOVEME
