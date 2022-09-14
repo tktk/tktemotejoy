@@ -154,7 +154,7 @@ TEST_F(
 
 TEST_F(
     GenerateToAxisUnique_newTest
-    , NotExistsLimit
+    , NotExistsLimitMaxGreaterThanMin
 )
 {
     this->test(
@@ -165,6 +165,24 @@ TEST_F(
 })"
         , 0
         , 255
+        , 30
+        , 128
+    );
+}
+
+TEST_F(
+    GenerateToAxisUnique_newTest
+    , NotExistsLimitMaxLesserThanMin
+)
+{
+    this->test(
+        R"({
+    "min" : 255,
+    "max" : 0,
+    "deadZone" : 30
+})"
+        , 255
+        , 0
         , 30
         , 128
     );
