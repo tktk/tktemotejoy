@@ -39,6 +39,84 @@ namespace {
         }
     };
 
+    struct TestToButtonHandlers_new
+    {
+        const __s16             MIN;
+        const __s16             MAX;
+        const __s16             DEAD_ZONE;
+        const TestHandlerUnique HANDLER_MINUS_UNIQUE;
+        const TestHandlerUnique HANDLER_PLUS_UNIQUE;
+    };
+
+    struct TestGenerateToButtonHandlersUnique_new
+    {
+        auto operator()(
+            const __s16             _MIN
+            , const __s16           _MAX
+            , const __s16           _DEAD_ZONE
+            , TestHandlerUnique &&  _handlerMinusUnique
+            , TestHandlerUnique &&  _handlerPlusUnique
+        ) const
+        {
+            return std::unique_ptr< TestToButtonHandlers_new >(
+                new TestToButtonHandlers_new{
+                    _MIN
+                    , _MAX
+                    , _DEAD_ZONE
+                    , std::move( _handlerMinusUnique )
+                    , std::move( _handlerPlusUnique )
+                }
+            );
+        }
+    };
+
+    using TestGenerateHandlerUnique_new_ = GenerateToButtonHandlersUnique_new<
+        TestGenerateToButtonHandlersUnique_new
+        , TestGenerateHandlerUnique
+        , TestGenerateDummyHandlerUnique
+    >;
+
+    class GenerateToButtonHandlersUnique_newTest : public ::testing::Test
+    {
+    public:
+        void test(
+            const std::string & _JSON_STRING
+            , const __s16       _EXPECTED_MIN
+            , const __s16       _EXPECTED_MAX
+            , const __s16       _EXPECTED_DEAD_ZONE
+            , const int         _EXPECTED_HANDLER_MINUS_VALUE
+            , const int         _EXPECTED_HANDLER_PLUS_VALUE
+        ) const
+        {
+            const auto  JSON = Json::parse( _JSON_STRING );
+
+            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
+
+            auto    handlerUnique = TestGenerateHandlerUnique_new_()( OBJECT );
+            ASSERT_NE( nullptr, handlerUnique.get() );
+
+            EXPECT_EQ( _EXPECTED_MIN, handlerUnique->MIN );
+            EXPECT_EQ( _EXPECTED_MAX, handlerUnique->MAX );
+            EXPECT_EQ( _EXPECTED_DEAD_ZONE, handlerUnique->DEAD_ZONE );
+            ASSERT_NE( nullptr, handlerUnique->HANDLER_MINUS_UNIQUE.get() );
+            EXPECT_EQ( _EXPECTED_HANDLER_MINUS_VALUE, handlerUnique->HANDLER_MINUS_UNIQUE->VALUE );
+            ASSERT_NE( nullptr, handlerUnique->HANDLER_PLUS_UNIQUE.get() );
+            EXPECT_EQ( _EXPECTED_HANDLER_PLUS_VALUE, handlerUnique->HANDLER_PLUS_UNIQUE->VALUE );
+        }
+
+        void testAnyThrow(
+            const std::string & _JSON_STRING
+        ) const
+        {
+            const auto  JSON = Json::parse( _JSON_STRING );
+
+            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
+
+            EXPECT_ANY_THROW( TestGenerateHandlerUnique_new_()( OBJECT ) );
+        }
+    };
+
+    //REMOVEME
     struct TestToButtonHandlers
     {
         const __s16             DEAD_ZONE;
@@ -46,6 +124,7 @@ namespace {
         const TestHandlerUnique HANDLER2_UNIQUE;
     };
 
+    //REMOVEME
     struct TestGenerateToButtonHandlersUnique
     {
         auto operator()(
@@ -64,12 +143,14 @@ namespace {
         }
     };
 
+    //REMOVEME
     using TestGenerateHandlerUnique_ = GenerateToButtonHandlersUnique<
         TestGenerateToButtonHandlersUnique
         , TestGenerateHandlerUnique
         , TestGenerateDummyHandlerUnique
     >;
 
+    //REMOVEME
     class GenerateToButtonHandlersUniqueTest : public ::testing::Test
     {
     public:
@@ -108,6 +189,32 @@ namespace {
 }
 
 TEST_F(
+    GenerateToButtonHandlersUnique_newTest
+    , Standard
+)
+{
+    this->test(
+        R"({
+    "min" : 10,
+    "max" : 20,
+    "deadZone" : 30,
+    "handlerMinus" : {
+        "key" : 40
+    },
+    "handlerPlus" : {
+        "key" : 50
+    }
+})"
+        , 10
+        , 20
+        , 30
+        , 40
+        , 50
+    );
+}
+
+//REMOVEME
+TEST_F(
     GenerateToButtonHandlersUniqueTest
     , Standard
 )
@@ -128,6 +235,7 @@ TEST_F(
     );
 }
 
+//REMOVEME
 TEST_F(
     GenerateToButtonHandlersUniqueTest
     , NotExistsHandler1
@@ -146,6 +254,7 @@ TEST_F(
     );
 }
 
+//REMOVEME
 TEST_F(
     GenerateToButtonHandlersUniqueTest
     , NotExistsHandler2
@@ -164,6 +273,7 @@ TEST_F(
     );
 }
 
+//REMOVEME
 TEST_F(
     GenerateToButtonHandlersUniqueTest
     , FailedNotObjectHandler1
@@ -180,6 +290,7 @@ TEST_F(
     );
 }
 
+//REMOVEME
 TEST_F(
     GenerateToButtonHandlersUniqueTest
     , FailedNotObjectHandler2
@@ -196,6 +307,7 @@ TEST_F(
     );
 }
 
+//REMOVEME
 TEST_F(
     GenerateToButtonHandlersUniqueTest
     , FailedNotUnsupportHandler1
@@ -213,6 +325,7 @@ TEST_F(
     );
 }
 
+//REMOVEME
 TEST_F(
     GenerateToButtonHandlersUniqueTest
     , FailedNotUnsupportHandler2
