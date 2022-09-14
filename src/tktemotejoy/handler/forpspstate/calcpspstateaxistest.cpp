@@ -35,68 +35,22 @@ TEST_F(
     );
 }
 
+TEST_F(
+    CalcPspStateAxisTest
+    , OverLimit
+)
+{
+    this->test(
+        256
+        , 256
+        , 0xff
+    );
+}
+
+//TODO OverLimitMinus
+
 //TODO
 /*
-TEST_F(
-    JsEventAxisToPspStateAxisWithMaxTest
-    , Max
-)
-{
-    this->test(
-        20000
-        , 20000
-        , 0xff
-    );
-}
-
-TEST_F(
-    JsEventAxisToPspStateAxisWithMaxTest
-    , Zero
-)
-{
-    this->test(
-        0
-        , 20000
-        , 0x80
-    );
-}
-
-TEST_F(
-    JsEventAxisToPspStateAxisWithMaxTest
-    , Min
-)
-{
-    this->test(
-        -20000
-        , 20000
-        , 0x00
-    );
-}
-
-TEST_F(
-    JsEventAxisToPspStateAxisWithMaxTest
-    , Half
-)
-{
-    this->test(
-        10000
-        , 20000
-        , 0xbf
-    );
-}
-
-TEST_F(
-    JsEventAxisToPspStateAxisWithMaxTest
-    , GreaterThanMax
-)
-{
-    this->test(
-        20001
-        , 20000
-        , 0xff
-    );
-}
-
 TEST_F(
     JsEventAxisToPspStateAxisWithMaxTest
     , LesserThanMin
