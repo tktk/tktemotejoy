@@ -1,7 +1,7 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/handler/forpspstate/toaxisx.h"
 #include "tktemotejoy/pspstate.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 
 namespace {
     class ToAxisX_newTest : public ::testing::Test
@@ -123,9 +123,6 @@ TEST_F(
         , 0x80c00000
     );
 }
-
-//TODO DeadZone
-//TODO OverLimit
 
 //REMOVEME
 TEST_F(
