@@ -34,6 +34,7 @@ module.DEPENDS = [
     'tktemotejoy_handler_forchangemapping_shiftmappingtest',
     'tktemotejoy_handler_forchangemapping_togglemappingtest',
     'tktemotejoy_handler_forchangemapping_dummytest',
+    'tktemotejoy_handler_forchangemapping_withrangetest',
     'tktemotejoy_handler_forchangemapping_withdeadzonetest',
     'tktemotejoy_handler_forchangemapping_withdeadzoneonewaytest',
     'tktemotejoy_handler_forchangemapping_tobuttonhandlerstest',
