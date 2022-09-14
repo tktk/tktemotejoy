@@ -168,8 +168,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GenerateHandlerWithRangeUniqueTest
     , FailedNotUnsignedDeadZone
@@ -177,9 +175,10 @@ TEST_F(
 {
     this->testAnyThrow(
         R"({
-    "deadZone" : -10,
-    "key" : 20
+    "min" : 10,
+    "max" : 20,
+    "deadZone" : -30,
+    "key" : 40
 })"
     );
 }
-*/
