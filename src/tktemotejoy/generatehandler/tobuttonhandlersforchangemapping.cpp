@@ -6,7 +6,7 @@
 #include "tktemotejoy/handler/forchangemapping/dummy.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <string>
 
 namespace {
@@ -21,6 +21,31 @@ namespace {
         }
     };
 
+    struct GenerateToButtonHandlersForChangeMappingUnique_new
+    {
+        auto operator()(
+            const __s16                                             _MIN
+            , const __s16                                           _MAX
+            , const __s16                                           _DEAD_ZONE
+            , Mapping::PressButtonHandlerForChangeMappingUnique &&  _handlerMinusUnique
+            , Mapping::PressButtonHandlerForChangeMappingUnique &&  _handlerPlusUnique
+        ) const
+        {
+            return Mapping::handlerUnique(
+                new ToButtonHandlersForChangeMapping_new(
+                    _MIN
+                    , _MAX
+                    , _DEAD_ZONE
+                    , ToButtonHandlersForChangeMapping_newImpl(
+                        std::move( _handlerMinusUnique )
+                        , std::move( _handlerPlusUnique )
+                    )
+                )
+            );
+        }
+    };
+
+    //REMOVEME
     struct GenerateToButtonHandlersForChangeMappingUnique
     {
         auto operator()(
@@ -65,19 +90,15 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlersForCha
     const Json::object_t &  _OBJECT
 )
 {
-    //TODO
-    return Mapping::OperateAxisHandlerForChangeMappingUnique();
-/*
     return generateHandlerUnique<
         Mapping::OperateAxisHandlerForChangeMappingUnique
         , GetType
-        , GenerateToButtonHandlersUnique<
-            GenerateToButtonHandlersForChangeMappingUnique
+        , GenerateToButtonHandlersUnique_new<
+            GenerateToButtonHandlersForChangeMappingUnique_new
             , GeneratePressButtonHandlerForChangeMappingUnique
             , GenerateDummyPressButtonHandlerForChangeMappingUnique
         >
     >( _OBJECT );
-*/
 }
 
 //REMOVEME
