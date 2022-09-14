@@ -237,6 +237,43 @@ TEST_F(
 
 TEST_F(
     GenerateToButtonHandlersUnique_newTest
+    , FailedNotObjectHandlerMinus
+)
+{
+    this->testAnyThrow(
+        R"({
+    "min" : 10,
+    "max" : 20,
+    "deadZone" : 30,
+    "handlerMinus" : "NOT OBJECT",
+    "handlerPlus" : {
+        "key" : 50
+    }
+})"
+    );
+}
+
+TEST_F(
+    GenerateToButtonHandlersUnique_newTest
+    , FailedUnsupportHandlerMinus
+)
+{
+    this->testAnyThrow(
+        R"({
+    "min" : 10,
+    "max" : 20,
+    "deadZone" : 30,
+    "handlerMinus" : {
+    },
+    "handlerPlus" : {
+        "key" : 50
+    }
+})"
+    );
+}
+
+TEST_F(
+    GenerateToButtonHandlersUnique_newTest
     , NotExistsHandlerPlus
 )
 {
@@ -259,24 +296,6 @@ TEST_F(
 
 TEST_F(
     GenerateToButtonHandlersUnique_newTest
-    , FailedNotObjectHandlerMinus
-)
-{
-    this->testAnyThrow(
-        R"({
-    "min" : 10,
-    "max" : 20,
-    "deadZone" : 30,
-    "handlerMinus" : "NOT OBJECT",
-    "handlerPlus" : {
-        "key" : 50
-    }
-})"
-    );
-}
-
-TEST_F(
-    GenerateToButtonHandlersUnique_newTest
     , FailedNotObjectHandlerPlus
 )
 {
@@ -289,6 +308,25 @@ TEST_F(
         "key" : 40
     },
     "handlerPlus" : "NOT OBJECT"
+})"
+    );
+}
+
+TEST_F(
+    GenerateToButtonHandlersUnique_newTest
+    , FailedUnsupportHandlerPlus
+)
+{
+    this->testAnyThrow(
+        R"({
+    "min" : 10,
+    "max" : 20,
+    "deadZone" : 30,
+    "handlerMinus" : {
+        "key" : 40
+    },
+    "handlerPlus" : {
+    }
 })"
     );
 }
