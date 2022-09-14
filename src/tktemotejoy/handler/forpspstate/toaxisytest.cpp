@@ -1,9 +1,31 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/handler/forpspstate/toaxisy.h"
+#include "tktemotejoy/handler/forpspstate/toaxistest.h"
 #include "tktemotejoy/pspstate.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 
 namespace {
+    struct GenerateToAxisY
+    {
+        auto operator()(
+            const __s16     _MIN
+            , const __s16   _MAX
+            , const __s16   _DEAD_ZONE
+            , const __s16   _LIMIT
+        ) const
+        {
+            return ToAxisY_new(
+                _MIN
+                , _MAX
+                , _DEAD_ZONE
+                , ToAxisY_newImpl( _LIMIT )
+            );
+        }
+    };
+
+    using ToAxisY_newTest = ToAxisTest< GenerateToAxisY >;
+
+    //REMOVEME
     class ToAxisYTest : public ::testing::Test
     {
     public:
@@ -56,6 +78,23 @@ namespace {
 }
 
 TEST_F(
+    ToAxisY_newTest
+    , Standard
+)
+{
+    this->test(
+        0
+        , 511
+        , 10
+        , 256
+        , 384
+        , true
+        , 0xc0800000
+    );
+}
+
+//REMOVEME
+TEST_F(
     ToAxisYTest
     , Max
 )
@@ -69,6 +108,7 @@ TEST_F(
     );
 }
 
+//REMOVEME
 TEST_F(
     ToAxisYTest
     , DeadZone

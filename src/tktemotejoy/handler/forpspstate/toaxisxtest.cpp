@@ -1,59 +1,29 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/handler/forpspstate/toaxisx.h"
+#include "tktemotejoy/handler/forpspstate/toaxistest.h"
 #include "tktemotejoy/pspstate.h"
 #include <linux/input.h>
 
 namespace {
-    class ToAxisX_newTest : public ::testing::Test
+    struct GenerateToAxisX
     {
-    public:
-        void test(
-            const __s16             _MIN
-            , const __s16           _MAX
-            , const __s16           _DEAD_ZONE
-            , const __s16           _LIMIT
-            , const __s16           _VALUE
-            , const bool            _EXPECTED_CALLED_WHEN_DIFF
-            , const PspState::Bits  _EXPECTED_BITS
+        auto operator()(
+            const __s16     _MIN
+            , const __s16   _MAX
+            , const __s16   _DEAD_ZONE
+            , const __s16   _LIMIT
         ) const
         {
-            auto    toAxisX = ToAxisX_new(
+            return ToAxisX_new(
                 _MIN
                 , _MAX
                 , _DEAD_ZONE
                 , ToAxisX_newImpl( _LIMIT )
             );
-
-            auto    pspState = PspState();
-
-            toAxisX(
-                _VALUE
-                , pspState
-            );
-
-            const auto  OTHER = PspState();
-
-            auto    calledWhenDiff = false;
-
-            pspState.diff(
-                OTHER
-                , [
-                    &_EXPECTED_BITS
-                    , &calledWhenDiff
-                ]
-                (
-                    const PspState::Bits &  _BITS
-                )
-                {
-                    calledWhenDiff = true;
-
-                    EXPECT_EQ( _EXPECTED_BITS, _BITS );
-                }
-            );
-
-            EXPECT_EQ( _EXPECTED_CALLED_WHEN_DIFF, calledWhenDiff );
         }
     };
+
+    using ToAxisX_newTest = ToAxisTest< GenerateToAxisX >;
 
     //REMOVEME
     class ToAxisXTest : public ::testing::Test
