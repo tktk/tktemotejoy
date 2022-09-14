@@ -2,7 +2,7 @@
 #include "tktemotejoy/handler/forpspstate/tobuttonhandlers.h"
 #include "tktemotejoy/pspstate.h"
 #include "tktemotejoy/mapping.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <utility>
 
 namespace {
@@ -28,6 +28,56 @@ namespace {
             EXPECT_EQ( &( this->EXPECTED_PSP_STATE ), &_pspState );
 
             this->calledHandler = true;
+        }
+    };
+
+    class ToButtonHandlersForPspState_newTest : public ::testing::Test
+    {
+    public:
+        void test(
+            const __s16     _MIN
+            , const __s16   _MAX
+            , const __s16   _DEAD_ZONE
+            , const __s16   _VALUE
+            , const bool    _EXPECTED_CALLED_HANDLER_MINUS
+            , const bool    _EXPECTED_CALLED_HANDLER_PLUS
+        ) const
+        {
+            auto    calledHandlerMinus = false;
+            auto    calledHandlerPlus = false;
+
+            auto    pspState = PspState();
+
+            auto    handlerMinusUnique = Mapping::PressButtonHandlerForPspStateUnique(
+                new TestHandler(
+                    calledHandlerMinus
+                    , pspState
+                )
+            );
+            auto    handlerPlusUnique = Mapping::PressButtonHandlerForPspStateUnique(
+                new TestHandler(
+                    calledHandlerPlus
+                    , pspState
+                )
+            );
+
+            auto    toButtonHandlers = ToButtonHandlersForPspState_new(
+                _MIN
+                , _MAX
+                , _DEAD_ZONE
+                , ToButtonHandlersForPspState_newImpl(
+                    std::move( handlerMinusUnique )
+                    , std::move( handlerPlusUnique )
+                )
+            );
+
+            toButtonHandlers(
+                _VALUE
+                , pspState
+            );
+
+            EXPECT_EQ( _EXPECTED_CALLED_HANDLER_MINUS, calledHandlerMinus );
+            EXPECT_EQ( _EXPECTED_CALLED_HANDLER_PLUS, calledHandlerPlus );
         }
     };
 
@@ -79,6 +129,51 @@ namespace {
 }
 
 TEST_F(
+    ToButtonHandlersForPspState_newTest
+    , CallHandlerMinus
+)
+{
+    this->test(
+        0
+        , 255
+        , 10
+        , 117
+        , true
+        , false
+    );
+}
+
+//TODO
+/*
+TEST_F(
+    ToButtonHandlersForPspStateTest
+    , CallHandlerPlus
+)
+{
+    this->test(
+        0
+        , 1
+        , false
+        , true
+    );
+}
+
+TEST_F(
+    ToButtonHandlersForPspStateTest
+    , DeadZone
+)
+{
+    this->test(
+        0
+        , 0
+        , false
+        , false
+    );
+}
+*/
+
+//REMOVEME
+TEST_F(
     ToButtonHandlersForPspStateTest
     , CallHandler1
 )
@@ -91,6 +186,7 @@ TEST_F(
     );
 }
 
+//REMOVEME
 TEST_F(
     ToButtonHandlersForPspStateTest
     , CallHandler2
@@ -104,6 +200,7 @@ TEST_F(
     );
 }
 
+//REMOVEME
 TEST_F(
     ToButtonHandlersForPspStateTest
     , DeadZone
