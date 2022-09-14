@@ -25,17 +25,18 @@ TEST_F(
     this->test(
         R"({
     "type" : "toButtonHandlers",
-    "deadZone" : 10,
-    "handler1" : {
+    "min" : 0,
+    "max" : 255,
+    "handlerMinus" : {
         "type" : "toggleMapping",
         "mapping" : 20
     },
-    "handler2" : {
+    "handlerPlus" : {
         "type" : "toggleMapping",
         "mapping" : 30
     }
 })"
-        , -40
+        , 64
         , 50
         , 20
         , 50
