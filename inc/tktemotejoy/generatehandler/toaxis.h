@@ -20,12 +20,12 @@ public:
     ) const
     {
         const auto  KEY_LIMIT = std::string( "limit" );
-/*
-        const auto  DEFAULT_LIMIT = Json::number_integer_t( 0x7fff );   //TODO
-*/
 
-        const auto &    LIMIT = getJsonUnsignedFromObject(
+        const auto  DEFAULT_LIMIT = Json::number_unsigned_t( ( ( _MAX - _MIN ) + 1 ) / 2 );
+
+        const auto &    LIMIT = getJsonUnsignedFromObjectWithDefault(
             _OBJECT
+            , DEFAULT_LIMIT
             , KEY_LIMIT
         );
 
