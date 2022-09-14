@@ -72,25 +72,21 @@ public:
         , ARGS_T & ...                      _args
     ) const
     {
-        //TODO
-        return this->HANDLER(
-            64
-            , _args ...
-        );
-/*
         const auto  MIN_TO_VALUE = ( _VALUE - this->MIN ) * this->DIRECTION;
 
         const auto  VALUE_FROM_CENTER = MIN_TO_VALUE - this->MIN_TO_CENTER;
 
+        //TODO
+/*
         if( std::abs( VALUE_FROM_CENTER ) <= this->DEAD_ZONE ) {
             return GENERATE_DEFAULT_VALUE_T()();
         }
+*/
 
         return this->HANDLER(
             VALUE_FROM_CENTER
             , _args ...
         );
-*/
     }
 };
 
