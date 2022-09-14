@@ -143,23 +143,25 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
-    ToButtonHandlersForPspStateTest
+    ToButtonHandlersForPspState_newTest
     , CallHandlerPlus
 )
 {
     this->test(
         0
-        , 1
+        , 255
+        , 10
+        , 139
         , false
         , true
     );
 }
 
+//TODO
+/*
 TEST_F(
-    ToButtonHandlersForPspStateTest
+    ToButtonHandlersForPspState_newTest
     , DeadZone
 )
 {
