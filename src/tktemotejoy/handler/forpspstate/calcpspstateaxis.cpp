@@ -15,6 +15,9 @@ PspState::Axis calcPspStateAxis(
     , const __s16   _LIMIT
 )
 {
+    if( _VALUE >= _LIMIT ) {
+        return PSP_STATE_AXIS_MAX;
+    }
     //TODO
     return PSP_STATE_AXIS_ZERO + ( _VALUE * PSP_STATE_AXIS_ZERO / _LIMIT );
 /*
