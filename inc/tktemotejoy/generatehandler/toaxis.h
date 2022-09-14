@@ -7,6 +7,7 @@
 #include "tktemotejoy/json.h"
 #include <linux/input.h>
 #include <string>
+#include <cmath>
 
 template< typename GENERATE_TO_AXIS_UNIQUE_T >
 class GenerateToAxisUnique_new : public GenerateHandlerWithRangeUnique< GenerateToAxisUnique_new< GENERATE_TO_AXIS_UNIQUE_T > >
@@ -21,7 +22,7 @@ public:
     {
         const auto  KEY_LIMIT = std::string( "limit" );
 
-        const auto  DEFAULT_LIMIT = Json::number_unsigned_t( ( ( _MAX - _MIN ) + 1 ) / 2 );
+        const auto  DEFAULT_LIMIT = Json::number_unsigned_t( ( std::abs( _MAX - _MIN ) + 1 ) / 2 );
 
         const auto &    LIMIT = getJsonUnsignedFromObjectWithDefault(
             _OBJECT
