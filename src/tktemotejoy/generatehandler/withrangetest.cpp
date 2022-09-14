@@ -94,11 +94,26 @@ TEST_F(
 
 TEST_F(
     GenerateHandlerWithRangeUniqueTest
-    , NotExistsMin
+    , FailedNotExistsMin
 )
 {
     this->testAnyThrow(
         R"({
+    "max" : 20,
+    "deadZone" : 30,
+    "key" : 40
+})"
+    );
+}
+
+TEST_F(
+    GenerateHandlerWithRangeUniqueTest
+    , FailedNotIntegerMin
+)
+{
+    this->testAnyThrow(
+        R"({
+    "min" : "NOT INTEGER",
     "max" : 20,
     "deadZone" : 30,
     "key" : 40
