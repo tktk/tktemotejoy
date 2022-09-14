@@ -19,24 +19,23 @@ public:
         , const __s16           _DEAD_ZONE
     ) const
     {
+        const auto  KEY_LIMIT = std::string( "limit" );
 /*
-        const auto  KEY_MAX_ = std::string( "max" );
-        const auto  DEFAULT_MAX = Json::number_integer_t( 0x7fff );
-
-        const auto &    MAX = getJsonIntegerFromObjectWithDefault(
-            _OBJECT
-            , DEFAULT_MAX
-            , KEY_MAX_
-        );
-
-        const auto  MAX_S16 = __s16( MAX );
+        const auto  DEFAULT_LIMIT = Json::number_integer_t( 0x7fff );   //TODO
 */
 
+        const auto &    LIMIT = getJsonUnsignedFromObject(
+            _OBJECT
+            , KEY_LIMIT
+        );
+
+        const auto  LIMIT_S16 = __s16( LIMIT );
+
         return GENERATE_TO_AXIS_UNIQUE_T()(
-            100
-            , 200
-            , 300
-            , 400
+            _MIN
+            , _MAX
+            , _DEAD_ZONE
+            , LIMIT_S16
         );
     }
 };
