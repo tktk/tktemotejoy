@@ -13,7 +13,14 @@ std::runtime_error typeIsUnsupported(
 
     const auto  KEY_TYPE = std::string( "type" );
 
-    oStringStream << "非対応の" << _HANDLERS_TYPE << "タイプ : " << '"' << _OBJECT.at( KEY_TYPE ).get_ref< const Json::string_t & >() << '"';
+    const auto  IT = _OBJECT.find( KEY_TYPE );
+    if( IT != _OBJECT.end() ) {
+        const auto &    TYPE_JSON = IT->second;
+
+        oStringStream << "非対応の" << _HANDLERS_TYPE << "タイプ : " << '"' << TYPE_JSON.get_ref< const Json::string_t & >() << '"';
+    } else {
+        oStringStream << _HANDLERS_TYPE << "のタイプ指定がない";
+    }
 
     throw std::runtime_error( oStringStream.str() );
 }

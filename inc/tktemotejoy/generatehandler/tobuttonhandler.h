@@ -38,15 +38,12 @@ public:
         );
 
         auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( OBJECT );
-        //TODO
-/*
         if( handlerUnique.get() == nullptr ) {
             throw typeIsUnsupported(
                 OBJECT
                 , KEY_HANDLER
             );
         }
-*/
 
         return GENERATE_TO_BUTTON_HANDLER_UNIQUE_T()(
             _MIN
