@@ -24,9 +24,9 @@ namespace {
     struct GenerateToButtonHandlersForChangeMappingUnique
     {
         auto operator()(
-            const __s16                                             _MIN
-            , const __s16                                           _MAX
-            , const __s16                                           _DEAD_ZONE
+            const __s32                                             _MIN
+            , const __s32                                           _MAX
+            , const __s32                                           _DEAD_ZONE
             , Mapping::PressButtonHandlerForChangeMappingUnique &&  _handlerMinusUnique
             , Mapping::PressButtonHandlerForChangeMappingUnique &&  _handlerPlusUnique
         ) const
