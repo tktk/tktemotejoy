@@ -4,23 +4,21 @@
 #include "tktemotejoy/customjson.h"
 
 namespace {
-    //FIXME
-    struct GenerateToButtonHandlerForPspStateUnique_new
+    struct GenerateToButtonHandlerForPspStateUnique
     {
         auto operator()(
             const Json::object_t &  _OBJECT
         ) const
         {
-            return generateToButtonHandlerForPspStateUnique_new( _OBJECT );
+            return generateToButtonHandlerForPspStateUnique( _OBJECT );
         }
     };
 
-    //FIXME
-    using GenerateToButtonHandlerForPspState_newTest = GenerateOperateAxisHandlerForPspStateTestTmpl< GenerateToButtonHandlerForPspStateUnique_new >;
+    using GenerateToButtonHandlerForPspStateTest = GenerateOperateAxisHandlerForPspStateTestTmpl< GenerateToButtonHandlerForPspStateUnique >;
 }
 
 TEST_F(
-    GenerateToButtonHandlerForPspState_newTest
+    GenerateToButtonHandlerForPspStateTest
     , Handler
 )
 {

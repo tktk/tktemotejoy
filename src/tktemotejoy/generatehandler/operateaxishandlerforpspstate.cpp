@@ -27,7 +27,7 @@ Mapping::OperateAxisHandlerForPspStateUnique generateOperateAxisHandlerForPspSta
         return handlerUnique;
     }
 
-    handlerUnique = generateToButtonHandlerForPspStateUnique_new( _OBJECT );
+    handlerUnique = generateToButtonHandlerForPspStateUnique( _OBJECT );
     if( handlerUnique.get() != nullptr ) {
         return handlerUnique;
     }

@@ -4,8 +4,7 @@
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
 
-//FIXME
-Mapping::OperateAxisHandlerForPspStateUnique generateToButtonHandlerForPspStateUnique_new(
+Mapping::OperateAxisHandlerForPspStateUnique generateToButtonHandlerForPspStateUnique(
     const Json::object_t &
 );
 
