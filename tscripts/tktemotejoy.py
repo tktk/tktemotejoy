@@ -18,6 +18,7 @@ module.DEPENDS = [
     'tktemotejoy_joystickstate_foraxestest',
     'tktemotejoy_pspstate_difftest',
     'tktemotejoy_handler_common_withrangeimpltest',
+    'tktemotejoy_handler_common_withrangeonewayimpltest',
     'tktemotejoy_handler_forpspstate_tobuttonstest',
     'tktemotejoy_handler_forpspstate_tofixedaxisxtest',
     'tktemotejoy_handler_forpspstate_tofixedaxisytest',
