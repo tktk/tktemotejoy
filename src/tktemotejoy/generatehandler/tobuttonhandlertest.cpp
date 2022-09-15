@@ -1,7 +1,7 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/generatehandler/tobuttonhandler.h"
 #include "tktemotejoy/customjson.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <string>
 #include <memory>
 #include <utility>
@@ -30,6 +30,7 @@ namespace {
         }
     };
 
+    //FIXME
     struct TestToButtonHandler_new
     {
         const __s16             MIN;
@@ -38,6 +39,7 @@ namespace {
         const TestHandlerUnique HANDLER_UNIQUE;
     };
 
+    //FIXME
     struct TestGenerateToButtonHandlerUnique_new
     {
         auto operator()(
@@ -58,11 +60,13 @@ namespace {
         }
     };
 
+    //FIXME
     using TestGenerateHandlerUnique_new_ = GenerateToButtonHandlerUnique_new<
         TestGenerateToButtonHandlerUnique_new
         , TestGenerateHandlerUnique
     >;
 
+    //FIXME
     class GenerateToButtonHandlerUnique_newTest : public ::testing::Test
     {
     public:
@@ -97,70 +101,6 @@ namespace {
             const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
 
             EXPECT_ANY_THROW( TestGenerateHandlerUnique_new_()( OBJECT ) );
-        }
-    };
-
-    //REMOVEME
-    struct TestToButtonHandler
-    {
-        const __s16             DEAD_ZONE;
-        const TestHandlerUnique HANDLER_UNIQUE;
-    };
-
-    //REMOVEME
-    struct TestGenerateToButtonHandlerUnique
-    {
-        auto operator()(
-            const __s16             _DEAD_ZONE
-            , TestHandlerUnique &&  _handlerUnique
-        ) const
-        {
-            return std::unique_ptr< TestToButtonHandler >(
-                new TestToButtonHandler{
-                    _DEAD_ZONE
-                    , std::move( _handlerUnique )
-                }
-            );
-        }
-    };
-
-    //REMOVEME
-    using TestGenerateHandlerUnique_ = GenerateToButtonHandlerUnique<
-        TestGenerateToButtonHandlerUnique
-        , TestGenerateHandlerUnique
-    >;
-
-    //REMOVEME
-    class GenerateToButtonHandlerUniqueTest : public ::testing::Test
-    {
-    public:
-        void test(
-            const std::string & _JSON_STRING
-            , const __s16       _EXPECTED_DEAD_ZONE
-            , const int         _EXPECTED_HANDLER_VALUE
-        ) const
-        {
-            const auto  JSON = Json::parse( _JSON_STRING );
-
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
-
-            auto    handlerUnique = TestGenerateHandlerUnique_()( OBJECT );
-            ASSERT_NE( nullptr, handlerUnique.get() );
-
-            EXPECT_EQ( _EXPECTED_DEAD_ZONE, handlerUnique->DEAD_ZONE );
-            ASSERT_NE( nullptr, handlerUnique->HANDLER_UNIQUE.get() );
-            EXPECT_EQ( _EXPECTED_HANDLER_VALUE, handlerUnique->HANDLER_UNIQUE->VALUE );
-        }
-
-        void testAnyThrow(
-            const std::string & _JSON_STRING
-        ) const
-        {
-            const auto  JSON = Json::parse( _JSON_STRING );
-
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
-
-            EXPECT_ANY_THROW( TestGenerateHandlerUnique_()( OBJECT ) );
         }
     };
 }
@@ -224,66 +164,6 @@ TEST_F(
         R"({
     "min" : 0,
     "max" : 255,
-    "deadZone" : 10,
-    "handler" : {
-    }
-})"
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateToButtonHandlerUniqueTest
-    , Standard
-)
-{
-    this->test(
-        R"({
-    "deadZone" : 10000,
-    "handler" : {
-        "key" : 20
-    }
-})"
-        , -22767
-        , 20
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateToButtonHandlerUniqueTest
-    , FailedNotExistsHandler
-)
-{
-    this->testAnyThrow(
-        R"({
-    "deadZone" : 10
-})"
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateToButtonHandlerUniqueTest
-    , FailedNotObjectHandler
-)
-{
-    this->testAnyThrow(
-        R"({
-    "deadZone" : 10,
-    "handler" : "NOT OBJECT"
-})"
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateToButtonHandlerUniqueTest
-    , FailedUnsupportedHandler
-)
-{
-    this->testAnyThrow(
-        R"({
     "deadZone" : 10,
     "handler" : {
     }
