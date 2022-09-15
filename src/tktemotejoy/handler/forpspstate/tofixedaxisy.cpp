@@ -2,7 +2,7 @@
 #include "tktemotejoy/pspstate.h"
 
 ToFixedAxisY::ToFixedAxisY(
-    const __s16 _AXIS
+    const PspState::Axis    _AXIS
 )
     : AXIS( _AXIS )
 {
