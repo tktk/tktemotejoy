@@ -2,7 +2,6 @@
 #define TKTEMOTEJOY_HANDLER_FORPSPSTATE_TOBUTTONHANDLER_H
 
 #include "tktemotejoy/handler/forpspstate/withrangeoneway.h"
-#include "tktemotejoy/handler/forpspstate/withdeadzoneoneway.h"
 #include "tktemotejoy/pspstate.h"
 #include "tktemotejoy/mapping.h"
 #include <linux/input.h>
@@ -22,9 +21,7 @@ public:
     ) const;
 };
 
+//FIXME
 using ToButtonHandlerForPspState_new = WithRangeOneWayForPspState< ToButtonHandlerForPspStateImpl >;
-
-//REMOVEME
-using ToButtonHandlerForPspState = WithDeadZoneOneWayForPspState< ToButtonHandlerForPspStateImpl >;
 
 #endif  // TKTEMOTEJOY_HANDLER_FORPSPSTATE_TOBUTTONHANDLER_H

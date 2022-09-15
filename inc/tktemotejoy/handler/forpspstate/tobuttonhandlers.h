@@ -6,6 +6,7 @@
 #include "tktemotejoy/mapping.h"
 #include <linux/input.h>
 
+//FIXME
 class ToButtonHandlersForPspState_newImpl final
 {
     Mapping::PressButtonHandlerForPspStateUnique    handlerMinusUnique;
@@ -23,6 +24,7 @@ public:
     ) const;
 };
 
+//FIXME
 using ToButtonHandlersForPspState_new = WithRangeForPspState< ToButtonHandlersForPspState_newImpl >;
 
 #endif  // TKTEMOTEJOY_HANDLER_FORPSPSTATE_TOBUTTONHANDLERS_H

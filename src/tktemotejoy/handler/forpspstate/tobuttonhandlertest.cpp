@@ -31,6 +31,7 @@ namespace {
         }
     };
 
+    //FIXME
     class ToButtonHandlerForPspState_newTest : public ::testing::Test
     {
     public:
@@ -68,41 +69,6 @@ namespace {
             EXPECT_EQ( _EXPECTED_CALLED_HANDLER, calledHandler );
         }
     };
-
-    //REMOVEME
-    class ToButtonHandlerForPspStateTest : public ::testing::Test
-    {
-    public:
-        void test(
-            const __s16     _DEAD_ZONE
-            , const __s16   _VALUE
-            , const bool    _EXPECTED_CALLED_HANDLER
-        ) const
-        {
-            auto    calledHandler = false;
-
-            auto    pspState = PspState();
-
-            auto    handlerUnique = Mapping::PressButtonHandlerForPspStateUnique(
-                new TestHandler(
-                    calledHandler
-                    , pspState
-                )
-            );
-
-            auto    toButtonHandler = ToButtonHandlerForPspState(
-                _DEAD_ZONE
-                , ToButtonHandlerForPspStateImpl( std::move( handlerUnique ) )
-            );
-
-            toButtonHandler(
-                _VALUE
-                , pspState
-            );
-
-            EXPECT_EQ( _EXPECTED_CALLED_HANDLER, calledHandler );
-        }
-    };
 }
 
 TEST_F(
@@ -129,32 +95,6 @@ TEST_F(
         , 155
         , 10
         , -90
-        , false
-    );
-}
-
-//REMOVEME
-TEST_F(
-    ToButtonHandlerForPspStateTest
-    , CallHandler
-)
-{
-    this->test(
-        -30000
-        , -20000
-        , true
-    );
-}
-
-//REMOVEME
-TEST_F(
-    ToButtonHandlerForPspStateTest
-    , DeadZone
-)
-{
-    this->test(
-        0
-        , -10000
         , false
     );
 }
