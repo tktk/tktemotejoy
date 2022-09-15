@@ -30,12 +30,22 @@ TEST_F(
 {
     this->test(
         0
-        , 20
-        , 10
+        , 256
+        , 128
     );
 }
 
-//TODO MaxGreaterThanMinOdd
+TEST_F(
+    CalcMinToCenterTest
+    , MaxGreaterThanMinOdd
+)
+{
+    this->test(
+        0
+        , 255
+        , 128
+    );
+}
 
 TEST_F(
     CalcMinToCenterTest
@@ -43,10 +53,20 @@ TEST_F(
 )
 {
     this->test(
-        -40
+        512
         , 0
-        , 20
+        , 256
     );
 }
 
-//TODO MaxLesserThanMinOdd
+TEST_F(
+    CalcMinToCenterTest
+    , MaxLesserThanMinOdd
+)
+{
+    this->test(
+        511
+        , 0
+        , 256
+    );
+}
