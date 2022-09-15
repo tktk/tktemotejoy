@@ -148,13 +148,13 @@ public:
 
     void operateAxis(
         const OperateAxisHandlersForPspState::size_type
-        , const __s16
+        , const __s32
         , PspState &
     ) const;
 
     std::size_t operateAxis(
         const OperateAxisHandlersForChangeMapping::size_type
-        , const __s16
+        , const __s32
         , std::size_t &
         , const std::size_t
     ) const;

@@ -194,7 +194,7 @@ std::size_t Mapping::pressButton(
 
 void Mapping::operateAxis(
     const OperateAxisHandlersForPspState::size_type _INDEX
-    , const __s16                                   _VALUE
+    , const __s32                                   _VALUE
     , PspState &                                    _pspState
 ) const
 {
@@ -219,7 +219,7 @@ void Mapping::operateAxis(
 
 std::size_t Mapping::operateAxis(
     const OperateAxisHandlersForChangeMapping::size_type    _KEY
-    , const __s16                                           _VALUE
+    , const __s32                                           _VALUE
     , std::size_t &                                         _mappingIndex
     , const std::size_t                                     _CURRENT_MAPPING_INDEX
 ) const
