@@ -8,17 +8,17 @@
 template< typename HANDLER_T >
 class WithRangeOneWayImpl final
 {
-    const __s16 MIN;
-    const __s16 DIRECTION;
-    const __s16 DEAD_ZONE;
+    const __s32 MIN;
+    const __s32 DIRECTION;
+    const __s32 DEAD_ZONE;
 
     const HANDLER_T HANDLER;
 
 public:
     WithRangeOneWayImpl(
-        const __s16     _MIN
-        , const __s16   _MAX
-        , const __s16   _DEAD_ZONE
+        const __s32     _MIN
+        , const __s32   _MAX
+        , const __s32   _DEAD_ZONE
         , HANDLER_T &&  _handler
     )
         : MIN( _MIN )
@@ -39,7 +39,7 @@ public:
     >
     auto operator()(
         const GENERATE_DEFAULT_VALUE_T &    _GENERATE_DEFAULT_VALUE
-        , const __s16                       _VALUE
+        , const __s32                       _VALUE
         , ARGS_T & ...                      _args
     ) const
     {

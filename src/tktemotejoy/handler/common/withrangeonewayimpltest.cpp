@@ -7,12 +7,12 @@ namespace {
     {
         bool &  called;
 
-        const __s16 EXPECTED_FROM_MIN;
+        const __s32 EXPECTED_FROM_MIN;
 
     public:
         TestHandler(
             bool &          _called
-            , const __s16   _EXPECTED_FROM_MIN
+            , const __s32   _EXPECTED_FROM_MIN
         )
             : called( _called )
             , EXPECTED_FROM_MIN( _EXPECTED_FROM_MIN )
@@ -20,7 +20,7 @@ namespace {
         }
 
         auto operator()(
-            const __s16     _FROM_MIN
+            const __s32     _FROM_MIN
         ) const
         {
             this->called = true;
@@ -35,13 +35,13 @@ namespace {
     {
     public:
         void test(
-            const __s16     _MIN
-            , const __s16   _MAX
-            , const __s16   _DEAD_ZONE
-            , const __s16   _DEFAULT_VALUE
-            , const __s16   _VALUE
-            , const __s16   _EXPECTED
-            , const __s16   _EXPECTED_FROM_MIN
+            const __s32     _MIN
+            , const __s32   _MAX
+            , const __s32   _DEAD_ZONE
+            , const __s32   _DEFAULT_VALUE
+            , const __s32   _VALUE
+            , const __s32   _EXPECTED
+            , const __s32   _EXPECTED_FROM_MIN
             , const bool    _EXPECTED_CALLED
         ) const
         {
