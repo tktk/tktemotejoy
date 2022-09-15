@@ -58,22 +58,28 @@
             "axesForPspState" : {
                 "0" : {
                     "type" : "toAxisX",
-                    "max" : 30000,
+                    "min" : -32768,
+                    "max" : 32767,
+                    "limit" : 30000,
                 },
                 "1" : {
                     "type" : "toAxisY",
-                    "max" : 30000,
+                    "min" : -32768,
+                    "max" : 32767,
+                    "limit" : 30000,
                 },
                 "3" : {
                     "type" : "toButtonHandlers",
+                    "min" : -32768,
+                    "max" : 32767,
                     "deadZone" : 30000,
-                    "handler1" : {
+                    "handlerMinus" : {
                         "type" : "toButtons",
                         "buttons" : [
                             "left",
                         ],
                     },
-                    "handler2" : {
+                    "handlerPlus" : {
                         "type" : "toButtons",
                         "buttons" : [
                             "right",
@@ -82,14 +88,16 @@
                 },
                 "4" : {
                     "type" : "toButtonHandlers",
+                    "min" : -32768,
+                    "max" : 32767,
                     "deadZone" : 30000,
-                    "handler1" : {
+                    "handlerMinus" : {
                         "type" : "toButtons",
                         "buttons" : [
                             "up",
                         ],
                     },
-                    "handler2" : {
+                    "handlerPlus" : {
                         "type" : "toButtons",
                         "buttons" : [
                             "down",
@@ -98,13 +106,15 @@
                 },
                 "6" : {
                     "type" : "toButtonHandlers",
-                    "handler1" : {
+                    "min" : -1,
+                    "max" : 1,
+                    "handlerMinus" : {
                         "type" : "toButtons",
                         "buttons" : [
                             "left",
                         ],
                     },
-                    "handler2" : {
+                    "handlerPlus" : {
                         "type" : "toButtons",
                         "buttons" : [
                             "right",
@@ -113,13 +123,15 @@
                 },
                 "7" : {
                     "type" : "toButtonHandlers",
-                    "handler1" : {
+                    "min" : -1,
+                    "max" : 1,
+                    "handlerMinus" : {
                         "type" : "toButtons",
                         "buttons" : [
                             "up",
                         ],
                     },
-                    "handler2" : {
+                    "handlerPlus" : {
                         "type" : "toButtons",
                         "buttons" : [
                             "down",
