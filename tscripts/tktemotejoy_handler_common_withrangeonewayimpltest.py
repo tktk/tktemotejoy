@@ -13,6 +13,7 @@ module.SOURCE = {
     'handler' : {
         'common' : [
             'withrangeonewayimpltest.cpp',
+            'calcrangedirection.cpp',
         ],
     },
 }

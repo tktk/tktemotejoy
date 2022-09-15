@@ -1,6 +1,7 @@
 #ifndef TKTEMOTEJOY_HANDLER_COMMON_WITHRANGEONEWAYIMPL_H
 #define TKTEMOTEJOY_HANDLER_COMMON_WITHRANGEONEWAYIMPL_H
 
+#include "tktemotejoy/handler/common/calcrangedirection.h"
 #include <linux/input.h>
 #include <utility>
 
@@ -13,15 +14,6 @@ class WithRangeOneWayImpl final
 
     const HANDLER_T HANDLER;
 
-    //TODO 要関数化
-    static auto calcDirection(
-        const __s16     _MIN
-        , const __s16   _MAX
-    )
-    {
-        return _MIN < _MAX ? 1 : -1;
-    }
-
 public:
     WithRangeOneWayImpl(
         const __s16     _MIN
@@ -31,7 +23,7 @@ public:
     )
         : MIN( _MIN )
         , DIRECTION(
-            WithRangeOneWayImpl::calcDirection(
+            calcRangeDirection(
                 _MIN
                 , _MAX
             )

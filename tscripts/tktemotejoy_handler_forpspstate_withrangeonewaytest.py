@@ -19,6 +19,9 @@ module.SOURCE = [
             'forchangemapping' : [
                 'dummy.cpp',
             ],
+            'common' : [
+                'calcrangedirection.cpp',
+            ],
         },
     },
     'mapping.cpp',
