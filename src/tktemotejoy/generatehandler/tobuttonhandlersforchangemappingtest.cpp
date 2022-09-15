@@ -4,23 +4,21 @@
 #include "tktemotejoy/customjson.h"
 
 namespace {
-    //FIXME
-    struct GenerateToButtonHandlersForChangeMappingUnique_new
+    struct GenerateToButtonHandlersForChangeMappingUnique
     {
         auto operator()(
             const Json::object_t &  _OBJECT
         ) const
         {
-            return generateToButtonHandlersForChangeMappingUnique_new( _OBJECT );
+            return generateToButtonHandlersForChangeMappingUnique( _OBJECT );
         }
     };
 
-    //FIXME
-    using GenerateToButtonHandlersForChangeMapping_newTest = GenerateOperateAxisHandlerForChangeMappingTestTmpl< GenerateToButtonHandlersForChangeMappingUnique_new >;
+    using GenerateToButtonHandlersForChangeMappingTest = GenerateOperateAxisHandlerForChangeMappingTestTmpl< GenerateToButtonHandlersForChangeMappingUnique >;
 }
 
 TEST_F(
-    GenerateToButtonHandlersForChangeMapping_newTest
+    GenerateToButtonHandlersForChangeMappingTest
     , HandlerMinus
 )
 {
@@ -46,7 +44,7 @@ TEST_F(
 }
 
 TEST_F(
-    GenerateToButtonHandlersForChangeMapping_newTest
+    GenerateToButtonHandlersForChangeMappingTest
     , HandlerPlus
 )
 {
@@ -72,7 +70,7 @@ TEST_F(
 }
 
 TEST_F(
-    GenerateToButtonHandlersForChangeMapping_newTest
+    GenerateToButtonHandlersForChangeMappingTest
     , NotExistsHandler
 )
 {

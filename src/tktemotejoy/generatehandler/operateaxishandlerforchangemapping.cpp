@@ -10,7 +10,7 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateOperateAxisHandlerForC
 {
     auto    handlerUnique = Mapping::OperateAxisHandlerForChangeMappingUnique();
 
-    handlerUnique = generateToButtonHandlersForChangeMappingUnique_new( _OBJECT );
+    handlerUnique = generateToButtonHandlersForChangeMappingUnique( _OBJECT );
     if( handlerUnique.get() != nullptr ) {
         return handlerUnique;
     }

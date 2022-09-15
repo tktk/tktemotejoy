@@ -21,8 +21,7 @@ namespace {
         }
     };
 
-    //FIXME
-    struct GenerateToButtonHandlersForChangeMappingUnique_new
+    struct GenerateToButtonHandlersForChangeMappingUnique
     {
         auto operator()(
             const __s16                                             _MIN
@@ -66,8 +65,7 @@ namespace {
     };
 }
 
-//FIXME
-Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlersForChangeMappingUnique_new(
+Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlersForChangeMappingUnique(
     const Json::object_t &  _OBJECT
 )
 {
@@ -75,7 +73,7 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlersForCha
         Mapping::OperateAxisHandlerForChangeMappingUnique
         , GetType
         , GenerateToButtonHandlersUnique_new<
-            GenerateToButtonHandlersForChangeMappingUnique_new
+            GenerateToButtonHandlersForChangeMappingUnique
             , GeneratePressButtonHandlerForChangeMappingUnique
             , GenerateDummyPressButtonHandlerForChangeMappingUnique
         >
