@@ -1,28 +1,28 @@
 #include "tktemotejoy/test.h"
-#include "tktemotejoy/joystickstate.h"
+#include "tktemotejoy/evdevstate.h"
 #include <map>
 
 namespace {
     using IndexAndValueMap = std::map<
-        JoystickState::States::size_type
-        , JoystickState::States::value_type
+        EvdevState::States::size_type
+        , EvdevState::States::value_type
     >;
 
-    class JoystickState_forAxesTest : public ::testing::Test
+    class EvdevState_forAxesTest : public ::testing::Test
     {
     public:
         void test(
-            JoystickState                               _joystickState
-            , const IndexAndValueMap                    _INDEX_AND_VALUE_MAP
-            , const bool                                _RETURNS_FOR_STATE
-            , const bool                                _EXPECTED
-            , const JoystickState::States::size_type    _EXPECTED_CALL_COUNT
-            , const IndexAndValueMap                    _EXPECTED_CALLED_INDEX_AND_VALUE_MAP
-            , const bool                                _TEST_CALLED_INDEX_AND_VALUE_MAP
+            EvdevState                              _evdevState
+            , const IndexAndValueMap                _INDEX_AND_VALUE_MAP
+            , const bool                            _RETURNS_FOR_STATE
+            , const bool                            _EXPECTED
+            , const EvdevState::States::size_type   _EXPECTED_CALL_COUNT
+            , const IndexAndValueMap                _EXPECTED_CALLED_INDEX_AND_VALUE_MAP
+            , const bool                            _TEST_CALLED_INDEX_AND_VALUE_MAP
         ) const
         {
             for( const auto & INDEX_AND_VALUE : _INDEX_AND_VALUE_MAP ) {
-                _joystickState.setAxisState(
+                _evdevState.setAxisState(
                     INDEX_AND_VALUE.first
                     , INDEX_AND_VALUE.second
                 );
@@ -32,15 +32,15 @@ namespace {
             auto    calledIndexAndValueMap = IndexAndValueMap();
             EXPECT_EQ(
                 _EXPECTED
-                , _joystickState.forAxes(
+                , _evdevState.forAxes(
                     [
                         &_RETURNS_FOR_STATE
                         , &callCount
                         , &calledIndexAndValueMap
                     ]
                     (
-                        const JoystickState::States::size_type      _INDEX
-                        , const JoystickState::States::value_type   _VALUE
+                        const EvdevState::States::size_type     _INDEX
+                        , const EvdevState::States::value_type  _VALUE
                     ) -> bool
                     {
                         callCount++;
@@ -60,12 +60,12 @@ namespace {
 }
 
 TEST_F(
-    JoystickState_forAxesTest
+    EvdevState_forAxesTest
     , ForAllAxes
 )
 {
     this->test(
-        JoystickState(
+        EvdevState(
             5
             , 5
         )
@@ -89,12 +89,12 @@ TEST_F(
 }
 
 TEST_F(
-    JoystickState_forAxesTest
+    EvdevState_forAxesTest
     , Breaked
 )
 {
     this->test(
-        JoystickState(
+        EvdevState(
             5
             , 5
         )

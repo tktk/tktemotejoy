@@ -1,7 +1,7 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/generatemappings.h"
 #include "tktemotejoy/mappings.h"
-#include "tktemotejoy/joystickstate.h"
+#include "tktemotejoy/evdevstate.h"
 #include "tktemotejoy/pspstate.h"
 #include "tktemotejoy/customjson.h"
 #include <string>
@@ -12,7 +12,7 @@ namespace {
     public:
         void test(
             const std::string &     _JSON_STRING
-            , const JoystickState & _JOYSTICK_STATE
+            , const EvdevState &    _EVDEV_STATE
             , const PspState::Bits  _EXPECTED_BITS
         ) const
         {
@@ -26,9 +26,9 @@ namespace {
 
             auto    pspState = PspState();
 
-            mappings.joystickStateToPspState(
+            mappings.evdevStateToPspState(
                 pspState
-                , _JOYSTICK_STATE
+                , _EVDEV_STATE
             );
 
             const auto  OTHER = PspState();
@@ -73,12 +73,12 @@ TEST_F(
     , ButtonsForPspState
 )
 {
-    auto    joystickState = JoystickState(
+    auto    evdevState = EvdevState(
         20
         , 20
     );
 
-    joystickState.setButtonState(
+    evdevState.setButtonState(
         10
         , 1
     );
@@ -101,7 +101,7 @@ TEST_F(
         }
     ]
 })"
-        , joystickState
+        , evdevState
         , 0x80800010
     );
 }
@@ -111,12 +111,12 @@ TEST_F(
     , ButtonsForChangeMapping
 )
 {
-    auto    joystickState = JoystickState(
+    auto    evdevState = EvdevState(
         20
         , 20
     );
 
-    joystickState.setButtonState(
+    evdevState.setButtonState(
         10
         , 1
     );
@@ -147,7 +147,7 @@ TEST_F(
         }
     ]
 })"
-        , joystickState
+        , evdevState
         , 0x80800010
     );
 }
@@ -157,12 +157,12 @@ TEST_F(
     , AxesForPspState
 )
 {
-    auto    joystickState = JoystickState(
+    auto    evdevState = EvdevState(
         20
         , 20
     );
 
-    joystickState.setAxisState(
+    evdevState.setAxisState(
         10
         , 192
     );
@@ -184,7 +184,7 @@ TEST_F(
         }
     ]
 })"
-        , joystickState
+        , evdevState
         , 0x80c00000
     );
 }
@@ -194,12 +194,12 @@ TEST_F(
     , AxesForChangeMapping
 )
 {
-    auto    joystickState = JoystickState(
+    auto    evdevState = EvdevState(
         20
         , 20
     );
 
-    joystickState.setAxisState(
+    evdevState.setAxisState(
         10
         , 192
     );
@@ -234,7 +234,7 @@ TEST_F(
         }
     ]
 })"
-        , joystickState
+        , evdevState
         , 0x80c00000
     );
 }

@@ -2,7 +2,7 @@
 #include "tktemotejoy/generatemappings.h"
 #include "tktemotejoy/mappings.h"
 #include "tktemotejoy/pspstate.h"
-#include "tktemotejoy/joystickstate.h"
+#include "tktemotejoy/evdevstate.h"
 #include "tktemotejoy/customjson.h"
 #include <string>
 
@@ -24,14 +24,14 @@ namespace {
 
             auto    pspState = PspState();
 
-            const auto  JOYSTICK_STATE = JoystickState(
+            const auto  EVDEV_STATE = EvdevState(
                 10
                 , 20
             );
 
-            mappings.joystickStateToPspState(
+            mappings.evdevStateToPspState(
                 pspState
-                , JOYSTICK_STATE
+                , EVDEV_STATE
             );
         }
 

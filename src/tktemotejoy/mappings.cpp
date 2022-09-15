@@ -1,7 +1,7 @@
 #include "tktemotejoy/mappings.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/pspstate.h"
-#include "tktemotejoy/joystickstate.h"
+#include "tktemotejoy/evdevstate.h"
 #include <utility>
 
 namespace {
@@ -20,18 +20,18 @@ namespace {
         Mappings::Impl::size_type &     _mappingIndex
         , Mappings::Impl::size_type &   _currentMappingIndex
         , const Mappings::Impl &        _MAPPINGS_IMPL
-        , const JoystickState &         _JOYSTICK_STATE
+        , const EvdevState &            _EVDEV_STATE
     )
     {
         while( true ) {
-            if( _JOYSTICK_STATE.forPressedButtons(
+            if( _EVDEV_STATE.forPressedButtons(
                 [
                     &_mappingIndex
                     , &_currentMappingIndex
                     , &_MAPPINGS_IMPL
                 ]
                 (
-                    const JoystickState::States::size_type  _INDEX
+                    const EvdevState::States::size_type _INDEX
                 ) -> bool
                 {
                     return changeMappingIndex(
@@ -46,15 +46,15 @@ namespace {
             ) == true ) {
                 continue;
             }
-            if( _JOYSTICK_STATE.forAxes(
+            if( _EVDEV_STATE.forAxes(
                 [
                     &_mappingIndex
                     , &_currentMappingIndex
                     , &_MAPPINGS_IMPL
                 ]
                 (
-                    const JoystickState::States::size_type      _INDEX
-                    , const JoystickState::States::value_type   _VALUE
+                    const EvdevState::States::size_type     _INDEX
+                    , const EvdevState::States::value_type  _VALUE
                 ) -> bool
                 {
                     return changeMappingIndex(
@@ -75,19 +75,19 @@ namespace {
         }
     }
 
-    void joystickStateToPspState(
+    void evdevStateToPspState(
         PspState &              _pspState
         , const Mapping &       _MAPPING
-        , const JoystickState & _JOYSTICK_STATE
+        , const EvdevState &    _EVDEV_STATE
     )
     {
-        _JOYSTICK_STATE.forPressedButtons(
+        _EVDEV_STATE.forPressedButtons(
             [
                 &_pspState
                 , &_MAPPING
             ]
             (
-                const JoystickState::States::size_type  _INDEX
+                const EvdevState::States::size_type _INDEX
             ) -> bool
             {
                 _MAPPING.pressButton(
@@ -98,14 +98,14 @@ namespace {
                 return false;
             }
         );
-        _JOYSTICK_STATE.forAxes(
+        _EVDEV_STATE.forAxes(
             [
                 &_pspState
                 , &_MAPPING
             ]
             (
-                const JoystickState::States::size_type      _INDEX
-                , const JoystickState::States::value_type   _VALUE
+                const EvdevState::States::size_type     _INDEX
+                , const EvdevState::States::value_type  _VALUE
             ) -> bool
             {
                 _MAPPING.operateAxis(
@@ -129,9 +129,9 @@ Mappings::Mappings(
 {
 }
 
-void Mappings::joystickStateToPspState(
+void Mappings::evdevStateToPspState(
     PspState &              _pspState
-    , const JoystickState & _JOYSTICK_STATE
+    , const EvdevState &    _EVDEV_STATE
 )
 {
     auto    currentMappingIndex = this->mappingIndex;
@@ -140,12 +140,12 @@ void Mappings::joystickStateToPspState(
         this->mappingIndex
         , currentMappingIndex
         , this->IMPL
-        , _JOYSTICK_STATE
+        , _EVDEV_STATE
     );
 
-    ::joystickStateToPspState(
+    ::evdevStateToPspState(
         _pspState
         , this->IMPL.at( currentMappingIndex )
-        , _JOYSTICK_STATE
+        , _EVDEV_STATE
     );
 }

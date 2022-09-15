@@ -3,7 +3,7 @@
 #include "tktemotejoy/customjson.h"
 #include "tktemotejoy/generatemappings.h"
 #include "tktemotejoy/mappings.h"
-#include "tktemotejoy/joystickstate.h"
+#include "tktemotejoy/evdevstate.h"
 #include "tktemotejoy/tousbhostfs.h"
 #include "tktemotejoy/evdev.h"
 #include <string>
@@ -46,11 +46,11 @@ namespace {
         );
     }
 
-    void initializeJoystickState(
+    void initializeEvdevState(
         const int                   _DESCRIPTOR
         , const EvdevKeyIndices &   _KEY_INDICES
         , const EvdevAbsIndices &   _ABS_INDICES
-        , JoystickState &           _joystickState
+        , EvdevState &              _evdevState
     )
     {
         const auto  KEY_STATES = generateEvdevKeyStates( _DESCRIPTOR );
@@ -62,7 +62,7 @@ namespace {
                 continue;
             }
 
-            _joystickState.setButtonState(
+            _evdevState.setButtonState(
                 INDEX
                 , KEY_STATES.test( i ) == true ? 1 : 0
             );
@@ -77,7 +77,7 @@ namespace {
                 continue;
             }
 
-            _joystickState.setAxisState(
+            _evdevState.setAxisState(
                 INDEX
                 , ABS_DATA_ARRAY.at( i ).value
             );
@@ -124,16 +124,16 @@ int main(
         , options.port
     );
 
-    auto    joystickState = JoystickState(
+    auto    evdevState = EvdevState(
         BUTTONS
         , AXES
     );
 
-    initializeJoystickState(
+    initializeEvdevState(
         evdev
         , KEY_INDICES
         , ABS_INDICES
-        , joystickState
+        , evdevState
     );
 
     auto    prevPspState = PspState();
@@ -154,7 +154,7 @@ int main(
             , [
                 &KEY_INDICES
                 , &ABS_INDICES
-                , &joystickState
+                , &evdevState
             ]
             (
                 const input_event & _EVENT
@@ -174,7 +174,7 @@ int main(
                         throw std::runtime_error( oStringStream.str() );
                     }
 
-                    joystickState.setButtonState(
+                    evdevState.setButtonState(
                         INDEX
                         , EVENT_VALUE
                     );
@@ -188,7 +188,7 @@ int main(
                         throw std::runtime_error( oStringStream.str() );
                     }
 
-                    joystickState.setAxisState(
+                    evdevState.setAxisState(
                         INDEX
                         , EVENT_VALUE
                     );
@@ -197,9 +197,9 @@ int main(
         );
 
         auto    pspState = PspState();
-        mappings.joystickStateToPspState(
+        mappings.evdevStateToPspState(
             pspState
-            , joystickState
+            , evdevState
         );
 
         pspState.diff(

@@ -7,9 +7,9 @@ module.TYPE = module.test
 
 module.BUILDER = cpp.gtest
 
-module.TARGET = 'tktemotejoy_joystickstate_forpressedbuttonstest'
+module.TARGET = 'tktemotejoy_evdevstate_forpressedbuttonstest'
 
 module.SOURCE = [
-    'joystickstate_forpressedbuttonstest.cpp',
-    'joystickstate.cpp',
+    'evdevstate_forpressedbuttonstest.cpp',
+    'evdevstate.cpp',
 ]

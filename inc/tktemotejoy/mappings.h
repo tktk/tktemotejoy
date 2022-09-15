@@ -3,7 +3,7 @@
 
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/pspstate.h"
-#include "tktemotejoy/joystickstate.h"
+#include "tktemotejoy/evdevstate.h"
 #include <vector>
 
 class Mappings final
@@ -21,9 +21,9 @@ public:
         , const Impl::size_type
     );
 
-    void joystickStateToPspState(
+    void evdevStateToPspState(
         PspState &
-        , const JoystickState &
+        , const EvdevState &
     );
 };
 

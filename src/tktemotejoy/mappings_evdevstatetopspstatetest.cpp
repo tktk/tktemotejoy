@@ -1,7 +1,7 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/mappings.h"
 #include "tktemotejoy/mapping.h"
-#include "tktemotejoy/joystickstate.h"
+#include "tktemotejoy/evdevstate.h"
 #include "tktemotejoy/pspstate.h"
 #include "tktemotejoy/handler/forpspstate/tobuttons.h"
 #include "tktemotejoy/handler/forpspstate/tofixedaxisx.h"
@@ -135,51 +135,51 @@ namespace {
         );
     }
 
-    JoystickState generateJoystickState(
+    EvdevState generateEvdevState(
     )
     {
-        auto    joystickState = JoystickState(
+        auto    evdevState = EvdevState(
             10
             , 10
         );
 
-        joystickState.setButtonState(
+        evdevState.setButtonState(
             0
             , 1
         );
 
-        joystickState.setButtonState(
+        evdevState.setButtonState(
             1
             , 1
         );
 
-        joystickState.setAxisState(
+        evdevState.setAxisState(
             0
             , 50
         );
 
-        joystickState.setAxisState(
+        evdevState.setAxisState(
             1
             , -1
         );
 
-        return joystickState;
+        return evdevState;
     }
 
-    class Mappings_joystickStateToPspStateTest : public ::testing::Test
+    class Mappings_evdevStateToPspStateTest : public ::testing::Test
     {
     public:
         void test(
             Mappings &              _mappings
-            , const JoystickState & _JOYSTICK_STATE
+            , const EvdevState &    _EVDEV_STATE
             , const PspState::Bits  _EXPECTED_BITS
         ) const
         {
             auto    pspState = PspState();
 
-            _mappings.joystickStateToPspState(
+            _mappings.evdevStateToPspState(
                 pspState
-                , _JOYSTICK_STATE
+                , _EVDEV_STATE
             );
 
             const auto  OTHER = PspState();
@@ -209,46 +209,46 @@ namespace {
 }
 
 TEST_F(
-    Mappings_joystickStateToPspStateTest
+    Mappings_evdevStateToPspStateTest
     , WithoutChangeMapping
 )
 {
     auto    mappings = generateMappings();
 
-    auto    joystickState = generateJoystickState();
+    auto    evdevState = generateEvdevState();
 
     this->test(
         mappings
-        , joystickState
+        , evdevState
         , 0xc0ff00ba
     );
 }
 
 TEST_F(
-    Mappings_joystickStateToPspStateTest
+    Mappings_evdevStateToPspStateTest
     , ChangeMapping
 )
 {
     auto    mappings = generateMappings();
 
-    auto    joystickState1 = generateJoystickState();
+    auto    evdevState1 = generateEvdevState();
 
-    joystickState1.setButtonState(
+    evdevState1.setButtonState(
         2
         , 1
     );
 
     this->test(
         mappings
-        , joystickState1
+        , evdevState1
         , 0xc0ff00ba
     );
 
-    const auto  JOYSTICK_STATE2 = generateJoystickState();
+    const auto  EVDEV_STATE2 = generateEvdevState();
 
     this->test(
         mappings
-        , JOYSTICK_STATE2
+        , EVDEV_STATE2
         , 0x8080d000
     );
 }

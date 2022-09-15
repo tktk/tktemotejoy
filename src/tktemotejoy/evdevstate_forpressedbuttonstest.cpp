@@ -1,25 +1,25 @@
 #include "tktemotejoy/test.h"
-#include "tktemotejoy/joystickstate.h"
+#include "tktemotejoy/evdevstate.h"
 #include <vector>
 #include <set>
 
 namespace {
-    using Indices = std::set< JoystickState::States::size_type >;
+    using Indices = std::set< EvdevState::States::size_type >;
 
-    class JoystickState_forPressedButtonsTest : public ::testing::Test
+    class EvdevState_forPressedButtonsTest : public ::testing::Test
     {
     public:
         void test(
-            JoystickState                               _joystickState
-            , const Indices                             _PRESS_BUTTON_INDICES
-            , const bool                                _RETURNS_FOR_STATE
-            , const bool                                _EXPECTED
-            , const JoystickState::States::size_type    _EXPECTED_CALL_COUNT
-            , const bool                                _TEST_CALLED_INDICES
+            EvdevState                              _evdevState
+            , const Indices                         _PRESS_BUTTON_INDICES
+            , const bool                            _RETURNS_FOR_STATE
+            , const bool                            _EXPECTED
+            , const EvdevState::States::size_type   _EXPECTED_CALL_COUNT
+            , const bool                            _TEST_CALLED_INDICES
         ) const
         {
             for( const auto & INDEX : _PRESS_BUTTON_INDICES ) {
-                _joystickState.setButtonState(
+                _evdevState.setButtonState(
                     INDEX
                     , 1
                 );
@@ -29,14 +29,14 @@ namespace {
             auto    calledIndices = Indices();
             EXPECT_EQ(
                 _EXPECTED
-                , _joystickState.forPressedButtons(
+                , _evdevState.forPressedButtons(
                     [
                         &_RETURNS_FOR_STATE
                         , &callCount
                         , &calledIndices
                     ]
                     (
-                        const JoystickState::States::size_type      _INDEX
+                        const EvdevState::States::size_type _INDEX
                     ) -> bool
                     {
                         callCount++;
@@ -56,12 +56,12 @@ namespace {
 }
 
 TEST_F(
-    JoystickState_forPressedButtonsTest
+    EvdevState_forPressedButtonsTest
     , ForAllPressedButtons
 )
 {
     this->test(
-        JoystickState(
+        EvdevState(
             5
             , 5
         )
@@ -78,12 +78,12 @@ TEST_F(
 }
 
 TEST_F(
-    JoystickState_forPressedButtonsTest
+    EvdevState_forPressedButtonsTest
     , Breaked
 )
 {
     this->test(
-        JoystickState(
+        EvdevState(
             5
             , 5
         )

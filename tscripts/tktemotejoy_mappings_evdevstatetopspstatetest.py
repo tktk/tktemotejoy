@@ -7,13 +7,13 @@ module.TYPE = module.test
 
 module.BUILDER = cpp.gtest
 
-module.TARGET = 'tktemotejoy_mappings_joystickstatetopspstatetest'
+module.TARGET = 'tktemotejoy_mappings_evdevstatetopspstatetest'
 
 module.SOURCE = [
-    'mappings_joystickstatetopspstatetest.cpp',
+    'mappings_evdevstatetopspstatetest.cpp',
     'mappings.cpp',
     'mapping.cpp',
-    'joystickstate.cpp',
+    'evdevstate.cpp',
     'pspstate.cpp',
     {
         'handler' : {

@@ -1,11 +1,11 @@
-#ifndef TKTEMOTEJOY_JOYSTICKSTATE_H
-#define TKTEMOTEJOY_JOYSTICKSTATE_H
+#ifndef TKTEMOTEJOY_EVDEVSTATE_H
+#define TKTEMOTEJOY_EVDEVSTATE_H
 
 #include <linux/input.h>
 #include <vector>
 #include <functional>
 
-class JoystickState final   //TODO EvdevStateに名前を変更する
+class EvdevState final
 {
 public:
     using States = std::vector< __s32 >;
@@ -28,7 +28,7 @@ private:
     States  axisStates;
 
 public:
-    JoystickState(
+    EvdevState(
         const States::size_type
         , const States::size_type
     );
@@ -52,4 +52,4 @@ public:
     ) const;
 };
 
-#endif  // TKTEMOTEJOY_JOYSTICKSTATE_H
+#endif  // TKTEMOTEJOY_EVDEVSTATE_H

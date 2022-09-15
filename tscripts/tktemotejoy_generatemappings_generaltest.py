@@ -14,7 +14,7 @@ module.SOURCE = [
     'generatemappings.cpp',
     'mappings.cpp',
     'mapping.cpp',
-    'joystickstate.cpp',
+    'evdevstate.cpp',
     'pspstate.cpp',
     'typeerror.cpp',
     {
