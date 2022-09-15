@@ -36,7 +36,6 @@ module.DEPENDS = [
     'tktemotejoy_handler_forchangemapping_dummytest',
     'tktemotejoy_handler_forchangemapping_withrangetest',
     'tktemotejoy_handler_forchangemapping_withrangeonewaytest',
-    'tktemotejoy_handler_forchangemapping_withdeadzoneonewaytest',
     'tktemotejoy_handler_forchangemapping_tobuttonhandlerstest',
     'tktemotejoy_handler_forchangemapping_tobuttonhandlertest',
     'tktemotejoy_mapping_pressbuttonforpspstatetest',
