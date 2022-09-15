@@ -31,6 +31,45 @@ namespace {
         }
     };
 
+    class ToButtonHandlerForPspState_newTest : public ::testing::Test
+    {
+    public:
+        void test(
+            const __s16     _MIN
+            , const __s16   _MAX
+            , const __s16   _DEAD_ZONE
+            , const __s16   _VALUE
+            , const bool    _EXPECTED_CALLED_HANDLER
+        ) const
+        {
+            auto    calledHandler = false;
+
+            auto    pspState = PspState();
+
+            auto    handlerUnique = Mapping::PressButtonHandlerForPspStateUnique(
+                new TestHandler(
+                    calledHandler
+                    , pspState
+                )
+            );
+
+            auto    toButtonHandler = ToButtonHandlerForPspState_new(
+                _MIN
+                , _MAX
+                , _DEAD_ZONE
+                , ToButtonHandlerForPspStateImpl( std::move( handlerUnique ) )
+            );
+
+            toButtonHandler(
+                _VALUE
+                , pspState
+            );
+
+            EXPECT_EQ( _EXPECTED_CALLED_HANDLER, calledHandler );
+        }
+    };
+
+    //REMOVEME
     class ToButtonHandlerForPspStateTest : public ::testing::Test
     {
     public:
@@ -67,6 +106,35 @@ namespace {
 }
 
 TEST_F(
+    ToButtonHandlerForPspState_newTest
+    , CallHandler
+)
+{
+    this->test(
+        -100
+        , 155
+        , 10
+        , 0
+        , true
+    );
+}
+
+TEST_F(
+    ToButtonHandlerForPspState_newTest
+    , DeadZone
+)
+{
+    this->test(
+        -100
+        , 155
+        , 10
+        , -90
+        , false
+    );
+}
+
+//REMOVEME
+TEST_F(
     ToButtonHandlerForPspStateTest
     , CallHandler
 )
@@ -78,6 +146,7 @@ TEST_F(
     );
 }
 
+//REMOVEME
 TEST_F(
     ToButtonHandlerForPspStateTest
     , DeadZone
