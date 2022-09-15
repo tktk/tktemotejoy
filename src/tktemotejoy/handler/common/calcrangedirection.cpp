@@ -6,6 +6,5 @@ __s32 calcRangeDirection(
     , const __s32   _MAX
 )
 {
-    //TODO
-    return 1;
+    return _MIN < _MAX ? 1 : -1;
 }
