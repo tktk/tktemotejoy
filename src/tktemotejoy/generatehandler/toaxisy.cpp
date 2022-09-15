@@ -19,8 +19,7 @@ namespace {
         }
     };
 
-    //FIXME
-    struct GenerateToAxisYUnique_new
+    struct GenerateToAxisYUnique
     {
         auto operator()(
             const __s16     _MIN
@@ -41,14 +40,13 @@ namespace {
     };
 }
 
-//FIXME
-Mapping::OperateAxisHandlerForPspStateUnique generateToAxisYUnique_new(
+Mapping::OperateAxisHandlerForPspStateUnique generateToAxisYUnique(
     const Json::object_t &  _OBJECT
 )
 {
     return generateHandlerUnique<
         Mapping::OperateAxisHandlerForPspStateUnique
         , GetType
-        , GenerateToAxisUnique_new< GenerateToAxisYUnique_new >
+        , GenerateToAxisUnique_new< GenerateToAxisYUnique >
     >( _OBJECT );
 }
