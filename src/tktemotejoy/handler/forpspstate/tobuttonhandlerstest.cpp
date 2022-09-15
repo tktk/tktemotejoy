@@ -35,10 +35,10 @@ namespace {
     {
     public:
         void test(
-            const __s16     _MIN
-            , const __s16   _MAX
-            , const __s16   _DEAD_ZONE
-            , const __s16   _VALUE
+            const __s32     _MIN
+            , const __s32   _MAX
+            , const __s32   _DEAD_ZONE
+            , const __s32   _VALUE
             , const bool    _EXPECTED_CALLED_HANDLER_MINUS
             , const bool    _EXPECTED_CALLED_HANDLER_PLUS
         ) const

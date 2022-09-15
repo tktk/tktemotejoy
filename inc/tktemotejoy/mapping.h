@@ -33,7 +33,7 @@ public:
         ) = 0;
 
         virtual void operator()(
-            const __s16
+            const __s32
             , PspState &
         ) const = 0;
     };

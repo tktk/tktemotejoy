@@ -10,11 +10,11 @@ class ToAxisTest : public ::testing::Test
 {
 public:
     void test(
-        const __s16             _MIN
-        , const __s16           _MAX
-        , const __s16           _DEAD_ZONE
-        , const __s16           _LIMIT
-        , const __s16           _VALUE
+        const __s32             _MIN
+        , const __s32           _MAX
+        , const __s32           _DEAD_ZONE
+        , const __s32           _LIMIT
+        , const __s32           _VALUE
         , const bool            _EXPECTED_CALLED_WHEN_DIFF
         , const PspState::Bits  _EXPECTED_BITS
     ) const

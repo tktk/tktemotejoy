@@ -4,14 +4,14 @@
 #include <linux/input.h>
 
 ToAxisXImpl::ToAxisXImpl(
-    const __s16 _LIMIT
+    const __s32 _LIMIT
 )
     : LIMIT( _LIMIT )
 {
 }
 
 void ToAxisXImpl::operator()(
-    const __s16     _VALUE
+    const __s32     _VALUE
     , PspState &    _pspState
 ) const
 {

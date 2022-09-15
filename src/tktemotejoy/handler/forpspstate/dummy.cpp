@@ -19,7 +19,7 @@ DummyOperateAxisHandlerForPspState::DummyOperateAxisHandlerForPspState(
 }
 
 void DummyOperateAxisHandlerForPspState::operator()(
-    const __s16
+    const __s32
     , PspState &
 ) const
 {

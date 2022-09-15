@@ -8,13 +8,13 @@ namespace {
     class TestHandlerForPspState final : public Mapping::OperateAxisHandlerForPspState
     {
         int &               calledCount;
-        const __s16         EXPECTED_VALUE;
+        const __s32         EXPECTED_VALUE;
         const PspState &    PSP_STATE;
 
     public:
         TestHandlerForPspState(
             int &               _calledCount
-            , const __s16       _EXPECTED_VALUE
+            , const __s32       _EXPECTED_VALUE
             , const PspState &  _PSP_STATE
         )
             : Mapping::OperateAxisHandlerForPspState()
@@ -25,7 +25,7 @@ namespace {
         }
 
         void operator()(
-            const __s16     _VALUE
+            const __s32     _VALUE
             , PspState &    _pspState
         ) const override
         {
@@ -42,8 +42,8 @@ namespace {
         void test(
             const std::size_t   _SET_HANDLER_INDEX
             , const std::size_t _OPERATE_AXIS_INDEX
-            , const __s16       _VALUE
-            , const __s16       _EXPECTED_VALUE
+            , const __s32       _VALUE
+            , const __s32       _EXPECTED_VALUE
             , const int         _EXPECTED_CALLED_COUNT
         ) const
         {

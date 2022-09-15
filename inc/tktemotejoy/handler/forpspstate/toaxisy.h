@@ -7,15 +7,15 @@
 
 class ToAxisYImpl final
 {
-    const __s16 LIMIT;
+    const __s32 LIMIT;
 
 public:
     ToAxisYImpl(
-        const __s16
+        const __s32
     );
 
     void operator()(
-        const __s16
+        const __s32
         , PspState &
     ) const;
 };

@@ -14,7 +14,7 @@ ToButtonHandlersForPspStateImpl::ToButtonHandlersForPspStateImpl(
 }
 
 void ToButtonHandlersForPspStateImpl::operator()(
-    const __s16     _VALUE
+    const __s32     _VALUE
     , PspState &    _pspState
 ) const
 {

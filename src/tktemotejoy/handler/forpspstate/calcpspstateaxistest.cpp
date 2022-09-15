@@ -7,8 +7,8 @@ namespace {
     {
     public:
         void test(
-            const __s16             _VALUE
-            , const __s16           _LIMIT
+            const __s32             _VALUE
+            , const __s32           _LIMIT
             , const PspState::Axis  _EXPECTED
         ) const
         {

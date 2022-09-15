@@ -11,8 +11,8 @@ namespace {
 }
 
 PspState::Axis calcPspStateAxis(
-    const __s16     _VALUE
-    , const __s16   _LIMIT
+    const __s32     _VALUE
+    , const __s32   _LIMIT
 )
 {
     if( _VALUE >= _LIMIT ) {
