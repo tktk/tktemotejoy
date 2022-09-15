@@ -38,6 +38,9 @@ module.SOURCE = [
             'forchangemapping' : [
                 'dummy.cpp',
             ],
+            'common' : [
+                'calcrangedirection.cpp',
+            ],
         },
     },
     'pspstate.cpp',

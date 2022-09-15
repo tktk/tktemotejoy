@@ -13,6 +13,7 @@ module.SOURCE = {
     'handler' : {
         'common' : [
             'withrangeimpltest.cpp',
+            'calcrangedirection.cpp',
         ],
     },
 }

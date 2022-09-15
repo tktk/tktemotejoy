@@ -28,6 +28,9 @@ module.SOURCE = [
             'forpspstate' : [
                 'dummy.cpp',
             ],
+            'common' : [
+                'calcrangedirection.cpp',
+            ],
         },
     },
     'mapping.cpp',

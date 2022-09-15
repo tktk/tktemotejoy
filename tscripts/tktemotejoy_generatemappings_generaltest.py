@@ -54,6 +54,9 @@ module.SOURCE = [
                 'tobuttonhandler.cpp',
                 'dummy.cpp',
             ],
+            'common' : [
+                'calcrangedirection.cpp',
+            ],
         },
     },
 ]
