@@ -72,7 +72,7 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlersForCha
     return generateHandlerUnique<
         Mapping::OperateAxisHandlerForChangeMappingUnique
         , GetType
-        , GenerateToButtonHandlersUnique_new<
+        , GenerateToButtonHandlersUnique<
             GenerateToButtonHandlersForChangeMappingUnique
             , GeneratePressButtonHandlerForChangeMappingUnique
             , GenerateDummyPressButtonHandlerForChangeMappingUnique

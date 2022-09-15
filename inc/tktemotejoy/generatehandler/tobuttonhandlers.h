@@ -9,15 +9,14 @@
 #include <string>
 #include <utility>
 
-//FIXME
 template<
     typename GENERATE_TO_BUTTON_HANDLERS_UNIQUE_T
     , typename GENERATE_HANDLER_UNIQUE_T
     , typename GENERATE_DUMMY_HANDLER_UNIQUE_T
 >
-class GenerateToButtonHandlersUnique_new
+class GenerateToButtonHandlersUnique
     : public GenerateHandlerWithRangeUnique<
-        GenerateToButtonHandlersUnique_new<
+        GenerateToButtonHandlersUnique<
             GENERATE_TO_BUTTON_HANDLERS_UNIQUE_T
             , GENERATE_HANDLER_UNIQUE_T
             , GENERATE_DUMMY_HANDLER_UNIQUE_T

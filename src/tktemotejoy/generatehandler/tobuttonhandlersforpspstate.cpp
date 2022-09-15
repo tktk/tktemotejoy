@@ -72,7 +72,7 @@ Mapping::OperateAxisHandlerForPspStateUnique generateToButtonHandlersForPspState
     return generateHandlerUnique<
         Mapping::OperateAxisHandlerForPspStateUnique
         , GetType
-        , GenerateToButtonHandlersUnique_new<
+        , GenerateToButtonHandlersUnique<
             GenerateToButtonHandlersForPspStateUnique
             , GeneratePressButtonHandlerForPspStateUnique
             , GenerateDummyPressButtonHandlerForPspStateUnique
