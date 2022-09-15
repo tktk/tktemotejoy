@@ -4,6 +4,11 @@
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
 
+Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChangeMappingUnique_new(
+    const Json::object_t &
+);
+
+//REMOVEME
 Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChangeMappingUnique(
     const Json::object_t &
 );

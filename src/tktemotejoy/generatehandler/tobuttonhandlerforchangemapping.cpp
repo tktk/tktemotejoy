@@ -5,7 +5,7 @@
 #include "tktemotejoy/handler/forchangemapping/tobuttonhandler.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <string>
 
 namespace {
@@ -47,6 +47,25 @@ namespace {
     };
 }
 
+Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChangeMappingUnique_new(
+    const Json::object_t &  _OBJECT
+)
+{
+    //TODO
+    return Mapping::OperateAxisHandlerForChangeMappingUnique();
+/*
+    return generateHandlerUnique<
+        Mapping::OperateAxisHandlerForChangeMappingUnique
+        , GetType
+        , GenerateToButtonHandlerUnique<
+            GenerateToButtonHandlerForChangeMappingUnique
+            , GeneratePressButtonHandlerForChangeMappingUnique
+        >
+    >( _OBJECT );
+*/
+}
+
+//REMOVEME
 Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChangeMappingUnique(
     const Json::object_t &  _OBJECT
 )
