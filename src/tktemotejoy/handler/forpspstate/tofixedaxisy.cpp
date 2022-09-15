@@ -1,12 +1,10 @@
-//FIXME
 #include "tktemotejoy/handler/forpspstate/tofixedaxisy.h"
-#include "tktemotejoy/handler/forpspstate/jseventaxistopspstateaxis.h"
 #include "tktemotejoy/pspstate.h"
 
 ToFixedAxisY::ToFixedAxisY(
     const __s16 _AXIS
 )
-    : AXIS( jsEventAxisToPspStateAxis( _AXIS ) )
+    : AXIS( _AXIS )
 {
 }
 
