@@ -53,12 +53,9 @@ public:
     {
         const auto  VALUE_FROM_MIN = ( _VALUE - this->MIN ) * this->DIRECTION;
 
-        //TODO
-/*
-        if( std::abs( VALUE_FROM_CENTER ) <= this->DEAD_ZONE ) {
+        if( VALUE_FROM_MIN <= this->DEAD_ZONE ) {
             return _GENERATE_DEFAULT_VALUE();
         }
-*/
 
         return this->HANDLER(
             VALUE_FROM_MIN
