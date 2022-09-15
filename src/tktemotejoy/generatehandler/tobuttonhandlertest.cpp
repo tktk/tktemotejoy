@@ -215,7 +215,21 @@ TEST_F(
     );
 }
 
-//TODO FailedUnsupportedHandler
+TEST_F(
+    GenerateToButtonHandlerUnique_newTest
+    , FailedUnsupportedHandler
+)
+{
+    this->testAnyThrow(
+        R"({
+    "min" : 0,
+    "max" : 255,
+    "deadZone" : 10,
+    "handler" : {
+    }
+})"
+    );
+}
 
 //REMOVEME
 TEST_F(
