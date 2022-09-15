@@ -4,6 +4,7 @@
 #include "tktemotejoy/customjson.h"
 
 namespace {
+    //FIXME
     struct GenerateToAxisYUnique_new
     {
         auto operator()(
@@ -14,21 +15,8 @@ namespace {
         }
     };
 
+    //FIXME
     using GenerateToAxisY_newTest = GenerateOperateAxisHandlerForPspStateTestTmpl< GenerateToAxisYUnique_new >;
-
-    //REMOVEME
-    struct GenerateToAxisYUnique
-    {
-        auto operator()(
-            const Json::object_t &  _OBJECT
-        ) const
-        {
-            return generateToAxisYUnique( _OBJECT );
-        }
-    };
-
-    //REMOVEME
-    using GenerateToAxisYTest = GenerateOperateAxisHandlerForPspStateTestTmpl< GenerateToAxisYUnique >;
 }
 
 TEST_F(
@@ -46,22 +34,5 @@ TEST_F(
 })"
         , 175
         , 0xc0800000
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateToAxisYTest
-    , Standard
-)
-{
-    this->test(
-        R"({
-    "type" : "toAxisY",
-    "deadZone" : 10,
-    "max" : 20
-})"
-        , 20
-        , 0xff800000
     );
 }

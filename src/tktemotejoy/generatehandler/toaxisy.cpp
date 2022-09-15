@@ -19,6 +19,7 @@ namespace {
         }
     };
 
+    //FIXME
     struct GenerateToAxisYUnique_new
     {
         auto operator()(
@@ -38,25 +39,9 @@ namespace {
             );
         }
     };
-
-    //REMOVEME
-    struct GenerateToAxisYUnique
-    {
-        auto operator()(
-            const __s16     _DEAD_ZONE
-            , const __s16   _MAX
-        ) const
-        {
-            return Mapping::handlerUnique(
-                new ToAxisY(
-                    _DEAD_ZONE
-                    , ToAxisYImpl( _MAX )
-                )
-            );
-        }
-    };
 }
 
+//FIXME
 Mapping::OperateAxisHandlerForPspStateUnique generateToAxisYUnique_new(
     const Json::object_t &  _OBJECT
 )
@@ -65,17 +50,5 @@ Mapping::OperateAxisHandlerForPspStateUnique generateToAxisYUnique_new(
         Mapping::OperateAxisHandlerForPspStateUnique
         , GetType
         , GenerateToAxisUnique_new< GenerateToAxisYUnique_new >
-    >( _OBJECT );
-}
-
-//REMOVEME
-Mapping::OperateAxisHandlerForPspStateUnique generateToAxisYUnique(
-    const Json::object_t &  _OBJECT
-)
-{
-    return generateHandlerUnique<
-        Mapping::OperateAxisHandlerForPspStateUnique
-        , GetType
-        , GenerateToAxisUnique< GenerateToAxisYUnique >
     >( _OBJECT );
 }
