@@ -47,4 +47,14 @@ TEST_F(
     );
 }
 
-//TODO MaxEqualsMin
+TEST_F(
+    CalcRangeDirectionTest
+    , MaxEqualsMin
+)
+{
+    this->test(
+        255
+        , 255
+        , 1
+    );
+}
