@@ -36,6 +36,7 @@ namespace {
         }
     };
 
+    //FIXME
     class ToButtonHandlersForChangeMapping_newTest : public ::testing::Test
     {
     public:
@@ -74,54 +75,6 @@ namespace {
                 , ToButtonHandlersForChangeMapping_newImpl(
                     std::move( handlerMinusUnique )
                     , std::move( handlerPlusUnique )
-                )
-            );
-
-            EXPECT_EQ(
-                _EXPECTED_NEW_MAPPING_INDEX
-                , toButtonHandlersForChangeMapping(
-                    _VALUE
-                    , mappingIndex
-                    , _CURRENT_MAPPING_INDEX
-                )
-            );
-        }
-    };
-
-    class ToButtonHandlersForChangeMappingTest : public ::testing::Test
-    {
-    public:
-        void test(
-            const __s16         _DEAD_ZONE
-            , const __s16       _VALUE
-            , const std::size_t _RETURNS_OPERATOR_CALL1
-            , const std::size_t _RETURNS_OPERATOR_CALL2
-            , const std::size_t _CURRENT_MAPPING_INDEX
-            , const std::size_t _EXPECTED_NEW_MAPPING_INDEX
-        ) const
-        {
-            auto    mappingIndex = std::size_t( 10 );
-
-            auto    handler1Unique = Mapping::PressButtonHandlerForChangeMappingUnique(
-                new TestHandler(
-                    _RETURNS_OPERATOR_CALL1
-                    , mappingIndex
-                    , _CURRENT_MAPPING_INDEX
-                )
-            );
-            auto    handler2Unique = Mapping::PressButtonHandlerForChangeMappingUnique(
-                new TestHandler(
-                    _RETURNS_OPERATOR_CALL2
-                    , mappingIndex
-                    , _CURRENT_MAPPING_INDEX
-                )
-            );
-
-            auto    toButtonHandlersForChangeMapping = ToButtonHandlersForChangeMapping(
-                _DEAD_ZONE
-                , ToButtonHandlersForChangeMappingImpl(
-                    std::move( handler1Unique )
-                    , std::move( handler2Unique )
                 )
             );
 
@@ -181,54 +134,6 @@ TEST_F(
         , 255
         , 10
         , 138
-        , 10
-        , 20
-        , 30
-        , 30
-    );
-}
-
-//REMOVEME
-TEST_F(
-    ToButtonHandlersForChangeMappingTest
-    , CallHandler1
-)
-{
-    this->test(
-        0
-        , -1
-        , 10
-        , 20
-        , 30
-        , 10
-    );
-}
-
-//REMOVEME
-TEST_F(
-    ToButtonHandlersForChangeMappingTest
-    , CallHandler2
-)
-{
-    this->test(
-        0
-        , 1
-        , 10
-        , 20
-        , 30
-        , 20
-    );
-}
-
-//REMOVEME
-TEST_F(
-    ToButtonHandlersForChangeMappingTest
-    , DeadZone
-)
-{
-    this->test(
-        0
-        , 0
         , 10
         , 20
         , 30
