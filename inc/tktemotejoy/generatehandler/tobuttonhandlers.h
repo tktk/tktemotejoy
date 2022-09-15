@@ -2,7 +2,6 @@
 #define TKTEMOTEJOY_GENERATEHANDLER_TOBUTTONHANDLERS_H
 
 #include "tktemotejoy/generatehandler/withrange.h"
-#include "tktemotejoy/generatehandler/withdeadzone.h"
 #include "tktemotejoy/customjson.h"
 #include "tktemotejoy/json.h"
 #include "tktemotejoy/typeerror.h"
