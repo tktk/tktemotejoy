@@ -26,9 +26,9 @@ class GenerateToButtonHandlersUnique
 public:
     auto generateHandler(
         const Json::object_t &  _OBJECT
-        , const __s16           _MIN
-        , const __s16           _MAX
-        , const __s16           _DEAD_ZONE
+        , const __s32           _MIN
+        , const __s32           _MAX
+        , const __s32           _DEAD_ZONE
     ) const
     {
         const auto  KEY_HANDLER_MINUS = std::string( "handlerMinus" );

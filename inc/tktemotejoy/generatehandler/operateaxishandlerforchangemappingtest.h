@@ -15,7 +15,7 @@ class GenerateOperateAxisHandlerForChangeMappingTestTmpl : public ::testing::Tes
 public:
     void test(
         const std::string & _JSON_STRING
-        , const __s16       _VALUE
+        , const __s32       _VALUE
         , const std::size_t _MAPPING_INDEX
         , const std::size_t _EXPECTED_MAPPING_INDEX
         , const std::size_t _EXPECTED_NEW_MAPPING_INDEX

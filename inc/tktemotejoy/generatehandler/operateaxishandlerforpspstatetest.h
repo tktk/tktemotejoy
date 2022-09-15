@@ -15,7 +15,7 @@ class GenerateOperateAxisHandlerForPspStateTestTmpl : public ::testing::Test
 public:
     void test(
         const std::string &     _JSON_STRING
-        , const __s16           _VALUE
+        , const __s32           _VALUE
         , const PspState::Bits  _EXPECTED_BITS
     ) const
     {
