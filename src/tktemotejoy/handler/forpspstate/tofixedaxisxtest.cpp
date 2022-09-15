@@ -7,7 +7,7 @@ TEST(
     , OperatorCall
 )
 {
-    auto    toFixedAxisX = ToFixedAxisX( 32767 );
+    auto    toFixedAxisX = ToFixedAxisX( 0xc0 );
 
     auto    pspState = PspState();
 
@@ -34,5 +34,5 @@ TEST(
     );
 
     EXPECT_TRUE( calledWhenDiff );
-    EXPECT_EQ( 0x80ff0000, bits );
+    EXPECT_EQ( 0x80c00000, bits );
 }
