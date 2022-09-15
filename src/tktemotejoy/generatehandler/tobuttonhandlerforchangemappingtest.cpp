@@ -4,6 +4,7 @@
 #include "tktemotejoy/customjson.h"
 
 namespace {
+    //FIXME
     struct GenerateToButtonHandlerForChangeMappingUnique_new
     {
         auto operator()(
@@ -14,21 +15,8 @@ namespace {
         }
     };
 
+    //FIXME
     using GenerateToButtonHandlerForChangeMapping_newTest = GenerateOperateAxisHandlerForChangeMappingTestTmpl< GenerateToButtonHandlerForChangeMappingUnique_new >;
-
-    //REMOVEME
-    struct GenerateToButtonHandlerForChangeMappingUnique
-    {
-        auto operator()(
-            const Json::object_t &  _OBJECT
-        ) const
-        {
-            return generateToButtonHandlerForChangeMappingUnique( _OBJECT );
-        }
-    };
-
-    //REMOVEME
-    using GenerateToButtonHandlerForChangeMappingTest = GenerateOperateAxisHandlerForChangeMappingTestTmpl< GenerateToButtonHandlerForChangeMappingUnique >;
 }
 
 TEST_F(
@@ -48,28 +36,6 @@ TEST_F(
     }
 })"
         , -25000
-        , 20
-        , 10
-        , 20
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateToButtonHandlerForChangeMappingTest
-    , Handler
-)
-{
-    this->test(
-        R"({
-    "type" : "toButtonHandler",
-    "deadZone" : 10000,
-    "handler" : {
-        "type" : "toggleMapping",
-        "mapping" : 10
-    }
-})"
-        , -10000
         , 20
         , 10
         , 20

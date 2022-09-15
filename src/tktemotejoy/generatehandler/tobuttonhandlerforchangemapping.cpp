@@ -20,6 +20,7 @@ namespace {
         }
     };
 
+    //FIXME
     struct GenerateToButtonHandlerForChangeMappingUnique_new
     {
         auto operator()(
@@ -40,23 +41,6 @@ namespace {
         }
     };
 
-    //REMOVEME
-    struct GenerateToButtonHandlerForChangeMappingUnique
-    {
-        auto operator()(
-            const __s16                                             _DEAD_ZONE
-            , Mapping::PressButtonHandlerForChangeMappingUnique &&  _handlerUnique
-        ) const
-        {
-            return Mapping::handlerUnique(
-                new ToButtonHandlerForChangeMapping(
-                    _DEAD_ZONE
-                    , ToButtonHandlerForChangeMappingImpl( std::move( _handlerUnique ) )
-                )
-            );
-        }
-    };
-
     struct GeneratePressButtonHandlerForChangeMappingUnique
     {
         auto operator()(
@@ -68,6 +52,7 @@ namespace {
     };
 }
 
+//FIXME
 Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChangeMappingUnique_new(
     const Json::object_t &  _OBJECT
 )
@@ -77,21 +62,6 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChan
         , GetType
         , GenerateToButtonHandlerUnique_new<
             GenerateToButtonHandlerForChangeMappingUnique_new
-            , GeneratePressButtonHandlerForChangeMappingUnique
-        >
-    >( _OBJECT );
-}
-
-//REMOVEME
-Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChangeMappingUnique(
-    const Json::object_t &  _OBJECT
-)
-{
-    return generateHandlerUnique<
-        Mapping::OperateAxisHandlerForChangeMappingUnique
-        , GetType
-        , GenerateToButtonHandlerUnique<
-            GenerateToButtonHandlerForChangeMappingUnique
             , GeneratePressButtonHandlerForChangeMappingUnique
         >
     >( _OBJECT );
