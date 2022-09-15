@@ -16,7 +16,6 @@ module.SOURCE = [
                 'toaxisxtest.cpp',
                 'toaxisx.cpp',
                 'calcpspstateaxis.cpp',
-                'jseventaxistopspstateaxis.cpp',
                 'dummy.cpp',
             ],
             'forchangemapping' : [

@@ -23,7 +23,6 @@ module.SOURCE = [
                 'toaxisy.cpp',
                 'tobuttonhandlers.cpp',
                 'calcpspstateaxis.cpp',
-                'jseventaxistopspstateaxis.cpp',
                 'dummy.cpp',
             ],
             'forchangemapping' : [

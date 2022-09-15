@@ -25,7 +25,6 @@ module.SOURCE = [
                 'tobuttons.cpp',
                 'tofixedaxisx.cpp',
                 'tofixedaxisy.cpp',
-                'jseventaxistopspstateaxis.cpp',
                 'dummy.cpp',
             ],
             'forchangemapping' : [

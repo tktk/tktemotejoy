@@ -46,7 +46,6 @@ module.SOURCE = [
                 'tobuttonhandler.cpp',
                 'dummy.cpp',
                 'calcpspstateaxis.cpp',
-                'jseventaxistopspstateaxis.cpp',
             ],
             'forchangemapping' : [
                 'shiftmapping.cpp',

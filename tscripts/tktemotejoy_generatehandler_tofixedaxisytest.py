@@ -18,7 +18,6 @@ module.SOURCE = [
         'handler' : {
             'forpspstate' : [
                 'tofixedaxisy.cpp',
-                'jseventaxistopspstateaxis.cpp',
                 'dummy.cpp',
             ],
             'forchangemapping' : [
