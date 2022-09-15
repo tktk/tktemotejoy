@@ -20,6 +20,27 @@ namespace {
         }
     };
 
+    struct GenerateToButtonHandlerForChangeMappingUnique_new
+    {
+        auto operator()(
+            const __s16                                             _MIN
+            , const __s16                                           _MAX
+            , const __s16                                           _DEAD_ZONE
+            , Mapping::PressButtonHandlerForChangeMappingUnique &&  _handlerUnique
+        ) const
+        {
+            return Mapping::handlerUnique(
+                new ToButtonHandlerForChangeMapping_new(
+                    _MIN
+                    , _MAX
+                    , _DEAD_ZONE
+                    , ToButtonHandlerForChangeMappingImpl( std::move( _handlerUnique ) )
+                )
+            );
+        }
+    };
+
+    //REMOVEME
     struct GenerateToButtonHandlerForChangeMappingUnique
     {
         auto operator()(
@@ -51,18 +72,14 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChan
     const Json::object_t &  _OBJECT
 )
 {
-    //TODO
-    return Mapping::OperateAxisHandlerForChangeMappingUnique();
-/*
     return generateHandlerUnique<
         Mapping::OperateAxisHandlerForChangeMappingUnique
         , GetType
-        , GenerateToButtonHandlerUnique<
-            GenerateToButtonHandlerForChangeMappingUnique
+        , GenerateToButtonHandlerUnique_new<
+            GenerateToButtonHandlerForChangeMappingUnique_new
             , GeneratePressButtonHandlerForChangeMappingUnique
         >
     >( _OBJECT );
-*/
 }
 
 //REMOVEME
