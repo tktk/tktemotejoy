@@ -8,9 +8,9 @@
 namespace {
     struct TestHandler
     {
-        const __s16     MIN;
-        const __s16     MAX;
-        const __s16     DEAD_ZONE;
+        const __s32     MIN;
+        const __s32     MAX;
+        const __s32     DEAD_ZONE;
         const long int  VALUE;
     };
 
@@ -18,9 +18,9 @@ namespace {
     {
         auto generateHandler(
             const Json::object_t &  _OBJECT
-            , const __s16           _MIN
-            , const __s16           _MAX
-            , const __s16           _DEAD_ZONE
+            , const __s32           _MIN
+            , const __s32           _MAX
+            , const __s32           _DEAD_ZONE
         ) const
         {
             const auto &    VALUE = _OBJECT.at( "key" ).get_ref< const Json::number_integer_t & >();
@@ -41,9 +41,9 @@ namespace {
     public:
         void test(
             const std::string & _JSON_STRING
-            , const __s16       _EXPECTED_MIN
-            , const __s16       _EXPECTED_MAX
-            , const __s16       _EXPECTED_DEAD_ZONE
+            , const __s32       _EXPECTED_MIN
+            , const __s32       _EXPECTED_MAX
+            , const __s32       _EXPECTED_DEAD_ZONE
             , const int         _EXPECTED_VALUE
         ) const
         {

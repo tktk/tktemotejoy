@@ -3,7 +3,6 @@
 
 #include "tktemotejoy/customjson.h"
 #include "tktemotejoy/json.h"
-#include <linux/input.h>
 #include <string>
 
 template< typename T >
@@ -36,15 +35,11 @@ public:
             , KEY_DEAD_ZONE
         );
 
-        const auto  MIN_S16 = __s16( MIN );
-        const auto  MAX_S16 = __s16( MAX );
-        const auto  DEAD_ZONE_S16 = __s16( DEAD_ZONE );
-
         return static_cast< const T * >( this )->generateHandler(
             _OBJECT
-            , MIN_S16
-            , MAX_S16
-            , DEAD_ZONE_S16
+            , MIN
+            , MAX
+            , DEAD_ZONE
         );
     }
 };

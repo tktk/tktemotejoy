@@ -2,7 +2,6 @@
 #include "tktemotejoy/generatehandler/tofixedaxis.h"
 #include "tktemotejoy/pspstate.h"
 #include "tktemotejoy/customjson.h"
-#include <linux/input.h>
 #include <string>
 #include <memory>
 
