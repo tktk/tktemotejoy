@@ -59,9 +59,11 @@ namespace {
                     _mapping.setHandler(
                         0
                         , Mapping::handlerUnique(
-                            new ToAxisY(
-                                0
-                                , ToAxisYImpl( 100 )
+                            new ToAxisY_new(
+                                -100
+                                , 100
+                                , 0
+                                , ToAxisY_newImpl( 100 )
                             )
                         )
                     );
@@ -215,7 +217,7 @@ TEST_F(
     this->test(
         mappings
         , joystickState
-        , 0xbfff00ba
+        , 0xc0ff00ba
     );
 }
 
@@ -236,7 +238,7 @@ TEST_F(
     this->test(
         mappings
         , joystickState1
-        , 0xbfff00ba
+        , 0xc0ff00ba
     );
 
     const auto  JOYSTICK_STATE2 = generateJoystickState();
