@@ -2,7 +2,7 @@
 #define TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_DUMMY_H
 
 #include "tktemotejoy/mapping.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <cstddef>
 
 class DummyPressButtonHandlerForChangeMapping final : public Mapping::PressButtonHandlerForChangeMapping

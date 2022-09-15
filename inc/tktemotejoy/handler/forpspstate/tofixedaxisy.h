@@ -3,7 +3,7 @@
 
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/pspstate.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 
 class ToFixedAxisY final : public Mapping::PressButtonHandlerForPspState
 {

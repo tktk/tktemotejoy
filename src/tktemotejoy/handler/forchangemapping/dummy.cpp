@@ -1,5 +1,5 @@
 #include "tktemotejoy/handler/forchangemapping/dummy.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <cstddef>
 
 DummyPressButtonHandlerForChangeMapping::DummyPressButtonHandlerForChangeMapping(

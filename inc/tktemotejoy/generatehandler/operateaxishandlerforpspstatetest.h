@@ -5,7 +5,7 @@
 #include "tktemotejoy/pspstate.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <string>
 #include <utility>
 

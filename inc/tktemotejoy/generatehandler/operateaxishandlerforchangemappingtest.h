@@ -4,7 +4,7 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <cstddef>
 #include <string>
 #include <utility>

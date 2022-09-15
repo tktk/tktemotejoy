@@ -1,7 +1,7 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/generatehandler/tofixedaxis.h"
 #include "tktemotejoy/customjson.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <string>
 #include <memory>
 

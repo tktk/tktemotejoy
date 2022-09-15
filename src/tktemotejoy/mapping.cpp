@@ -1,7 +1,7 @@
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/handler/forpspstate/dummy.h"
 #include "tktemotejoy/handler/forchangemapping/dummy.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <cstddef>
 #include <utility>
 

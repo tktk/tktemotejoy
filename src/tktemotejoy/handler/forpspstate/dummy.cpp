@@ -1,6 +1,6 @@
 #include "tktemotejoy/handler/forpspstate/dummy.h"
 #include "tktemotejoy/pspstate.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 
 DummyPressButtonHandlerForPspState::DummyPressButtonHandlerForPspState(
 )

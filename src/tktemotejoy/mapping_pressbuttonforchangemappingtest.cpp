@@ -1,7 +1,7 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/pspstate.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <cstddef>
 
 namespace {

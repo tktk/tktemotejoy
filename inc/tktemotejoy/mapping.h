@@ -3,7 +3,7 @@
 
 #include "tktemotejoy/pspstate.h"
 
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <vector>
 #include <memory>
 #include <cstddef>

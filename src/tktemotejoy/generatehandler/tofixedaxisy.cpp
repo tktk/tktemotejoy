@@ -4,7 +4,7 @@
 #include "tktemotejoy/handler/forpspstate/tofixedaxisy.h"
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <string>
 
 namespace {
