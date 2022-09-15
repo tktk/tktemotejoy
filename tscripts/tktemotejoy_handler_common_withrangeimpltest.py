@@ -14,6 +14,7 @@ module.SOURCE = {
         'common' : [
             'withrangeimpltest.cpp',
             'calcrangedirection.cpp',
+            'calcmintocenter.cpp',
         ],
     },
 }

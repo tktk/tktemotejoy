@@ -3,31 +3,34 @@
 from taf import *
 from taf.tools import cpp
 
-module.TYPE = module.test
+module.BUILDER = cpp.program
 
-module.BUILDER = cpp.gtest
-
-module.TARGET = 'tktemotejoy_generatemappingstest'
+module.TARGET = 'benchmark'
 
 module.SOURCE = [
-    'generatemappingstest.cpp',
+    'benchmark.cpp',
+    'file.cpp',
+    'customjson.cpp',
     'generatemappings.cpp',
     'mappings.cpp',
     'mapping.cpp',
     'joystickstate.cpp',
     'pspstate.cpp',
+    'tousbhostfs.cpp',
+    'joystick.cpp',
+    'descriptorcloser.cpp',
     'typeerror.cpp',
     {
         'generatehandler' : [
-            'pressbuttonhandlerforpspstate.cpp',
             'tobuttons.cpp',
-            'operateaxishandlerforpspstate.cpp',
+            'pressbuttonhandlerforpspstate.cpp',
             'toaxisx.cpp',
             'toaxisy.cpp',
             'tofixedaxisx.cpp',
             'tofixedaxisy.cpp',
             'tobuttonhandlersforpspstate.cpp',
             'tobuttonhandlerforpspstate.cpp',
+            'operateaxishandlerforpspstate.cpp',
             'pressbuttonhandlerforchangemapping.cpp',
             'shiftmapping.cpp',
             'togglemapping.cpp',
@@ -45,7 +48,6 @@ module.SOURCE = [
                 'tobuttonhandlers.cpp',
                 'tobuttonhandler.cpp',
                 'dummy.cpp',
-                'calcpspstateaxis.cpp',
             ],
             'forchangemapping' : [
                 'shiftmapping.cpp',
@@ -53,10 +55,6 @@ module.SOURCE = [
                 'tobuttonhandlers.cpp',
                 'tobuttonhandler.cpp',
                 'dummy.cpp',
-            ],
-            'common' : [
-                'calcrangedirection.cpp',
-                'calcmintocenter.cpp',
             ],
         },
     },

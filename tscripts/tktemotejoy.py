@@ -128,6 +128,7 @@ module.SOURCE = [
             ],
             'common' : [
                 'calcrangedirection.cpp',
+                'calcmintocenter.cpp',
             ],
         },
     },

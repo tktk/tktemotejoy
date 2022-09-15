@@ -2,6 +2,7 @@
 #define TKTEMOTEJOY_HANDLER_COMMON_WITHRANGEIMPL_H
 
 #include "tktemotejoy/handler/common/calcrangedirection.h"
+#include "tktemotejoy/handler/common/calcmintocenter.h"
 #include <linux/input.h>
 #include <utility>
 #include <cmath>
@@ -15,19 +16,6 @@ class WithRangeImpl final
     const __s32 DEAD_ZONE;
 
     const HANDLER_T HANDLER;
-
-    static auto calcMinToCenter(
-        const __s32     _MIN
-        , const __s32   _MAX
-        , const __s32   _DIRECTION
-    )
-    {
-        const auto  MIN_TO_MAX = ( ( _MAX + 1 ) - _MIN ) * _DIRECTION;  // 奇数の場合に中央値を切り上げるため+1
-
-        const auto  MIN_TO_CENTER = MIN_TO_MAX / 2;
-
-        return MIN_TO_CENTER;
-    }
 
 public:
     WithRangeImpl(
@@ -44,10 +32,9 @@ public:
             )
         )
         , MIN_TO_CENTER(
-            WithRangeImpl::calcMinToCenter(
+            calcMinToCenter(
                 _MIN
                 , _MAX
-                , this->DIRECTION
             )
         )
         , DEAD_ZONE( _DEAD_ZONE )
