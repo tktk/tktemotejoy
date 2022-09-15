@@ -21,7 +21,6 @@ public:
     ) const;
 };
 
-//FIXME
-using ToButtonHandlerForPspState_new = WithRangeOneWayForPspState< ToButtonHandlerForPspStateImpl >;
+using ToButtonHandlerForPspState = WithRangeOneWayForPspState< ToButtonHandlerForPspStateImpl >;
 
 #endif  // TKTEMOTEJOY_HANDLER_FORPSPSTATE_TOBUTTONHANDLER_H

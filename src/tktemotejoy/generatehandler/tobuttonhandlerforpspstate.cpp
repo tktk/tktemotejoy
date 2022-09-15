@@ -31,7 +31,7 @@ namespace {
         ) const
         {
             return Mapping::handlerUnique(
-                new ToButtonHandlerForPspState_new(
+                new ToButtonHandlerForPspState(
                     _MIN
                     , _MAX
                     , _DEAD_ZONE

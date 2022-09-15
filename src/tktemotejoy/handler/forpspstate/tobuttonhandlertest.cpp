@@ -31,8 +31,7 @@ namespace {
         }
     };
 
-    //FIXME
-    class ToButtonHandlerForPspState_newTest : public ::testing::Test
+    class ToButtonHandlerForPspStateTest : public ::testing::Test
     {
     public:
         void test(
@@ -54,7 +53,7 @@ namespace {
                 )
             );
 
-            auto    toButtonHandler = ToButtonHandlerForPspState_new(
+            auto    toButtonHandler = ToButtonHandlerForPspState(
                 _MIN
                 , _MAX
                 , _DEAD_ZONE
@@ -72,7 +71,7 @@ namespace {
 }
 
 TEST_F(
-    ToButtonHandlerForPspState_newTest
+    ToButtonHandlerForPspStateTest
     , CallHandler
 )
 {
@@ -86,7 +85,7 @@ TEST_F(
 }
 
 TEST_F(
-    ToButtonHandlerForPspState_newTest
+    ToButtonHandlerForPspStateTest
     , DeadZone
 )
 {
