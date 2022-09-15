@@ -3,7 +3,6 @@
 
 #include <linux/input.h>
 #include <utility>
-#include <cmath>
 
 template< typename HANDLER_T >
 class WithRangeOneWayImpl final
@@ -52,19 +51,17 @@ public:
         , ARGS_T & ...                      _args
     ) const
     {
+        const auto  VALUE_FROM_MIN = ( _VALUE - this->MIN ) * this->DIRECTION;
+
         //TODO
 /*
-        const auto  MIN_TO_VALUE = ( _VALUE - this->MIN ) * this->DIRECTION;
-
-        const auto  VALUE_FROM_CENTER = MIN_TO_VALUE - this->MIN_TO_CENTER;
-
         if( std::abs( VALUE_FROM_CENTER ) <= this->DEAD_ZONE ) {
             return _GENERATE_DEFAULT_VALUE();
         }
 */
 
         return this->HANDLER(
-            192
+            VALUE_FROM_MIN
             , _args ...
         );
     }
