@@ -4,7 +4,6 @@
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
 
-//FIXME
 Mapping::OperateAxisHandlerForPspStateUnique generateToAxisXUnique(
     const Json::object_t &
 );

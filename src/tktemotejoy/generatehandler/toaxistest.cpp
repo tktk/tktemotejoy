@@ -6,8 +6,7 @@
 #include <memory>
 
 namespace {
-    //FIXME
-    struct TestHandler_new
+    struct TestHandler
     {
         const __s16 MIN;
         const __s16 MAX;
@@ -15,8 +14,7 @@ namespace {
         const __s16 LIMIT;
     };
 
-    //FIXME
-    struct TestGenerateToAxisUnique_new
+    struct TestGenerateToAxisUnique
     {
         auto operator()(
             const __s16     _MIN
@@ -25,8 +23,8 @@ namespace {
             , const __s16   _LIMIT
         ) const
         {
-            return std::unique_ptr< TestHandler_new >(
-                new TestHandler_new{
+            return std::unique_ptr< TestHandler >(
+                new TestHandler{
                     _MIN
                     , _MAX
                     , _DEAD_ZONE
@@ -36,11 +34,9 @@ namespace {
         }
     };
 
-    //FIXME
-    using TestGenerateHandlerUnique_new = GenerateToAxisUnique_new< TestGenerateToAxisUnique_new >;
+    using TestGenerateHandlerUnique = GenerateToAxisUnique< TestGenerateToAxisUnique >;
 
-    //FIXME
-    class GenerateToAxisUnique_newTest : public ::testing::Test
+    class GenerateToAxisUniqueTest : public ::testing::Test
     {
     public:
         void test(
@@ -55,7 +51,7 @@ namespace {
 
             const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
 
-            auto    handlerUnique = TestGenerateHandlerUnique_new()( OBJECT );
+            auto    handlerUnique = TestGenerateHandlerUnique()( OBJECT );
             ASSERT_NE( nullptr, handlerUnique.get() );
 
             EXPECT_EQ( _EXPECTED_MIN, handlerUnique->MIN );
@@ -72,13 +68,13 @@ namespace {
 
             const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
 
-            EXPECT_ANY_THROW( TestGenerateHandlerUnique_new()( OBJECT ) );
+            EXPECT_ANY_THROW( TestGenerateHandlerUnique()( OBJECT ) );
         }
     };
 }
 
 TEST_F(
-    GenerateToAxisUnique_newTest
+    GenerateToAxisUniqueTest
     , Standard
 )
 {
@@ -97,7 +93,7 @@ TEST_F(
 }
 
 TEST_F(
-    GenerateToAxisUnique_newTest
+    GenerateToAxisUniqueTest
     , NotExistsLimitMaxGreaterThanMin
 )
 {
@@ -115,7 +111,7 @@ TEST_F(
 }
 
 TEST_F(
-    GenerateToAxisUnique_newTest
+    GenerateToAxisUniqueTest
     , NotExistsLimitMaxLesserThanMin
 )
 {
@@ -133,7 +129,7 @@ TEST_F(
 }
 
 TEST_F(
-    GenerateToAxisUnique_newTest
+    GenerateToAxisUniqueTest
     , FailedNotUnsignedLimit
 )
 {

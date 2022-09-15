@@ -47,6 +47,6 @@ Mapping::OperateAxisHandlerForPspStateUnique generateToAxisYUnique(
     return generateHandlerUnique<
         Mapping::OperateAxisHandlerForPspStateUnique
         , GetType
-        , GenerateToAxisUnique_new< GenerateToAxisYUnique >
+        , GenerateToAxisUnique< GenerateToAxisYUnique >
     >( _OBJECT );
 }

@@ -8,9 +8,8 @@
 #include <string>
 #include <cmath>
 
-//FIXME
 template< typename GENERATE_TO_AXIS_UNIQUE_T >
-class GenerateToAxisUnique_new : public GenerateHandlerWithRangeUnique< GenerateToAxisUnique_new< GENERATE_TO_AXIS_UNIQUE_T > >
+class GenerateToAxisUnique : public GenerateHandlerWithRangeUnique< GenerateToAxisUnique< GENERATE_TO_AXIS_UNIQUE_T > >
 {
 public:
     auto generateHandler(
