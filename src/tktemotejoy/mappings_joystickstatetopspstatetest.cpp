@@ -10,7 +10,6 @@
 #include "tktemotejoy/handler/forchangemapping/shiftmapping.h"
 #include "tktemotejoy/handler/forchangemapping/togglemapping.h"
 #include "tktemotejoy/handler/forchangemapping/tobuttonhandlers.h"
-#include <linux/input.h>
 #include <cstddef>
 #include <functional>
 #include <utility>
