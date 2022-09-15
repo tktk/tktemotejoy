@@ -33,11 +33,11 @@ namespace {
         ) const
         {
             return Mapping::handlerUnique(
-                new ToButtonHandlersForChangeMapping_new(
+                new ToButtonHandlersForChangeMapping(
                     _MIN
                     , _MAX
                     , _DEAD_ZONE
-                    , ToButtonHandlersForChangeMapping_newImpl(
+                    , ToButtonHandlersForChangeMappingImpl(
                         std::move( _handlerMinusUnique )
                         , std::move( _handlerPlusUnique )
                     )

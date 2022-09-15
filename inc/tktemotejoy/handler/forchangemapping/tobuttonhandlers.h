@@ -6,14 +6,13 @@
 #include <linux/input.h>
 #include <cstddef>
 
-//FIXME
-class ToButtonHandlersForChangeMapping_newImpl final
+class ToButtonHandlersForChangeMappingImpl final
 {
     Mapping::PressButtonHandlerForChangeMappingUnique   handlerMinusUnique;
     Mapping::PressButtonHandlerForChangeMappingUnique   handlerPlusUnique;
 
 public:
-    ToButtonHandlersForChangeMapping_newImpl(
+    ToButtonHandlersForChangeMappingImpl(
         Mapping::PressButtonHandlerForChangeMappingUnique &&
         , Mapping::PressButtonHandlerForChangeMappingUnique &&
     );
@@ -25,7 +24,6 @@ public:
     ) const;
 };
 
-//FIXME
-using ToButtonHandlersForChangeMapping_new = WithRangeForChangeMapping< ToButtonHandlersForChangeMapping_newImpl >;
+using ToButtonHandlersForChangeMapping = WithRangeForChangeMapping< ToButtonHandlersForChangeMappingImpl >;
 
 #endif  // TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_TOBUTTONHANDLERS_H

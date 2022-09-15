@@ -100,11 +100,11 @@ namespace {
                     _mapping.setHandler(
                         2
                         , Mapping::handlerUnique(
-                            new ToButtonHandlersForChangeMapping_new(
+                            new ToButtonHandlersForChangeMapping(
                                 -100
                                 , 100
                                 , 0
-                                , ToButtonHandlersForChangeMapping_newImpl(
+                                , ToButtonHandlersForChangeMappingImpl(
                                     Mapping::handlerUnique( new ShiftMapping( 2 ) )
                                     , Mapping::handlerUnique( new ShiftMapping( 3 ) )
                                 )

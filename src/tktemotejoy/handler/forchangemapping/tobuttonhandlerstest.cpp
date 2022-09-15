@@ -1,7 +1,7 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/handler/forchangemapping/tobuttonhandlers.h"
 #include "tktemotejoy/mapping.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <cstddef>
 #include <utility>
 
@@ -36,8 +36,7 @@ namespace {
         }
     };
 
-    //FIXME
-    class ToButtonHandlersForChangeMapping_newTest : public ::testing::Test
+    class ToButtonHandlersForChangeMappingTest : public ::testing::Test
     {
     public:
         void test(
@@ -68,11 +67,11 @@ namespace {
                 )
             );
 
-            auto    toButtonHandlersForChangeMapping = ToButtonHandlersForChangeMapping_new(
+            auto    toButtonHandlersForChangeMapping = ToButtonHandlersForChangeMapping(
                 _MIN
                 , _MAX
                 , _DEAD_ZONE
-                , ToButtonHandlersForChangeMapping_newImpl(
+                , ToButtonHandlersForChangeMappingImpl(
                     std::move( handlerMinusUnique )
                     , std::move( handlerPlusUnique )
                 )
@@ -91,7 +90,7 @@ namespace {
 }
 
 TEST_F(
-    ToButtonHandlersForChangeMapping_newTest
+    ToButtonHandlersForChangeMappingTest
     , CallHandlerMinus
 )
 {
@@ -108,7 +107,7 @@ TEST_F(
 }
 
 TEST_F(
-    ToButtonHandlersForChangeMapping_newTest
+    ToButtonHandlersForChangeMappingTest
     , CallHandlerPlus
 )
 {
@@ -125,7 +124,7 @@ TEST_F(
 }
 
 TEST_F(
-    ToButtonHandlersForChangeMapping_newTest
+    ToButtonHandlersForChangeMappingTest
     , DeadZone
 )
 {
