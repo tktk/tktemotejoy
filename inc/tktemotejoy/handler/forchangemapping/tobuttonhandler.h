@@ -22,7 +22,6 @@ public:
     ) const;
 };
 
-//FIXME
-using ToButtonHandlerForChangeMapping_new = WithRangeOneWayForChangeMapping< ToButtonHandlerForChangeMappingImpl >;
+using ToButtonHandlerForChangeMapping = WithRangeOneWayForChangeMapping< ToButtonHandlerForChangeMappingImpl >;
 
 #endif  // TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_TOBUTTONHANDLER_H

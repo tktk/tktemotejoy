@@ -36,8 +36,7 @@ namespace {
         }
     };
 
-    //FIXME
-    class ToButtonHandlerForChangeMapping_newTest : public ::testing::Test
+    class ToButtonHandlerForChangeMappingTest : public ::testing::Test
     {
     public:
         void test(
@@ -60,7 +59,7 @@ namespace {
                 )
             );
 
-            auto    toButtonHandlerForChangeMapping = ToButtonHandlerForChangeMapping_new(
+            auto    toButtonHandlerForChangeMapping = ToButtonHandlerForChangeMapping(
                 _MIN
                 , _MAX
                 , _DEAD_ZONE
@@ -80,7 +79,7 @@ namespace {
 }
 
 TEST_F(
-    ToButtonHandlerForChangeMapping_newTest
+    ToButtonHandlerForChangeMappingTest
     , CallHandler
 )
 {
@@ -96,7 +95,7 @@ TEST_F(
 }
 
 TEST_F(
-    ToButtonHandlerForChangeMapping_newTest
+    ToButtonHandlerForChangeMappingTest
     , DeadZone
 )
 {

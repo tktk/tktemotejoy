@@ -31,7 +31,7 @@ namespace {
         ) const
         {
             return Mapping::handlerUnique(
-                new ToButtonHandlerForChangeMapping_new(
+                new ToButtonHandlerForChangeMapping(
                     _MIN
                     , _MAX
                     , _DEAD_ZONE
