@@ -21,6 +21,7 @@ namespace {
         }
     };
 
+    //FIXME
     struct GenerateToButtonHandlersForChangeMappingUnique_new
     {
         auto operator()(
@@ -39,27 +40,6 @@ namespace {
                     , ToButtonHandlersForChangeMapping_newImpl(
                         std::move( _handlerMinusUnique )
                         , std::move( _handlerPlusUnique )
-                    )
-                )
-            );
-        }
-    };
-
-    //REMOVEME
-    struct GenerateToButtonHandlersForChangeMappingUnique
-    {
-        auto operator()(
-            const __s16                                             _DEAD_ZONE
-            , Mapping::PressButtonHandlerForChangeMappingUnique &&  _handler1Unique
-            , Mapping::PressButtonHandlerForChangeMappingUnique &&  _handler2Unique
-        ) const
-        {
-            return Mapping::handlerUnique(
-                new ToButtonHandlersForChangeMapping(
-                    _DEAD_ZONE
-                    , ToButtonHandlersForChangeMappingImpl(
-                        std::move( _handler1Unique )
-                        , std::move( _handler2Unique )
                     )
                 )
             );
@@ -86,6 +66,7 @@ namespace {
     };
 }
 
+//FIXME
 Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlersForChangeMappingUnique_new(
     const Json::object_t &  _OBJECT
 )
@@ -95,22 +76,6 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlersForCha
         , GetType
         , GenerateToButtonHandlersUnique_new<
             GenerateToButtonHandlersForChangeMappingUnique_new
-            , GeneratePressButtonHandlerForChangeMappingUnique
-            , GenerateDummyPressButtonHandlerForChangeMappingUnique
-        >
-    >( _OBJECT );
-}
-
-//REMOVEME
-Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlersForChangeMappingUnique(
-    const Json::object_t &  _OBJECT
-)
-{
-    return generateHandlerUnique<
-        Mapping::OperateAxisHandlerForChangeMappingUnique
-        , GetType
-        , GenerateToButtonHandlersUnique<
-            GenerateToButtonHandlersForChangeMappingUnique
             , GeneratePressButtonHandlerForChangeMappingUnique
             , GenerateDummyPressButtonHandlerForChangeMappingUnique
         >

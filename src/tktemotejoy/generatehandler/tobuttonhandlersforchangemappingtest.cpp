@@ -4,6 +4,7 @@
 #include "tktemotejoy/customjson.h"
 
 namespace {
+    //FIXME
     struct GenerateToButtonHandlersForChangeMappingUnique_new
     {
         auto operator()(
@@ -14,21 +15,8 @@ namespace {
         }
     };
 
+    //FIXME
     using GenerateToButtonHandlersForChangeMapping_newTest = GenerateOperateAxisHandlerForChangeMappingTestTmpl< GenerateToButtonHandlersForChangeMappingUnique_new >;
-
-    //REMOVEME
-    struct GenerateToButtonHandlersForChangeMappingUnique
-    {
-        auto operator()(
-            const Json::object_t &  _OBJECT
-        ) const
-        {
-            return generateToButtonHandlersForChangeMappingUnique( _OBJECT );
-        }
-    };
-
-    //REMOVEME
-    using GenerateToButtonHandlersForChangeMappingTest = GenerateOperateAxisHandlerForChangeMappingTestTmpl< GenerateToButtonHandlersForChangeMappingUnique >;
 }
 
 TEST_F(
@@ -99,80 +87,6 @@ TEST_F(
     }
 })"
         , 64
-        , 50
-        , 50
-        , 50
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateToButtonHandlersForChangeMappingTest
-    , Handler1
-)
-{
-    this->test(
-        R"({
-    "type" : "toButtonHandlers",
-    "deadZone" : 10,
-    "handler1" : {
-        "type" : "toggleMapping",
-        "mapping" : 20
-    },
-    "handler2" : {
-        "type" : "toggleMapping",
-        "mapping" : 30
-    }
-})"
-        , -40
-        , 50
-        , 20
-        , 50
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateToButtonHandlersForChangeMappingTest
-    , Handler2
-)
-{
-    this->test(
-        R"({
-    "type" : "toButtonHandlers",
-    "deadZone" : 10,
-    "handler1" : {
-        "type" : "toggleMapping",
-        "mapping" : 20
-    },
-    "handler2" : {
-        "type" : "toggleMapping",
-        "mapping" : 30
-    }
-})"
-        , 40
-        , 50
-        , 30
-        , 50
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateToButtonHandlersForChangeMappingTest
-    , NotExistsHandler
-)
-{
-    this->test(
-        R"({
-    "type" : "toButtonHandlers",
-    "deadZone" : 10,
-    "handler2" : {
-        "type" : "toggleMapping",
-        "mapping" : 30
-    }
-})"
-        , -40
         , 50
         , 50
         , 50
