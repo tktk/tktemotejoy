@@ -186,7 +186,20 @@ TEST_F(
     );
 }
 
-//TODO FailedNotExistsHandler
+TEST_F(
+    GenerateToButtonHandlerUnique_newTest
+    , FailedNotExistsHandler
+)
+{
+    this->testAnyThrow(
+        R"({
+    "min" : 0,
+    "max" : 255,
+    "deadZone" : 10
+})"
+    );
+}
+
 //TODO FailedNotObjectHandler
 //TODO FailedUnsupportedHandler
 
