@@ -35,5 +35,16 @@ TEST_F(
     );
 }
 
-//TODO MaxLesserThanMin
+TEST_F(
+    CalcRangeDirectionTest
+    , MaxLesserThanMin
+)
+{
+    this->test(
+        255
+        , 0
+        , -1
+    );
+}
+
 //TODO MaxEqualsMin
