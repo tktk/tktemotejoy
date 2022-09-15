@@ -33,11 +33,11 @@ namespace {
         ) const
         {
             return Mapping::handlerUnique(
-                new ToButtonHandlersForPspState_new(
+                new ToButtonHandlersForPspState(
                     _MIN
                     , _MAX
                     , _DEAD_ZONE
-                    , ToButtonHandlersForPspState_newImpl(
+                    , ToButtonHandlersForPspStateImpl(
                         std::move( _handlerMinusUnique )
                         , std::move( _handlerPlusUnique )
                     )

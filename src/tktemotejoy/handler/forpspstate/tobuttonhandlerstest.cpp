@@ -31,8 +31,7 @@ namespace {
         }
     };
 
-    //FIXME
-    class ToButtonHandlersForPspState_newTest : public ::testing::Test
+    class ToButtonHandlersForPspStateTest : public ::testing::Test
     {
     public:
         void test(
@@ -62,11 +61,11 @@ namespace {
                 )
             );
 
-            auto    toButtonHandlers = ToButtonHandlersForPspState_new(
+            auto    toButtonHandlers = ToButtonHandlersForPspState(
                 _MIN
                 , _MAX
                 , _DEAD_ZONE
-                , ToButtonHandlersForPspState_newImpl(
+                , ToButtonHandlersForPspStateImpl(
                     std::move( handlerMinusUnique )
                     , std::move( handlerPlusUnique )
                 )
@@ -84,7 +83,7 @@ namespace {
 }
 
 TEST_F(
-    ToButtonHandlersForPspState_newTest
+    ToButtonHandlersForPspStateTest
     , CallHandlerMinus
 )
 {
@@ -99,7 +98,7 @@ TEST_F(
 }
 
 TEST_F(
-    ToButtonHandlersForPspState_newTest
+    ToButtonHandlersForPspStateTest
     , CallHandlerPlus
 )
 {
@@ -114,7 +113,7 @@ TEST_F(
 }
 
 TEST_F(
-    ToButtonHandlersForPspState_newTest
+    ToButtonHandlersForPspStateTest
     , DeadZone
 )
 {

@@ -4,7 +4,7 @@
 #include <linux/input.h>
 #include <utility>
 
-ToButtonHandlersForPspState_newImpl::ToButtonHandlersForPspState_newImpl(
+ToButtonHandlersForPspStateImpl::ToButtonHandlersForPspStateImpl(
     Mapping::PressButtonHandlerForPspStateUnique &&     _handlerMinusUnique
     , Mapping::PressButtonHandlerForPspStateUnique &&   _handlerPlusUnique
 )
@@ -13,7 +13,7 @@ ToButtonHandlersForPspState_newImpl::ToButtonHandlersForPspState_newImpl(
 {
 }
 
-void ToButtonHandlersForPspState_newImpl::operator()(
+void ToButtonHandlersForPspStateImpl::operator()(
     const __s16     _VALUE
     , PspState &    _pspState
 ) const
