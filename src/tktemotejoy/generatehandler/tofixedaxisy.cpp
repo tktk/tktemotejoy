@@ -3,6 +3,7 @@
 #include "tktemotejoy/generatehandler/tofixedaxis.h"
 #include "tktemotejoy/handler/forpspstate/tofixedaxisy.h"
 #include "tktemotejoy/mapping.h"
+#include "tktemotejoy/pspstate.h"
 #include "tktemotejoy/customjson.h"
 #include <linux/input.h>
 #include <string>
@@ -22,7 +23,7 @@ namespace {
     struct GenerateToFixedAxisYUnique
     {
         auto operator()(
-            const __s16 _VALUE
+            const PspState::Axis    _VALUE
         ) const
         {
             return Mapping::handlerUnique( new ToFixedAxisY( _VALUE ) );
