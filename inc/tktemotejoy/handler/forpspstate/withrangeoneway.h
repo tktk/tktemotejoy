@@ -32,14 +32,11 @@ public:
         , PspState &    _pspState
     ) const override
     {
-        //TODO
-/*
         this->IMPL(
             []{}
             , _VALUE
             , _pspState
         );
-*/
     }
 };
 
