@@ -109,22 +109,19 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     WithRangeOneWayImplTest
     , DeadZone
 )
 {
     this->test(
-        0
-        , 255
+        -100
+        , 155
         , 10
         , 20
-        , 138
+        , -90
         , 20
         , 0
         , false
     );
 }
-*/
