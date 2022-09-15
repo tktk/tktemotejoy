@@ -4,6 +4,7 @@
 #include "tktemotejoy/customjson.h"
 
 namespace {
+    //FIXME
     struct GenerateToButtonHandlersForPspStateUnique_new
     {
         auto operator()(
@@ -14,21 +15,8 @@ namespace {
         }
     };
 
+    //FIXME
     using GenerateToButtonHandlersForPspState_newTest = GenerateOperateAxisHandlerForPspStateTestTmpl< GenerateToButtonHandlersForPspStateUnique_new >;
-
-    //REMOVEME
-    struct GenerateToButtonHandlersForPspStateUnique
-    {
-        auto operator()(
-            const Json::object_t &  _OBJECT
-        ) const
-        {
-            return generateToButtonHandlersForPspStateUnique( _OBJECT );
-        }
-    };
-
-    //REMOVEME
-    using GenerateToButtonHandlersForPspStateTest = GenerateOperateAxisHandlerForPspStateTestTmpl< GenerateToButtonHandlersForPspStateUnique >;
 }
 
 TEST_F(
@@ -105,84 +93,6 @@ TEST_F(
     }
 })"
         , 64
-        , 0
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateToButtonHandlersForPspStateTest
-    , Handler1
-)
-{
-    this->test(
-        R"({
-    "type" : "toButtonHandlers",
-    "deadZone" : 10,
-    "handler1" : {
-        "type" : "toButtons",
-        "buttons" : [
-            "up"
-        ]
-    },
-    "handler2" : {
-        "type" : "toButtons",
-        "buttons" : [
-            "down"
-        ]
-    }
-})"
-        , -20
-        , 0x80800010
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateToButtonHandlersForPspStateTest
-    , Handler2
-)
-{
-    this->test(
-        R"({
-    "type" : "toButtonHandlers",
-    "deadZone" : 10,
-    "handler1" : {
-        "type" : "toButtons",
-        "buttons" : [
-            "up"
-        ]
-    },
-    "handler2" : {
-        "type" : "toButtons",
-        "buttons" : [
-            "down"
-        ]
-    }
-})"
-        , 20
-        , 0x80800040
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateToButtonHandlersForPspStateTest
-    , NotExistsHandler
-)
-{
-    this->test(
-        R"({
-    "type" : "toButtonHandlers",
-    "deadZone" : 10,
-    "handler2" : {
-        "type" : "toButtons",
-        "buttons" : [
-            "down"
-        ]
-    }
-})"
-        , -20
         , 0
     );
 }
