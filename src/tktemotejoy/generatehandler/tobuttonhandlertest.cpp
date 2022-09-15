@@ -200,7 +200,21 @@ TEST_F(
     );
 }
 
-//TODO FailedNotObjectHandler
+TEST_F(
+    GenerateToButtonHandlerUnique_newTest
+    , FailedNotObjectHandler
+)
+{
+    this->testAnyThrow(
+        R"({
+    "min" : 0,
+    "max" : 255,
+    "deadZone" : 10,
+    "handler" : "NOT OBJECT"
+})"
+    );
+}
+
 //TODO FailedUnsupportedHandler
 
 //REMOVEME
