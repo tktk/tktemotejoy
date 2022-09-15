@@ -1,6 +1,6 @@
 #include "tktemotejoy/handler/forchangemapping/tobuttonhandler.h"
 #include "tktemotejoy/mapping.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <cstddef>
 #include <utility>
 

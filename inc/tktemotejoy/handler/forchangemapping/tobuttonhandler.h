@@ -2,7 +2,6 @@
 #define TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_TOBUTTONHANDLER_H
 
 #include "tktemotejoy/handler/forchangemapping/withrangeoneway.h"
-#include "tktemotejoy/handler/forchangemapping/withdeadzoneoneway.h"
 #include "tktemotejoy/mapping.h"
 #include <linux/input.h>
 #include <cstddef>
@@ -23,9 +22,7 @@ public:
     ) const;
 };
 
+//FIXME
 using ToButtonHandlerForChangeMapping_new = WithRangeOneWayForChangeMapping< ToButtonHandlerForChangeMappingImpl >;
-
-//REMOVEME
-using ToButtonHandlerForChangeMapping = WithDeadZoneOneWayForChangeMapping< ToButtonHandlerForChangeMappingImpl >;
 
 #endif  // TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_TOBUTTONHANDLER_H

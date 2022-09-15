@@ -36,6 +36,7 @@ namespace {
         }
     };
 
+    //FIXME
     class ToButtonHandlerForChangeMapping_newTest : public ::testing::Test
     {
     public:
@@ -63,44 +64,6 @@ namespace {
                 _MIN
                 , _MAX
                 , _DEAD_ZONE
-                , ToButtonHandlerForChangeMappingImpl( std::move( handlerUnique ) )
-            );
-
-            EXPECT_EQ(
-                _EXPECTED_NEW_MAPPING_INDEX
-                , toButtonHandlerForChangeMapping(
-                    _VALUE
-                    , mappingIndex
-                    , _CURRENT_MAPPING_INDEX
-                )
-            );
-        }
-    };
-
-    //REMOVEME
-    class ToButtonHandlerForChangeMappingTest : public ::testing::Test
-    {
-    public:
-        void test(
-            const __s16         _DEAD_ZONE
-            , const __s16       _VALUE
-            , const std::size_t _RETURNS_OPERATOR_CALL
-            , const std::size_t _CURRENT_MAPPING_INDEX
-            , const std::size_t _EXPECTED_NEW_MAPPING_INDEX
-        ) const
-        {
-            auto    mappingIndex = std::size_t( 10 );
-
-            auto    handlerUnique = Mapping::PressButtonHandlerForChangeMappingUnique(
-                new TestHandler(
-                    _RETURNS_OPERATOR_CALL
-                    , mappingIndex
-                    , _CURRENT_MAPPING_INDEX
-                )
-            );
-
-            auto    toButtonHandlerForChangeMapping = ToButtonHandlerForChangeMapping(
-                _DEAD_ZONE
                 , ToButtonHandlerForChangeMappingImpl( std::move( handlerUnique ) )
             );
 
@@ -142,36 +105,6 @@ TEST_F(
         , 155
         , 10
         , -90
-        , 10
-        , 20
-        , 20
-    );
-}
-
-//REMOVEME
-TEST_F(
-    ToButtonHandlerForChangeMappingTest
-    , CallHandler
-)
-{
-    this->test(
-        -30000
-        , -20000
-        , 10
-        , 20
-        , 10
-    );
-}
-
-//REMOVEME
-TEST_F(
-    ToButtonHandlerForChangeMappingTest
-    , DeadZone
-)
-{
-    this->test(
-        0
-        , -10000
         , 10
         , 20
         , 20
