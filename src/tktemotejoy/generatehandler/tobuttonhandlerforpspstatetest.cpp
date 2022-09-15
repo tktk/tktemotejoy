@@ -4,6 +4,7 @@
 #include "tktemotejoy/customjson.h"
 
 namespace {
+    //FIXME
     struct GenerateToButtonHandlerForPspStateUnique_new
     {
         auto operator()(
@@ -14,21 +15,8 @@ namespace {
         }
     };
 
+    //FIXME
     using GenerateToButtonHandlerForPspState_newTest = GenerateOperateAxisHandlerForPspStateTestTmpl< GenerateToButtonHandlerForPspStateUnique_new >;
-
-    //REMOVEME
-    struct GenerateToButtonHandlerForPspStateUnique
-    {
-        auto operator()(
-            const Json::object_t &  _OBJECT
-        ) const
-        {
-            return generateToButtonHandlerForPspStateUnique( _OBJECT );
-        }
-    };
-
-    //REMOVEME
-    using GenerateToButtonHandlerForPspStateTest = GenerateOperateAxisHandlerForPspStateTestTmpl< GenerateToButtonHandlerForPspStateUnique >;
 }
 
 TEST_F(
@@ -50,28 +38,6 @@ TEST_F(
     }
 })"
         , -25000
-        , 0x80800010
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateToButtonHandlerForPspStateTest
-    , Handler
-)
-{
-    this->test(
-        R"({
-    "type" : "toButtonHandler",
-    "deadZone" : 10000,
-    "handler" : {
-        "type" : "toButtons",
-        "buttons" : [
-            "up"
-        ]
-    }
-})"
-        , -10000
         , 0x80800010
     );
 }

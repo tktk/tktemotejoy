@@ -20,6 +20,7 @@ namespace {
         }
     };
 
+    //FIXME
     struct GenerateToButtonHandlerForPspStateUnique_new
     {
         auto operator()(
@@ -40,23 +41,6 @@ namespace {
         }
     };
 
-    //REMOVEME
-    struct GenerateToButtonHandlerForPspStateUnique
-    {
-        auto operator()(
-            const __s16                                         _DEAD_ZONE
-            , Mapping::PressButtonHandlerForPspStateUnique &&   _handlerUnique
-        ) const
-        {
-            return Mapping::handlerUnique(
-                new ToButtonHandlerForPspState(
-                    _DEAD_ZONE
-                    , ToButtonHandlerForPspStateImpl( std::move( _handlerUnique ) )
-                )
-            );
-        }
-    };
-
     struct GeneratePressButtonHandlerForPspStateUnique
     {
         auto operator()(
@@ -68,6 +52,7 @@ namespace {
     };
 }
 
+//FIXME
 Mapping::OperateAxisHandlerForPspStateUnique generateToButtonHandlerForPspStateUnique_new(
     const Json::object_t &  _OBJECT
 )
@@ -77,21 +62,6 @@ Mapping::OperateAxisHandlerForPspStateUnique generateToButtonHandlerForPspStateU
         , GetType
         , GenerateToButtonHandlerUnique_new<
             GenerateToButtonHandlerForPspStateUnique_new
-            , GeneratePressButtonHandlerForPspStateUnique
-        >
-    >( _OBJECT );
-}
-
-//REMOVEME
-Mapping::OperateAxisHandlerForPspStateUnique generateToButtonHandlerForPspStateUnique(
-    const Json::object_t &  _OBJECT
-)
-{
-    return generateHandlerUnique<
-        Mapping::OperateAxisHandlerForPspStateUnique
-        , GetType
-        , GenerateToButtonHandlerUnique<
-            GenerateToButtonHandlerForPspStateUnique
             , GeneratePressButtonHandlerForPspStateUnique
         >
     >( _OBJECT );
