@@ -21,8 +21,7 @@ namespace {
         }
     };
 
-    //FIXME
-    struct GenerateToButtonHandlersForPspStateUnique_new
+    struct GenerateToButtonHandlersForPspStateUnique
     {
         auto operator()(
             const __s16                                         _MIN
@@ -66,8 +65,7 @@ namespace {
     };
 }
 
-//FIXME
-Mapping::OperateAxisHandlerForPspStateUnique generateToButtonHandlersForPspStateUnique_new(
+Mapping::OperateAxisHandlerForPspStateUnique generateToButtonHandlersForPspStateUnique(
     const Json::object_t &  _OBJECT
 )
 {
@@ -75,7 +73,7 @@ Mapping::OperateAxisHandlerForPspStateUnique generateToButtonHandlersForPspState
         Mapping::OperateAxisHandlerForPspStateUnique
         , GetType
         , GenerateToButtonHandlersUnique_new<
-            GenerateToButtonHandlersForPspStateUnique_new
+            GenerateToButtonHandlersForPspStateUnique
             , GeneratePressButtonHandlerForPspStateUnique
             , GenerateDummyPressButtonHandlerForPspStateUnique
         >
