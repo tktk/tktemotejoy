@@ -13,9 +13,9 @@ template<
     typename GENERATE_TO_BUTTON_HANDLER_UNIQUE_T
     , typename GENERATE_HANDLER_UNIQUE_T
 >
-class GenerateToButtonHandlerUnique_new
+class GenerateToButtonHandlerUnique
     : public GenerateHandlerWithRangeUnique<
-        GenerateToButtonHandlerUnique_new<
+        GenerateToButtonHandlerUnique<
             GENERATE_TO_BUTTON_HANDLER_UNIQUE_T
             , GENERATE_HANDLER_UNIQUE_T
         >
