@@ -25,8 +25,8 @@ TEST_F(
     this->test(
         R"({
     "type" : "toFixedAxisX",
-    "value" : 32767
+    "value" : 192
 })"
-        , 0x80ff0000
+        , 0x80c00000
     );
 }
