@@ -1,7 +1,7 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/handler/forchangemapping/tobuttonhandler.h"
 #include "tktemotejoy/mapping.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <cstddef>
 #include <utility>
 
@@ -36,6 +36,48 @@ namespace {
         }
     };
 
+    class ToButtonHandlerForChangeMapping_newTest : public ::testing::Test
+    {
+    public:
+        void test(
+            const __s16         _MIN
+            , const __s16       _MAX
+            , const __s16       _DEAD_ZONE
+            , const __s16       _VALUE
+            , const std::size_t _RETURNS_OPERATOR_CALL
+            , const std::size_t _CURRENT_MAPPING_INDEX
+            , const std::size_t _EXPECTED_NEW_MAPPING_INDEX
+        ) const
+        {
+            auto    mappingIndex = std::size_t( 10 );
+
+            auto    handlerUnique = Mapping::PressButtonHandlerForChangeMappingUnique(
+                new TestHandler(
+                    _RETURNS_OPERATOR_CALL
+                    , mappingIndex
+                    , _CURRENT_MAPPING_INDEX
+                )
+            );
+
+            auto    toButtonHandlerForChangeMapping = ToButtonHandlerForChangeMapping_new(
+                _MIN
+                , _MAX
+                , _DEAD_ZONE
+                , ToButtonHandlerForChangeMappingImpl( std::move( handlerUnique ) )
+            );
+
+            EXPECT_EQ(
+                _EXPECTED_NEW_MAPPING_INDEX
+                , toButtonHandlerForChangeMapping(
+                    _VALUE
+                    , mappingIndex
+                    , _CURRENT_MAPPING_INDEX
+                )
+            );
+        }
+    };
+
+    //REMOVEME
     class ToButtonHandlerForChangeMappingTest : public ::testing::Test
     {
     public:
@@ -75,6 +117,39 @@ namespace {
 }
 
 TEST_F(
+    ToButtonHandlerForChangeMapping_newTest
+    , CallHandler
+)
+{
+    this->test(
+        -100
+        , 155
+        , 10
+        , 0
+        , 10
+        , 20
+        , 10
+    );
+}
+
+TEST_F(
+    ToButtonHandlerForChangeMapping_newTest
+    , DeadZone
+)
+{
+    this->test(
+        -100
+        , 155
+        , 10
+        , -90
+        , 10
+        , 20
+        , 20
+    );
+}
+
+//REMOVEME
+TEST_F(
     ToButtonHandlerForChangeMappingTest
     , CallHandler
 )
@@ -88,6 +163,7 @@ TEST_F(
     );
 }
 
+//REMOVEME
 TEST_F(
     ToButtonHandlerForChangeMappingTest
     , DeadZone

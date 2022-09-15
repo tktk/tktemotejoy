@@ -2,7 +2,7 @@
 #include "tktemotejoy/handler/forpspstate/tobuttonhandler.h"
 #include "tktemotejoy/pspstate.h"
 #include "tktemotejoy/mapping.h"
-#include <linux/joystick.h>
+#include <linux/input.h>
 #include <utility>
 
 namespace {
