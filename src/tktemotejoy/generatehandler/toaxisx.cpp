@@ -30,11 +30,11 @@ namespace {
         ) const
         {
             return Mapping::handlerUnique(
-                new ToAxisX_new(
+                new ToAxisX(
                     _MIN
                     , _MAX
                     , _DEAD_ZONE
-                    , ToAxisX_newImpl( _LIMIT )
+                    , ToAxisXImpl( _LIMIT )
                 )
             );
         }

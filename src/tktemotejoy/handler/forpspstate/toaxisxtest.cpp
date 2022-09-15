@@ -5,7 +5,6 @@
 #include <linux/input.h>
 
 namespace {
-    //FIXME
     struct GenerateToAxisX
     {
         auto operator()(
@@ -15,21 +14,20 @@ namespace {
             , const __s16   _LIMIT
         ) const
         {
-            return ToAxisX_new(
+            return ToAxisX(
                 _MIN
                 , _MAX
                 , _DEAD_ZONE
-                , ToAxisX_newImpl( _LIMIT )
+                , ToAxisXImpl( _LIMIT )
             );
         }
     };
 
-    //FIXME
-    using ToAxisX_newTest = ToAxisTest< GenerateToAxisX >;
+    using ToAxisXTest = ToAxisTest< GenerateToAxisX >;
 }
 
 TEST_F(
-    ToAxisX_newTest
+    ToAxisXTest
     , Standard
 )
 {
