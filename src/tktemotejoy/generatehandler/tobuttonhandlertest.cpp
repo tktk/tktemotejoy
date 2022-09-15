@@ -32,18 +32,18 @@ namespace {
 
     struct TestToButtonHandler
     {
-        const __s16             MIN;
-        const __s16             MAX;
-        const __s16             DEAD_ZONE;
+        const __s32             MIN;
+        const __s32             MAX;
+        const __s32             DEAD_ZONE;
         const TestHandlerUnique HANDLER_UNIQUE;
     };
 
     struct TestGenerateToButtonHandlerUnique
     {
         auto operator()(
-            const __s16             _MIN
-            , const __s16           _MAX
-            , const __s16           _DEAD_ZONE
+            const __s32             _MIN
+            , const __s32           _MAX
+            , const __s32           _DEAD_ZONE
             , TestHandlerUnique &&  _handlerUnique
         ) const
         {
@@ -68,9 +68,9 @@ namespace {
     public:
         void test(
             const std::string & _JSON_STRING
-            , const __s16       _EXPECTED_MIN
-            , const __s16       _EXPECTED_MAX
-            , const __s16       _EXPECTED_DEAD_ZONE
+            , const __s32       _EXPECTED_MIN
+            , const __s32       _EXPECTED_MAX
+            , const __s32       _EXPECTED_DEAD_ZONE
             , const int         _EXPECTED_HANDLER_VALUE
         ) const
         {
