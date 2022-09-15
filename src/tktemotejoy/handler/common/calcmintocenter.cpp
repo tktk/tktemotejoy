@@ -7,5 +7,5 @@ __s32 calcMinToCenter(
     , const __s32   _MAX
 )
 {
-    return std::abs( _MAX - _MIN ) / 2;
+    return ( std::abs( _MAX - _MIN ) + 1 ) / 2;
 }
