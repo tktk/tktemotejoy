@@ -3,7 +3,6 @@
 
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/pspstate.h"
-#include <linux/input.h>
 
 class ToFixedAxisX final : public Mapping::PressButtonHandlerForPspState
 {
@@ -11,7 +10,7 @@ class ToFixedAxisX final : public Mapping::PressButtonHandlerForPspState
 
 public:
     ToFixedAxisX(
-        const __s16
+        const PspState::Axis
     );
 
     void operator()(

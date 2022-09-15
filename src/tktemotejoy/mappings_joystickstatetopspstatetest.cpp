@@ -48,7 +48,7 @@ namespace {
 
                     _mapping.setHandler(
                         1
-                        , Mapping::handlerUnique( new ToFixedAxisX( 32767 ) )
+                        , Mapping::handlerUnique( new ToFixedAxisX( 0xff ) )
                     );
 
                     _mapping.setHandler(
