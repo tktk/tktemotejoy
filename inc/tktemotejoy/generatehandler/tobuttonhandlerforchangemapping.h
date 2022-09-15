@@ -4,8 +4,7 @@
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/customjson.h"
 
-//FIXME
-Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChangeMappingUnique_new(
+Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChangeMappingUnique(
     const Json::object_t &
 );
 

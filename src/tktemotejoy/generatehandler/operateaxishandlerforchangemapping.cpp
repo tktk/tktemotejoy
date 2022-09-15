@@ -15,7 +15,7 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateOperateAxisHandlerForC
         return handlerUnique;
     }
 
-    handlerUnique = generateToButtonHandlerForChangeMappingUnique_new( _OBJECT );
+    handlerUnique = generateToButtonHandlerForChangeMappingUnique( _OBJECT );
     if( handlerUnique.get() != nullptr ) {
         return handlerUnique;
     }
