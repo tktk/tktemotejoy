@@ -5,7 +5,6 @@
 #include <linux/input.h>
 
 namespace {
-    //FIXME
     struct GenerateToAxisY
     {
         auto operator()(
@@ -15,21 +14,20 @@ namespace {
             , const __s16   _LIMIT
         ) const
         {
-            return ToAxisY_new(
+            return ToAxisY(
                 _MIN
                 , _MAX
                 , _DEAD_ZONE
-                , ToAxisY_newImpl( _LIMIT )
+                , ToAxisYImpl( _LIMIT )
             );
         }
     };
 
-    //FIXME
-    using ToAxisY_newTest = ToAxisTest< GenerateToAxisY >;
+    using ToAxisYTest = ToAxisTest< GenerateToAxisY >;
 }
 
 TEST_F(
-    ToAxisY_newTest
+    ToAxisYTest
     , Standard
 )
 {

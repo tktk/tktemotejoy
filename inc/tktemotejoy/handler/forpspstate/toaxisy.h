@@ -5,13 +5,12 @@
 #include "tktemotejoy/pspstate.h"
 #include <linux/input.h>
 
-//FIXME
-class ToAxisY_newImpl final
+class ToAxisYImpl final
 {
     const __s16 LIMIT;
 
 public:
-    ToAxisY_newImpl(
+    ToAxisYImpl(
         const __s16
     );
 
@@ -21,7 +20,6 @@ public:
     ) const;
 };
 
-//FIXME
-using ToAxisY_new = WithRangeForPspState< ToAxisY_newImpl >;
+using ToAxisY = WithRangeForPspState< ToAxisYImpl >;
 
 #endif  // TKTEMOTEJOY_HANDLER_FORPSPSTATE_TOAXISY_H

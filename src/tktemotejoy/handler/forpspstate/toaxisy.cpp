@@ -3,14 +3,14 @@
 #include "tktemotejoy/pspstate.h"
 #include <linux/input.h>
 
-ToAxisY_newImpl::ToAxisY_newImpl(
+ToAxisYImpl::ToAxisYImpl(
     const __s16 _LIMIT
 )
     : LIMIT( _LIMIT )
 {
 }
 
-void ToAxisY_newImpl::operator()(
+void ToAxisYImpl::operator()(
     const __s16     _VALUE
     , PspState &    _pspState
 ) const
