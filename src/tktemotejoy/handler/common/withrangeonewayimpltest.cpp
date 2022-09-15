@@ -92,25 +92,25 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     WithRangeOneWayImplTest
     , MaxLesserThanMin
 )
 {
     this->test(
-        255
-        , 0
+        155
+        , -100
         , 10
         , 20
-        , 192
-        , -64
-        , -64
+        , 92
+        , 63
+        , 63
         , true
     );
 }
 
+//TODO
+/*
 TEST_F(
     WithRangeOneWayImplTest
     , DeadZone
