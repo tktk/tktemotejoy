@@ -15,7 +15,7 @@ public:
     {
         const auto  KEY_VALUE = std::string( "value" );
 
-        const auto &    VALUE = getJsonIntegerFromObject(
+        const auto &    VALUE = getJsonUnsignedFromObject(
             _OBJECT
             , KEY_VALUE
         );
