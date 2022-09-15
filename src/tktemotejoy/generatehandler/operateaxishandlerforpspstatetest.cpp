@@ -77,7 +77,6 @@ TEST_F(
     );
 }
 
-//FIXME
 TEST_F(
     GenerateOperateAxisHandlerForPspStateTest
     , ToButtonHandler
@@ -86,7 +85,9 @@ TEST_F(
     this->test(
         R"({
     "type" : "toButtonHandler",
-    "deadZone" : 10000,
+    "min" : 0,
+    "max" : -30000,
+    "deadZone" : 20000,
     "handler" : {
         "type" : "toButtons",
         "buttons" : [
@@ -94,7 +95,7 @@ TEST_F(
         ]
     }
 })"
-        , -10000
+        , -25000
         , 0x80800040
     );
 }
