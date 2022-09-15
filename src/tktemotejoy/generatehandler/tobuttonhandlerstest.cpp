@@ -255,7 +255,7 @@ TEST_F(
 
 TEST_F(
     GenerateToButtonHandlersUnique_newTest
-    , FailedUnsupportHandlerMinus
+    , FailedUnsupportedHandlerMinus
 )
 {
     this->testAnyThrow(
@@ -314,7 +314,7 @@ TEST_F(
 
 TEST_F(
     GenerateToButtonHandlersUnique_newTest
-    , FailedUnsupportHandlerPlus
+    , FailedUnsupportedHandlerPlus
 )
 {
     this->testAnyThrow(
