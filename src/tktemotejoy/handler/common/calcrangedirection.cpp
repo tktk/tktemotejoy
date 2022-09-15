@@ -1,10 +1,11 @@
 #include "tktemotejoy/handler/common/calcrangedirection.h"
+#include <linux/input.h>
 
-int calcRangeDirection(
+__s32 calcRangeDirection(
     const __s32     _MIN
     , const __s32   _MAX
 )
 {
     //TODO
-    return 0;
+    return 1;
 }

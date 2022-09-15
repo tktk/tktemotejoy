@@ -1,14 +1,14 @@
 #ifndef TKTEMOTEJOY_JOYSTICKSTATE_H
 #define TKTEMOTEJOY_JOYSTICKSTATE_H
 
-#include <linux/joystick.h>
+#include <linux/joystick.h> //TODO input.hに変更する
 #include <vector>
 #include <functional>
 
-class JoystickState final
+class JoystickState final   //TODO EvdevStateに名前を変更する
 {
 public:
-    using States = std::vector< __s16 >;
+    using States = std::vector< __s16 >;    //TODO __s32に変更する
 
     using ForButton = std::function<
         bool (

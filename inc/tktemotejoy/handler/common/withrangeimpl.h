@@ -15,6 +15,7 @@ class WithRangeImpl final
 
     const HANDLER_T HANDLER;
 
+    //TODO 要関数化
     static auto calcDirection(
         const __s16     _MIN
         , const __s16   _MAX

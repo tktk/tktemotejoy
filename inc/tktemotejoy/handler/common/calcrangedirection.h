@@ -3,7 +3,7 @@
 
 #include <linux/input.h>
 
-int calcRangeDirection(
+__s32 calcRangeDirection(
     const __s32
     , const __s32
 );
