@@ -1,5 +1,6 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/generatehandler/tofixedaxis.h"
+#include "tktemotejoy/pspstate.h"
 #include "tktemotejoy/customjson.h"
 #include <linux/input.h>
 #include <string>
@@ -8,13 +9,13 @@
 namespace {
     struct TestHandler
     {
-        const __s16 VALUE;
+        const PspState::Axis    VALUE;
     };
 
     struct TestGenerateToFixedAxisUnique
     {
         auto operator()(
-            const __s16 _VALUE
+            const PspState::Axis    _VALUE
         ) const
         {
             return std::unique_ptr< TestHandler >(
@@ -31,8 +32,8 @@ namespace {
     {
     public:
         void test(
-            const std::string & _JSON_STRING
-            , const __s16       _EXPECTED_VALUE
+            const std::string &     _JSON_STRING
+            , const PspState::Axis  _EXPECTED_VALUE
         ) const
         {
             const auto  JSON = Json::parse( _JSON_STRING );
@@ -84,12 +85,12 @@ TEST_F(
 
 TEST_F(
     GenerateToFixedAxisUniqueTest
-    , FailedNotIntegerValue
+    , FailedNotUnsignedValue
 )
 {
     this->testAnyThrow(
         R"({
-    "value" : "NOT INTEGER"
+    "value" : -10
 })"
     );
 }
