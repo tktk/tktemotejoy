@@ -4,23 +4,21 @@
 #include "tktemotejoy/customjson.h"
 
 namespace {
-    //FIXME
-    struct GenerateToAxisXUnique_new
+    struct GenerateToAxisXUnique
     {
         auto operator()(
             const Json::object_t &  _OBJECT
         ) const
         {
-            return generateToAxisXUnique_new( _OBJECT );
+            return generateToAxisXUnique( _OBJECT );
         }
     };
 
-    //FIXME
-    using GenerateToAxisX_newTest = GenerateOperateAxisHandlerForPspStateTestTmpl< GenerateToAxisXUnique_new >;
+    using GenerateToAxisXTest = GenerateOperateAxisHandlerForPspStateTestTmpl< GenerateToAxisXUnique >;
 }
 
 TEST_F(
-    GenerateToAxisX_newTest
+    GenerateToAxisXTest
     , Standard
 )
 {
