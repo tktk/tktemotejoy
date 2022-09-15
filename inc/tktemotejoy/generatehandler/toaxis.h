@@ -14,9 +14,9 @@ class GenerateToAxisUnique : public GenerateHandlerWithRangeUnique< GenerateToAx
 public:
     auto generateHandler(
         const Json::object_t &  _OBJECT
-        , const __s16           _MIN
-        , const __s16           _MAX
-        , const __s16           _DEAD_ZONE
+        , const __s32           _MIN
+        , const __s32           _MAX
+        , const __s32           _DEAD_ZONE
     ) const
     {
         const auto  KEY_LIMIT = std::string( "limit" );
@@ -29,13 +29,11 @@ public:
             , KEY_LIMIT
         );
 
-        const auto  LIMIT_S16 = __s16( LIMIT );
-
         return GENERATE_TO_AXIS_UNIQUE_T()(
             _MIN
             , _MAX
             , _DEAD_ZONE
-            , LIMIT_S16
+            , LIMIT
         );
     }
 };
