@@ -30,8 +30,6 @@ public:
         , const __s16           _DEAD_ZONE
     ) const
     {
-        //TODO
-/*
         const auto  KEY_HANDLER = std::string( "handler" );
 
         const auto &    OBJECT = getJsonObjectFromObject(
@@ -40,6 +38,8 @@ public:
         );
 
         auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( OBJECT );
+        //TODO
+/*
         if( handlerUnique.get() == nullptr ) {
             throw typeIsUnsupported(
                 OBJECT
@@ -49,10 +49,10 @@ public:
 */
 
         return GENERATE_TO_BUTTON_HANDLER_UNIQUE_T()(
-            100
-            , 200
-            , 300
-            , nullptr
+            _MIN
+            , _MAX
+            , _DEAD_ZONE
+            , std::move( handlerUnique )
         );
     }
 };
