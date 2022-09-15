@@ -22,24 +22,3 @@ void ToButtonHandlersForPspState_newImpl::operator()(
 
     HANDLER( _pspState );
 }
-
-//REMOVEME
-ToButtonHandlersForPspStateImpl::ToButtonHandlersForPspStateImpl(
-    Mapping::PressButtonHandlerForPspStateUnique &&     _handler1Unique
-    , Mapping::PressButtonHandlerForPspStateUnique &&   _handler2Unique
-)
-    : handler1Unique( std::move( _handler1Unique ) )
-    , handler2Unique( std::move( _handler2Unique ) )
-{
-}
-
-//REMOVEME
-void ToButtonHandlersForPspStateImpl::operator()(
-    const __s16     _VALUE
-    , PspState &    _pspState
-) const
-{
-    const auto &    HANDLER = *( _VALUE < 0 ? this->handler1Unique : this->handler2Unique );
-
-    HANDLER( _pspState );
-}

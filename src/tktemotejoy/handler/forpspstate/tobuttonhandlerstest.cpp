@@ -80,52 +80,6 @@ namespace {
             EXPECT_EQ( _EXPECTED_CALLED_HANDLER_PLUS, calledHandlerPlus );
         }
     };
-
-    class ToButtonHandlersForPspStateTest : public ::testing::Test
-    {
-    public:
-        void test(
-            const __s16     _DEAD_ZONE
-            , const __s16   _VALUE
-            , const bool    _EXPECTED_CALLED_HANDLER1
-            , const bool    _EXPECTED_CALLED_HANDLER2
-        ) const
-        {
-            auto    calledHandler1 = false;
-            auto    calledHandler2 = false;
-
-            auto    pspState = PspState();
-
-            auto    handler1Unique = Mapping::PressButtonHandlerForPspStateUnique(
-                new TestHandler(
-                    calledHandler1
-                    , pspState
-                )
-            );
-            auto    handler2Unique = Mapping::PressButtonHandlerForPspStateUnique(
-                new TestHandler(
-                    calledHandler2
-                    , pspState
-                )
-            );
-
-            auto    toButtonHandlers = ToButtonHandlersForPspState(
-                _DEAD_ZONE
-                , ToButtonHandlersForPspStateImpl(
-                    std::move( handler1Unique )
-                    , std::move( handler2Unique )
-                )
-            );
-
-            toButtonHandlers(
-                _VALUE
-                , pspState
-            );
-
-            EXPECT_EQ( _EXPECTED_CALLED_HANDLER1, calledHandler1 );
-            EXPECT_EQ( _EXPECTED_CALLED_HANDLER2, calledHandler2 );
-        }
-    };
 }
 
 TEST_F(
@@ -168,48 +122,6 @@ TEST_F(
         , 255
         , 10
         , 138
-        , false
-        , false
-    );
-}
-
-//REMOVEME
-TEST_F(
-    ToButtonHandlersForPspStateTest
-    , CallHandler1
-)
-{
-    this->test(
-        0
-        , -1
-        , true
-        , false
-    );
-}
-
-//REMOVEME
-TEST_F(
-    ToButtonHandlersForPspStateTest
-    , CallHandler2
-)
-{
-    this->test(
-        0
-        , 1
-        , false
-        , true
-    );
-}
-
-//REMOVEME
-TEST_F(
-    ToButtonHandlersForPspStateTest
-    , DeadZone
-)
-{
-    this->test(
-        0
-        , 0
         , false
         , false
     );

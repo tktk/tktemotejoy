@@ -24,7 +24,7 @@ public:
 
 using ToButtonHandlerForPspState_new = WithRangeOneWayForPspState< ToButtonHandlerForPspStateImpl >;
 
-//REMOVE
+//REMOVEME
 using ToButtonHandlerForPspState = WithDeadZoneOneWayForPspState< ToButtonHandlerForPspStateImpl >;
 
 #endif  // TKTEMOTEJOY_HANDLER_FORPSPSTATE_TOBUTTONHANDLER_H
