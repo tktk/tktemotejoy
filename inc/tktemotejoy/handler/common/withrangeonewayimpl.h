@@ -53,7 +53,6 @@ public:
     ) const
     {
         //TODO
-        return 0;
 /*
         const auto  MIN_TO_VALUE = ( _VALUE - this->MIN ) * this->DIRECTION;
 
@@ -62,12 +61,12 @@ public:
         if( std::abs( VALUE_FROM_CENTER ) <= this->DEAD_ZONE ) {
             return _GENERATE_DEFAULT_VALUE();
         }
+*/
 
         return this->HANDLER(
-            VALUE_FROM_CENTER
+            192
             , _args ...
         );
-*/
     }
 };
 
