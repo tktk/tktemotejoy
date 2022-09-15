@@ -13,4 +13,9 @@ module.SOURCE = {
     'generatehandler' : [
         'toaxistest.cpp',
     ],
+    'handler' : {
+        'common' : [
+            'calcmintocenter.cpp',
+        ],
+    },
 }

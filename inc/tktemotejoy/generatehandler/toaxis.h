@@ -2,6 +2,7 @@
 #define TKTEMOTEJOY_GENERATEHANDLER_TOAXIS_H
 
 #include "tktemotejoy/generatehandler/withrange.h"
+#include "tktemotejoy/handler/common/calcmintocenter.h"
 #include "tktemotejoy/customjson.h"
 #include "tktemotejoy/json.h"
 #include <linux/input.h>
@@ -21,7 +22,12 @@ public:
     {
         const auto  KEY_LIMIT = std::string( "limit" );
 
-        const auto  DEFAULT_LIMIT = Json::number_unsigned_t( ( std::abs( _MAX - _MIN ) + 1 ) / 2 );
+        const auto  DEFAULT_LIMIT = Json::number_unsigned_t(
+            calcMinToCenter(
+                _MIN
+                , _MAX
+            )
+        );
 
         const auto &    LIMIT = getJsonUnsignedFromObjectWithDefault(
             _OBJECT
