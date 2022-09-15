@@ -40,10 +40,10 @@ namespace {
     {
     public:
         void test(
-            const __s16         _MIN
-            , const __s16       _MAX
-            , const __s16       _DEAD_ZONE
-            , const __s16       _VALUE
+            const __s32         _MIN
+            , const __s32       _MAX
+            , const __s32       _DEAD_ZONE
+            , const __s32       _VALUE
             , const std::size_t _RETURNS_OPERATOR_CALL
             , const std::size_t _CURRENT_MAPPING_INDEX
             , const std::size_t _EXPECTED_NEW_MAPPING_INDEX

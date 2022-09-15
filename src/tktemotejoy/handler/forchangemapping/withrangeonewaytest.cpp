@@ -7,7 +7,7 @@ namespace {
     {
         bool &              called;
         const std::size_t   RETURNS_MAPPING_INDEX;
-        const __s16         EXPECTED_VALUE;
+        const __s32         EXPECTED_VALUE;
         const std::size_t & EXPECTED_MAPPING_INDEX;
         const std::size_t   EXPECTED_CURRENT_MAPPING_INDEX;
 
@@ -15,7 +15,7 @@ namespace {
         TestHandler(
             bool &                  _called
             , const std::size_t     _RETURNS_MAPPING_INDEX
-            , const __s16           _EXPECTED_VALUE
+            , const __s32           _EXPECTED_VALUE
             , const std::size_t &   _EXPECTED_MAPPING_INDEX
             , const std::size_t     _EXPECTED_CURRENT_MAPPING_INDEX
         )
@@ -28,7 +28,7 @@ namespace {
         }
 
         std::size_t operator()(
-            const __s16         _VALUE
+            const __s32         _VALUE
             , std::size_t &     _mappingIndex
             , const std::size_t _CURRENT_MAPPING_INDEX
         ) const
@@ -47,15 +47,15 @@ namespace {
     {
     public:
         void test(
-            const __s16         _MIN
-            , const __s16       _MAX
-            , const __s16       _DEAD_ZONE
-            , const __s16       _VALUE
+            const __s32         _MIN
+            , const __s32       _MAX
+            , const __s32       _DEAD_ZONE
+            , const __s32       _VALUE
             , const std::size_t _MAPPING_INDEX
             , const std::size_t _CURRENT_MAPPING_INDEX
             , const std::size_t _RETURNS_MAPPING_INDEX
             , const std::size_t _EXPECTED
-            , const __s16       _EXPECTED_VALUE
+            , const __s32       _EXPECTED_VALUE
             , const bool        _EXPECTED_CALLED
         ) const
         {

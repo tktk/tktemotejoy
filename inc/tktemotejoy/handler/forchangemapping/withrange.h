@@ -13,9 +13,9 @@ class WithRangeForChangeMapping final : public Mapping::OperateAxisHandlerForCha
 
 public:
     WithRangeForChangeMapping(
-        const __s16     _MIN
-        , const __s16   _MAX
-        , const __s16   _DEAD_ZONE
+        const __s32     _MIN
+        , const __s32   _MAX
+        , const __s32   _DEAD_ZONE
         , HANDLER_T &&  _handler
     )
         : IMPL(
@@ -28,7 +28,7 @@ public:
     }
 
     std::size_t operator()(
-        const __s16         _VALUE
+        const __s32         _VALUE
         , std::size_t &     _mappingIndex
         , const std::size_t _CURRENT_MAPPING_INDEX
     ) const override

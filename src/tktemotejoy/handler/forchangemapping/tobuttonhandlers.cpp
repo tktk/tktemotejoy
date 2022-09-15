@@ -14,7 +14,7 @@ ToButtonHandlersForChangeMappingImpl::ToButtonHandlersForChangeMappingImpl(
 }
 
 std::size_t ToButtonHandlersForChangeMappingImpl::operator()(
-    const __s16         _VALUE
+    const __s32         _VALUE
     , std::size_t &     _mappingIndex
     , const std::size_t _CURRENT_MAPPING_INDEX
 ) const

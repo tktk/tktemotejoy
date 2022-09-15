@@ -9,14 +9,14 @@ namespace {
     {
         int &               calledCount;
         const std::size_t   RETURNS_MAPPING_INDEX;
-        const __s16         EXPECTED_VALUE;
+        const __s32         EXPECTED_VALUE;
         const std::size_t   EXPECTED_MAPPING_INDEX;
         const std::size_t   EXPECTED_CURRENT_MAPPING_INDEX;
 
         TestHandlerForChangeMapping(
             int &               _calledCount
             , const std::size_t _RETURNS_MAPPING_INDEX
-            , const __s16       _EXPECTED_VALUE
+            , const __s32       _EXPECTED_VALUE
             , const std::size_t _EXPECTED_MAPPING_INDEX
             , const std::size_t _EXPECTED_CURRENT_MAPPING_INDEX
         )
@@ -30,7 +30,7 @@ namespace {
         }
 
         std::size_t operator()(
-            const __s16         _VALUE
+            const __s32         _VALUE
             , std::size_t &     _mappingIndex
             , const std::size_t _CURRENT_MAPPING_INDEX
         ) const override
@@ -51,12 +51,12 @@ namespace {
         void test(
             const std::size_t   _SET_HANDLER_INDEX
             , const std::size_t _OPERATE_AXIS_INDEX
-            , const __s16       _VALUE
+            , const __s32       _VALUE
             , const std::size_t _MAPPING_INDEX
             , const std::size_t _CURRENT_MAPPING_INDEX
             , const std::size_t _RETURNS_MAPPING_INDEX
             , const std::size_t _EXPECTED_NEW_MAPPING_INDEX
-            , const __s16       _EXPECTED_VALUE
+            , const __s32       _EXPECTED_VALUE
             , const std::size_t _EXPECTED_MAPPING_INDEX
             , const std::size_t _EXPECTED_CURRENT_MAPPING_INDEX
             , const int         _EXPECTED_CALLED_COUNT
