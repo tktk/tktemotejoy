@@ -41,9 +41,9 @@ TEST_F(
     this->test(
         R"({
     "type" : "toFixedAxisX",
-    "value" : 32767
+    "value" : 192
 })"
-        , 0x80ff0000
+        , 0x80c00000
     );
 }
 
@@ -55,9 +55,9 @@ TEST_F(
     this->test(
         R"({
     "type" : "toFixedAxisY",
-    "value" : 32767
+    "value" : 192
 })"
-        , 0xff800000
+        , 0xc0800000
     );
 }
 
