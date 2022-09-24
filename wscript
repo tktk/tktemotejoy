@@ -7,8 +7,8 @@ from waflib.Tools import waf_unit_test
 
 import os.path
 
-APPNAME = 'tktemote'
-VERSION = '2.0.0'
+APPNAME = 'tktemotejoy'
+VERSION = '2.0.1'
 
 out = 'build'
 
