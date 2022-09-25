@@ -30,6 +30,17 @@ namespace {
         }
     };
 
+    struct TestGenerateHandlerUniqueWithArgs
+    {
+        auto operator()(
+            const Json::object_t &
+            , const int &           _VALUE
+        ) const
+        {
+            return TestHandlerUnique( new TestHandler{ _VALUE } );
+        }
+    };
+
     struct TestToButtonHandler
     {
         const __s32             MIN;
@@ -63,6 +74,11 @@ namespace {
         , TestGenerateHandlerUnique
     >;
 
+    using TestGenerateHandlerUniqueWithArgs_ = GenerateToButtonHandlerUnique<
+        TestGenerateToButtonHandlerUnique
+        , TestGenerateHandlerUniqueWithArgs
+    >;
+
     class GenerateToButtonHandlerUniqueTest : public ::testing::Test
     {
     public:
@@ -79,6 +95,32 @@ namespace {
             const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
 
             auto    handlerUnique = TestGenerateHandlerUnique_()( OBJECT );
+            ASSERT_NE( nullptr, handlerUnique.get() );
+
+            EXPECT_EQ( _EXPECTED_MIN, handlerUnique->MIN );
+            EXPECT_EQ( _EXPECTED_MAX, handlerUnique->MAX );
+            EXPECT_EQ( _EXPECTED_DEAD_ZONE, handlerUnique->DEAD_ZONE );
+            ASSERT_NE( nullptr, handlerUnique->HANDLER_UNIQUE.get() );
+            EXPECT_EQ( _EXPECTED_HANDLER_VALUE, handlerUnique->HANDLER_UNIQUE->VALUE );
+        }
+
+        void testWithArgs(
+            const std::string & _JSON_STRING
+            , const int         _ARG_VALUE
+            , const __s32       _EXPECTED_MIN
+            , const __s32       _EXPECTED_MAX
+            , const __s32       _EXPECTED_DEAD_ZONE
+            , const int         _EXPECTED_HANDLER_VALUE
+        ) const
+        {
+            const auto  JSON = Json::parse( _JSON_STRING );
+
+            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
+
+            auto    handlerUnique = TestGenerateHandlerUniqueWithArgs_()(
+                OBJECT
+                , _ARG_VALUE
+            );
             ASSERT_NE( nullptr, handlerUnique.get() );
 
             EXPECT_EQ( _EXPECTED_MIN, handlerUnique->MIN );
@@ -115,6 +157,27 @@ TEST_F(
         "key" : 20
     }
 })"
+        , 0
+        , 255
+        , 10
+        , 20
+    );
+}
+
+TEST_F(
+    GenerateToButtonHandlerUniqueTest
+    , WithArgs
+)
+{
+    this->testWithArgs(
+        R"({
+    "min" : 0,
+    "max" : 255,
+    "deadZone" : 10,
+    "handler" : {
+    }
+})"
+        , 20
         , 0
         , 255
         , 10

@@ -22,11 +22,13 @@ class GenerateToButtonHandlerUnique
     >
 {
 public:
+    template< typename ... ARGS_T >
     auto generateHandler(
         const Json::object_t &  _OBJECT
         , const __s32           _MIN
         , const __s32           _MAX
         , const __s32           _DEAD_ZONE
+        , const ARGS_T & ...    _ARGS
     ) const
     {
         const auto  KEY_HANDLER = std::string( "handler" );
@@ -36,7 +38,10 @@ public:
             , KEY_HANDLER
         );
 
-        auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( OBJECT );
+        auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()(
+            OBJECT
+            , _ARGS ...
+        );
         if( handlerUnique.get() == nullptr ) {
             throw typeIsUnsupported(
                 OBJECT
