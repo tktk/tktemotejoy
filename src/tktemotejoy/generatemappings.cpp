@@ -103,6 +103,18 @@ namespace {
     {
         auto operator()(
             const Json::object_t &  _OBJECT
+            , const MappingNames &  _MAPPING_NAMES
+        ) const
+        {
+            return generatePressButtonHandlerForChangeMappingUnique_new(
+                _OBJECT
+                , _MAPPING_NAMES
+            );
+        }
+
+        //REMOVEME
+        auto operator()(
+            const Json::object_t &  _OBJECT
         ) const
         {
             return generatePressButtonHandlerForChangeMappingUnique( _OBJECT );
@@ -129,11 +141,15 @@ namespace {
         }
     };
 
-    template< typename GENERATE_HANDLER_UNIQUE_T >
+    template<
+        typename GENERATE_HANDLER_UNIQUE_T
+        , typename ... ARGS_T
+    >
     void setHandlers(
         Mapping &                   _mapping
         , const Json::object_t &    _OBJECT
         , const std::string &       _KEY
+        , const ARGS_T & ...        _ARGS
     )
     {
         const auto  MAPPINGS_PTR = getJsonObjectFromObjectNotRequired(
@@ -163,7 +179,10 @@ namespace {
                 , index
             );
 
-            auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( MAPPING );
+            auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()(
+                MAPPING
+                , _ARGS ...
+            );
             if( handlerUnique.get() == nullptr ) {
                 throw typeIsUnsupported(
                     MAPPING
@@ -178,6 +197,47 @@ namespace {
         }
     }
 
+    Mapping generateMapping(
+        const Json::object_t &  _OBJECT
+        , const MappingNames &  _MAPPING_NAMES
+        , const std::size_t &   _BUTTONS
+        , const std::size_t &   _AXES
+    )
+    {
+        auto    mapping = Mapping(
+            _BUTTONS
+            , _AXES
+        );
+
+        setHandlers< GeneratePressButtonHandlerForPspStateUnique >(
+            mapping
+            , _OBJECT
+            , MAPPING_KEY_BUTTONS_FOR_PSP_STATE
+        );
+
+        setHandlers< GeneratePressButtonHandlerForChangeMappingUnique >(
+            mapping
+            , _OBJECT
+            , MAPPING_KEY_BUTTONS_FOR_CHANGE_MAPPING
+            , _MAPPING_NAMES
+        );
+
+        setHandlers< GenerateOperateAxisHandlerForPspStateUnique >(
+            mapping
+            , _OBJECT
+            , MAPPING_KEY_AXES_FOR_PSP_STATE
+        );
+
+        setHandlers< GenerateOperateAxisHandlerForChangeMappingUnique >(
+            mapping
+            , _OBJECT
+            , MAPPING_KEY_AXES_FOR_CHANGE_MAPPING
+        );
+
+        return mapping;
+    }
+
+    //REMOVEME
     Mapping generateMapping(
         const Json::object_t &  _OBJECT
         , const std::size_t &   _BUTTONS
@@ -216,6 +276,36 @@ namespace {
         return mapping;
     }
 
+    Mappings::Impl generateMappingsImpl(
+        const Json::object_t &  _MAPPINGS
+        , const MappingNames &  _MAPPING_NAMES
+        , const std::size_t &   _BUTTONS
+        , const std::size_t &   _AXES
+    )
+    {
+        auto    impl = Mappings::Impl();
+        for( const auto & MAPPING_NAME : _MAPPING_NAMES ) {
+            const auto &    MAPPING_JSON = _MAPPINGS.at( MAPPING_NAME );
+
+            const auto &    MAPPING = getJsonObjectFromJson(
+                MAPPING_JSON
+                , ROOT_KEY_MAPPINGS
+                , MAPPING_NAME
+            );
+
+            impl.emplace_back(
+                generateMapping(
+                    MAPPING
+                    , _MAPPING_NAMES
+                    , _BUTTONS
+                    , _AXES
+                )
+            );
+        }
+
+        return impl;
+    }
+
     //REMOVEME
     Mappings::Impl generateMappingsImpl(
         const Json::object_t &  _OBJECT
@@ -246,35 +336,6 @@ namespace {
             );
 
             index++;
-        }
-
-        return impl;
-    }
-
-    Mappings::Impl generateMappingsImpl(
-        const Json::object_t &  _MAPPINGS
-        , const MappingNames &  _MAPPING_NAMES
-        , const std::size_t &   _BUTTONS
-        , const std::size_t &   _AXES
-    )
-    {
-        auto    impl = Mappings::Impl();
-        for( const auto & MAPPING_NAME : _MAPPING_NAMES ) {
-            const auto &    MAPPING_JSON = _MAPPINGS.at( MAPPING_NAME );
-
-            const auto &    MAPPING = getJsonObjectFromJson(
-                MAPPING_JSON
-                , ROOT_KEY_MAPPINGS
-                , MAPPING_NAME
-            );
-
-            impl.emplace_back(
-                generateMapping(
-                    MAPPING
-                    , _BUTTONS
-                    , _AXES
-                )
-            );
         }
 
         return impl;
