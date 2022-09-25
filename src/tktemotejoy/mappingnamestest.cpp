@@ -20,6 +20,19 @@ namespace {
                 )
             );
         }
+
+        void testAnyThrow(
+            const MappingNames &    _MAPPING_NAMES
+            , const std::string &   _MAPPING_NAME
+        ) const
+        {
+            EXPECT_ANY_THROW(
+                calcMappingIndex(
+                    _MAPPING_NAMES
+                    , _MAPPING_NAME
+                )
+            );
+        }
     };
 }
 
@@ -41,4 +54,19 @@ TEST_F(
     );
 }
 
-//TODO FailedNotExists
+TEST_F(
+    CalcMappingIndexTest
+    , FailedNotExists
+)
+{
+    this->testAnyThrow(
+        {
+            "mapping1",
+            "mapping2",
+            "mapping3",
+            "mapping4",
+            "mapping5",
+        }
+        , "notExists"
+    );
+}
