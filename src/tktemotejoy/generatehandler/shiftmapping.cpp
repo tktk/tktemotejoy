@@ -30,6 +30,7 @@ namespace {
     };
 }
 
+//REMOVEME
 Mapping::PressButtonHandlerForChangeMappingUnique generateShiftMappingUnique(
     const Json::object_t &  _OBJECT
 )
@@ -39,4 +40,13 @@ Mapping::PressButtonHandlerForChangeMappingUnique generateShiftMappingUnique(
         , GetType
         , GenerateChangeMappingUnique< GenerateShiftMappingUnique >
     >( _OBJECT );
+}
+
+Mapping::PressButtonHandlerForChangeMappingUnique generateShiftMappingUnique_new(
+    const Json::object_t &  _OBJECT
+    , const MappingNames &  _MAPPING_NAMES
+)
+{
+    //TODO
+    return Mapping::PressButtonHandlerForChangeMappingUnique();
 }
