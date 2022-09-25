@@ -10,8 +10,25 @@ Mapping::PressButtonHandlerForChangeMappingUnique generatePressButtonHandlerForC
     , const MappingNames &  _MAPPING_NAMES
 )
 {
-    //TODO
-    return Mapping::PressButtonHandlerForChangeMappingUnique();
+    auto    handlerUnique = Mapping::PressButtonHandlerForChangeMappingUnique();
+
+    handlerUnique = generateShiftMappingUnique_new(
+        _OBJECT
+        , _MAPPING_NAMES
+    );
+    if( handlerUnique.get() != nullptr ) {
+        return handlerUnique;
+    }
+
+    handlerUnique = generateToggleMappingUnique_new(
+        _OBJECT
+        , _MAPPING_NAMES
+    );
+    if( handlerUnique.get() != nullptr ) {
+        return handlerUnique;
+    }
+
+    return handlerUnique;
 }
 
 //REMOVEME
