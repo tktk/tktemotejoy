@@ -4,21 +4,76 @@
 #include "tktemotejoy/customjson.h"
 #include <string>
 #include <array>
+#include <vector>
+#include <algorithm>
+#include <iterator>
 
 namespace {
     union TestMappings
     {
         struct
         {
-            std::array< char, sizeof( Mappings::Impl ) > impl;
-            Mappings::Impl::size_type   mappingIndex;
+            std::array< char, sizeof( Mappings::Impl ) >    impl;
+            Mappings::Impl::size_type                       mappingIndex;
         };
         Mappings  mappings;
     };
 
+    auto getMappingIndex(
+        const Json &            _JSON
+        , const std::string &   _MAPPING_NAME
+    )
+    {
+        const auto &    ROOT = _JSON.get_ref< const Json::object_t & >();
+        const auto &    MAPPINGS = ROOT.at( "mappings_new" ).get_ref< const Json::object_t & >();   //TODO mappingsにする
+
+        auto    keys = std::vector< std::string >();
+        for( const auto & PAIR : MAPPINGS ) {
+            keys.push_back( PAIR.first );
+        }
+
+        const auto  KEYS_BEGIN = keys.begin();
+        const auto  IT = std::lower_bound(
+            KEYS_BEGIN
+            , keys.end()
+            , _MAPPING_NAME
+        );
+
+        const auto  MAPPING_INDEX = std::distance(
+            KEYS_BEGIN
+            , IT
+        );
+
+        return MAPPING_INDEX;
+    }
+
     class GenerateMappings_generalTest : public ::testing::Test
     {
     public:
+        void test(
+            const std::string &     _JSON_STRING
+            , const std::string &   _MAPPING_NAME
+        ) const
+        {
+            const auto  JSON = Json::parse( _JSON_STRING );
+
+            const auto  EXPECTED_MAPPING_INDEX = getMappingIndex(
+                JSON
+                , _MAPPING_NAME
+            );
+
+            auto    mappings = generateMappings(
+                JSON
+                , 0
+                , 0
+            );
+
+            const auto &    TEST_MAPPINGS = reinterpret_cast< const TestMappings & >( mappings );
+
+            EXPECT_EQ( EXPECTED_MAPPING_INDEX, TEST_MAPPINGS.mappingIndex );
+        }
+
+        //REMOVEME
         void test(
             const std::string &                 _JSON_STRING
             , const Mappings::Impl::size_type   _EXPECTED_MAPPING_INDEX
@@ -62,11 +117,19 @@ TEST_F(
     this->test(
         R"({
     "general" : {
-        "defaultMapping" : 10
+        "defaultMapping" : 100, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping3", "TODO" : "defaultMappingにする"
     },
-    "mappings" : []
+    "mappings_new" : { "TODO" : "mappingsにする",
+        "mapping1" : {},
+        "mapping2" : {},
+        "mapping3" : {},
+        "mapping4" : {},
+        "mapping5" : {}
+    },
+    "mappings" : [], "REMOVEME" : 0
 })"
-        , 10
+        , "mapping3"
     );
 }
 
@@ -108,6 +171,7 @@ TEST_F(
     );
 }
 
+//REMOVEME
 TEST_F(
     GenerateMappings_generalTest
     , FailedNotUnsignedDefaultMapping
@@ -122,3 +186,6 @@ TEST_F(
 })"
     );
 }
+
+//TODO FailedNotStringDefaultMapping_new
+//TODO FailedDefaultMappingIsNotMappingName
