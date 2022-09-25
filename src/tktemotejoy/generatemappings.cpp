@@ -135,6 +135,18 @@ namespace {
     {
         auto operator()(
             const Json::object_t &  _OBJECT
+            , const MappingNames &  _MAPPING_NAMES
+        ) const
+        {
+            return generateOperateAxisHandlerForChangeMappingUnique_new(
+                _OBJECT
+                , _MAPPING_NAMES
+            );
+        }
+
+        //REMOVEME
+        auto operator()(
+            const Json::object_t &  _OBJECT
         ) const
         {
             return generateOperateAxisHandlerForChangeMappingUnique( _OBJECT );
@@ -232,6 +244,7 @@ namespace {
             mapping
             , _OBJECT
             , MAPPING_KEY_AXES_FOR_CHANGE_MAPPING
+            , _MAPPING_NAMES
         );
 
         return mapping;
