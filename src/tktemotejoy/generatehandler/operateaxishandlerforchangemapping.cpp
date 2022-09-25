@@ -10,8 +10,25 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateOperateAxisHandlerForC
     , const MappingNames &  _MAPPING_NAMES
 )
 {
-    //TODO
-    return Mapping::OperateAxisHandlerForChangeMappingUnique();
+    auto    handlerUnique = Mapping::OperateAxisHandlerForChangeMappingUnique();
+
+    handlerUnique = generateToButtonHandlersForChangeMappingUnique_new(
+        _OBJECT
+        , _MAPPING_NAMES
+    );
+    if( handlerUnique.get() != nullptr ) {
+        return handlerUnique;
+    }
+
+    handlerUnique = generateToButtonHandlerForChangeMappingUnique_new(
+        _OBJECT
+        , _MAPPING_NAMES
+    );
+    if( handlerUnique.get() != nullptr ) {
+        return handlerUnique;
+    }
+
+    return handlerUnique;
 }
 
 Mapping::OperateAxisHandlerForChangeMappingUnique generateOperateAxisHandlerForChangeMappingUnique(
