@@ -12,4 +12,5 @@ module.TARGET = 'tktemotejoy_mappingnamestest'
 module.SOURCE = [
     'mappingnamestest.cpp',
     'mappingnames.cpp',
+    'mappingnameerror.cpp',
 ]

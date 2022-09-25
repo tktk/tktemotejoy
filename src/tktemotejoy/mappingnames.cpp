@@ -1,4 +1,5 @@
 #include "tktemotejoy/mappingnames.h"
+#include "tktemotejoy/mappingnameerror.h"
 #include <algorithm>
 #include <iterator>
 
@@ -15,12 +16,9 @@ MappingNames::size_type calcMappingIndex(
         , MAPPING_NAMES_END
         , _MAPPING_NAME
     );
-    //TODO
-/*
     if( IT == MAPPING_NAMES_END ) {
         throw mappingNameIsNotExists( _MAPPING_NAME );
     }
-*/
 
     const auto  MAPPING_INDEX = std::distance(
         MAPPING_NAMES_BEGIN
