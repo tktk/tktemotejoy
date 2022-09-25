@@ -35,6 +35,13 @@ public:
         , const MappingNames &  _MAPPING_NAMES
     ) const
     {
+        const auto  KEY_MAPPING = std::string( "mapping" );
+
+        const auto &    MAPPING_NAME = getJsonStringFromObject(
+            _OBJECT
+            , KEY_MAPPING
+        );
+
         //TODO
         return GENERATE_CHANGE_MAPPING_UNIQUE_T()( 2 );
     }
