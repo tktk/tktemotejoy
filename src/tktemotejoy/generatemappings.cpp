@@ -12,8 +12,6 @@
 #include "tktemotejoy/mappingnameerror.h"
 #include <cstddef>
 #include <string>
-#include <algorithm>
-#include <sstream>
 #include <utility>
 
 namespace {

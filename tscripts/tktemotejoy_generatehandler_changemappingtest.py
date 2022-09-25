@@ -15,5 +15,6 @@ module.SOURCE = [
             'changemappingtest.cpp',
         ],
     },
+    'mappingnames.cpp',
     'mappingnameerror.cpp',
 ]
