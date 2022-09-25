@@ -4,12 +4,12 @@
 #include "tktemotejoy/generatehandler/operateaxishandlerforpspstate.h"
 #include "tktemotejoy/generatehandler/operateaxishandlerforchangemapping.h"
 #include "tktemotejoy/mappings.h"
+#include "tktemotejoy/mappingnames.h"
 #include "tktemotejoy/customjson.h"
 #include "tktemotejoy/json.h"
 #include "tktemotejoy/jsonerror.h"
 #include "tktemotejoy/typeerror.h"
 #include <cstddef>
-#include <vector>
 #include <string>
 #include <algorithm>
 #include <sstream>
@@ -29,8 +29,6 @@ namespace {
     const auto  MAPPING_KEY_BUTTONS_FOR_CHANGE_MAPPING = std::string( "buttonsForChangeMapping" );
     const auto  MAPPING_KEY_AXES_FOR_PSP_STATE = std::string( "axesForPspState" );
     const auto  MAPPING_KEY_AXES_FOR_CHANGE_MAPPING = std::string( "axesForChangeMapping" );
-
-    using MappingNames = std::vector< std::string >;
 
     MappingNames generateMappingNames(
         const Json::object_t &  _MAPPINGS
@@ -234,6 +232,7 @@ namespace {
         return mapping;
     }
 
+    //REMOVEME
     Mappings::Impl generateMappingsImpl(
         const Json::object_t &  _OBJECT
         , const std::size_t &   _BUTTONS

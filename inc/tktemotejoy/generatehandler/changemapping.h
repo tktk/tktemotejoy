@@ -1,10 +1,12 @@
 #ifndef TKTEMOTEJOY_GENERATEHANDLER_CHANGEMAPPING_H
 #define TKTEMOTEJOY_GENERATEHANDLER_CHANGEMAPPING_H
 
+#include "tktemotejoy/mappingnames.h"
 #include "tktemotejoy/customjson.h"
 #include "tktemotejoy/json.h"
 #include <string>
 
+//REMOVEME
 template< typename GENERATE_CHANGE_MAPPING_UNIQUE_T >
 class GenerateChangeMappingUnique
 {
@@ -21,6 +23,20 @@ public:
         );
 
         return GENERATE_CHANGE_MAPPING_UNIQUE_T()( MAPPING );
+    }
+};
+
+template< typename GENERATE_CHANGE_MAPPING_UNIQUE_T >
+class GenerateChangeMappingUnique_new
+{
+public:
+    auto operator()(
+        const Json::object_t &  _OBJECT
+        , const MappingNames &  _MAPPING_NAMES
+    ) const
+    {
+        //TODO
+        return GENERATE_CHANGE_MAPPING_UNIQUE_T()( 100 );
     }
 };
 
