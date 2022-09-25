@@ -120,7 +120,7 @@ TEST_F(
         "defaultMapping" : 100, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping3", "TODO" : "defaultMappingにする"
     },
-    "mappings_new" : { "TODO" : "mappingsにする",
+    "TODO" : "mappingsにする", "mappings_new" : {
         "mapping1" : {},
         "mapping2" : {},
         "mapping3" : {},

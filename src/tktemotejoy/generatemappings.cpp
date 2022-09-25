@@ -267,6 +267,36 @@ namespace {
 
         return impl;
     }
+
+    Mappings::Impl generateMappingsImpl(
+        const Json::object_t &  _MAPPINGS
+        , const MappingNames &  _MAPPING_NAMES
+        , const std::size_t &   _BUTTONS
+        , const std::size_t &   _AXES
+    )
+    {
+        auto    index = std::size_t( 0 );
+        auto    impl = Mappings::Impl();
+        for( const auto & MAPPING_NAME : _MAPPING_NAMES ) {
+            const auto &    MAPPING_JSON = _MAPPINGS.at( MAPPING_NAME );
+
+            const auto &    MAPPING = getJsonObjectFromJson(
+                MAPPING_JSON
+                , ROOT_KEY_MAPPINGS
+                , MAPPING_NAME
+            );
+
+            impl.emplace_back(
+                generateMapping(
+                    MAPPING
+                    , _BUTTONS
+                    , _AXES
+                )
+            );
+        }
+
+        return impl;
+    }
 }
 
 Mappings generateMappings(
@@ -296,11 +326,22 @@ Mappings generateMappings(
         , mappingNames
     );
 
+    //REMOVEME
     auto    impl = generateMappingsImpl(
         OBJECT
         , _BUTTONS
         , _AXES
     );
+
+    auto    implNew = generateMappingsImpl(
+        *MAPPINGS_PTR   //TODO MAPPINGSにする
+        , mappingNames
+        , _BUTTONS
+        , _AXES
+    );
+    if( implNew.size() > 0 ) {
+        impl = std::move( implNew );
+    }
 
     return Mappings(
         std::move( impl )
