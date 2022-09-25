@@ -108,8 +108,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GenerateMappings_mappingsTest
     , ButtonsForChangeMapping
@@ -128,18 +126,20 @@ TEST_F(
     this->test(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping1"
     },
-    "mappings" : [
-        {
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping1" : {
             "buttonsForChangeMapping" : {
                 "10" : {
                     "type" : "shiftMapping",
-                    "mapping" : 1
+                    "mapping" : "mapping2"
                 }
             }
         },
-        {
+        "mapping2" : {
             "buttonsForPspState" : {
                 "10" : {
                     "type" : "toButtons",
@@ -149,13 +149,12 @@ TEST_F(
                 }
             }
         }
-    ]
+    }
 })"
         , evdevState
         , 0x80800010
     );
 }
-*/
 
 TEST_F(
     GenerateMappings_mappingsTest
