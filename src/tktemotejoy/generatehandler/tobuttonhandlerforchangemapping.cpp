@@ -41,6 +41,21 @@ namespace {
         }
     };
 
+    struct GeneratePressButtonHandlerForChangeMappingUnique_new
+    {
+        auto operator()(
+            const Json::object_t &  _OBJECT
+            , const MappingNames &  _MAPPING_NAMES
+        ) const
+        {
+            return generatePressButtonHandlerForChangeMappingUnique_new(
+                _OBJECT
+                , _MAPPING_NAMES
+            );
+        }
+    };
+
+    //REMOVEME
     struct GeneratePressButtonHandlerForChangeMappingUnique
     {
         auto operator()(
@@ -57,18 +72,17 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChan
     , const MappingNames &  _MAPPING_NAMES
 )
 {
-    //TODO
-    return Mapping::OperateAxisHandlerForChangeMappingUnique();
-/*
     return generateHandlerUnique<
         Mapping::OperateAxisHandlerForChangeMappingUnique
         , GetType
         , GenerateToButtonHandlerUnique<
             GenerateToButtonHandlerForChangeMappingUnique
-            , GeneratePressButtonHandlerForChangeMappingUnique
+            , GeneratePressButtonHandlerForChangeMappingUnique_new
         >
-    >( _OBJECT );
-*/
+    >(
+        _OBJECT
+        , _MAPPING_NAMES
+    );
 }
 
 //REMOVEME
