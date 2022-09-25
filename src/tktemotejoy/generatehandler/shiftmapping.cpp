@@ -47,6 +47,12 @@ Mapping::PressButtonHandlerForChangeMappingUnique generateShiftMappingUnique_new
     , const MappingNames &  _MAPPING_NAMES
 )
 {
-    //TODO
-    return Mapping::PressButtonHandlerForChangeMappingUnique();
+    return generateHandlerUnique<
+        Mapping::PressButtonHandlerForChangeMappingUnique
+        , GetType
+        , GenerateChangeMappingUnique_new< GenerateShiftMappingUnique >
+    >(
+        _OBJECT
+        , _MAPPING_NAMES
+    );
 }

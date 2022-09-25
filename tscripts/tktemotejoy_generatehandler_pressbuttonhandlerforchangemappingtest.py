@@ -29,5 +29,7 @@ module.SOURCE = [
         },
     },
     'mapping.cpp',
+    'mappingnames.cpp',
     'typeerror.cpp',
+    'mappingnameerror.cpp',
 ]
