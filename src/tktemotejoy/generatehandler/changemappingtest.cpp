@@ -174,5 +174,17 @@ TEST_F(
     );
 }
 
-//TODO FailedNotStringMapping
+TEST_F(
+    GenerateChangeMappingUnique_newTest
+    , FailedNotStringMapping
+)
+{
+    this->testAnyThrow(
+        R"({
+    "mapping" : 10
+})"
+        , {}
+    );
+}
+
 //TODO FailedMappingIsNotMappingName
