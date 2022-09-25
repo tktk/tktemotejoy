@@ -187,4 +187,21 @@ TEST_F(
     );
 }
 
-//TODO FailedMappingIsNotMappingName
+TEST_F(
+    GenerateChangeMappingUnique_newTest
+    , FailedMappingIsNotMappingName
+)
+{
+    this->testAnyThrow(
+        R"({
+    "mapping" : "notMappingName"
+})"
+        , {
+            "mapping1",
+            "mapping2",
+            "mapping3",
+            "mapping4",
+            "mapping5",
+        }
+    );
+}
