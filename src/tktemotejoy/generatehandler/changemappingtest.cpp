@@ -162,6 +162,17 @@ TEST_F(
     );
 }
 
-//TODO FailedNotExistsMapping
+TEST_F(
+    GenerateChangeMappingUnique_newTest
+    , FailedNotExistsMapping
+)
+{
+    this->testAnyThrow(
+        R"({
+})"
+        , {}
+    );
+}
+
 //TODO FailedNotStringMapping
 //TODO FailedMappingIsNotMappingName
