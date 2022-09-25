@@ -158,6 +158,7 @@ TEST_F(
     );
 }
 
+//REMOVEME
 TEST_F(
     GenerateMappings_generalTest
     , FailedNotExistsDefaultMapping
@@ -187,5 +188,43 @@ TEST_F(
     );
 }
 
-//TODO FailedNotStringDefaultMapping_new
-//TODO FailedDefaultMappingIsNotMappingName
+//TODO FailedNotExistsDefaultMapping_new
+
+TEST_F(
+    GenerateMappings_generalTest
+    , FailedNotStringDefaultMapping_new
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : 20
+    },
+    "mappings" : []
+})"
+    );
+}
+
+TEST_F(
+    GenerateMappings_generalTest
+    , FailedDefaultMapping_newIsNotMappingName
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : 100, "REMOVEME" : 0,
+        "defaultMapping_new" : "notMappingName", "TODO" : "defaultMappingにする"
+    },
+    "mappings_new" : { "TODO" : "mappingsにする",
+        "mapping1" : {},
+        "mapping2" : {},
+        "mapping3" : {},
+        "mapping4" : {},
+        "mapping5" : {}
+    },
+    "mappings" : [], "REMOVEME" : 0
+})"
+    );
+}
