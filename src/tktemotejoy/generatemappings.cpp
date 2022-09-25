@@ -12,6 +12,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <sstream>
 #include <utility>
 
 namespace {
@@ -77,11 +78,20 @@ namespace {
             const auto &    DEFAULT_MAPPING_NEW = *DEFAULT_MAPPING_NEW_PTR;
 
             const auto  MAPPING_NAMES_BEGIN = _MAPPING_NAMES.begin();
+            const auto  MAPPING_NAMES_END = _MAPPING_NAMES.end();
             const auto  IT = std::lower_bound(
                 MAPPING_NAMES_BEGIN
-                , _MAPPING_NAMES.end()
+                , MAPPING_NAMES_END
                 , DEFAULT_MAPPING_NEW
             );
+            if( IT == MAPPING_NAMES_END ) {
+                //TODO 要関数化
+                auto    oStringStream = std::ostringstream();
+
+                oStringStream << "マッピング" << '"' << DEFAULT_MAPPING_NEW << '"' << "が存在しない";
+
+                throw std::runtime_error( oStringStream.str() );
+            }
             const auto  DEFAULT_MAPPING_INDEX = std::distance(
                 MAPPING_NAMES_BEGIN
                 , IT
