@@ -2,7 +2,17 @@
 #include "tktemotejoy/generatehandler/tobuttonhandlersforchangemapping.h"
 #include "tktemotejoy/generatehandler/tobuttonhandlerforchangemapping.h"
 #include "tktemotejoy/mapping.h"
+#include "tktemotejoy/mappingnames.h"
 #include "tktemotejoy/customjson.h"
+
+Mapping::OperateAxisHandlerForChangeMappingUnique generateOperateAxisHandlerForChangeMappingUnique_new(
+    const Json::object_t &  _OBJECT
+    , const MappingNames &  _MAPPING_NAMES
+)
+{
+    //TODO
+    return Mapping::OperateAxisHandlerForChangeMappingUnique();
+}
 
 Mapping::OperateAxisHandlerForChangeMappingUnique generateOperateAxisHandlerForChangeMappingUnique(
     const Json::object_t &  _OBJECT
