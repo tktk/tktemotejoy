@@ -9,8 +9,10 @@ template< typename T >
 class GenerateHandlerWithRangeUnique
 {
 public:
+    template< typename ... ARGS_T >
     auto operator()(
         const Json::object_t &  _OBJECT
+        , const ARGS_T & ...    _ARGS
     ) const
     {
         const auto  KEY_MIN_ = std::string( "min" );
@@ -40,6 +42,7 @@ public:
             , MIN
             , MAX
             , DEAD_ZONE
+            , _ARGS ...
         );
     }
 };
