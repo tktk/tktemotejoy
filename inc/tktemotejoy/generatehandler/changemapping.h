@@ -36,7 +36,7 @@ public:
     ) const
     {
         //TODO
-        return GENERATE_CHANGE_MAPPING_UNIQUE_T()( 100 );
+        return GENERATE_CHANGE_MAPPING_UNIQUE_T()( 2 );
     }
 };
 
