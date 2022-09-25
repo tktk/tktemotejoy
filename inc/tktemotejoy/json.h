@@ -304,6 +304,19 @@ struct GetJsonStringFromObject
     }
 };
 
+const auto  TMP = Json::string_t();
+
+template< typename ... PARENT_KEYS_T >
+const Json::string_t & getJsonStringFromObject(
+    const Json::object_t &      _OBJECT
+    , const std::string &       _KEY
+    , const PARENT_KEYS_T & ... _PARENT_KEYS
+)
+{
+    //TODO
+    return TMP;
+}
+
 template< typename ... PARENT_KEYS_T >
 const Json::string_t * getJsonStringFromObjectNotRequired(
     const Json::object_t &      _OBJECT
