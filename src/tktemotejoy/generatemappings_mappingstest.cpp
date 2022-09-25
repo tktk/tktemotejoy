@@ -155,6 +155,7 @@ TEST_F(
         , 0x80800010
     );
 }
+*/
 
 TEST_F(
     GenerateMappings_mappingsTest
@@ -174,10 +175,12 @@ TEST_F(
     this->test(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping"
     },
-    "mappings" : [
-        {
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping" : {
             "axesForPspState" : {
                 "10" : {
                     "type" : "toAxisX",
@@ -186,13 +189,15 @@ TEST_F(
                 }
             }
         }
-    ]
+    }
 })"
         , evdevState
         , 0x80c00000
     );
 }
 
+//TODO
+/*
 TEST_F(
     GenerateMappings_mappingsTest
     , AxesForChangeMapping
