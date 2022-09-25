@@ -1,8 +1,8 @@
 #include "tktemotejoy/test.h"
 #include "tktemotejoy/generatehandler/shiftmapping.h"
 #include "tktemotejoy/generatehandler/pressbuttonhandlerforchangemappingtest.h"
-#include "tktemotejoy/customjson.h"
 #include "tktemotejoy/mappingnames.h"
+#include "tktemotejoy/customjson.h"
 
 namespace {
     struct GenerateShiftMappingUnique_new

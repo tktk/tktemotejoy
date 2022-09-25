@@ -3,6 +3,7 @@
 #include "tktemotejoy/generatehandler/changemapping.h"
 #include "tktemotejoy/handler/forchangemapping/togglemapping.h"
 #include "tktemotejoy/mapping.h"
+#include "tktemotejoy/mappingnames.h"
 #include "tktemotejoy/customjson.h"
 #include <cstddef>
 #include <string>
@@ -30,6 +31,23 @@ namespace {
     };
 }
 
+Mapping::PressButtonHandlerForChangeMappingUnique generateToggleMappingUnique_new(
+    const Json::object_t &  _OBJECT
+    , const MappingNames &  _MAPPING_NAMES
+)
+{
+    //TODO
+    return Mapping::PressButtonHandlerForChangeMappingUnique();
+/*
+    return generateHandlerUnique<
+        Mapping::PressButtonHandlerForChangeMappingUnique
+        , GetType
+        , GenerateChangeMappingUnique< GenerateToggleMappingUnique >
+    >( _OBJECT );
+*/
+}
+
+//REMOVEME
 Mapping::PressButtonHandlerForChangeMappingUnique generateToggleMappingUnique(
     const Json::object_t &  _OBJECT
 )

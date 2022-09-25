@@ -3,6 +3,7 @@
 #include "tktemotejoy/generatehandler/changemapping.h"
 #include "tktemotejoy/handler/forchangemapping/shiftmapping.h"
 #include "tktemotejoy/mapping.h"
+#include "tktemotejoy/mappingnames.h"
 #include "tktemotejoy/customjson.h"
 #include <cstddef>
 #include <string>
