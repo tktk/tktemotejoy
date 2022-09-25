@@ -24,11 +24,13 @@ class GenerateToButtonHandlersUnique
     >
 {
 public:
+    template< typename ... ARGS_T >
     auto generateHandler(
         const Json::object_t &  _OBJECT
         , const __s32           _MIN
         , const __s32           _MAX
         , const __s32           _DEAD_ZONE
+        , const ARGS_T & ...    _ARGS
     ) const
     {
         const auto  KEY_HANDLER_MINUS = std::string( "handlerMinus" );
@@ -37,10 +39,12 @@ public:
         auto    handlerMinusUnique = generateChildHandler(
             _OBJECT
             , KEY_HANDLER_MINUS
+            , _ARGS ...
         );
         auto    handlerPlusUnique = generateChildHandler(
             _OBJECT
             , KEY_HANDLER_PLUS
+            , _ARGS ...
         );
 
         return GENERATE_TO_BUTTON_HANDLERS_UNIQUE_T()(
@@ -53,9 +57,11 @@ public:
     }
 
 private:
+    template< typename ... ARGS_T >
     auto generateChildHandler(
         const Json::object_t &  _OBJECT
         , const std::string &   _KEY
+        , const ARGS_T & ...    _ARGS
     ) const
     {
         const auto  HANDLER_PTR = getJsonObjectFromObjectNotRequired(
@@ -67,7 +73,10 @@ private:
         }
         const auto &    HANDLER = *HANDLER_PTR;
 
-        auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( HANDLER );
+        auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()(
+            HANDLER
+            , _ARGS ...
+        );
         if( handlerUnique.get() == nullptr ) {
             throw typeIsUnsupported(
                 HANDLER
