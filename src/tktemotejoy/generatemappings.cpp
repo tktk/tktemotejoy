@@ -76,19 +76,9 @@ namespace {
         if( DEFAULT_MAPPING_NEW_PTR != nullptr ) {
             const auto &    DEFAULT_MAPPING_NEW = *DEFAULT_MAPPING_NEW_PTR;
 
-            const auto  MAPPING_NAMES_BEGIN = _MAPPING_NAMES.begin();
-            const auto  MAPPING_NAMES_END = _MAPPING_NAMES.end();
-            const auto  IT = std::lower_bound(
-                MAPPING_NAMES_BEGIN
-                , MAPPING_NAMES_END
+            const auto  DEFAULT_MAPPING_INDEX = calcMappingIndex(
+                _MAPPING_NAMES
                 , DEFAULT_MAPPING_NEW
-            );
-            if( IT == MAPPING_NAMES_END ) {
-                throw mappingNameIsNotExists( DEFAULT_MAPPING_NEW );
-            }
-            const auto  DEFAULT_MAPPING_INDEX = std::distance(
-                MAPPING_NAMES_BEGIN
-                , IT
             );
 
             return General{

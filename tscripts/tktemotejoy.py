@@ -84,6 +84,7 @@ module.SOURCE = [
     'generatemappings.cpp',
     'mappings.cpp',
     'mapping.cpp',
+    'mappingnames.cpp',
     'evdevstate.cpp',
     'pspstate.cpp',
     'tousbhostfs.cpp',
