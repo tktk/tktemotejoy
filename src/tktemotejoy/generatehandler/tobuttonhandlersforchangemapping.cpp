@@ -5,6 +5,7 @@
 #include "tktemotejoy/handler/forchangemapping/tobuttonhandlers.h"
 #include "tktemotejoy/handler/forchangemapping/dummy.h"
 #include "tktemotejoy/mapping.h"
+#include "tktemotejoy/mappingnames.h"
 #include "tktemotejoy/customjson.h"
 #include <linux/input.h>
 #include <string>
@@ -65,6 +66,27 @@ namespace {
     };
 }
 
+Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlersForChangeMappingUnique_new(
+    const Json::object_t &  _OBJECT
+    , const MappingNames &  _MAPPING_NAMES
+)
+{
+    //TODO
+    return Mapping::OperateAxisHandlerForChangeMappingUnique();
+/*
+    return generateHandlerUnique<
+        Mapping::OperateAxisHandlerForChangeMappingUnique
+        , GetType
+        , GenerateToButtonHandlersUnique<
+            GenerateToButtonHandlersForChangeMappingUnique
+            , GeneratePressButtonHandlerForChangeMappingUnique
+            , GenerateDummyPressButtonHandlerForChangeMappingUnique
+        >
+    >( _OBJECT );
+*/
+}
+
+//REMOVEME
 Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlersForChangeMappingUnique(
     const Json::object_t &  _OBJECT
 )
