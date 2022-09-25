@@ -36,15 +36,14 @@ Mapping::PressButtonHandlerForChangeMappingUnique generateToggleMappingUnique_ne
     , const MappingNames &  _MAPPING_NAMES
 )
 {
-    //TODO
-    return Mapping::PressButtonHandlerForChangeMappingUnique();
-/*
     return generateHandlerUnique<
         Mapping::PressButtonHandlerForChangeMappingUnique
         , GetType
-        , GenerateChangeMappingUnique< GenerateToggleMappingUnique >
-    >( _OBJECT );
-*/
+        , GenerateChangeMappingUnique_new< GenerateToggleMappingUnique >
+    >(
+        _OBJECT
+        , _MAPPING_NAMES
+    );
 }
 
 //REMOVEME
