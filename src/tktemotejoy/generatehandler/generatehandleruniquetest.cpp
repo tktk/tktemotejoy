@@ -20,6 +20,17 @@ namespace {
         }
     };
 
+    struct TestGanarateHandlerWithArgsUnique
+    {
+        TestHandlerUnique operator()(
+            const Json::object_t &
+            , const int &           _VALUE
+        ) const
+        {
+            return TestHandlerUnique( new int( _VALUE ) );
+        }
+    };
+
     struct GetType
     {
         const std::string & operator()(
@@ -65,6 +76,33 @@ namespace {
         }
 
         template< typename GET_TYPE_T >
+        void testWithArgs(
+            const std::string & _JSON_STRING
+            , const int         _ARG_VALUE
+            , const bool        _HANDLER_EXPECTED_NOT_NULL
+            , const int         _EXPECTED
+        ) const
+        {
+            const auto  JSON = Json::parse( _JSON_STRING );
+
+            auto    handlerUnique = generateHandlerUnique<
+                TestHandlerUnique
+                , GET_TYPE_T
+                , TestGanarateHandlerWithArgsUnique
+            >(
+                JSON
+                , _ARG_VALUE
+            );
+
+            if( _HANDLER_EXPECTED_NOT_NULL == true ) {
+                ASSERT_NE( nullptr, handlerUnique.get() );
+                EXPECT_EQ( _EXPECTED, *handlerUnique );
+            } else {
+                EXPECT_EQ( nullptr, handlerUnique.get() );
+            }
+        }
+
+        template< typename GET_TYPE_T >
         void testAnyThrow(
             const std::string & _JSON_STRING
         ) const
@@ -97,6 +135,21 @@ TEST_F(
     "type" : "TYPENAME",
     "key" : 10
 })"
+        , true
+        , 10
+    );
+}
+
+TEST_F(
+    GenerateHandlerUniqueTest
+    , WithArgs
+)
+{
+    this->testWithArgs< GetType >(
+        R"({
+    "type" : "TYPENAME"
+})"
+        , 10
         , true
         , 10
     );

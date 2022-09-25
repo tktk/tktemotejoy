@@ -9,9 +9,11 @@ template<
     typename HANDLER_UNIQUE_T
     , typename GET_TYPE_T
     , typename GENERATE_HANDLER_UNIQUE_T
+    , typename ... ARGS_T
 >
 HANDLER_UNIQUE_T generateHandlerUnique(
     const Json::object_t &  _OBJECT
+    , const ARGS_T & ...    _ARGS
 )
 {
     const auto  KEY_TYPE = std::string( "type" );
@@ -28,7 +30,10 @@ HANDLER_UNIQUE_T generateHandlerUnique(
         return HANDLER_UNIQUE_T();
     }
 
-    return GENERATE_HANDLER_UNIQUE_T()( _OBJECT );
+    return GENERATE_HANDLER_UNIQUE_T()(
+        _OBJECT
+        , _ARGS ...
+    );
 }
 
 #endif  // TKTEMOTEJOY_GENERATEHANDLER_GENERATEHANDLERUNIQUE_H
