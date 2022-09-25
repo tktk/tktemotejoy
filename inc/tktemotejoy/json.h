@@ -304,8 +304,6 @@ struct GetJsonStringFromObject
     }
 };
 
-const auto  TMP = Json::string_t();
-
 template< typename ... PARENT_KEYS_T >
 const Json::string_t & getJsonStringFromObject(
     const Json::object_t &      _OBJECT
@@ -313,8 +311,11 @@ const Json::string_t & getJsonStringFromObject(
     , const PARENT_KEYS_T & ... _PARENT_KEYS
 )
 {
-    //TODO
-    return TMP;
+    return getJsonFromObject< GetJsonStringFromObject >(
+        _OBJECT
+        , _KEY
+        , _PARENT_KEYS ...
+    );
 }
 
 template< typename ... PARENT_KEYS_T >
