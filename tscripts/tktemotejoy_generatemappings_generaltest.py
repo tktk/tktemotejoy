@@ -17,6 +17,7 @@ module.SOURCE = [
     'evdevstate.cpp',
     'pspstate.cpp',
     'typeerror.cpp',
+    'mappingnameerror.cpp',
     {
         'generatehandler' : [
             'pressbuttonhandlerforpspstate.cpp',

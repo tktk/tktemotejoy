@@ -89,6 +89,7 @@ module.SOURCE = [
     'evdev.cpp',
     'descriptorcloser.cpp',
     'typeerror.cpp',
+    'mappingnameerror.cpp',
     {
         'generatehandler' : [
             'tobuttons.cpp',

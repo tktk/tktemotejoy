@@ -9,8 +9,11 @@ module.BUILDER = cpp.gtest
 
 module.TARGET = 'tktemotejoy_generatehandler_changemappingtest'
 
-module.SOURCE = {
-    'generatehandler' : [
-        'changemappingtest.cpp',
-    ],
-}
+module.SOURCE = [
+    {
+        'generatehandler' : [
+            'changemappingtest.cpp',
+        ],
+    },
+    'mappingnameerror.cpp',
+]

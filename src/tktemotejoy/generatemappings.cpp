@@ -9,6 +9,7 @@
 #include "tktemotejoy/json.h"
 #include "tktemotejoy/jsonerror.h"
 #include "tktemotejoy/typeerror.h"
+#include "tktemotejoy/mappingnameerror.h"
 #include <cstddef>
 #include <string>
 #include <algorithm>
@@ -83,12 +84,7 @@ namespace {
                 , DEFAULT_MAPPING_NEW
             );
             if( IT == MAPPING_NAMES_END ) {
-                //TODO 要関数化
-                auto    oStringStream = std::ostringstream();
-
-                oStringStream << "マッピング" << '"' << DEFAULT_MAPPING_NEW << '"' << "が存在しない";
-
-                throw std::runtime_error( oStringStream.str() );
+                throw mappingNameIsNotExists( DEFAULT_MAPPING_NEW );
             }
             const auto  DEFAULT_MAPPING_INDEX = std::distance(
                 MAPPING_NAMES_BEGIN
@@ -274,7 +270,6 @@ namespace {
         , const std::size_t &   _AXES
     )
     {
-        auto    index = std::size_t( 0 );
         auto    impl = Mappings::Impl();
         for( const auto & MAPPING_NAME : _MAPPING_NAMES ) {
             const auto &    MAPPING_JSON = _MAPPINGS.at( MAPPING_NAME );

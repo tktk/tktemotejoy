@@ -22,5 +22,5 @@ std::runtime_error typeIsUnsupported(
         oStringStream << _HANDLERS_TYPE << "のタイプ指定がない";
     }
 
-    throw std::runtime_error( oStringStream.str() );
+    return std::runtime_error( oStringStream.str() );
 }
