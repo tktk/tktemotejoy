@@ -12,7 +12,7 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateOperateAxisHandlerForC
 {
     auto    handlerUnique = Mapping::OperateAxisHandlerForChangeMappingUnique();
 
-    handlerUnique = generateToButtonHandlersForChangeMappingUnique_new(
+    handlerUnique = generateToButtonHandlersForChangeMappingUnique(
         _OBJECT
         , _MAPPING_NAMES
     );
