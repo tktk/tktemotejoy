@@ -10,9 +10,4 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChan
     , const MappingNames &
 );
 
-//REMOVEME
-Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChangeMappingUnique(
-    const Json::object_t &
-);
-
 #endif  // TKTEMOTEJOY_GENERATEHANDLER_TOBUTTONHANDLERFORCHANGEMAPPING_H
