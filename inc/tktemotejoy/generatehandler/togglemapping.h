@@ -5,7 +5,7 @@
 #include "tktemotejoy/mappingnames.h"
 #include "tktemotejoy/customjson.h"
 
-Mapping::PressButtonHandlerForChangeMappingUnique generateToggleMappingUnique_new(
+Mapping::PressButtonHandlerForChangeMappingUnique generateToggleMappingUnique(
     const Json::object_t &
     , const MappingNames &
 );

@@ -31,7 +31,7 @@ namespace {
     };
 }
 
-Mapping::PressButtonHandlerForChangeMappingUnique generateToggleMappingUnique_new(
+Mapping::PressButtonHandlerForChangeMappingUnique generateToggleMappingUnique(
     const Json::object_t &  _OBJECT
     , const MappingNames &  _MAPPING_NAMES
 )

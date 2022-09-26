@@ -5,25 +5,25 @@
 #include "tktemotejoy/customjson.h"
 
 namespace {
-    struct GenerateToggleMappingUnique_new
+    struct GenerateToggleMappingUnique
     {
         auto operator()(
             const Json::object_t &  _OBJECT
             , const MappingNames &  _MAPPING_NAMES
         ) const
         {
-            return generateToggleMappingUnique_new(
+            return generateToggleMappingUnique(
                 _OBJECT
                 , _MAPPING_NAMES
             );
         }
     };
 
-    using GenerateToggleMapping_newTest = GeneratePressButtonHandlerForChangeMappingTestTmpl_new< GenerateToggleMappingUnique_new >;
+    using GenerateToggleMappingTest = GeneratePressButtonHandlerForChangeMappingTestTmpl_new< GenerateToggleMappingUnique >;
 }
 
 TEST_F(
-    GenerateToggleMapping_newTest
+    GenerateToggleMappingTest
     , Standard
 )
 {

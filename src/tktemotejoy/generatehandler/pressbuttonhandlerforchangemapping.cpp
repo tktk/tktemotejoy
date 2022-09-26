@@ -20,7 +20,7 @@ Mapping::PressButtonHandlerForChangeMappingUnique generatePressButtonHandlerForC
         return handlerUnique;
     }
 
-    handlerUnique = generateToggleMappingUnique_new(
+    handlerUnique = generateToggleMappingUnique(
         _OBJECT
         , _MAPPING_NAMES
     );
