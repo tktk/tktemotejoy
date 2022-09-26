@@ -17,7 +17,7 @@ namespace {
     const auto  JSON = std::string( "JSON" );
 
     const auto  ROOT_KEY_GENERAL = std::string( "general" );
-    const auto  ROOT_KEY_MAPPINGS_NEW = std::string( "mappings_new" );  //TODO mappingsにする
+    const auto  ROOT_KEY_MAPPINGS = std::string( "mappings" );
 
     const auto  GENERAL_KEY_DEFAULT_MAPPING = std::string( "defaultMapping" );
 
@@ -229,7 +229,7 @@ namespace {
 
             const auto &    MAPPING = getJsonObjectFromJson(
                 MAPPING_JSON
-                , ROOT_KEY_MAPPINGS_NEW
+                , ROOT_KEY_MAPPINGS
                 , MAPPING_NAME
             );
 
@@ -260,7 +260,7 @@ Mappings generateMappings(
 
     const auto &    MAPPINGS = getJsonObjectFromObject(
         OBJECT
-        , ROOT_KEY_MAPPINGS_NEW
+        , ROOT_KEY_MAPPINGS
     );
 
     const auto  MAPPING_NAMES = generateMappingNames( MAPPINGS );
