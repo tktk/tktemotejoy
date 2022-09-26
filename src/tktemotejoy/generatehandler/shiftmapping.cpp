@@ -31,18 +31,6 @@ namespace {
     };
 }
 
-//REMOVEME
-Mapping::PressButtonHandlerForChangeMappingUnique generateShiftMappingUnique(
-    const Json::object_t &  _OBJECT
-)
-{
-    return generateHandlerUnique<
-        Mapping::PressButtonHandlerForChangeMappingUnique
-        , GetType
-        , GenerateChangeMappingUnique< GenerateShiftMappingUnique >
-    >( _OBJECT );
-}
-
 Mapping::PressButtonHandlerForChangeMappingUnique generateShiftMappingUnique_new(
     const Json::object_t &  _OBJECT
     , const MappingNames &  _MAPPING_NAMES

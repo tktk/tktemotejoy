@@ -5,10 +5,6 @@
 #include "tktemotejoy/mappingnames.h"
 #include "tktemotejoy/customjson.h"
 
-Mapping::PressButtonHandlerForChangeMappingUnique generateShiftMappingUnique(
-    const Json::object_t &
-);
-
 Mapping::PressButtonHandlerForChangeMappingUnique generateShiftMappingUnique_new(
     const Json::object_t &
     , const MappingNames &

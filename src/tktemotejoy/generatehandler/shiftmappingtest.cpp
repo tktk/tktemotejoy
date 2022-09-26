@@ -20,20 +20,6 @@ namespace {
     };
 
     using GenerateShiftMapping_newTest = GeneratePressButtonHandlerForChangeMappingTestTmpl_new< GenerateShiftMappingUnique_new >;
-
-    //REMOVEME
-    struct GenerateShiftMappingUnique
-    {
-        auto operator()(
-            const Json::object_t &  _OBJECT
-        ) const
-        {
-            return generateShiftMappingUnique( _OBJECT );
-        }
-    };
-
-    //REMOVEME
-    using GenerateShiftMappingTest = GeneratePressButtonHandlerForChangeMappingTestTmpl< GenerateShiftMappingUnique >;
 }
 
 TEST_F(
@@ -56,22 +42,5 @@ TEST_F(
         , 10
         , 10
         , 2
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateShiftMappingTest
-    , Standard
-)
-{
-    this->test(
-        R"({
-    "type" : "shiftMapping",
-    "mapping" : 10
-})"
-        , 20
-        , 20
-        , 10
     );
 }
