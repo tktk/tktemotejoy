@@ -1,10 +1,10 @@
 // 設定例（機能一覧）
 {
     "general" : {   // 基本設定
-        "defaultMapping" : 0,   // 初期のマッピング番号
+        "defaultMapping" : "mapping1",  // 初期のマッピング名
     },
-    "mappings" : [  // マッピングリスト
-        {   // マッピング番号0
+    "mappings" : {  // マッピングマップ
+        "mapping1" : {  // マッピング名
             "buttonsForPspState" : {    // コントローラのボタンにPSPの入力状態をマッピング（省略可）
                 "0" : { // ボタン番号0にマッピング
                     "type" : "toButtons",   // ボタン入力
@@ -85,12 +85,12 @@
             "buttonsForChangeMapping" : {   // コントローラのボタンにマッピング切り替えをマッピング（省略可）
                 "0" : { // ボタン番号0にマッピング
                     "type" : "shiftMapping",    // ボタンを押している間、一時的にマッピングを切り替える
-                    "mapping" : 1,  // 切り替え先のマッピング番号（先頭は0）
+                    "mapping" : "mapping2", // 切り替え先のマッピング名
                     // shiftMappingを循環させると無限ループになるため注意すること
                 },
                 "1" : { // ボタン番号1にマッピング
                     "type" : "toggleMapping",   // 恒久的にマッピングを切り替える
-                    "mapping" : 2,  // 切り替え先のマッピング番号（先頭は0）
+                    "mapping" : "mapping3", // 切り替え先のマッピング名
                 },
             },
             "axesForChangeMapping" : {  // コントローラの軸にマッピング切り替えをマッピング（省略可）
@@ -101,11 +101,11 @@
                     "deadZone" : 10,    // 入力を無視する範囲（省略時0)
                     "handlerMinus" : {  // マイナス方向入力時に適用するハンドラ
                         "type" : "shiftMapping",
-                        "mapping" : 1,
+                        "mapping" : "mapping2",
                     },
                     "handlerPlus" : {   // プラス方向入力時に適用するハンドラ
                         "type" : "shiftMapping",
-                        "mapping" : 2,
+                        "mapping" : "mapping3",
                     },
                 },
                 "1" : { // 軸番号1にマッピング
@@ -115,12 +115,12 @@
                     "deadZone" : 10,    // 入力を無視する範囲（省略時0)
                     "handler" : {   // 入力時に適用するハンドラ
                         "type" : "shiftMapping",
-                        "mapping" : 3,
+                        "mapping" : "mapping4",
                     },
                 },
             },
         },
-        {   // マッピング番号1
+        "mapping2" : {
             "buttonsForPspState" : {
                 "0" : {
                     "type" : "toButtons",
@@ -130,7 +130,7 @@
                 },
             },
         },
-        {   // マッピング番号2
+        "mapping3" : {
             "axesForPspState" : {
                 "0" : {
                     "type" : "toAxisY",
@@ -139,7 +139,7 @@
                 },
             },
         },
-        {   // マッピング番号3
+        "mapping4" : {
         },
-    ],
+    },
 }
