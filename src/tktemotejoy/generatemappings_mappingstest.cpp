@@ -88,7 +88,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {
             "buttonsForPspState" : {
                 "10" : {
@@ -126,7 +126,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {
             "buttonsForChangeMapping" : {
                 "10" : {
@@ -172,7 +172,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {
             "axesForPspState" : {
                 "10" : {
@@ -209,7 +209,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {
             "axesForChangeMapping" : {
                 "10" : {
@@ -263,7 +263,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : "NOT OBJECT"
+    "mappings" : "NOT OBJECT"
 })"
     );
 }
@@ -278,7 +278,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : "NOT OBJECT"
     }
 })"
@@ -295,7 +295,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {
             "buttonsForPspState" : "NOT OBJECT"
         }
@@ -314,7 +314,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {
             "buttonsForPspState" : {
                 "NOT UNSIGNED" : {
@@ -340,7 +340,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {
             "buttonsForPspState" : {
                 "10" : "NOT OBJECT"
@@ -361,7 +361,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping11" : {
             "buttonsForPspState" : {
                 "10" : {
@@ -384,7 +384,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {
             "buttonsForChangeMapping" : "NOT OBJECT"
         }
@@ -403,7 +403,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {
             "buttonsForChangeMapping" : {
                 "NOT UNSIGNED" : {
@@ -427,7 +427,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {
             "buttonsForChangeMapping" : {
                 "10" : "NOT OBJECT"
@@ -448,7 +448,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {
             "buttonsForChangeMapping" : {
                 "10" : {
@@ -471,7 +471,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {
             "axesForPspState" : "NOT OBJECT"
         }
@@ -490,7 +490,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {
             "axesForPspState" : {
                 "NOT UNSIGNED" : {
@@ -513,7 +513,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {
             "axesForPspState" : {
                 "10" : "NOT OBJECT"
@@ -534,7 +534,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {
             "axesForPspState" : {
                 "10" : {
@@ -557,7 +557,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {
             "axesForChangeMapping" : "NOT OBJECT"
         }
@@ -576,7 +576,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {
             "axesForChangeMapping" : {
                 "NOT UNSIGNED" : {
@@ -605,7 +605,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {
             "axesForChangeMapping" : {
                 "10" : "NOT OBJECT"
@@ -626,7 +626,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {
             "axesForChangeMapping" : {
                 "10" : {

@@ -25,7 +25,7 @@ namespace {
     )
     {
         const auto &    ROOT = _JSON.get_ref< const Json::object_t & >();
-        const auto &    MAPPINGS = ROOT.at( "mappings_new" ).get_ref< const Json::object_t & >();   //TODO mappingsにする
+        const auto &    MAPPINGS = ROOT.at( "mappings" ).get_ref< const Json::object_t & >();
 
         auto    keys = std::vector< std::string >();
         for( const auto & PAIR : MAPPINGS ) {
@@ -73,25 +73,6 @@ namespace {
             EXPECT_EQ( EXPECTED_MAPPING_INDEX, TEST_MAPPINGS.mappingIndex );
         }
 
-        //REMOVEME
-        void test(
-            const std::string &                 _JSON_STRING
-            , const Mappings::Impl::size_type   _EXPECTED_MAPPING_INDEX
-        ) const
-        {
-            const auto  JSON = Json::parse( _JSON_STRING );
-
-            auto    mappings = generateMappings(
-                JSON
-                , 0
-                , 0
-            );
-
-            const auto &    TEST_MAPPINGS = reinterpret_cast< const TestMappings & >( mappings );
-
-            EXPECT_EQ( _EXPECTED_MAPPING_INDEX, TEST_MAPPINGS.mappingIndex );
-        }
-
         void testAnyThrow(
             const std::string & _JSON_STRING
         ) const
@@ -119,7 +100,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping3"
     },
-    "TODO" : "mappingsにする", "mappings_new" : {
+    "mappings" : {
         "mapping1" : {},
         "mapping2" : {},
         "mapping3" : {},
@@ -138,7 +119,7 @@ TEST_F(
 {
     this->testAnyThrow(
         R"({
-    "mappings_new" : {}
+    "mappings" : {}
 })"
     );
 }
@@ -151,7 +132,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : [],
-    "mappings_new" : {}
+    "mappings" : {}
 })"
     );
 }
@@ -164,7 +145,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {},
-    "mappings_new" : {}
+    "mappings" : {}
 })"
     );
 }
@@ -179,7 +160,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : 10
     },
-    "mappings_new" : {}
+    "mappings" : {}
 })"
     );
 }
@@ -194,7 +175,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "notExists"
     },
-    "mappings_new" : { "TODO" : "mappingsにする",
+    "mappings" : {
         "mapping1" : {},
         "mapping2" : {},
         "mapping3" : {},

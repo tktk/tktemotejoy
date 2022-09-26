@@ -62,7 +62,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : "mapping1"
     },
-    "mappings_new" : {
+    "mappings" : {
         "mapping1" : {}
     }
 })"
@@ -84,7 +84,7 @@ TEST_F(
 {
     this->testAnyThrow(
         R"({
-    "mappings_new" : {}
+    "mappings" : {}
 })"
     );
 }
