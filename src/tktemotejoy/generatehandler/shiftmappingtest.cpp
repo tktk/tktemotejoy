@@ -19,7 +19,7 @@ namespace {
         }
     };
 
-    using GenerateShiftMappingTest = GeneratePressButtonHandlerForChangeMappingTestTmpl_new< GenerateShiftMappingUnique >;
+    using GenerateShiftMappingTest = GeneratePressButtonHandlerForChangeMappingTestTmpl< GenerateShiftMappingUnique >;
 }
 
 TEST_F(

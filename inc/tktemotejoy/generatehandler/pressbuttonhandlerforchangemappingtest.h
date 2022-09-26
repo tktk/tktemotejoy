@@ -10,7 +10,7 @@
 #include <utility>
 
 template< typename GENERATE_HANDLER_UNIQUE_T >
-class GeneratePressButtonHandlerForChangeMappingTestTmpl_new : public ::testing::Test
+class GeneratePressButtonHandlerForChangeMappingTestTmpl : public ::testing::Test
 {
 public:
     void test(

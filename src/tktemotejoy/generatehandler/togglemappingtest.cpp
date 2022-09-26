@@ -19,7 +19,7 @@ namespace {
         }
     };
 
-    using GenerateToggleMappingTest = GeneratePressButtonHandlerForChangeMappingTestTmpl_new< GenerateToggleMappingUnique >;
+    using GenerateToggleMappingTest = GeneratePressButtonHandlerForChangeMappingTestTmpl< GenerateToggleMappingUnique >;
 }
 
 TEST_F(
