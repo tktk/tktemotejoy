@@ -5,25 +5,25 @@
 #include "tktemotejoy/customjson.h"
 
 namespace {
-    struct GeneratePressButtonHandlerForChangeMappingUnique_new
+    struct GeneratePressButtonHandlerForChangeMappingUnique
     {
         auto operator()(
             const Json &            _JSON
             , const MappingNames &  _MAPPING_NAMES
         ) const
         {
-            return generatePressButtonHandlerForChangeMappingUnique_new(
+            return generatePressButtonHandlerForChangeMappingUnique(
                 _JSON
                 , _MAPPING_NAMES
             );
         }
     };
 
-    using GeneratePressButtonHandlerForChangeMapping_newTest = GeneratePressButtonHandlerForChangeMappingTestTmpl< GeneratePressButtonHandlerForChangeMappingUnique_new >;
+    using GeneratePressButtonHandlerForChangeMappingTest = GeneratePressButtonHandlerForChangeMappingTestTmpl< GeneratePressButtonHandlerForChangeMappingUnique >;
 }
 
 TEST_F(
-    GeneratePressButtonHandlerForChangeMapping_newTest
+    GeneratePressButtonHandlerForChangeMappingTest
     , ShiftMapping
 )
 {
@@ -46,7 +46,7 @@ TEST_F(
 }
 
 TEST_F(
-    GeneratePressButtonHandlerForChangeMapping_newTest
+    GeneratePressButtonHandlerForChangeMappingTest
     , ToggleMapping
 )
 {
@@ -69,7 +69,7 @@ TEST_F(
 }
 
 TEST_F(
-    GeneratePressButtonHandlerForChangeMapping_newTest
+    GeneratePressButtonHandlerForChangeMappingTest
     , NotPressButtonHandlerForChangeMapping
 )
 {

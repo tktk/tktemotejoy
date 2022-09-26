@@ -53,7 +53,7 @@ namespace {
             , const MappingNames &  _MAPPING_NAMES
         ) const
         {
-            return generatePressButtonHandlerForChangeMappingUnique_new(
+            return generatePressButtonHandlerForChangeMappingUnique(
                 _OBJECT
                 , _MAPPING_NAMES
             );
