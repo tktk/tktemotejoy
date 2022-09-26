@@ -19,7 +19,7 @@ namespace {
     const auto  ROOT_KEY_GENERAL = std::string( "general" );
     const auto  ROOT_KEY_MAPPINGS_NEW = std::string( "mappings_new" );  //TODO mappingsにする
 
-    const auto  GENERAL_KEY_DEFAULT_MAPPING_NEW = std::string( "defaultMapping_new" );  //TODO defaultMappingにする
+    const auto  GENERAL_KEY_DEFAULT_MAPPING = std::string( "defaultMapping" );
 
     const auto  MAPPING_KEY_BUTTONS_FOR_PSP_STATE = std::string( "buttonsForPspState" );
     const auto  MAPPING_KEY_BUTTONS_FOR_CHANGE_MAPPING = std::string( "buttonsForChangeMapping" );
@@ -57,7 +57,7 @@ namespace {
 
         const auto &    DEFAULT_MAPPING = getJsonStringFromObject(
             GENERAL
-            , GENERAL_KEY_DEFAULT_MAPPING_NEW
+            , GENERAL_KEY_DEFAULT_MAPPING
             , ROOT_KEY_GENERAL
         );
 
