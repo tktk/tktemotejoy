@@ -86,7 +86,6 @@ TEST_F(
     this->test(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -125,7 +124,6 @@ TEST_F(
     this->test(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -172,7 +170,6 @@ TEST_F(
     this->test(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -210,7 +207,6 @@ TEST_F(
     this->test(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -251,7 +247,6 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     }
 })"
@@ -266,7 +261,6 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : "NOT OBJECT"
@@ -282,7 +276,6 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -300,7 +293,6 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -320,7 +312,6 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -347,7 +338,6 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -369,7 +359,6 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -393,7 +382,6 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -413,7 +401,6 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -438,7 +425,6 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -460,7 +446,6 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -484,7 +469,6 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -504,7 +488,6 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -528,7 +511,6 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -550,7 +532,6 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -574,7 +555,6 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -594,7 +574,6 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -624,7 +603,6 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -646,7 +624,6 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {

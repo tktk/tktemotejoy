@@ -60,7 +60,6 @@ TEST_F(
     this->test(
         R"({
     "general" : {
-        "defaultMapping" : 0, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping1"
     },
     "mappings_new" : {
@@ -98,7 +97,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping_new" : "mapping1"
     }
 })"
     );

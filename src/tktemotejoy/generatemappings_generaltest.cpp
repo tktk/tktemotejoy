@@ -117,7 +117,6 @@ TEST_F(
     this->test(
         R"({
     "general" : {
-        "defaultMapping" : 100, "REMOVEME" : 0,
         "defaultMapping_new" : "mapping3", "TODO" : "defaultMappingにする"
     },
     "TODO" : "mappingsにする", "mappings_new" : {
@@ -157,36 +156,6 @@ TEST_F(
     );
 }
 
-//REMOVEME
-TEST_F(
-    GenerateMappings_generalTest
-    , FailedNotExistsDefaultMapping
-)
-{
-    this->testAnyThrow(
-        R"({
-    "general" : {},
-    "mappings_new" : {}
-})"
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateMappings_generalTest
-    , FailedNotUnsignedDefaultMapping
-)
-{
-    this->testAnyThrow(
-        R"({
-    "general" : {
-        "defaultMapping" : -10
-    },
-    "mappings_new" : {}
-})"
-    );
-}
-
 //TODO FailedNotExistsDefaultMapping_new
 
 TEST_F(
@@ -197,8 +166,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 10, "REMOVEME" : 0,
-        "defaultMapping_new" : 20
+        "defaultMapping_new" : 10
     },
     "mappings_new" : {}
 })"
@@ -213,8 +181,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 100, "REMOVEME" : 0,
-        "defaultMapping_new" : "notMappingName", "TODO" : "defaultMappingにする"
+        "defaultMapping_new" : "notExists", "TODO" : "defaultMappingにする"
     },
     "mappings_new" : { "TODO" : "mappingsにする",
         "mapping1" : {},
