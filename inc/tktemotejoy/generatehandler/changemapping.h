@@ -8,7 +8,7 @@
 #include <string>
 
 template< typename GENERATE_CHANGE_MAPPING_UNIQUE_T >
-class GenerateChangeMappingUnique_new
+class GenerateChangeMappingUnique
 {
 public:
     auto operator()(

@@ -26,9 +26,9 @@ namespace {
         }
     };
 
-    using TestGenerateHandlerUnique_new = GenerateChangeMappingUnique_new< TestGenerateChangeMappingUnique >;
+    using TestGenerateHandlerUnique = GenerateChangeMappingUnique< TestGenerateChangeMappingUnique >;
 
-    class GenerateChangeMappingUnique_newTest : public ::testing::Test
+    class GenerateChangeMappingUniqueTest : public ::testing::Test
     {
     public:
         void test(
@@ -41,7 +41,7 @@ namespace {
 
             const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
 
-            auto    handlerUnique = TestGenerateHandlerUnique_new()(
+            auto    handlerUnique = TestGenerateHandlerUnique()(
                 OBJECT
                 , _MAPPING_NAMES
             );
@@ -60,7 +60,7 @@ namespace {
             const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
 
             EXPECT_ANY_THROW(
-                TestGenerateHandlerUnique_new()(
+                TestGenerateHandlerUnique()(
                     OBJECT
                     , _MAPPING_NAMES
                 )
@@ -70,7 +70,7 @@ namespace {
 }
 
 TEST_F(
-    GenerateChangeMappingUnique_newTest
+    GenerateChangeMappingUniqueTest
     , Standard
 )
 {
@@ -90,7 +90,7 @@ TEST_F(
 }
 
 TEST_F(
-    GenerateChangeMappingUnique_newTest
+    GenerateChangeMappingUniqueTest
     , FailedNotExistsMapping
 )
 {
@@ -102,7 +102,7 @@ TEST_F(
 }
 
 TEST_F(
-    GenerateChangeMappingUnique_newTest
+    GenerateChangeMappingUniqueTest
     , FailedNotStringMapping
 )
 {
@@ -115,7 +115,7 @@ TEST_F(
 }
 
 TEST_F(
-    GenerateChangeMappingUnique_newTest
+    GenerateChangeMappingUniqueTest
     , FailedMappingIsNotMappingName
 )
 {

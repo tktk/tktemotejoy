@@ -39,7 +39,7 @@ Mapping::PressButtonHandlerForChangeMappingUnique generateShiftMappingUnique(
     return generateHandlerUnique<
         Mapping::PressButtonHandlerForChangeMappingUnique
         , GetType
-        , GenerateChangeMappingUnique_new< GenerateShiftMappingUnique >
+        , GenerateChangeMappingUnique< GenerateShiftMappingUnique >
     >(
         _OBJECT
         , _MAPPING_NAMES

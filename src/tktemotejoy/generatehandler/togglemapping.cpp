@@ -39,7 +39,7 @@ Mapping::PressButtonHandlerForChangeMappingUnique generateToggleMappingUnique(
     return generateHandlerUnique<
         Mapping::PressButtonHandlerForChangeMappingUnique
         , GetType
-        , GenerateChangeMappingUnique_new< GenerateToggleMappingUnique >
+        , GenerateChangeMappingUnique< GenerateToggleMappingUnique >
     >(
         _OBJECT
         , _MAPPING_NAMES
