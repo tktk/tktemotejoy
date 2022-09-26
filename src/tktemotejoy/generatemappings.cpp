@@ -9,7 +9,6 @@
 #include "tktemotejoy/json.h"
 #include "tktemotejoy/jsonerror.h"
 #include "tktemotejoy/typeerror.h"
-#include "tktemotejoy/mappingnameerror.h"
 #include <cstddef>
 #include <string>
 #include <utility>
@@ -56,27 +55,19 @@ namespace {
             , ROOT_KEY_GENERAL
         );
 
-        const auto  DEFAULT_MAPPING_NEW_PTR = getJsonStringFromObjectNotRequired(   //TODO getJsonStringFromObject()にする
+        const auto &    DEFAULT_MAPPING = getJsonStringFromObject(
             GENERAL
             , GENERAL_KEY_DEFAULT_MAPPING_NEW
             , ROOT_KEY_GENERAL
         );
-        if( DEFAULT_MAPPING_NEW_PTR != nullptr ) {
-            const auto &    DEFAULT_MAPPING_NEW = *DEFAULT_MAPPING_NEW_PTR;
 
-            const auto  DEFAULT_MAPPING_INDEX = calcMappingIndex(
-                _MAPPING_NAMES
-                , DEFAULT_MAPPING_NEW
-            );
+        const auto  DEFAULT_MAPPING_INDEX = calcMappingIndex(
+            _MAPPING_NAMES
+            , DEFAULT_MAPPING
+        );
 
-            return General{
-                DEFAULT_MAPPING_INDEX,
-            };
-        }
-
-        //REMOVEME
         return General{
-            0,
+            DEFAULT_MAPPING_INDEX,
         };
     }
 
