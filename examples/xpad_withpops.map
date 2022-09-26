@@ -1,26 +1,26 @@
 // xbox360コントローラ向け設定（PS1ゲーム用マッピング付き）
 {
     "general" : {
-        "defaultMapping" : 1,
+        "defaultMapping" : "psp",
     },
-    "mappings" : [
-        {   // マッピング変更用
+    "mappings" : {
+        "changeMapping" : {
             "buttonsForChangeMapping" : {
                 "0" : {
                     "type" : "toggleMapping",
-                    "mapping" : 1,
+                    "mapping" : "psp",
                 },
                 "1" : {
                     "type" : "toggleMapping",
-                    "mapping" : 2,
+                    "mapping" : "ps1",
                 },
             },
         },
-        {   // PSPゲーム用
+        "psp" : {
             "buttonsForChangeMapping" : {
                 "8" : {
                     "type" : "shiftMapping",
-                    "mapping" : 0,
+                    "mapping" : "changeMapping",
                 },
             },
             "buttonsForPspState" : {
@@ -158,11 +158,11 @@
                 },
             },
         },
-        {   // PS1ゲーム用（LRトリガー押下なし）
+        "ps1" : {
             "buttonsForChangeMapping" : {
                 "8" : {
                     "type" : "shiftMapping",
-                    "mapping" : 0,
+                    "mapping" : "changeMapping",
                 },
             },
             "buttonsForPspState" : {
@@ -217,10 +217,10 @@
             },
             "axesForPspState" : {
                 "5" : {
-                    "type" : "toButtonHandlers",
+                    "type" : "toButtonHandler",
                     "min" : 0,
                     "max" : 255,
-                    "handlerPlus" : {
+                    "handler" : {
                         "type" : "toFixedAxisX",
                         "value" : 255,
                     },
@@ -262,17 +262,17 @@
             },
             "axesForChangeMapping" : {
                 "2" : {
-                    "type" : "toButtonHandlers",
+                    "type" : "toButtonHandler",
                     "min" : 0,
                     "max" : 255,
-                    "handlerPlus" : {
+                    "handler" : {
                         "type" : "shiftMapping",
-                        "mapping" : 3,
+                        "mapping" : "ps1LPressed",
                     },
                 },
             },
         },
-        {   // PS1ゲーム用（Lトリガーのみ押下）
+        "ps1LPressed" : {
             "buttonsForPspState" : {
                 "0" : {
                     "type" : "toButtons",
@@ -325,10 +325,10 @@
             },
             "axesForPspState" : {
                 "2" : {
-                    "type" : "toButtonHandlers",
+                    "type" : "toButtonHandler",
                     "min" : 0,
                     "max" : 255,
-                    "handlerPlus" : {
+                    "handler" : {
                         "type" : "toFixedAxisX",
                         "value" : 0,
                     },
@@ -370,17 +370,17 @@
             },
             "axesForChangeMapping" : {
                 "5" : {
-                    "type" : "toButtonHandlers",
+                    "type" : "toButtonHandler",
                     "min" : 0,
                     "max" : 255,
-                    "handlerPlus" : {
+                    "handler" : {
                         "type" : "shiftMapping",
-                        "mapping" : 4,
+                        "mapping" : "ps1LRPressed",
                     },
                 },
             },
         },
-        {   // PS1ゲーム用（LRトリガー両方押下）
+        "ps1LRPressed" : {
             "buttonsForPspState" : {
                 "0" : {
                     "type" : "toButtons",
@@ -433,10 +433,10 @@
             },
             "axesForPspState" : {
                 "5" : {
-                    "type" : "toButtonHandlers",
+                    "type" : "toButtonHandler",
                     "min" : 0,
                     "max" : 255,
-                    "handlerPlus" : {
+                    "handler" : {
                         "type" : "toFixedAxisY",
                         "value" : 0,
                     },
@@ -477,5 +477,5 @@
                 },
             },
         },
-    ],
+    },
 }

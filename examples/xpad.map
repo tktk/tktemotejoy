@@ -1,10 +1,10 @@
 // xbox360コントローラ向け設定
 {
     "general" : {
-        "defaultMapping" : 0,
+        "defaultMapping" : "default",
     },
-    "mappings" : [
-        {
+    "mappings" : {
+        "default" : {
             "buttonsForPspState" : {
                 "0" : {
                     "type" : "toButtons",
@@ -140,5 +140,5 @@
                 },
             },
         },
-    ],
+    },
 }
