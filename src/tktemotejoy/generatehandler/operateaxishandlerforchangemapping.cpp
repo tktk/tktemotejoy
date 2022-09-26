@@ -20,7 +20,7 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateOperateAxisHandlerForC
         return handlerUnique;
     }
 
-    handlerUnique = generateToButtonHandlerForChangeMappingUnique_new(
+    handlerUnique = generateToButtonHandlerForChangeMappingUnique(
         _OBJECT
         , _MAPPING_NAMES
     );

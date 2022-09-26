@@ -41,7 +41,7 @@ namespace {
         }
     };
 
-    struct GeneratePressButtonHandlerForChangeMappingUnique_new
+    struct GeneratePressButtonHandlerForChangeMappingUnique
     {
         auto operator()(
             const Json::object_t &  _OBJECT
@@ -56,7 +56,7 @@ namespace {
     };
 }
 
-Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChangeMappingUnique_new(
+Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChangeMappingUnique(
     const Json::object_t &  _OBJECT
     , const MappingNames &  _MAPPING_NAMES
 )
@@ -66,7 +66,7 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChan
         , GetType
         , GenerateToButtonHandlerUnique<
             GenerateToButtonHandlerForChangeMappingUnique
-            , GeneratePressButtonHandlerForChangeMappingUnique_new
+            , GeneratePressButtonHandlerForChangeMappingUnique
         >
     >(
         _OBJECT
