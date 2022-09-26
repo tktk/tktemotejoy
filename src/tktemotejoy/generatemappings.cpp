@@ -18,7 +18,6 @@ namespace {
     const auto  JSON = std::string( "JSON" );
 
     const auto  ROOT_KEY_GENERAL = std::string( "general" );
-    const auto  ROOT_KEY_MAPPINGS = std::string( "mappings" );  //REMOVEME
     const auto  ROOT_KEY_MAPPINGS_NEW = std::string( "mappings_new" );  //TODO mappingsにする
 
     const auto  GENERAL_KEY_DEFAULT_MAPPING = std::string( "defaultMapping" );  //REMOVEME
@@ -111,14 +110,6 @@ namespace {
                 , _MAPPING_NAMES
             );
         }
-
-        //REMOVEME
-        auto operator()(
-            const Json::object_t &  _OBJECT
-        ) const
-        {
-            return generatePressButtonHandlerForChangeMappingUnique( _OBJECT );
-        }
     };
 
     struct GenerateOperateAxisHandlerForPspStateUnique
@@ -142,14 +133,6 @@ namespace {
                 _OBJECT
                 , _MAPPING_NAMES
             );
-        }
-
-        //REMOVEME
-        auto operator()(
-            const Json::object_t &  _OBJECT
-        ) const
-        {
-            return generateOperateAxisHandlerForChangeMappingUnique( _OBJECT );
         }
     };
 
@@ -250,45 +233,6 @@ namespace {
         return mapping;
     }
 
-    //REMOVEME
-    Mapping generateMapping(
-        const Json::object_t &  _OBJECT
-        , const std::size_t &   _BUTTONS
-        , const std::size_t &   _AXES
-    )
-    {
-        auto    mapping = Mapping(
-            _BUTTONS
-            , _AXES
-        );
-
-        setHandlers< GeneratePressButtonHandlerForPspStateUnique >(
-            mapping
-            , _OBJECT
-            , MAPPING_KEY_BUTTONS_FOR_PSP_STATE
-        );
-
-        setHandlers< GeneratePressButtonHandlerForChangeMappingUnique >(
-            mapping
-            , _OBJECT
-            , MAPPING_KEY_BUTTONS_FOR_CHANGE_MAPPING
-        );
-
-        setHandlers< GenerateOperateAxisHandlerForPspStateUnique >(
-            mapping
-            , _OBJECT
-            , MAPPING_KEY_AXES_FOR_PSP_STATE
-        );
-
-        setHandlers< GenerateOperateAxisHandlerForChangeMappingUnique >(
-            mapping
-            , _OBJECT
-            , MAPPING_KEY_AXES_FOR_CHANGE_MAPPING
-        );
-
-        return mapping;
-    }
-
     Mappings::Impl generateMappingsImpl(
         const Json::object_t &  _MAPPINGS
         , const MappingNames &  _MAPPING_NAMES
@@ -302,7 +246,7 @@ namespace {
 
             const auto &    MAPPING = getJsonObjectFromJson(
                 MAPPING_JSON
-                , ROOT_KEY_MAPPINGS
+                , ROOT_KEY_MAPPINGS_NEW
                 , MAPPING_NAME
             );
 
@@ -314,41 +258,6 @@ namespace {
                     , _AXES
                 )
             );
-        }
-
-        return impl;
-    }
-
-    //REMOVEME
-    Mappings::Impl generateMappingsImpl(
-        const Json::object_t &  _OBJECT
-        , const std::size_t &   _BUTTONS
-        , const std::size_t &   _AXES
-    )
-    {
-        const auto &    MAPPINGS = getJsonArrayFromObject(
-            _OBJECT
-            , ROOT_KEY_MAPPINGS
-        );
-
-        auto    index = std::size_t( 0 );
-        auto    impl = Mappings::Impl();
-        for( const auto & MAPPING_JSON : MAPPINGS ) {
-            const auto &    MAPPING = getJsonObjectFromJson(
-                MAPPING_JSON
-                , ROOT_KEY_MAPPINGS
-                , index
-            );
-
-            impl.emplace_back(
-                generateMapping(
-                    MAPPING
-                    , _BUTTONS
-                    , _AXES
-                )
-            );
-
-            index++;
         }
 
         return impl;
@@ -378,22 +287,12 @@ Mappings generateMappings(
         , MAPPING_NAMES
     );
 
-    //REMOVEME
     auto    impl = generateMappingsImpl(
-        OBJECT
-        , _BUTTONS
-        , _AXES
-    );
-
-    auto    implNew = generateMappingsImpl(
         MAPPINGS
         , MAPPING_NAMES
         , _BUTTONS
         , _AXES
     );
-    if( implNew.size() > 0 ) {
-        impl = std::move( implNew );
-    }
 
     return Mappings(
         std::move( impl )
