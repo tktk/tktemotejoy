@@ -12,7 +12,7 @@ Mapping::PressButtonHandlerForChangeMappingUnique generatePressButtonHandlerForC
 {
     auto    handlerUnique = Mapping::PressButtonHandlerForChangeMappingUnique();
 
-    handlerUnique = generateShiftMappingUnique_new(
+    handlerUnique = generateShiftMappingUnique(
         _OBJECT
         , _MAPPING_NAMES
     );

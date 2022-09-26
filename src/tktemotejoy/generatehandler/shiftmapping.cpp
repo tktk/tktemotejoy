@@ -31,7 +31,7 @@ namespace {
     };
 }
 
-Mapping::PressButtonHandlerForChangeMappingUnique generateShiftMappingUnique_new(
+Mapping::PressButtonHandlerForChangeMappingUnique generateShiftMappingUnique(
     const Json::object_t &  _OBJECT
     , const MappingNames &  _MAPPING_NAMES
 )

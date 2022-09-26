@@ -5,25 +5,25 @@
 #include "tktemotejoy/customjson.h"
 
 namespace {
-    struct GenerateShiftMappingUnique_new
+    struct GenerateShiftMappingUnique
     {
         auto operator()(
             const Json::object_t &  _OBJECT
             , const MappingNames &  _MAPPING_NAMES
         ) const
         {
-            return generateShiftMappingUnique_new(
+            return generateShiftMappingUnique(
                 _OBJECT
                 , _MAPPING_NAMES
             );
         }
     };
 
-    using GenerateShiftMapping_newTest = GeneratePressButtonHandlerForChangeMappingTestTmpl_new< GenerateShiftMappingUnique_new >;
+    using GenerateShiftMappingTest = GeneratePressButtonHandlerForChangeMappingTestTmpl_new< GenerateShiftMappingUnique >;
 }
 
 TEST_F(
-    GenerateShiftMapping_newTest
+    GenerateShiftMappingTest
     , Standard
 )
 {
