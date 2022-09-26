@@ -20,20 +20,6 @@ namespace {
     };
 
     using GenerateToButtonHandlersForChangeMapping_newTest = GenerateOperateAxisHandlerForChangeMappingTestTmpl_new< GenerateToButtonHandlersForChangeMappingUnique_new >;
-
-    //REMOVEME
-    struct GenerateToButtonHandlersForChangeMappingUnique
-    {
-        auto operator()(
-            const Json::object_t &  _OBJECT
-        ) const
-        {
-            return generateToButtonHandlersForChangeMappingUnique( _OBJECT );
-        }
-    };
-
-    //REMOVEME
-    using GenerateToButtonHandlersForChangeMappingTest = GenerateOperateAxisHandlerForChangeMappingTestTmpl< GenerateToButtonHandlersForChangeMappingUnique >;
 }
 
 TEST_F(
@@ -124,83 +110,6 @@ TEST_F(
             "mapping4",
             "mapping5",
         }
-        , 64
-        , 50
-        , 50
-        , 50
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateToButtonHandlersForChangeMappingTest
-    , HandlerMinus
-)
-{
-    this->test(
-        R"({
-    "type" : "toButtonHandlers",
-    "min" : 0,
-    "max" : 255,
-    "handlerMinus" : {
-        "type" : "toggleMapping",
-        "mapping" : 20
-    },
-    "handlerPlus" : {
-        "type" : "toggleMapping",
-        "mapping" : 30
-    }
-})"
-        , 64
-        , 50
-        , 20
-        , 50
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateToButtonHandlersForChangeMappingTest
-    , HandlerPlus
-)
-{
-    this->test(
-        R"({
-    "type" : "toButtonHandlers",
-    "min" : 0,
-    "max" : 255,
-    "handlerMinus" : {
-        "type" : "toggleMapping",
-        "mapping" : 20
-    },
-    "handlerPlus" : {
-        "type" : "toggleMapping",
-        "mapping" : 30
-    }
-})"
-        , 192
-        , 50
-        , 30
-        , 50
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateToButtonHandlersForChangeMappingTest
-    , NotExistsHandler
-)
-{
-    this->test(
-        R"({
-    "type" : "toButtonHandlers",
-    "min" : 0,
-    "max" : 255,
-    "handlerPlus" : {
-        "type" : "toggleMapping",
-        "mapping" : 30
-    }
-})"
         , 64
         , 50
         , 50

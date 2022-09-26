@@ -60,17 +60,6 @@ namespace {
         }
     };
 
-    //REMOVEME
-    struct GeneratePressButtonHandlerForChangeMappingUnique
-    {
-        auto operator()(
-            const Json::object_t &  _OBJECT
-        ) const
-        {
-            return generatePressButtonHandlerForChangeMappingUnique( _OBJECT );
-        }
-    };
-
     struct GenerateDummyPressButtonHandlerForChangeMappingUnique
     {
         auto operator()(
@@ -98,20 +87,4 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlersForCha
         _OBJECT
         , _MAPPING_NAMES
     );
-}
-
-//REMOVEME
-Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlersForChangeMappingUnique(
-    const Json::object_t &  _OBJECT
-)
-{
-    return generateHandlerUnique<
-        Mapping::OperateAxisHandlerForChangeMappingUnique
-        , GetType
-        , GenerateToButtonHandlersUnique<
-            GenerateToButtonHandlersForChangeMappingUnique
-            , GeneratePressButtonHandlerForChangeMappingUnique
-            , GenerateDummyPressButtonHandlerForChangeMappingUnique
-        >
-    >( _OBJECT );
 }
