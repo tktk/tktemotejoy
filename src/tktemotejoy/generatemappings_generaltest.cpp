@@ -139,7 +139,7 @@ TEST_F(
 
 TEST_F(
     GenerateMappings_generalTest
-    , FailedNotExistsDefaultMapping_new
+    , FailedNotExistsDefaultMapping
 )
 {
     this->testAnyThrow(
@@ -152,7 +152,7 @@ TEST_F(
 
 TEST_F(
     GenerateMappings_generalTest
-    , FailedNotStringDefaultMapping_new
+    , FailedNotStringDefaultMapping
 )
 {
     this->testAnyThrow(
@@ -167,7 +167,7 @@ TEST_F(
 
 TEST_F(
     GenerateMappings_generalTest
-    , FailedDefaultMapping_newIsNotMappingName
+    , FailedDefaultMappingIsNotMappingName
 )
 {
     this->testAnyThrow(
