@@ -86,7 +86,7 @@ TEST_F(
     this->test(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : {
@@ -124,7 +124,7 @@ TEST_F(
     this->test(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : {
@@ -170,7 +170,7 @@ TEST_F(
     this->test(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : {
@@ -207,7 +207,7 @@ TEST_F(
     this->test(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : {
@@ -247,7 +247,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     }
 })"
     );
@@ -261,7 +261,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : "NOT OBJECT"
 })"
@@ -276,7 +276,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : "NOT OBJECT"
@@ -293,7 +293,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : {
@@ -312,7 +312,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : {
@@ -338,7 +338,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : {
@@ -359,7 +359,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping11" : {
@@ -382,7 +382,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : {
@@ -401,7 +401,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : {
@@ -425,7 +425,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : {
@@ -446,7 +446,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : {
@@ -469,7 +469,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : {
@@ -488,7 +488,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : {
@@ -511,7 +511,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : {
@@ -532,7 +532,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : {
@@ -555,7 +555,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : {
@@ -574,7 +574,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : {
@@ -603,7 +603,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : {
@@ -624,7 +624,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping" : "mapping1"
     },
     "mappings_new" : {
         "mapping1" : {

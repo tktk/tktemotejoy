@@ -117,7 +117,7 @@ TEST_F(
     this->test(
         R"({
     "general" : {
-        "defaultMapping_new" : "mapping3", "TODO" : "defaultMappingにする"
+        "defaultMapping" : "mapping3"
     },
     "TODO" : "mappingsにする", "mappings_new" : {
         "mapping1" : {},
@@ -177,7 +177,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : 10
+        "defaultMapping" : 10
     },
     "mappings_new" : {}
 })"
@@ -192,7 +192,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping_new" : "notExists", "TODO" : "defaultMappingにする"
+        "defaultMapping" : "notExists"
     },
     "mappings_new" : { "TODO" : "mappingsにする",
         "mapping1" : {},
