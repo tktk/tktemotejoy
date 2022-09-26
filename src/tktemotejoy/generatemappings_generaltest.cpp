@@ -156,7 +156,18 @@ TEST_F(
     );
 }
 
-//TODO FailedNotExistsDefaultMapping_new
+TEST_F(
+    GenerateMappings_generalTest
+    , FailedNotExistsDefaultMapping_new
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {},
+    "mappings_new" : {}
+})"
+    );
+}
 
 TEST_F(
     GenerateMappings_generalTest
