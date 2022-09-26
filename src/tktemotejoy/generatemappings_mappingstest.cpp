@@ -256,30 +256,32 @@ TEST_F(
         R"({
     "general" : {
         "defaultMapping" : 10, "REMOVEME" : 0,
-        "defaultMapping_new" : "mapping1"
+        "defaultMapping_new" : "mapping"
     },
     "mappings" : [], "REMOVEME" : 0
 })"
     );
 }
 
-//TODO
-/*
 TEST_F(
     GenerateMappings_mappingsTest
-    , FailedNotArrayMappings
+    , FailedNotObjectMappings
 )
 {
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping"
     },
-    "mappings" : "NOT ARRAY"
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : "NOT OBJECT"
 })"
     );
 }
 
+//TODO
+/*
 TEST_F(
     GenerateMappings_mappingsTest
     , FailedNotObjectMappingsElement
