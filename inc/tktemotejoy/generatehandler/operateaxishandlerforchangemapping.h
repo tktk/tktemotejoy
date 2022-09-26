@@ -10,9 +10,4 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateOperateAxisHandlerForC
     , const MappingNames &
 );
 
-//REMOVEME
-Mapping::OperateAxisHandlerForChangeMappingUnique generateOperateAxisHandlerForChangeMappingUnique(
-    const Json::object_t &
-);
-
 #endif  // TKTEMOTEJOY_GENERATEHANDLER_OPERATEAXISHANDLERFORCHANGEMAPPING_H

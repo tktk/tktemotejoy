@@ -30,22 +30,3 @@ Mapping::OperateAxisHandlerForChangeMappingUnique generateOperateAxisHandlerForC
 
     return handlerUnique;
 }
-
-Mapping::OperateAxisHandlerForChangeMappingUnique generateOperateAxisHandlerForChangeMappingUnique(
-    const Json::object_t &  _OBJECT
-)
-{
-    auto    handlerUnique = Mapping::OperateAxisHandlerForChangeMappingUnique();
-
-    handlerUnique = generateToButtonHandlersForChangeMappingUnique( _OBJECT );
-    if( handlerUnique.get() != nullptr ) {
-        return handlerUnique;
-    }
-
-    handlerUnique = generateToButtonHandlerForChangeMappingUnique( _OBJECT );
-    if( handlerUnique.get() != nullptr ) {
-        return handlerUnique;
-    }
-
-    return handlerUnique;
-}
