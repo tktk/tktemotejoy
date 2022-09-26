@@ -10,9 +10,4 @@ Mapping::PressButtonHandlerForChangeMappingUnique generateToggleMappingUnique_ne
     , const MappingNames &
 );
 
-//REMOVEME
-Mapping::PressButtonHandlerForChangeMappingUnique generateToggleMappingUnique(
-    const Json::object_t &
-);
-
 #endif  // TKTEMOTEJOY_GENERATEHANDLER_TOGGLEMAPPING_H

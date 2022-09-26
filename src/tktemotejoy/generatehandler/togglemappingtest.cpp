@@ -20,20 +20,6 @@ namespace {
     };
 
     using GenerateToggleMapping_newTest = GeneratePressButtonHandlerForChangeMappingTestTmpl_new< GenerateToggleMappingUnique_new >;
-
-    //REMOVEME
-    struct GenerateToggleMappingUnique
-    {
-        auto operator()(
-            const Json::object_t &  _OBJECT
-        ) const
-        {
-            return generateToggleMappingUnique( _OBJECT );
-        }
-    };
-
-    //REMOVEME
-    using GenerateToggleMappingTest = GeneratePressButtonHandlerForChangeMappingTestTmpl< GenerateToggleMappingUnique >;
 }
 
 TEST_F(
@@ -56,22 +42,5 @@ TEST_F(
         , 10
         , 2
         , 10
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateToggleMappingTest
-    , Standard
-)
-{
-    this->test(
-        R"({
-    "type" : "toggleMapping",
-    "mapping" : 10
-})"
-        , 20
-        , 10
-        , 20
     );
 }

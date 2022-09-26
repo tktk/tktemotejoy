@@ -45,15 +45,3 @@ Mapping::PressButtonHandlerForChangeMappingUnique generateToggleMappingUnique_ne
         , _MAPPING_NAMES
     );
 }
-
-//REMOVEME
-Mapping::PressButtonHandlerForChangeMappingUnique generateToggleMappingUnique(
-    const Json::object_t &  _OBJECT
-)
-{
-    return generateHandlerUnique<
-        Mapping::PressButtonHandlerForChangeMappingUnique
-        , GetType
-        , GenerateChangeMappingUnique< GenerateToggleMappingUnique >
-    >( _OBJECT );
-}
