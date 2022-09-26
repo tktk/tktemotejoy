@@ -61,11 +61,10 @@ TEST_F(
         R"({
     "general" : {
         "defaultMapping" : 0, "REMOVEME" : 0,
-        "defaultMapping_new" : "mapping"
+        "defaultMapping_new" : "mapping1"
     },
-    "mappings" : [], "REMOVEME" : 0,
     "mappings_new" : {
-        "mapping" : {}
+        "mapping1" : {}
     }
 })"
     );
@@ -86,10 +85,7 @@ TEST_F(
 {
     this->testAnyThrow(
         R"({
-    "mappings" : [
-        {
-        }
-    ]
+    "mappings_new" : {}
 })"
     );
 }

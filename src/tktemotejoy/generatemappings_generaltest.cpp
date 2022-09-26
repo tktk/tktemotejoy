@@ -126,8 +126,7 @@ TEST_F(
         "mapping3" : {},
         "mapping4" : {},
         "mapping5" : {}
-    },
-    "mappings" : [], "REMOVEME" : 0
+    }
 })"
         , "mapping3"
     );
@@ -140,7 +139,7 @@ TEST_F(
 {
     this->testAnyThrow(
         R"({
-    "mappings" : []
+    "mappings_new" : {}
 })"
     );
 }
@@ -153,7 +152,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : [],
-    "mappings" : []
+    "mappings_new" : {}
 })"
     );
 }
@@ -167,7 +166,7 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {},
-    "mappings" : []
+    "mappings_new" : {}
 })"
     );
 }
@@ -183,7 +182,7 @@ TEST_F(
     "general" : {
         "defaultMapping" : -10
     },
-    "mappings" : []
+    "mappings_new" : {}
 })"
     );
 }
@@ -201,7 +200,7 @@ TEST_F(
         "defaultMapping" : 10, "REMOVEME" : 0,
         "defaultMapping_new" : 20
     },
-    "mappings" : []
+    "mappings_new" : {}
 })"
     );
 }
@@ -223,8 +222,7 @@ TEST_F(
         "mapping3" : {},
         "mapping4" : {},
         "mapping5" : {}
-    },
-    "mappings" : [], "REMOVEME" : 0
+    }
 })"
     );
 }
