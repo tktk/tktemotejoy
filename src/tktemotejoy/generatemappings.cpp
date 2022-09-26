@@ -366,20 +366,16 @@ Mappings generateMappings(
         , JSON
     );
 
-    const auto  MAPPINGS_PTR = getJsonObjectFromObjectNotRequired(    //TODO getJsonObjectFromObject()にする
+    const auto &    MAPPINGS = getJsonObjectFromObject(
         OBJECT
         , ROOT_KEY_MAPPINGS_NEW
     );
 
-    auto    mappingNames = MappingNames();
-    if( MAPPINGS_PTR != nullptr ) {
-        const auto &    MAPPINGS = *MAPPINGS_PTR;
-        mappingNames = generateMappingNames( MAPPINGS );
-    }
+    const auto  MAPPING_NAMES = generateMappingNames( MAPPINGS );
 
     const auto  GENERAL = generateGeneral(
         OBJECT
-        , mappingNames
+        , MAPPING_NAMES
     );
 
     //REMOVEME
@@ -390,8 +386,8 @@ Mappings generateMappings(
     );
 
     auto    implNew = generateMappingsImpl(
-        *MAPPINGS_PTR   //TODO MAPPINGSにする
-        , mappingNames
+        MAPPINGS
+        , MAPPING_NAMES
         , _BUTTONS
         , _AXES
     );
