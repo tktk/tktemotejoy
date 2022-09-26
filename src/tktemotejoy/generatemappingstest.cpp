@@ -60,12 +60,13 @@ TEST_F(
     this->test(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 0, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping"
     },
-    "mappings" : [
-        {
-        }
-    ]
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping" : {}
+    }
 })"
     );
 }
