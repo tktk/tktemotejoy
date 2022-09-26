@@ -11,7 +11,7 @@
 #include <utility>
 
 template< typename GENERATE_HANDLER_UNIQUE_T >
-class GenerateOperateAxisHandlerForChangeMappingTestTmpl_new : public ::testing::Test
+class GenerateOperateAxisHandlerForChangeMappingTestTmpl : public ::testing::Test
 {
 public:
     void test(

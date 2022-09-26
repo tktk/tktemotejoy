@@ -19,7 +19,7 @@ namespace {
         }
     };
 
-    using GenerateToButtonHandlersForChangeMapping_newTest = GenerateOperateAxisHandlerForChangeMappingTestTmpl_new< GenerateToButtonHandlersForChangeMappingUnique_new >;
+    using GenerateToButtonHandlersForChangeMapping_newTest = GenerateOperateAxisHandlerForChangeMappingTestTmpl< GenerateToButtonHandlersForChangeMappingUnique_new >;
 }
 
 TEST_F(

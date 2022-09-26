@@ -19,7 +19,7 @@ namespace {
         }
     };
 
-    using GenerateOperateAxisHandlerForChangeMapping_newTest = GenerateOperateAxisHandlerForChangeMappingTestTmpl_new< GenerateOperateAxisHandlerForChangeMappingUnique_new >;
+    using GenerateOperateAxisHandlerForChangeMapping_newTest = GenerateOperateAxisHandlerForChangeMappingTestTmpl< GenerateOperateAxisHandlerForChangeMappingUnique_new >;
 }
 
 TEST_F(
