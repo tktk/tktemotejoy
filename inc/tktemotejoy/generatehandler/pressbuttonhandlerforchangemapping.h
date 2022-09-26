@@ -10,9 +10,4 @@ Mapping::PressButtonHandlerForChangeMappingUnique generatePressButtonHandlerForC
     , const MappingNames &
 );
 
-//REMOVEME
-Mapping::PressButtonHandlerForChangeMappingUnique generatePressButtonHandlerForChangeMappingUnique(
-    const Json::object_t &
-);
-
 #endif  // TKTEMOTEJOY_GENERATEHANDLER_PRESSBUTTONHANDLERFORCHANGEMAPPING_H

@@ -30,23 +30,3 @@ Mapping::PressButtonHandlerForChangeMappingUnique generatePressButtonHandlerForC
 
     return handlerUnique;
 }
-
-//REMOVEME
-Mapping::PressButtonHandlerForChangeMappingUnique generatePressButtonHandlerForChangeMappingUnique(
-    const Json::object_t &  _OBJECT
-)
-{
-    auto    handlerUnique = Mapping::PressButtonHandlerForChangeMappingUnique();
-
-    handlerUnique = generateShiftMappingUnique( _OBJECT );
-    if( handlerUnique.get() != nullptr ) {
-        return handlerUnique;
-    }
-
-    handlerUnique = generateToggleMappingUnique( _OBJECT );
-    if( handlerUnique.get() != nullptr ) {
-        return handlerUnique;
-    }
-
-    return handlerUnique;
-}
