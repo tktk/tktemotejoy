@@ -26,40 +26,6 @@ namespace {
         }
     };
 
-    //REMOVEME
-    using TestGenerateHandlerUnique = GenerateChangeMappingUnique< TestGenerateChangeMappingUnique >;
-
-    //REMOVEME
-    class GenerateChangeMappingUniqueTest : public ::testing::Test
-    {
-    public:
-        void test(
-            const std::string & _JSON_STRING
-            , const std::size_t _EXPECTED_MAPPING_INDEX
-        ) const
-        {
-            const auto  JSON = Json::parse( _JSON_STRING );
-
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
-
-            auto    handlerUnique = TestGenerateHandlerUnique()( OBJECT );
-            ASSERT_NE( nullptr, handlerUnique.get() );
-
-            EXPECT_EQ( _EXPECTED_MAPPING_INDEX, handlerUnique->MAPPING_INDEX );
-        }
-
-        void testAnyThrow(
-            const std::string & _JSON_STRING
-        ) const
-        {
-            const auto  JSON = Json::parse( _JSON_STRING );
-
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
-
-            EXPECT_ANY_THROW( TestGenerateHandlerUnique()( OBJECT ) );
-        }
-    };
-
     using TestGenerateHandlerUnique_new = GenerateChangeMappingUnique_new< TestGenerateChangeMappingUnique >;
 
     class GenerateChangeMappingUnique_newTest : public ::testing::Test
@@ -101,45 +67,6 @@ namespace {
             );
         }
     };
-}
-
-//REMOVEME
-TEST_F(
-    GenerateChangeMappingUniqueTest
-    , Standard
-)
-{
-    this->test(
-        R"({
-    "mapping" : 10
-})"
-        , 10
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateChangeMappingUniqueTest
-    , FailedNotExistsMapping
-)
-{
-    this->testAnyThrow(
-        R"({
-})"
-    );
-}
-
-//REMOVEME
-TEST_F(
-    GenerateChangeMappingUniqueTest
-    , FailedNotIntegerMapping
-)
-{
-    this->testAnyThrow(
-        R"({
-    "mapping" : "NOT INTEGER"
-})"
-    );
 }
 
 TEST_F(
