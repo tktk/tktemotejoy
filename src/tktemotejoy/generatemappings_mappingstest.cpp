@@ -247,8 +247,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GenerateMappings_mappingsTest
     , FailedNotExistsMappings
@@ -257,12 +255,16 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
-    }
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping1"
+    },
+    "mappings" : [], "REMOVEME" : 0
 })"
     );
 }
 
+//TODO
+/*
 TEST_F(
     GenerateMappings_mappingsTest
     , FailedNotArrayMappings
