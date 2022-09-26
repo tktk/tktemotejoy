@@ -112,7 +112,7 @@ namespace {
             , const MappingNames &  _MAPPING_NAMES
         ) const
         {
-            return generateOperateAxisHandlerForChangeMappingUnique_new(
+            return generateOperateAxisHandlerForChangeMappingUnique(
                 _OBJECT
                 , _MAPPING_NAMES
             );

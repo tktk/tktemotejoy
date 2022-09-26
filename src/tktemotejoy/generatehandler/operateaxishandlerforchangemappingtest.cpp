@@ -5,25 +5,25 @@
 #include "tktemotejoy/customjson.h"
 
 namespace {
-    struct GenerateOperateAxisHandlerForChangeMappingUnique_new
+    struct GenerateOperateAxisHandlerForChangeMappingUnique
     {
         auto operator()(
             const Json &            _JSON
             , const MappingNames &  _MAPPING_NAMES
         ) const
         {
-            return generateOperateAxisHandlerForChangeMappingUnique_new(
+            return generateOperateAxisHandlerForChangeMappingUnique(
                 _JSON
                 , _MAPPING_NAMES
             );
         }
     };
 
-    using GenerateOperateAxisHandlerForChangeMapping_newTest = GenerateOperateAxisHandlerForChangeMappingTestTmpl< GenerateOperateAxisHandlerForChangeMappingUnique_new >;
+    using GenerateOperateAxisHandlerForChangeMappingTest = GenerateOperateAxisHandlerForChangeMappingTestTmpl< GenerateOperateAxisHandlerForChangeMappingUnique >;
 }
 
 TEST_F(
-    GenerateOperateAxisHandlerForChangeMapping_newTest
+    GenerateOperateAxisHandlerForChangeMappingTest
     , ToButtonHandlers
 )
 {
@@ -56,7 +56,7 @@ TEST_F(
 }
 
 TEST_F(
-    GenerateOperateAxisHandlerForChangeMapping_newTest
+    GenerateOperateAxisHandlerForChangeMappingTest
     , ToButtonHandler
 )
 {
@@ -86,7 +86,7 @@ TEST_F(
 }
 
 TEST_F(
-    GenerateOperateAxisHandlerForChangeMapping_newTest
+    GenerateOperateAxisHandlerForChangeMappingTest
     , NotOperateAxisHandlerForChangeMapping
 )
 {
