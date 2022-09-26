@@ -87,11 +87,11 @@ TEST_F(
         R"({
     "general" : {
         "defaultMapping" : 10, "REMOVEME" : 0,
-        "defaultMapping_new" : "mapping"
+        "defaultMapping_new" : "mapping1"
     },
     "mappings" : [], "REMOVEME" : 0,
     "mappings_new" : {
-        "mapping" : {
+        "mapping1" : {
             "buttonsForPspState" : {
                 "10" : {
                     "type" : "toButtons",
@@ -175,11 +175,11 @@ TEST_F(
         R"({
     "general" : {
         "defaultMapping" : 10, "REMOVEME" : 0,
-        "defaultMapping_new" : "mapping"
+        "defaultMapping_new" : "mapping1"
     },
     "mappings" : [], "REMOVEME" : 0,
     "mappings_new" : {
-        "mapping" : {
+        "mapping1" : {
             "axesForPspState" : {
                 "10" : {
                     "type" : "toAxisX",
@@ -256,7 +256,7 @@ TEST_F(
         R"({
     "general" : {
         "defaultMapping" : 10, "REMOVEME" : 0,
-        "defaultMapping_new" : "mapping"
+        "defaultMapping_new" : "mapping1"
     },
     "mappings" : [], "REMOVEME" : 0
 })"
@@ -272,7 +272,7 @@ TEST_F(
         R"({
     "general" : {
         "defaultMapping" : 10, "REMOVEME" : 0,
-        "defaultMapping_new" : "mapping"
+        "defaultMapping_new" : "mapping1"
     },
     "mappings" : [], "REMOVEME" : 0,
     "mappings_new" : "NOT OBJECT"
@@ -280,8 +280,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GenerateMappings_mappingsTest
     , FailedNotObjectMappingsElement
@@ -290,11 +288,13 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping1"
     },
-    "mappings" : [
-        "NOT OBJECT"
-    ]
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping1" : "NOT OBJECT"
+    }
 })"
     );
 }
@@ -307,13 +307,15 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping1"
     },
-    "mappings" : [
-        {
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping1" : {
             "buttonsForPspState" : "NOT OBJECT"
         }
-    ]
+    }
 })"
     );
 }
@@ -326,10 +328,12 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping1"
     },
-    "mappings" : [
-        {
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping1" : {
             "buttonsForPspState" : {
                 "NOT UNSIGNED" : {
                     "type" : "toButtons",
@@ -339,7 +343,7 @@ TEST_F(
                 }
             }
         }
-    ]
+    }
 })"
     );
 }
@@ -352,15 +356,17 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping1"
     },
-    "mappings" : [
-        {
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping1" : {
             "buttonsForPspState" : {
                 "10" : "NOT OBJECT"
             }
         }
-    ]
+    }
 })"
     );
 }
@@ -373,17 +379,19 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping1"
     },
-    "mappings" : [
-        {
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping11" : {
             "buttonsForPspState" : {
                 "10" : {
                     "type" : "UNSUPPORTED TYPE"
                 }
             }
         }
-    ]
+    }
 })"
     );
 }
@@ -396,13 +404,15 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping1"
     },
-    "mappings" : [
-        {
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping1" : {
             "buttonsForChangeMapping" : "NOT OBJECT"
         }
-    ]
+    }
 })"
     );
 }
@@ -415,18 +425,20 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping1"
     },
-    "mappings" : [
-        {
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping1" : {
             "buttonsForChangeMapping" : {
                 "NOT UNSIGNED" : {
                     "type" : "shiftMapping",
-                    "mapping" : 1
+                    "mapping" : "mapping1"
                 }
             }
         }
-    ]
+    }
 })"
     );
 }
@@ -439,15 +451,17 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping1"
     },
-    "mappings" : [
-        {
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping1" : {
             "buttonsForChangeMapping" : {
                 "10" : "NOT OBJECT"
             }
         }
-    ]
+    }
 })"
     );
 }
@@ -460,17 +474,19 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping1"
     },
-    "mappings" : [
-        {
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping1" : {
             "buttonsForChangeMapping" : {
                 "10" : {
                     "type" : "UNSUPPORTED TYPE"
                 }
             }
         }
-    ]
+    }
 })"
     );
 }
@@ -483,13 +499,15 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping1"
     },
-    "mappings" : [
-        {
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping1" : {
             "axesForPspState" : "NOT OBJECT"
         }
-    ]
+    }
 })"
     );
 }
@@ -502,17 +520,19 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping1"
     },
-    "mappings" : [
-        {
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping1" : {
             "axesForPspState" : {
                 "NOT UNSIGNED" : {
                     "type" : "toAxisX"
                 }
             }
         }
-    ]
+    }
 })"
     );
 }
@@ -525,15 +545,17 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping1"
     },
-    "mappings" : [
-        {
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping1" : {
             "axesForPspState" : {
                 "10" : "NOT OBJECT"
             }
         }
-    ]
+    }
 })"
     );
 }
@@ -546,17 +568,19 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping1"
     },
-    "mappings" : [
-        {
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping1" : {
             "axesForPspState" : {
                 "10" : {
                     "type" : "UNSUPPORTED TYPE"
                 }
             }
         }
-    ]
+    }
 })"
     );
 }
@@ -569,13 +593,15 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping1"
     },
-    "mappings" : [
-        {
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping1" : {
             "axesForChangeMapping" : "NOT OBJECT"
         }
-    ]
+    }
 })"
     );
 }
@@ -588,21 +614,25 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping1"
     },
-    "mappings" : [
-        {
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping1" : {
             "axesForChangeMapping" : {
                 "NOT UNSIGNED" : {
                     "type" : "toButtonHandlers",
-                    "handler2" : {
+                    "min" : 0,
+                    "max" : 255,
+                    "handlerPlus" : {
                         "type" : "shiftMapping",
-                        "mapping" : 1
+                        "mapping" : "mapping1"
                     }
                 }
             }
         }
-    ]
+    }
 })"
     );
 }
@@ -615,15 +645,17 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping1"
     },
-    "mappings" : [
-        {
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping1" : {
             "axesForChangeMapping" : {
                 "10" : "NOT OBJECT"
             }
         }
-    ]
+    }
 })"
     );
 }
@@ -636,18 +668,19 @@ TEST_F(
     this->testAnyThrow(
         R"({
     "general" : {
-        "defaultMapping" : 0
+        "defaultMapping" : 10, "REMOVEME" : 0,
+        "defaultMapping_new" : "mapping1"
     },
-    "mappings" : [
-        {
+    "mappings" : [], "REMOVEME" : 0,
+    "mappings_new" : {
+        "mapping1" : {
             "axesForChangeMapping" : {
                 "10" : {
                     "type" : "UNSUPPORTED TYPE"
                 }
             }
         }
-    ]
+    }
 })"
     );
 }
-*/
