@@ -955,5 +955,27 @@ TEST_F(
     );
 }
 
-//TODO FailedNotObjectTemplate
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedNotObjectTemplate
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : "mapping1"
+    },
+    "mappings" : {
+        "mapping1" : {
+            "templates" : [
+                "template1"
+            ]
+        }
+    },
+    "templates" : {
+        "template1" : "NOT OBJECT"
+    }
+})"
+    );
+}
 //TODO FailedIllegalTemplate
