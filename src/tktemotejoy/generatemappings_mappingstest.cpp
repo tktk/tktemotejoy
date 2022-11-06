@@ -387,7 +387,64 @@ TEST_F(
     );
 }
 
-//TODO OverwriteTemplateHandlerRecursive
+TEST_F(
+    GenerateMappings_mappingsTest
+    , OverwriteTemplateHandlerRecursive
+)
+{
+    auto    evdevState = EvdevState(
+        20
+        , 20
+    );
+
+    evdevState.setButtonState(
+        10
+        , 1
+    );
+
+    this->test(
+        R"({
+    "general" : {
+        "defaultMapping" : "mapping1"
+    },
+    "mappings" : {
+        "mapping1" : {
+            "templates" : [
+                "template1"
+            ]
+        }
+    },
+    "templates" : {
+        "template1" : {
+            "templates" : [
+                "template2"
+            ],
+            "buttonsForPspState" : {
+                "10" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "up"
+                    ]
+                }
+            }
+        },
+        "template2" : {
+            "buttonsForPspState" : {
+                "10" : {
+                    "type" : "toButtons",
+                    "buttons" : [
+                        "down"
+                    ]
+                }
+            }
+        }
+    }
+})"
+        , evdevState
+        , 0x80800010
+    );
+}
+
 //TODO FailedNotArrayMappingTemplates
 //TODO FailedNotStringMappingTemplatesElement
 //TODO FailedNotObjectTemplates
