@@ -2,10 +2,9 @@
 #include "tktemotejoy/json.h"
 #include "tktemotejoy/jsontest.h"
 #include "tktemotejoy/customjson.h"
-#include <string>
 
 namespace {
-    struct GetJsonArray
+    struct GetJsonArrayFromObject
     {
         template< typename ... ARGS_T >
         const auto & operator()(
@@ -22,11 +21,30 @@ namespace {
         }
     };
 
-    using GetJsonArrayTest = GetJsonTest< GetJsonArray >;
+    using GetJsonArrayFromObjectTest = GetJsonTest< GetJsonArrayFromObject >;
+
+    struct GetJsonArrayFromObjectNotRequired
+    {
+        template< typename ... ARGS_T >
+        auto operator()(
+            const Json &            _JSON
+            , const ARGS_T & ...    _ARGS
+        ) const
+        {
+            const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
+
+            return getJsonArrayFromObjectNotRequired(
+                OBJECT
+                , _ARGS ...
+            );
+        }
+    };
+
+    using GetJsonArrayFromObjectNotRequiredTest = GetJsonNotRequiredTest< GetJsonArrayFromObjectNotRequired >;
 }
 
 TEST_F(
-    GetJsonArrayTest
+    GetJsonArrayFromObjectTest
     , FromObject
 )
 {
@@ -48,8 +66,8 @@ TEST_F(
 }
 
 TEST_F(
-    GetJsonArrayTest
-    , FailedNotExistsFromObject
+    GetJsonArrayFromObjectTest
+    , FailedNotExists
 )
 {
     this->testAnyThrow(
@@ -63,8 +81,61 @@ TEST_F(
 }
 
 TEST_F(
-    GetJsonArrayTest
-    , FailedNotArrayFromObject
+    GetJsonArrayFromObjectTest
+    , FailedNotArray
+)
+{
+    this->testAnyThrow(
+        R"({
+    "key" : "NOT ARRAY"
+})"
+        , "key"
+        , "parentKey1"
+        , "parentKey2"
+        , "parentKey1.parentKey2.keyの値が配列ではない"
+    );
+}
+
+TEST_F(
+    GetJsonArrayFromObjectNotRequiredTest
+    , FromObjectNotRequired
+)
+{
+    const auto  EXPECTED = Json::array_t{
+        "abc"
+        , "def"
+        , "ghi"
+    };
+
+    this->test(
+        R"({
+    "key" : [
+        "abc",
+        "def",
+        "ghi"
+    ]
+})"
+        , "key"
+        , &EXPECTED
+    );
+}
+
+TEST_F(
+    GetJsonArrayFromObjectNotRequiredTest
+    , NotExists
+)
+{
+    this->test(
+        R"({
+})"
+        , "key"
+        , static_cast< const Json::array_t * >( nullptr )
+    );
+}
+
+TEST_F(
+    GetJsonArrayFromObjectNotRequiredTest
+    , FailedNotArray
 )
 {
     this->testAnyThrow(

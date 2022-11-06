@@ -123,6 +123,24 @@ const Json::array_t & getJsonArrayFromObject(
 }
 
 template< typename ... PARENT_KEYS_T >
+const Json::array_t * getJsonArrayFromObjectNotRequired(
+    const Json::object_t &      _OBJECT
+    , const std::string &       _KEY
+    , const PARENT_KEYS_T & ... _PARENT_KEYS
+)
+{
+    //TODO
+    return static_cast< const Json::array_t * >( nullptr );
+/*
+    return getJsonFromObjectNotRequired< GetJsonArrayFromObject >(
+        _OBJECT
+        , _KEY
+        , _PARENT_KEYS ...
+    );
+*/
+}
+
+template< typename ... PARENT_KEYS_T >
 const Json::object_t & getJsonObjectFromJson(
     const Json &                _JSON
     , const std::string &       _KEY
