@@ -226,7 +226,14 @@ namespace {
         }
         const auto &    MAPPING_TEMPLATES = *MAPPING_TEMPLATES_PTR;
 
-        //TODO _TEMPLATES_PTRのNULLチェック
+        if( MAPPING_TEMPLATES.size() <= 0 ) {
+            return;
+        }
+
+        if( _TEMPLATES_PTR == nullptr ) {
+            throw jsonIsNotExists( ROOT_KEY_TEMPLATES );
+        }
+        const auto &    TEMPLATES = *_TEMPLATES_PTR;
 
         auto    index = 0;
         for( const auto & MAPPING_TEMPLATE_JSON : MAPPING_TEMPLATES ) {
@@ -238,7 +245,7 @@ namespace {
             }
             const auto &    MAPPING_TEMPLATE = MAPPING_TEMPLATE_JSON.get_ref< const Json::string_t & >();
 
-            const auto &    TEMPLATE_JSON = _TEMPLATES_PTR->at( MAPPING_TEMPLATE );   //TODO 存在チェック
+            const auto &    TEMPLATE_JSON = TEMPLATES.at( MAPPING_TEMPLATE );   //TODO 存在チェック
             const auto &    TEMPLATE = TEMPLATE_JSON.get_ref< const Json::object_t & >();   //TODO オブジェクトかチェック
 
             applyTemplates(
