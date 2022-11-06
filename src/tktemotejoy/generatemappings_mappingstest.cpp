@@ -847,6 +847,28 @@ TEST_F(
 
 TEST_F(
     GenerateMappings_mappingsTest
+    , FailedNotObjectTemplates
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : "mapping1"
+    },
+    "mappings" : {
+        "mapping1" : {
+            "templates" : [
+                "template1"
+            ]
+        }
+    },
+    "templates" : "NOT OBJECT"
+})"
+    );
+}
+
+TEST_F(
+    GenerateMappings_mappingsTest
     , FailedNotArrayMappingTemplates
 )
 {
@@ -857,9 +879,11 @@ TEST_F(
     },
     "mappings" : {
         "mapping1" : {
+            "templates" : "NOT ARRAY"
         }
     },
-    "templates" : "NOT ARRAY"
+    "templates" : {
+    }
 })"
     );
 }
@@ -884,54 +908,6 @@ TEST_F(
         }
     },
     "templates" : {
-    }
-})"
-    );
-}
-
-TEST_F(
-    GenerateMappings_mappingsTest
-    , FailedNotObjectTemplates
-)
-{
-    this->testAnyThrow(
-        R"({
-    "general" : {
-        "defaultMapping" : "mapping1"
-    },
-    "mappings" : {
-        "mapping1" : {
-            "templates" : [
-                "template1"
-            ]
-        }
-    },
-    "templates" : {
-        "template1" : "NOT OBJECT"
-    }
-})"
-    );
-}
-
-TEST_F(
-    GenerateMappings_mappingsTest
-    , FailedNotObjectTemplates
-)
-{
-    this->testAnyThrow(
-        R"({
-    "general" : {
-        "defaultMapping" : "mapping1"
-    },
-    "mappings" : {
-        "mapping1" : {
-            "templates" : [
-                "template1"
-            ]
-        }
-    },
-    "templates" : {
-        "template1" : "NOT OBJECT"
     }
 })"
     );
