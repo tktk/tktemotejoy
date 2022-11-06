@@ -129,15 +129,11 @@ const Json::array_t * getJsonArrayFromObjectNotRequired(
     , const PARENT_KEYS_T & ... _PARENT_KEYS
 )
 {
-    //TODO
-    return static_cast< const Json::array_t * >( nullptr );
-/*
     return getJsonFromObjectNotRequired< GetJsonArrayFromObject >(
         _OBJECT
         , _KEY
         , _PARENT_KEYS ...
     );
-*/
 }
 
 template< typename ... PARENT_KEYS_T >
