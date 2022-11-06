@@ -262,17 +262,16 @@ namespace {
             , _AXES
         );
 
-        generateHandlersToMapping(
-            mapping
-            , _OBJECT
-            , _MAPPING_NAMES
-        );
-
-        //TODO generateHandlersToMapping()より前にする
         applyTemplates(
             mapping
             , _OBJECT
             , _TEMPLATES_PTR
+            , _MAPPING_NAMES
+        );
+
+        generateHandlersToMapping(
+            mapping
+            , _OBJECT
             , _MAPPING_NAMES
         );
 
