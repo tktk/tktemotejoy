@@ -568,7 +568,7 @@ TEST_F(
         "defaultMapping" : "mapping1"
     },
     "mappings" : {
-        "mapping11" : {
+        "mapping1" : {
             "buttonsForPspState" : {
                 "10" : {
                     "type" : "UNSUPPORTED TYPE"
@@ -978,4 +978,33 @@ TEST_F(
 })"
     );
 }
-//TODO FailedIllegalTemplate
+
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedIllegalTemplate
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : "mapping1"
+    },
+    "mappings" : {
+        "mapping1" : {
+            "templates" : [
+                "template1"
+            ]
+        }
+    },
+    "templates" : {
+        "template1" : {
+            "buttonsForPspState" : {
+                "10" : {
+                    "type" : "UNSUPPORTED TYPE"
+                }
+            }
+        }
+    }
+})"
+    );
+}
