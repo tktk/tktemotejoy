@@ -243,7 +243,7 @@ TEST_F(
 
 TEST_F(
     GenerateToButtonsTest
-    , IllegalButton
+    , FailedIllegalButton
 )
 {
     this->testAnyThrow(
@@ -258,7 +258,7 @@ TEST_F(
 
 TEST_F(
     GenerateToButtonsTest
-    , NotExistsButtons
+    , FailedNotExistsButtons
 )
 {
     this->testAnyThrow(
@@ -270,7 +270,7 @@ TEST_F(
 
 TEST_F(
     GenerateToButtonsTest
-    , ButtonsIsNotArray
+    , FailedNotArrayButtons
 )
 {
     this->testAnyThrow(
