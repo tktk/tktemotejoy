@@ -250,13 +250,19 @@ namespace {
             const auto  IT = TEMPLATES.find( MAPPING_TEMPLATE );
             if( IT == TEMPLATES_END ) {
                 throw jsonIsNotExists(
-                    MAPPING_KEY_TEMPLATES
+                    ROOT_KEY_TEMPLATES
                     , MAPPING_TEMPLATE
                 );
             }
             const auto &    TEMPLATE_JSON = IT->second;
 
-            const auto &    TEMPLATE = TEMPLATE_JSON.get_ref< const Json::object_t & >();   //TODO オブジェクトかチェック
+            if( TEMPLATE_JSON.is_object() == false ) {
+                throw jsonIsNotObject(
+                    ROOT_KEY_TEMPLATES
+                    , MAPPING_TEMPLATE
+                );
+            }
+            const auto &    TEMPLATE = TEMPLATE_JSON.get_ref< const Json::object_t & >();
 
             applyTemplates(
                 _mapping
