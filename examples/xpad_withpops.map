@@ -17,62 +17,9 @@
             },
         },
         "psp" : {
-            "buttonsForChangeMapping" : {
-                "8" : {
-                    "type" : "shiftMapping",
-                    "mapping" : "changeMapping",
-                },
-            },
-            "buttonsForPspState" : {
-                "0" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "cross",
-                    ],
-                },
-                "1" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "circle",
-                    ],
-                },
-                "2" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "square",
-                    ],
-                },
-                "3" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "triangle",
-                    ],
-                },
-                "4" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "triggerL",
-                    ],
-                },
-                "5" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "triggerR",
-                    ],
-                },
-                "6" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "start",
-                    ],
-                },
-                "7" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "select",
-                    ],
-                },
-            },
+            "templates" : [
+                "common",
+            ],
             "axesForPspState" : {
                 "0" : {
                     "type" : "toAxisX",
@@ -159,6 +106,78 @@
             },
         },
         "ps1" : {
+            "templates" : [
+                "ps1",
+            ],
+            "axesForPspState" : {
+                "5" : {
+                    "type" : "toButtonHandler",
+                    "min" : 0,
+                    "max" : 255,
+                    "handler" : {
+                        "type" : "toFixedAxisX",
+                        "value" : 255,
+                    },
+                },
+            },
+            "axesForChangeMapping" : {
+                "2" : {
+                    "type" : "toButtonHandler",
+                    "min" : 0,
+                    "max" : 255,
+                    "handler" : {
+                        "type" : "shiftMapping",
+                        "mapping" : "ps1LPressed",
+                    },
+                },
+            },
+        },
+        "ps1LPressed" : {
+            "templates" : [
+                "ps1",
+            ],
+            "axesForPspState" : {
+                "2" : {
+                    "type" : "toButtonHandler",
+                    "min" : 0,
+                    "max" : 255,
+                    "handler" : {
+                        "type" : "toFixedAxisX",
+                        "value" : 0,
+                    },
+                },
+            },
+            "axesForChangeMapping" : {
+                "5" : {
+                    "type" : "toButtonHandler",
+                    "min" : 0,
+                    "max" : 255,
+                    "handler" : {
+                        "type" : "shiftMapping",
+                        "mapping" : "ps1LRPressed",
+                    },
+                },
+            },
+        },
+        "ps1LRPressed" : {
+            "templates" : [
+                "ps1",
+            ],
+            "axesForPspState" : {
+                "5" : {
+                    "type" : "toButtonHandler",
+                    "min" : 0,
+                    "max" : 255,
+                    "handler" : {
+                        "type" : "toFixedAxisY",
+                        "value" : 0,
+                    },
+                },
+            },
+        },
+    },
+    "templates" : {
+        "common" : {
             "buttonsForChangeMapping" : {
                 "8" : {
                     "type" : "shiftMapping",
@@ -215,232 +234,12 @@
                     ],
                 },
             },
-            "axesForPspState" : {
-                "5" : {
-                    "type" : "toButtonHandler",
-                    "min" : 0,
-                    "max" : 255,
-                    "handler" : {
-                        "type" : "toFixedAxisX",
-                        "value" : 255,
-                    },
-                },
-                "6" : {
-                    "type" : "toButtonHandlers",
-                    "min" : -1,
-                    "max" : 1,
-                    "handlerMinus" : {
-                        "type" : "toButtons",
-                        "buttons" : [
-                            "left",
-                        ],
-                    },
-                    "handlerPlus" : {
-                        "type" : "toButtons",
-                        "buttons" : [
-                            "right",
-                        ],
-                    },
-                },
-                "7" : {
-                    "type" : "toButtonHandlers",
-                    "min" : -1,
-                    "max" : 1,
-                    "handlerMinus" : {
-                        "type" : "toButtons",
-                        "buttons" : [
-                            "up",
-                        ],
-                    },
-                    "handlerPlus" : {
-                        "type" : "toButtons",
-                        "buttons" : [
-                            "down",
-                        ],
-                    },
-                },
-            },
-            "axesForChangeMapping" : {
-                "2" : {
-                    "type" : "toButtonHandler",
-                    "min" : 0,
-                    "max" : 255,
-                    "handler" : {
-                        "type" : "shiftMapping",
-                        "mapping" : "ps1LPressed",
-                    },
-                },
-            },
         },
-        "ps1LPressed" : {
-            "buttonsForPspState" : {
-                "0" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "cross",
-                    ],
-                },
-                "1" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "circle",
-                    ],
-                },
-                "2" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "square",
-                    ],
-                },
-                "3" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "triangle",
-                    ],
-                },
-                "4" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "triggerL",
-                    ],
-                },
-                "5" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "triggerR",
-                    ],
-                },
-                "6" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "start",
-                    ],
-                },
-                "7" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "select",
-                    ],
-                },
-            },
+        "ps1" : {
+            "templates" : [
+                "common",
+            ],
             "axesForPspState" : {
-                "2" : {
-                    "type" : "toButtonHandler",
-                    "min" : 0,
-                    "max" : 255,
-                    "handler" : {
-                        "type" : "toFixedAxisX",
-                        "value" : 0,
-                    },
-                },
-                "6" : {
-                    "type" : "toButtonHandlers",
-                    "min" : -1,
-                    "max" : 1,
-                    "handlerMinus" : {
-                        "type" : "toButtons",
-                        "buttons" : [
-                            "left",
-                        ],
-                    },
-                    "handlerPlus" : {
-                        "type" : "toButtons",
-                        "buttons" : [
-                            "right",
-                        ],
-                    },
-                },
-                "7" : {
-                    "type" : "toButtonHandlers",
-                    "min" : -1,
-                    "max" : 1,
-                    "handlerMinus" : {
-                        "type" : "toButtons",
-                        "buttons" : [
-                            "up",
-                        ],
-                    },
-                    "handlerPlus" : {
-                        "type" : "toButtons",
-                        "buttons" : [
-                            "down",
-                        ],
-                    },
-                },
-            },
-            "axesForChangeMapping" : {
-                "5" : {
-                    "type" : "toButtonHandler",
-                    "min" : 0,
-                    "max" : 255,
-                    "handler" : {
-                        "type" : "shiftMapping",
-                        "mapping" : "ps1LRPressed",
-                    },
-                },
-            },
-        },
-        "ps1LRPressed" : {
-            "buttonsForPspState" : {
-                "0" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "cross",
-                    ],
-                },
-                "1" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "circle",
-                    ],
-                },
-                "2" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "square",
-                    ],
-                },
-                "3" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "triangle",
-                    ],
-                },
-                "4" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "triggerL",
-                    ],
-                },
-                "5" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "triggerR",
-                    ],
-                },
-                "6" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "start",
-                    ],
-                },
-                "7" : {
-                    "type" : "toButtons",
-                    "buttons" : [
-                        "select",
-                    ],
-                },
-            },
-            "axesForPspState" : {
-                "5" : {
-                    "type" : "toButtonHandler",
-                    "min" : 0,
-                    "max" : 255,
-                    "handler" : {
-                        "type" : "toFixedAxisY",
-                        "value" : 0,
-                    },
-                },
                 "6" : {
                     "type" : "toButtonHandlers",
                     "min" : -1,
