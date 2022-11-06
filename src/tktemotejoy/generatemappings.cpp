@@ -233,6 +233,8 @@ namespace {
 
             const auto &    TEMPLATE = _TEMPLATES_PTR->at( MAPPING_TEMPLATE );   //TODO 存在チェック
 
+            //TODO TEMPLATEをJson::object_tに変換
+
             applyTemplates(
                 _mapping
                 , TEMPLATE

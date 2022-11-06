@@ -445,12 +445,6 @@ TEST_F(
     );
 }
 
-//TODO FailedNotArrayMappingTemplates
-//TODO FailedNotStringMappingTemplatesElement
-//TODO FailedNotObjectTemplates
-//TODO FailedNotExistsTemplate
-//TODO FailedIllegalTemplate
-
 TEST_F(
     GenerateMappings_mappingsTest
     , FailedNotExistsMappings
@@ -850,3 +844,98 @@ TEST_F(
 })"
     );
 }
+
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedNotArrayMappingTemplates
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : "mapping1"
+    },
+    "mappings" : {
+        "mapping1" : {
+        }
+    },
+    "templates" : "NOT ARRAY"
+})"
+    );
+}
+
+//TODO
+/*
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedNotStringMappingTemplatesElement
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : "mapping1"
+    },
+    "mappings" : {
+        "mapping1" : {
+            "templates" : [
+                [ "NOT STRING" ]
+            ]
+        }
+    },
+    "templates" : {
+    }
+})"
+    );
+}
+
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedNotObjectTemplates
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : "mapping1"
+    },
+    "mappings" : {
+        "mapping1" : {
+            "templates" : [
+                "template1"
+            ]
+        }
+    },
+    "templates" : {
+        "template1" : "NOT OBJECT"
+    }
+})"
+    );
+}
+
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedNotObjectTemplates
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : "mapping1"
+    },
+    "mappings" : {
+        "mapping1" : {
+            "templates" : [
+                "template1"
+            ]
+        }
+    },
+    "templates" : {
+        "template1" : "NOT OBJECT"
+    }
+})"
+    );
+}
+*/
+
+//TODO FailedIllegalTemplate
