@@ -228,12 +228,18 @@ namespace {
 
         //TODO _TEMPLATES_PTRのNULLチェック
 
+        auto    index = 0;
         for( const auto & MAPPING_TEMPLATE_JSON : MAPPING_TEMPLATES ) {
-            const auto &    MAPPING_TEMPLATE = MAPPING_TEMPLATE_JSON.get_ref< const Json::string_t & >();   //TODO 文字列かチェック
+            if( MAPPING_TEMPLATE_JSON.is_string() == false ) {
+                throw jsonIsNotString(
+                    MAPPING_KEY_TEMPLATES
+                    , index
+                );
+            }
+            const auto &    MAPPING_TEMPLATE = MAPPING_TEMPLATE_JSON.get_ref< const Json::string_t & >();
 
-            const auto &    TEMPLATE = _TEMPLATES_PTR->at( MAPPING_TEMPLATE );   //TODO 存在チェック
-
-            //TODO TEMPLATEをJson::object_tに変換
+            const auto &    TEMPLATE_JSON = _TEMPLATES_PTR->at( MAPPING_TEMPLATE );   //TODO 存在チェック
+            const auto &    TEMPLATE = TEMPLATE_JSON.get_ref< const Json::object_t & >();   //TODO オブジェクトかチェック
 
             applyTemplates(
                 _mapping
@@ -247,6 +253,8 @@ namespace {
                 , TEMPLATE
                 , _MAPPING_NAMES
             );
+
+            index++;
         }
     }
 
