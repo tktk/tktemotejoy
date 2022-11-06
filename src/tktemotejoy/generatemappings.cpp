@@ -233,11 +233,17 @@ namespace {
 
             const auto &    TEMPLATE = _TEMPLATES_PTR->at( MAPPING_TEMPLATE );   //TODO 存在チェック
 
-            //TODO テンプレート処理
-
             generateHandlersToMapping(
                 _mapping
                 , TEMPLATE
+                , _MAPPING_NAMES
+            );
+
+            //TODO generateHandlersToMapping()より前にする
+            applyTemplates(
+                _mapping
+                , TEMPLATE
+                , _TEMPLATES_PTR
                 , _MAPPING_NAMES
             );
         }
@@ -256,16 +262,17 @@ namespace {
             , _AXES
         );
 
+        generateHandlersToMapping(
+            mapping
+            , _OBJECT
+            , _MAPPING_NAMES
+        );
+
+        //TODO generateHandlersToMapping()より前にする
         applyTemplates(
             mapping
             , _OBJECT
             , _TEMPLATES_PTR
-            , _MAPPING_NAMES
-        );
-
-        generateHandlersToMapping(
-            mapping
-            , _OBJECT
             , _MAPPING_NAMES
         );
 
