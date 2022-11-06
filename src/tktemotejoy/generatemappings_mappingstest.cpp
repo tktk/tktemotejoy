@@ -909,8 +909,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GenerateMappings_mappingsTest
     , FailedNotStringMappingTemplatesElement
@@ -933,6 +931,29 @@ TEST_F(
 })"
     );
 }
-*/
 
+TEST_F(
+    GenerateMappings_mappingsTest
+    , FailedNotExistsTemplate
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : "mapping1"
+    },
+    "mappings" : {
+        "mapping1" : {
+            "templates" : [
+                "notexists"
+            ]
+        }
+    },
+    "templates" : {
+    }
+})"
+    );
+}
+
+//TODO FailedNotObjectTemplate
 //TODO FailedIllegalTemplate
