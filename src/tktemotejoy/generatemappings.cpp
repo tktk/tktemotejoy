@@ -235,6 +235,8 @@ namespace {
         }
         const auto &    TEMPLATES = *_TEMPLATES_PTR;
 
+        const auto  TEMPLATES_END = TEMPLATES.end();
+
         auto    index = 0;
         for( const auto & MAPPING_TEMPLATE_JSON : MAPPING_TEMPLATES ) {
             if( MAPPING_TEMPLATE_JSON.is_string() == false ) {
@@ -245,7 +247,15 @@ namespace {
             }
             const auto &    MAPPING_TEMPLATE = MAPPING_TEMPLATE_JSON.get_ref< const Json::string_t & >();
 
-            const auto &    TEMPLATE_JSON = TEMPLATES.at( MAPPING_TEMPLATE );   //TODO 存在チェック
+            const auto  IT = TEMPLATES.find( MAPPING_TEMPLATE );
+            if( IT == TEMPLATES_END ) {
+                throw jsonIsNotExists(
+                    MAPPING_KEY_TEMPLATES
+                    , MAPPING_TEMPLATE
+                );
+            }
+            const auto &    TEMPLATE_JSON = IT->second;
+
             const auto &    TEMPLATE = TEMPLATE_JSON.get_ref< const Json::object_t & >();   //TODO オブジェクトかチェック
 
             applyTemplates(
