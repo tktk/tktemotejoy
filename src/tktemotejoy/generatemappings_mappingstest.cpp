@@ -869,6 +869,27 @@ TEST_F(
 
 TEST_F(
     GenerateMappings_mappingsTest
+    , FailedNotExistsTemplatesWhenRequired
+)
+{
+    this->testAnyThrow(
+        R"({
+    "general" : {
+        "defaultMapping" : "mapping1"
+    },
+    "mappings" : {
+        "mapping1" : {
+            "templates" : [
+                "template1"
+            ]
+        }
+    }
+})"
+    );
+}
+
+TEST_F(
+    GenerateMappings_mappingsTest
     , FailedNotArrayMappingTemplates
 )
 {
