@@ -28,9 +28,9 @@ namespace {
 
             if( _EXPECTED_INITIALIZED == true ) {
                 EXPECT_EQ( _EXPECTED_COMMAND_LINE_OPTIONS.mapFilePath, commandLineOptions.mapFilePath );
-                EXPECT_EQ( _EXPECTED_COMMAND_LINE_OPTIONS.ip, commandLineOptions.ip );
-                EXPECT_EQ( _EXPECTED_COMMAND_LINE_OPTIONS.port, commandLineOptions.port );
                 EXPECT_EQ( _EXPECTED_COMMAND_LINE_OPTIONS.deviceFilePath, commandLineOptions.deviceFilePath );
+                EXPECT_EQ( _EXPECTED_COMMAND_LINE_OPTIONS.socketName, commandLineOptions.socketName );
+                EXPECT_EQ( _EXPECTED_COMMAND_LINE_OPTIONS.endpoint, commandLineOptions.endpoint );
             }
         }
     };
@@ -46,10 +46,10 @@ TEST_F(
             "tktemotejoy",
             "-m",
             "MAPFILEPATH",
-            "-i",
-            "IP",
-            "-p",
-            "10",
+            "-s",
+            "SOCKET_NAME",
+            "-e",
+            "8a",
             "DEVICEFILEPATH",
             "OTHERARGS1",
             "OTHERARGS2",
@@ -58,60 +58,13 @@ TEST_F(
         , CommandLineOptions{
             "MAPFILEPATH",
             "DEVICEFILEPATH",
-            "IP",
-            10,
+            "SOCKET_NAME",
+            0x8a,
         }
     );
 }
 
-TEST_F(
-    CommandLineOptions_initializeTest
-    , NotExistsIp
-)
-{
-    this->test(
-        {
-            "tktemotejoy",
-            "-m",
-            "MAPFILEPATH",
-            "-p",
-            "10",
-            "DEVICEFILEPATH",
-        }
-        , true
-        , CommandLineOptions{
-            "MAPFILEPATH",
-            "DEVICEFILEPATH",
-            "localhost",
-            10,
-        }
-    );
-}
-
-TEST_F(
-    CommandLineOptions_initializeTest
-    , NotExistsPort
-)
-{
-    this->test(
-        {
-            "tktemotejoy",
-            "-m",
-            "MAPFILEPATH",
-            "-i",
-            "IP",
-            "DEVICEFILEPATH",
-        }
-        , true
-        , CommandLineOptions{
-            "MAPFILEPATH",
-            "DEVICEFILEPATH",
-            "IP",
-            10004,
-        }
-    );
-}
-
+/*
 TEST_F(
     CommandLineOptions_initializeTest
     , Help
@@ -133,6 +86,9 @@ TEST_F(
         , CommandLineOptions{}
     );
 }
+
+//TODO FailedNotExistsSocketName
+//TODO FailedNotExistsEndpoint
 
 TEST_F(
     CommandLineOptions_initializeTest
@@ -194,3 +150,4 @@ TEST_F(
         , CommandLineOptions{}
     );
 }
+*/

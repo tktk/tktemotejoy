@@ -7,8 +7,10 @@ struct CommandLineOptions
 {
     std::string     mapFilePath;
     std::string     deviceFilePath;
-    std::string     ip;
-    unsigned short  port;
+    std::string     socketName;
+    unsigned char   endpoint;
+    std::string     ip; //REMOVEME
+    unsigned short  port;   //REMOVEME
 };
 
 bool initializeCommandLineOptions(
