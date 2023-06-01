@@ -11,4 +11,7 @@ void setCtrlFromUsbData(
     const unsigned int
 );
 
+void disableCtrlFromUsbData(
+);
+
 #endif  // CTRL_H

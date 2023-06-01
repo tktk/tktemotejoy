@@ -5,7 +5,6 @@
 #include "tktemotejoy/hook.h"
 #include <pspctrl.h>
 #include <pspctrl_kernel.h>
-#include <pspsdk.h>
 
 typedef union
 {
@@ -28,7 +27,8 @@ enum {
     INITIALIZE_VALUE = 0x80800000,
 };
 
-static FromUsbData  currentFromUsbData;
+static FromUsbData      currentFromUsbData;
+static unsigned char    enabled = 0;
 
 static CtrlBufferFunction   originalCtrlPeekBufferPositive;
 static CtrlBufferFunction   originalCtrlPeekBufferNegative;
@@ -84,7 +84,9 @@ static void applyFromUsbData(
     , const int     _NEGATIVE
 )
 {
-    const int   STATE = pspSdkDisableInterrupts();
+    if( enabled == 0 ) {
+        return;
+    }
 
     unsigned int    buttons = currentFromUsbData.buttons;
 
@@ -117,8 +119,6 @@ static void applyFromUsbData(
         ctrlData->Ly = currentFromUsbData.axisY;
 #endif  // ENABLE_PSP_ANALOG_PAD
     }
-
-    pspSdkEnableInterrupts( STATE );
 }
 
 static int hookedCtrlBuffer(
@@ -247,11 +247,14 @@ void setCtrlFromUsbData(
     const unsigned int  _VALUE
 )
 {
-    const int   STATE = pspSdkDisableInterrupts();
-
     currentFromUsbData.value = _VALUE;
+    enabled = 1;
+}
 
-    pspSdkEnableInterrupts( STATE );
+void disableCtrlFromUsbData(
+)
+{
+    enabled = 0;
 }
 
 #endif  // CTRL_SRC_H

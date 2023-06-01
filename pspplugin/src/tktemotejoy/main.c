@@ -46,6 +46,8 @@ static int mainThread(
         if( READ_SIZE <= 0 ) {
             fragmentSize = 0;
 
+            disableCtrlFromUsbData();
+
             sceKernelDelayThread( RETRY_DELAY_USECONDS );
 
             continue;
