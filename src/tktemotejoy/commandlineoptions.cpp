@@ -6,14 +6,10 @@
 namespace {
     enum {
         OPTION_KEY_MAP = 'm',
-        OPTION_KEY_IP = 'i',
-        OPTION_KEY_PORT = 'p',
+        OPTION_KEY_SOCKET_NAME = 's',
+        OPTION_KEY_ENDPOINT = 'e',
         OPTION_KEY_HELP = 'h',
     };
-
-    const auto  OPTION_DEFAULT_IP = std::string( "localhost" );
-    const auto  OPTION_DEFAULT_PORT = 10004;
-
 }
 
 bool initializeCommandLineOptions(
@@ -22,9 +18,6 @@ bool initializeCommandLineOptions(
     , char * const *        _argv
 )
 {
-    _commandLineOptions.ip = OPTION_DEFAULT_IP;
-    _commandLineOptions.port = OPTION_DEFAULT_PORT;
-
     auto    existsMapFilePath = false;
     auto    existsDeviceFilePath = false;
 
@@ -34,7 +27,7 @@ bool initializeCommandLineOptions(
         const auto  OPTION_KEY = getopt(
             _ARGC
             , _argv
-            , "m:i:p:h"
+            , "m:s:e:h"
         );
         if( OPTION_KEY < 0 ) {
             break;
@@ -46,12 +39,17 @@ bool initializeCommandLineOptions(
             _commandLineOptions.mapFilePath = std::string( optarg );
             break;
 
-        case OPTION_KEY_IP:
-            _commandLineOptions.ip = std::string( optarg );
+        case OPTION_KEY_SOCKET_NAME:
+            _commandLineOptions.socketName = std::string( optarg );
             break;
 
-        case OPTION_KEY_PORT:
-            _commandLineOptions.port = std::stoul( optarg );
+        case OPTION_KEY_ENDPOINT:
+            //TODO 要エラーチェック
+            _commandLineOptions.endpoint = std::stoul(
+                optarg
+                , nullptr
+                , 16
+            );
             break;
 
         case OPTION_KEY_HELP:
@@ -74,23 +72,26 @@ bool initializeCommandLineOptions(
 
     if( printHelp == false ) {
         if( existsMapFilePath == false ) {
-            std::cerr << "マッピングファイルの指定が必要" << std::endl;
+            std::cerr << "マッピングファイルパスの指定が必要" << std::endl;
 
             printHelp = true;
         }
         if( existsDeviceFilePath == false ) {
-            std::cerr << "ゲームパッドのデバイスファイルの指定が必要" << std::endl;
+            std::cerr << "ゲームパッドのデバイスファイルパスの指定が必要" << std::endl;
 
             printHelp = true;
         }
+
+        //TODO 接続先ソケット名指定必須
+        //TODO 接続先エンドポイント指定必須
     }
 
     if( printHelp == true ) {
-        std::cerr << "使い方: " << _argv[ 0 ] << " [オプション]... デバイスファイル" << std::endl;
+        std::cerr << "使い方: " << _argv[ 0 ] << " [オプション]... デバイスファイルパス" << std::endl;
         std::cerr << "オプション:" << std::endl;
-        std::cerr << "-m map    : マッピングファイル" << std::endl;
-        std::cerr << "-i ip     : usbhostfs_pcのホスト (初期値:" << OPTION_DEFAULT_IP << ')' << std::endl;
-        std::cerr << "-p port   : usbhostfs_pcのポート番号 (初期値:" << OPTION_DEFAULT_PORT << ')' << std::endl;
+        std::cerr << "-m path   : マッピングファイルパス" << std::endl;
+        std::cerr << "-s name   : 接続先ソケット名" << std::endl;
+        std::cerr << "-e hex    : 接続先エンドポイント (16進数で指定)" << std::endl;
         std::cerr << "-h        : ヘルプ" << std::endl;
 
         return false;
