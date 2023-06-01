@@ -47,6 +47,7 @@ bool initializeCommandLineOptions(
             break;
 
         case OPTION_KEY_ENDPOINT:
+            existsEndpoint = true;
             //TODO 要エラーチェック
             _commandLineOptions.endpoint = std::stoul(
                 optarg
@@ -84,7 +85,11 @@ bool initializeCommandLineOptions(
 
             printHelp = true;
         }
-        //TODO 接続先エンドポイント指定必須
+        if( existsEndpoint == false ) {
+            std::cerr << "接続先エンドポイントの指定が必要" << std::endl;
+
+            printHelp = true;
+        }
         if( existsDeviceFilePath == false ) {
             std::cerr << "ゲームパッドのデバイスファイルパスの指定が必要" << std::endl;
 
