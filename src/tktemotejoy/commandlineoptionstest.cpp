@@ -62,7 +62,6 @@ TEST_F(
     );
 }
 
-/*
 TEST_F(
     CommandLineOptions_initializeTest
     , Help
@@ -73,10 +72,10 @@ TEST_F(
             "tktemotejoy",
             "-m",
             "MAPFILEPATH",
-            "-i",
-            "IP",
-            "-p",
-            "10",
+            "-s",
+            "SOCKET_NAME",
+            "-e",
+            "8a",
             "DEVICEFILEPATH",
             "-h",
         }
@@ -85,7 +84,25 @@ TEST_F(
     );
 }
 
-//TODO FailedNotExistsSocketName
+TEST_F(
+    CommandLineOptions_initializeTest
+    , FailedNotExistsSocketName
+)
+{
+    this->test(
+        {
+            "tktemotejoy",
+            "-m",
+            "MAPFILEPATH",
+            "-e",
+            "8a",
+            "DEVICEFILEPATH",
+        }
+        , false
+        , CommandLineOptions{}
+    );
+}
+
 //TODO FailedNotExistsEndpoint
 
 TEST_F(
@@ -96,10 +113,10 @@ TEST_F(
     this->test(
         {
             "tktemotejoy",
-            "-i",
-            "IP",
-            "-p",
-            "10",
+            "-s",
+            "SOCKET_NAME",
+            "-e",
+            "8a",
             "DEVICEFILEPATH",
         }
         , false
@@ -117,15 +134,17 @@ TEST_F(
             "tktemotejoy",
             "-m",
             "MAPFILEPATH",
-            "-i",
-            "IP",
-            "-p",
-            "10",
+            "-s",
+            "SOCKET_NAME",
+            "-e",
+            "8a",
         }
         , false
         , CommandLineOptions{}
     );
 }
+
+//TODO FailedIllegalEndpoint
 
 TEST_F(
     CommandLineOptions_initializeTest
@@ -148,4 +167,3 @@ TEST_F(
         , CommandLineOptions{}
     );
 }
-*/
