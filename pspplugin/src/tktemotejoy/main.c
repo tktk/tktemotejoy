@@ -1,8 +1,7 @@
 #include "tktemotejoy/ctrl.h"
-#include "usbasync.h"
-#include "usbhostfs.h"
+#include "tktusbmanager/tktusbmanager.h"
 #include <pspkernel.h>
-#include <pspusb.h>
+#include <string.h>
 
 PSP_MODULE_INFO(
     "TktemoteJoy"
@@ -11,17 +10,18 @@ PSP_MODULE_INFO(
     , 1
 );
 
-struct AsyncEndpoint    asyncEndpoint;
-
-typedef struct
-{
-    _Alignas( 4 ) unsigned int magic;
-    _Alignas( 4 ) unsigned int value;
-} UsbAsyncData;
+#define ENDPOINT_NAME "tktemotejoy"
 
 enum {
-    JOY_MAGIC = 0x909ACCF0,
+    RETRY_DELAY_USECONDS = 3000000,
+
+    INPUT_DATA_SIZE = sizeof( int ),
+
+    BUFFER_SIZE = 1024,
+    BUFFER_COUNT = BUFFER_SIZE / INPUT_DATA_SIZE,
 };
+
+static TktUsbEndpointR *    endpointR = NULL;
 
 static int mainThread(
     SceSize     _args
@@ -34,59 +34,45 @@ static int mainThread(
         sceKernelExitDeleteThread( 0 );
     }
 
-    if( sceUsbStart(
-        PSP_USBBUS_DRIVERNAME
-        , 0
-        , 0
-    ) != 0 ) {
-        return 0;
-    }
-
-    if( sceUsbStart(
-        HOSTFSDRIVER_NAME
-        , 0
-        , 0
-    ) != 0) {
-        return 0;
-    }
-
-    if( sceUsbActivate( HOSTFSDRIVER_PID ) != 0 ) {
-        return 0;
-    }
-
-    sceKernelDcacheWritebackInvalidateAll();
-    sceKernelIcacheInvalidateAll();
-
-    if( usbAsyncRegister(
-        ASYNC_USER
-        , &asyncEndpoint
-    ) < 0 ) {
-        sceKernelExitDeleteThread( 0 );
-    }
-
-    usbWaitForConnect();
-
-    UsbAsyncData    usbAsyncData;
+    int     buffer[ BUFFER_COUNT ];
+    size_t  fragmentSize = 0;
 
     while( 1 ) {
-        const int   LENGTH = usbAsyncRead(
-            ASYNC_USER
-            , ( void * )&usbAsyncData
-            , sizeof( usbAsyncData )
+        const int   READ_SIZE = tktUsbRead(
+            endpointR
+            , ( ( char * )buffer ) + fragmentSize
+            , BUFFER_SIZE - fragmentSize
         );
+        if( READ_SIZE <= 0 ) {
+            fragmentSize = 0;
 
-        if( ( LENGTH != sizeof( usbAsyncData ) ) || ( usbAsyncData.magic != JOY_MAGIC ) ) {
-            if( LENGTH < 0 ) {
-                // Delay thread, necessary to ensure that the kernel can reboot :)
-                sceKernelDelayThread( 250000 );
-            } else {
-                usbAsyncFlush( ASYNC_USER );
-            }
+            sceKernelDelayThread( RETRY_DELAY_USECONDS );
 
             continue;
         }
 
-        setCtrlFromUsbData( usbAsyncData.value );
+        const int   TOTAL_READ_SIZE = READ_SIZE + fragmentSize;
+        if( TOTAL_READ_SIZE < INPUT_DATA_SIZE ) {
+            fragmentSize = TOTAL_READ_SIZE;
+
+            continue;
+        }
+
+        const int   INPUT_DATA_COUNT = TOTAL_READ_SIZE / INPUT_DATA_SIZE;
+        const int   LATEST_INPUT_DATA_INDEX = INPUT_DATA_COUNT - 1;
+        const int   LATEST_INPUT_DATA = buffer[ LATEST_INPUT_DATA_INDEX ];
+
+        setCtrlFromUsbData( LATEST_INPUT_DATA );
+
+        fragmentSize = TOTAL_READ_SIZE - INPUT_DATA_COUNT * INPUT_DATA_SIZE;
+
+        if( fragmentSize > 0 ) {
+            memcpy(
+                buffer
+                , buffer + INPUT_DATA_COUNT
+                , fragmentSize
+            );
+        }
     }
 
     return 0;
@@ -97,6 +83,14 @@ int module_start(
     , void *    _argp
 )
 {
+    endpointR = tktUsbGetEndpointR(
+        ENDPOINT_NAME
+        , sizeof( ENDPOINT_NAME ) - 1
+    );
+    if( endpointR == NULL ) {
+        return 0;
+    }
+
     const int   THREAD_ID = sceKernelCreateThread(
         "TktemoteJoy"
         , mainThread
