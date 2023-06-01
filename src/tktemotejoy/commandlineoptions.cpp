@@ -19,6 +19,8 @@ bool initializeCommandLineOptions(
 )
 {
     auto    existsMapFilePath = false;
+    auto    existsSocketName = false;
+    auto    existsEndpoint = false;
     auto    existsDeviceFilePath = false;
 
     auto    printHelp = false;
@@ -40,6 +42,7 @@ bool initializeCommandLineOptions(
             break;
 
         case OPTION_KEY_SOCKET_NAME:
+            existsSocketName = true;
             _commandLineOptions.socketName = std::string( optarg );
             break;
 
@@ -76,14 +79,17 @@ bool initializeCommandLineOptions(
 
             printHelp = true;
         }
+        if( existsSocketName == false ) {
+            std::cerr << "接続先ソケット名の指定が必要" << std::endl;
+
+            printHelp = true;
+        }
+        //TODO 接続先エンドポイント指定必須
         if( existsDeviceFilePath == false ) {
             std::cerr << "ゲームパッドのデバイスファイルパスの指定が必要" << std::endl;
 
             printHelp = true;
         }
-
-        //TODO 接続先ソケット名指定必須
-        //TODO 接続先エンドポイント指定必須
     }
 
     if( printHelp == true ) {
