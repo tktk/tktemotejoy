@@ -87,7 +87,6 @@ module.SOURCE = [
     'mappingnames.cpp',
     'evdevstate.cpp',
     'pspstate.cpp',
-    'tousbhostfs.cpp',
     'evdev.cpp',
     'descriptorcloser.cpp',
     'typeerror.cpp',
