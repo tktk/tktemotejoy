@@ -161,7 +161,26 @@ TEST_F(
     );
 }
 
-//TODO FailedIllegalEndpoint
+TEST_F(
+    CommandLineOptions_initializeTest
+    , FailedIllegalEndpoint
+)
+{
+    this->test(
+        {
+            "tktemotejoy",
+            "-m",
+            "MAPFILEPATH",
+            "-s",
+            "SOCKET_NAME",
+            "-e",
+            "8aILLEGAL",
+            "DEVICEFILEPATH",
+        }
+        , false
+        , CommandLineOptions{}
+    );
+}
 
 TEST_F(
     CommandLineOptions_initializeTest
@@ -173,10 +192,10 @@ TEST_F(
             "tktemotejoy",
             "-m",
             "MAPFILEPATH",
-            "-i",
-            "IP",
-            "-p",
-            "10",
+            "-s",
+            "SOCKET_NAME",
+            "-e",
+            "8a",
             "-X",
             "DEVICEFILEPATH",
         }
