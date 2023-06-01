@@ -103,7 +103,24 @@ TEST_F(
     );
 }
 
-//TODO FailedNotExistsEndpoint
+TEST_F(
+    CommandLineOptions_initializeTest
+    , FailedNotExistsEndpoint
+)
+{
+    this->test(
+        {
+            "tktemotejoy",
+            "-m",
+            "MAPFILEPATH",
+            "-s",
+            "SOCKET_NAME",
+            "DEVICEFILEPATH",
+        }
+        , false
+        , CommandLineOptions{}
+    );
+}
 
 TEST_F(
     CommandLineOptions_initializeTest
