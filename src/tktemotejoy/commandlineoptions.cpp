@@ -10,6 +10,28 @@ namespace {
         OPTION_KEY_ENDPOINT = 'e',
         OPTION_KEY_HELP = 'h',
     };
+
+    template< typename NUMBER_T >
+    bool hexStringToInt(
+        NUMBER_T &      _result
+        , const char *  _STRING
+    )
+    {
+        auto    index = std::size_t( 0 );
+
+        const auto  RESULT = std::stoul(
+            _STRING
+            , &index
+            , 16
+        );
+        if( _STRING[ index ] != '\0' ) {
+            return false;
+        }
+
+        _result = RESULT;
+
+        return true;
+    }
 }
 
 bool initializeCommandLineOptions(
@@ -22,6 +44,8 @@ bool initializeCommandLineOptions(
     auto    existsSocketName = false;
     auto    existsEndpoint = false;
     auto    existsDeviceFilePath = false;
+
+    auto    illegalEndpoint = false;
 
     auto    printHelp = false;
 
@@ -48,12 +72,12 @@ bool initializeCommandLineOptions(
 
         case OPTION_KEY_ENDPOINT:
             existsEndpoint = true;
-            //TODO 要エラーチェック
-            _commandLineOptions.endpoint = std::stoul(
-                optarg
-                , nullptr
-                , 16
-            );
+            if( hexStringToInt(
+                _commandLineOptions.endpoint
+                , optarg
+            ) == false ) {
+                illegalEndpoint = true;
+            }
             break;
 
         case OPTION_KEY_HELP:
@@ -92,6 +116,14 @@ bool initializeCommandLineOptions(
         }
         if( existsDeviceFilePath == false ) {
             std::cerr << "ゲームパッドのデバイスファイルパスの指定が必要" << std::endl;
+
+            printHelp = true;
+        }
+    }
+
+    if( printHelp == false ) {
+        if( illegalEndpoint == true ) {
+            std::cerr << "接続先エンドポイントが不正" << std::endl;
 
             printHelp = true;
         }
