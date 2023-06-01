@@ -4,8 +4,8 @@
 #include "tktemotejoy/generatemappings.h"
 #include "tktemotejoy/mappings.h"
 #include "tktemotejoy/evdevstate.h"
-#include "tktemotejoy/tousbhostfs.h"
 #include "tktemotejoy/evdev.h"
+#include "tktusbrepeater/tktusbrepeater.h"
 #include <string>
 #include <algorithm>
 #include <cstddef>
@@ -117,12 +117,13 @@ int main(
         , AXES
     );
 
-    int socket_;
-    const auto  SOCKET_CLOSER = connectToUsbHostFs(
-        socket_
-        , options.ip
-        , options.port
+    auto    toRepeaterUnique = tktusbrepeater::newWriter(
+        options.socketName
+        , options.endpoint
     );
+    if( toRepeaterUnique.get() == nullptr ) {
+        throw std::runtime_error( "tktusbrepeater::newWriter()が失敗" );
+    }
 
     auto    evdevState = EvdevState(
         BUTTONS
@@ -205,15 +206,15 @@ int main(
         pspState.diff(
             prevPspState
             , [
-                &socket_
+                &toRepeaterUnique
             ]
             (
                 const PspState::Bits &  _BITS
             )
             {
-                writeToUsbHostFs(
-                    socket_
-                    , _BITS
+                toRepeaterUnique->write(
+                    &_BITS
+                    , sizeof( _BITS )
                 );
             }
         );

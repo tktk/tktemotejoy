@@ -8,7 +8,7 @@ from waflib.Tools import waf_unit_test
 import os.path
 
 APPNAME = 'tktemotejoy'
-VERSION = '3.1.0'
+VERSION = '4.0.0'
 
 out = 'build'
 
@@ -23,8 +23,22 @@ taf.LOAD_TOOLS = [
 cpp.INCLUDES = [
     os.path.join(
         '..',
+        'tktusbrepeater',
+        'inc',
+    ),
+    os.path.join(
+        '..',
         'nlohmann-json',
         'single_include',
+    ),
+]
+
+cpp.LIBPATH = [
+    os.path.join(
+        '..',
+        'tktusbrepeater',
+        'build',
+        'tktusbrepeater',
     ),
 ]
 

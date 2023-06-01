@@ -136,3 +136,7 @@ module.SOURCE = [
         },
     },
 ]
+
+module.LIB = [
+    'tktusbrepeater',
+]
