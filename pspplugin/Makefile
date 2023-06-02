@@ -1,7 +1,6 @@
 TARGET = tktemotejoy
 
 OBJS = \
-    src/tktemotejoy/exports.o \
     src/tktemotejoy/main.o \
     src/tktemotejoy/hook.o \
 	src/tktemotejoy/ctrl.o \
