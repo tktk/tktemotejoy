@@ -1,7 +1,0 @@
-TARGET = tktemotejoy_pops
-
-OBJS += src/tktemotejoy/ctrl_pops.o
-
-CFLAGS += -DENABLE_PSP_ANALOG_PAD
-
-include Makefile_common
