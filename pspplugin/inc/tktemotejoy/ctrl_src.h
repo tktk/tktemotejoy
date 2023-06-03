@@ -28,8 +28,12 @@ enum {
 static FromUsbData      currentFromUsbData;
 static unsigned char    enabled = 0;
 
+#ifndef FOR_POPS
 static CtrlBufferFunction   originalCtrlReadBufferPositive;
+#else   // FOR_POPS
 static CtrlBufferFunction   originalCtrlPeekBufferNegative;
+static CtrlBufferFunction   originalCtrlPeekBufferPositive;
+#endif  // FOR_POPS
 
 static unsigned int generateMask(
 )
@@ -102,6 +106,8 @@ static int hookedCtrlBuffer(
     return COUNT;
 }
 
+#ifndef FOR_POPS
+
 static int hookedCtrlReadBufferPositive(
     SceCtrlData *   _ctrlData
     , const int     _COUNT
@@ -114,6 +120,8 @@ static int hookedCtrlReadBufferPositive(
         , originalCtrlReadBufferPositive
     );
 }
+
+#else   // FOR_POPS
 
 static int hookedCtrlPeekBufferNegative(
     SceCtrlData *   _ctrlData
@@ -128,6 +136,21 @@ static int hookedCtrlPeekBufferNegative(
     );
 }
 
+static int hookedCtrlPeekBufferPositive(
+    SceCtrlData *   _ctrlData
+    , const int     _COUNT
+)
+{
+    return hookedCtrlBuffer(
+        _ctrlData
+        , _COUNT
+        , 0
+        , originalCtrlPeekBufferPositive
+    );
+}
+
+#endif  // FOR_POPS
+
 void initializeCtrlFromUsbData(
 )
 {
@@ -137,17 +160,7 @@ void initializeCtrlFromUsbData(
 int hookCtrlFunctions(
 )
 {
-#define HOOK_FUNCTION( \
-        _JUMP \
-        , _HOOKED \
-        , _ORIGINAL \
-    ) if( hookFunction( \
-        _JUMP \
-        , _HOOKED \
-        , ( void ** )_ORIGINAL \
-    ) != 0 ) { \
-        return 1; \
-    }
+#ifndef FOR_POPS
 
 #define HOOK_FUNCTION2( \
         _MODULE_NAME \
@@ -163,13 +176,29 @@ int hookCtrlFunctions(
         return 1; \
     }
 
-    // シェル、PSPゲーム、PSメニューでのボタン検知
+    // シェル、PSPゲームでのボタン検知
     HOOK_FUNCTION2(
         "sceController_Service"
         , 0x35030104
         , hookedCtrlReadBufferPositive
         , &originalCtrlReadBufferPositive
     )
+
+#undef  HOOK_FUNCTION2
+
+#else   // FOR_POPS
+
+#define HOOK_FUNCTION( \
+        _JUMP \
+        , _HOOKED \
+        , _ORIGINAL \
+    ) if( hookFunction( \
+        _JUMP \
+        , _HOOKED \
+        , ( void ** )_ORIGINAL \
+    ) != 0 ) { \
+        return 1; \
+    }
 
     // PS1ゲームでのボタン検知
     HOOK_FUNCTION(
@@ -178,10 +207,18 @@ int hookCtrlFunctions(
         , &originalCtrlPeekBufferNegative
     )
 
-    return 0;
+    // PS1ゲームにおけるPSメニューでのボタン検知
+    HOOK_FUNCTION(
+        sceCtrlPeekBufferPositive
+        , hookedCtrlPeekBufferPositive
+        , &originalCtrlPeekBufferPositive
+    )
 
 #undef  HOOK_FUNCTION
-#undef  HOOK_FUNCTION2
+
+#endif  // FOR_POPS
+
+    return 0;
 }
 
 void setCtrlFromUsbData(
