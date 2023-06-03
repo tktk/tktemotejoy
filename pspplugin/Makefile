@@ -1,19 +1,5 @@
 TARGET = tktemotejoy
 
-OBJS = \
-    src/tktemotejoy/main.o \
-    src/tktemotejoy/hook.o \
-	src/tktemotejoy/ctrl.o \
+OBJS += src/tktemotejoy/ctrl.o
 
-USE_KERNEL_LIBC = 1
-USE_KERNEL_LIBS = 1
-
-INCDIR = 
-CFLAGS += -std=gnu11 -Os -G0 -Wall -fno-builtin-printf -Iinc -I../../tktusbmanager/inc
-CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
-ASFLAGS = $(CFLAGS)
-LDFLAGS = -L../../tktusbmanager/lib
-LIBS = -ltktusbmanager_driver
-
-PSPSDK=$(shell psp-config --pspsdk-path)
-include $(PSPSDK)/lib/build_prx.mak
+include Makefile_common
