@@ -1,6 +1,7 @@
 #include "tktemotejoy/ctrl.h"
 #include "tktusbmanager/tktusbmanager.h"
 #include <pspkernel.h>
+#include <psputils.h>
 #include <string.h>
 
 PSP_MODULE_INFO(
@@ -19,6 +20,7 @@ enum {
 
     BUFFER_SIZE = 1024,
     BUFFER_COUNT = BUFFER_SIZE / INPUT_DATA_SIZE,
+    BUFFER_BLOCK_SIZE = ( BUFFER_SIZE + 63 ) & ~63,
 };
 
 static TktUsbEndpointR *    endpointR = NULL;
@@ -34,7 +36,7 @@ static int mainThread(
         sceKernelExitDeleteThread( 0 );
     }
 
-    int     buffer[ BUFFER_COUNT ];
+    int     buffer[ BUFFER_COUNT ] __attribute__( ( aligned( 64 ) ) );
     size_t  fragmentSize = 0;
 
     while( 1 ) {
@@ -59,6 +61,11 @@ static int mainThread(
 
             continue;
         }
+
+        sceKernelDcacheInvalidateRange(
+            buffer
+            , BUFFER_BLOCK_SIZE
+        );
 
         const int   INPUT_DATA_COUNT = TOTAL_READ_SIZE / INPUT_DATA_SIZE;
         const int   LATEST_INPUT_DATA_INDEX = INPUT_DATA_COUNT - 1;
