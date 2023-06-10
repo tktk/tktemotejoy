@@ -143,83 +143,94 @@ int main(
 
     const auto  INPUT_EVENTS_BEGIN = inputEvents.cbegin();
 
-    while( true ) {
-        const auto  READ_EVENTS = readEvdevInputEvents(
-            evdev
-            , inputEvents
-        );
+    try {
+        while( true ) {
+            const auto  READ_EVENTS = readEvdevInputEvents(
+                evdev
+                , inputEvents
+            );
 
-        std::for_each(
-            INPUT_EVENTS_BEGIN
-            , INPUT_EVENTS_BEGIN + READ_EVENTS
-            , [
-                &KEY_INDICES
-                , &ABS_INDICES
-                , &evdevState
-            ]
-            (
-                const input_event & _EVENT
-            )
-            {
-                const auto &    EVENT_TYPE = _EVENT.type;
-                const auto &    EVENT_CODE = _EVENT.code;
-                const auto &    EVENT_VALUE = _EVENT.value;
+            std::for_each(
+                INPUT_EVENTS_BEGIN
+                , INPUT_EVENTS_BEGIN + READ_EVENTS
+                , [
+                    &KEY_INDICES
+                    , &ABS_INDICES
+                    , &evdevState
+                ]
+                (
+                    const input_event & _EVENT
+                )
+                {
+                    const auto &    EVENT_TYPE = _EVENT.type;
+                    const auto &    EVENT_CODE = _EVENT.code;
+                    const auto &    EVENT_VALUE = _EVENT.value;
 
-                if( EVENT_TYPE == EV_KEY ) {
-                    const auto &    INDEX = KEY_INDICES.at( EVENT_CODE );
-                    if( INDEX < 0 ) {
-                        auto    oStringStream = std::ostringstream();
+                    if( EVENT_TYPE == EV_KEY ) {
+                        const auto &    INDEX = KEY_INDICES.at( EVENT_CODE );
+                        if( INDEX < 0 ) {
+                            auto    oStringStream = std::ostringstream();
 
-                        oStringStream << "無効なキーコード : [" << EVENT_CODE << ']';
+                            oStringStream << "無効なキーコード : [" << EVENT_CODE << ']';
 
-                        throw std::runtime_error( oStringStream.str() );
+                            throw std::runtime_error( oStringStream.str() );
+                        }
+
+                        evdevState.setButtonState(
+                            INDEX
+                            , EVENT_VALUE
+                        );
+                    } else if( EVENT_TYPE == EV_ABS ) {
+                        const auto &    INDEX = ABS_INDICES.at( EVENT_CODE );
+                        if( INDEX < 0 ) {
+                            auto    oStringStream = std::ostringstream();
+
+                            oStringStream << "無効な軸コード : [" << EVENT_CODE << ']';
+
+                            throw std::runtime_error( oStringStream.str() );
+                        }
+
+                        evdevState.setAxisState(
+                            INDEX
+                            , EVENT_VALUE
+                        );
                     }
+                }
+            );
 
-                    evdevState.setButtonState(
-                        INDEX
-                        , EVENT_VALUE
-                    );
-                } else if( EVENT_TYPE == EV_ABS ) {
-                    const auto &    INDEX = ABS_INDICES.at( EVENT_CODE );
-                    if( INDEX < 0 ) {
-                        auto    oStringStream = std::ostringstream();
+            auto    pspState = PspState();
+            mappings.evdevStateToPspState(
+                pspState
+                , evdevState
+            );
 
-                        oStringStream << "無効な軸コード : [" << EVENT_CODE << ']';
-
-                        throw std::runtime_error( oStringStream.str() );
-                    }
-
-                    evdevState.setAxisState(
-                        INDEX
-                        , EVENT_VALUE
+            pspState.diff(
+                prevPspState
+                , [
+                    &toRepeaterUnique
+                ]
+                (
+                    const PspState::Bits &  _BITS
+                )
+                {
+                    toRepeaterUnique->write(
+                        &_BITS
+                        , sizeof( _BITS )
                     );
                 }
-            }
+            );
+
+            prevPspState = pspState;
+        }
+    } catch( const std::runtime_error & _EX ) {
+        const auto  CLEAR_BITS = PspState::Bits( PSPSTATE_BITS_DEFAULT );
+
+        toRepeaterUnique->write(
+            &CLEAR_BITS
+            , sizeof( CLEAR_BITS )
         );
 
-        auto    pspState = PspState();
-        mappings.evdevStateToPspState(
-            pspState
-            , evdevState
-        );
-
-        pspState.diff(
-            prevPspState
-            , [
-                &toRepeaterUnique
-            ]
-            (
-                const PspState::Bits &  _BITS
-            )
-            {
-                toRepeaterUnique->write(
-                    &_BITS
-                    , sizeof( _BITS )
-                );
-            }
-        );
-
-        prevPspState = pspState;
+        throw _EX;
     }
 
     return 0;

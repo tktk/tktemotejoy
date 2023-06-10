@@ -3,6 +3,10 @@
 
 #include <functional>
 
+enum {
+    PSPSTATE_BITS_DEFAULT = 0x80800000,
+};
+
 class PspState final
 {
 public:
