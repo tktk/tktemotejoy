@@ -33,7 +33,7 @@ namespace {
                     _MIN
                     , _MAX
                     , _DEAD_ZONE
-                    , ToAxisXImpl( _LIMIT )
+                    , ToAxisXImpl_old( _LIMIT )
                 )
             );
         }
