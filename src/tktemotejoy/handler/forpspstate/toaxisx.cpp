@@ -17,15 +17,13 @@ void ToAxisXImpl::operator()(
     , PspState &    _pspState
 ) const
 {
-    //TODO
-/*
     _pspState.operateAxisX(
         calcPspStateAxis(
             _VALUE
             , this->LIMIT
+            , this->ERASE_DEAD_ZONE
         )
     );
-*/
 }
 
 //REMOVEME
