@@ -17,7 +17,13 @@ PspState::Axis calcPspStateAxis(
 )
 {
     //TODO
-    return 0;
+    if( _VALUE >= _LIMIT ) {
+        return PSP_STATE_AXIS_MAX;
+    } else if( _VALUE <= -_LIMIT ) {
+        return PSP_STATE_AXIS_MIN;
+    }
+
+    return PSP_STATE_AXIS_ZERO + ( _VALUE * PSP_STATE_AXIS_ZERO / _LIMIT );
 }
 
 //REMOVEME
