@@ -23,7 +23,7 @@ namespace {
         }
     };
 
-    using ToAxisYTest = ToAxisTest< GenerateToAxisY >;
+    using ToAxisYTest = ToAxis_oldTest< GenerateToAxisY >;
 }
 
 TEST_F(
