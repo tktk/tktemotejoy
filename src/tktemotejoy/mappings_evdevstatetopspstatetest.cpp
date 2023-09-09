@@ -58,7 +58,7 @@ namespace {
                     _mapping.setHandler(
                         0
                         , Mapping::handlerUnique(
-                            new ToAxisY(
+                            new ToAxisY_old(
                                 -100
                                 , 100
                                 , 0

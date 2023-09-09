@@ -35,7 +35,7 @@ TEST_F(
 
 TEST_F(
     GenerateOperateAxisHandlerForPspStateTest
-    , ToAxisY
+    , ToAxisY_old
 )
 {
     this->test(

@@ -4,8 +4,9 @@
 #include "tktemotejoy/pspstate.h"
 #include <linux/input.h>
 
+//REMOVEME
 namespace {
-    struct GenerateToAxisY
+    struct GenerateToAxisY_old
     {
         auto operator()(
             const __s32     _MIN
@@ -14,7 +15,7 @@ namespace {
             , const __s32   _LIMIT
         ) const
         {
-            return ToAxisY(
+            return ToAxisY_old(
                 _MIN
                 , _MAX
                 , _DEAD_ZONE
@@ -23,11 +24,12 @@ namespace {
         }
     };
 
-    using ToAxisYTest = ToAxis_oldTest< GenerateToAxisY >;
+    using ToAxisY_oldTest = ToAxis_oldTest< GenerateToAxisY_old >;
 }
 
+//REMOVEME
 TEST_F(
-    ToAxisYTest
+    ToAxisY_oldTest
     , Standard
 )
 {
