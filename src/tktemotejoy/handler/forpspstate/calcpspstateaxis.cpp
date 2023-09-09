@@ -16,14 +16,15 @@ PspState::Axis calcPspStateAxis(
     , const __s32   _ERASE_DEAD_ZONE
 )
 {
-    //TODO
     if( _VALUE >= _LIMIT ) {
         return PSP_STATE_AXIS_MAX;
     } else if( _VALUE <= -_LIMIT ) {
         return PSP_STATE_AXIS_MIN;
     }
 
-    return PSP_STATE_AXIS_ZERO + _ERASE_DEAD_ZONE + ( _VALUE * ( PSP_STATE_AXIS_ZERO - _ERASE_DEAD_ZONE ) / _LIMIT );
+    const auto  DIRECTION = ( _VALUE >= 0 ) ? 1 : -1;
+
+    return PSP_STATE_AXIS_ZERO + _ERASE_DEAD_ZONE * DIRECTION + ( _VALUE * ( PSP_STATE_AXIS_ZERO - _ERASE_DEAD_ZONE ) / _LIMIT );
 }
 
 //REMOVEME
