@@ -9,6 +9,7 @@ namespace {
         void test(
             const __s32             _VALUE
             , const __s32           _LIMIT
+            , const __s32           _ERASE_DEAD_ZONE
             , const PspState::Axis  _EXPECTED
         ) const
         {
@@ -17,6 +18,7 @@ namespace {
                 , calcPspStateAxis(
                     _VALUE
                     , _LIMIT
+                    , _ERASE_DEAD_ZONE
                 )
             );
         }
@@ -31,6 +33,7 @@ TEST_F(
     this->test(
         128
         , 256
+        , 0
         , 0xc0
     );
 }
@@ -43,6 +46,7 @@ TEST_F(
     this->test(
         256
         , 256
+        , 0
         , 0xff
     );
 }
@@ -55,6 +59,7 @@ TEST_F(
     this->test(
         -258
         , 256
+        , 0
         , 0x00
     );
 }

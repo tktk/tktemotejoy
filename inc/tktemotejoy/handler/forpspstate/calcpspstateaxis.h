@@ -7,6 +7,13 @@
 PspState::Axis calcPspStateAxis(
     const __s32
     , const __s32
+    , const __s32
+);
+
+//REMOVEME
+PspState::Axis calcPspStateAxis(
+    const __s32
+    , const __s32
 );
 
 #endif  // TKTEMOTEJOY_HANDLER_FORPSPSTATE_CALCPSPSTATEAXIS_H

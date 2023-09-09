@@ -13,6 +13,17 @@ namespace {
 PspState::Axis calcPspStateAxis(
     const __s32     _VALUE
     , const __s32   _LIMIT
+    , const __s32   _ERASE_DEAD_ZONE
+)
+{
+    //TODO
+    return 0;
+}
+
+//REMOVEME
+PspState::Axis calcPspStateAxis(
+    const __s32     _VALUE
+    , const __s32   _LIMIT
 )
 {
     if( _VALUE >= _LIMIT ) {
