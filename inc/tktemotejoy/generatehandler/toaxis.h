@@ -9,8 +9,9 @@
 #include <string>
 #include <cmath>
 
+//REMOVEME
 template< typename GENERATE_TO_AXIS_UNIQUE_T >
-class GenerateToAxisUnique : public GenerateHandlerWithRangeUnique< GenerateToAxisUnique< GENERATE_TO_AXIS_UNIQUE_T > >
+class GenerateToAxisUnique_old : public GenerateHandlerWithRangeUnique< GenerateToAxisUnique_old< GENERATE_TO_AXIS_UNIQUE_T > >
 {
 public:
     auto generateHandler(

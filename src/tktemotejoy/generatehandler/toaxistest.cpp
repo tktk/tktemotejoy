@@ -5,8 +5,9 @@
 #include <string>
 #include <memory>
 
+//REMOVEME
 namespace {
-    struct TestHandler
+    struct TestHandler_old
     {
         const __s32 MIN;
         const __s32 MAX;
@@ -14,7 +15,7 @@ namespace {
         const __s32 LIMIT;
     };
 
-    struct TestGenerateToAxisUnique
+    struct TestGenerateToAxisUnique_old
     {
         auto operator()(
             const __s32     _MIN
@@ -23,8 +24,8 @@ namespace {
             , const __s32   _LIMIT
         ) const
         {
-            return std::unique_ptr< TestHandler >(
-                new TestHandler{
+            return std::unique_ptr< TestHandler_old >(
+                new TestHandler_old{
                     _MIN
                     , _MAX
                     , _DEAD_ZONE
@@ -34,9 +35,9 @@ namespace {
         }
     };
 
-    using TestGenerateHandlerUnique = GenerateToAxisUnique< TestGenerateToAxisUnique >;
+    using TestGenerateHandlerUnique_old = GenerateToAxisUnique_old< TestGenerateToAxisUnique_old >;
 
-    class GenerateToAxisUniqueTest : public ::testing::Test
+    class GenerateToAxisUnique_oldTest : public ::testing::Test
     {
     public:
         void test(
@@ -51,7 +52,7 @@ namespace {
 
             const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
 
-            auto    handlerUnique = TestGenerateHandlerUnique()( OBJECT );
+            auto    handlerUnique = TestGenerateHandlerUnique_old()( OBJECT );
             ASSERT_NE( nullptr, handlerUnique.get() );
 
             EXPECT_EQ( _EXPECTED_MIN, handlerUnique->MIN );
@@ -68,13 +69,14 @@ namespace {
 
             const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
 
-            EXPECT_ANY_THROW( TestGenerateHandlerUnique()( OBJECT ) );
+            EXPECT_ANY_THROW( TestGenerateHandlerUnique_old()( OBJECT ) );
         }
     };
 }
 
+//REMOVEME
 TEST_F(
-    GenerateToAxisUniqueTest
+    GenerateToAxisUnique_oldTest
     , Standard
 )
 {
@@ -92,8 +94,9 @@ TEST_F(
     );
 }
 
+//REMOVEME
 TEST_F(
-    GenerateToAxisUniqueTest
+    GenerateToAxisUnique_oldTest
     , NotExistsLimitMaxGreaterThanMin
 )
 {
@@ -110,8 +113,9 @@ TEST_F(
     );
 }
 
+//REMOVEME
 TEST_F(
-    GenerateToAxisUniqueTest
+    GenerateToAxisUnique_oldTest
     , NotExistsLimitMaxLesserThanMin
 )
 {
@@ -128,8 +132,9 @@ TEST_F(
     );
 }
 
+//REMOVEME
 TEST_F(
-    GenerateToAxisUniqueTest
+    GenerateToAxisUnique_oldTest
     , FailedNotUnsignedLimit
 )
 {
