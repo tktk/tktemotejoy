@@ -19,7 +19,7 @@ namespace {
                 _MIN
                 , _MAX
                 , _DEAD_ZONE
-                , ToAxisYImpl( _LIMIT )
+                , ToAxisYImpl_old( _LIMIT )
             );
         }
     };
