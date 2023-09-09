@@ -77,4 +77,15 @@ TEST_F(
     );
 }
 
-//TODO EraseDeadZone_minus
+TEST_F(
+    CalcPspStateAxisTest
+    , EraseDeadZone_minus
+)
+{
+    this->test(
+        -128
+        , 256
+        , 64
+        , 0x20
+    );
+}
