@@ -26,14 +26,18 @@ namespace {
             , const __s32   _MAX
             , const __s32   _DEAD_ZONE
             , const __s32   _LIMIT
+            , const __s32   _ERASE_DEAD_ZONE
         ) const
         {
             return Mapping::handlerUnique(
-                new ToAxisX_old(
+                new ToAxisX(
                     _MIN
                     , _MAX
                     , _DEAD_ZONE
-                    , ToAxisXImpl_old( _LIMIT )
+                    , ToAxisXImpl(
+                        _LIMIT
+                        , _ERASE_DEAD_ZONE
+                    )
                 )
             );
         }
@@ -47,6 +51,6 @@ Mapping::OperateAxisHandlerForPspStateUnique generateToAxisXUnique(
     return generateHandlerUnique<
         Mapping::OperateAxisHandlerForPspStateUnique
         , GetType
-        , GenerateToAxisUnique_old< GenerateToAxisXUnique >
+        , GenerateToAxisUnique< GenerateToAxisXUnique >
     >( _OBJECT );
 }
