@@ -20,8 +20,6 @@ public:
         , const __s32           _DEAD_ZONE
     ) const
     {
-        //TODO
-/*
         const auto  KEY_LIMIT = std::string( "limit" );
 
         const auto  DEFAULT_LIMIT = Json::number_unsigned_t(
@@ -36,20 +34,21 @@ public:
             , DEFAULT_LIMIT
             , KEY_LIMIT
         );
-*/
+
+        const auto  KEY_ERADE_DEAD_ZONE = std::string( "eraseDeadZone" );
+
+        const auto &    ERASE_DEAD_ZONE = getJsonUnsignedFromObjectWithDefault(
+            _OBJECT
+            , -10   //TODO
+            , KEY_ERADE_DEAD_ZONE
+        );
 
         return GENERATE_TO_AXIS_UNIQUE_T()(
-            -10
-            , -20
-            , -30
-            , -40
-            , -50
-/*
             _MIN
             , _MAX
             , _DEAD_ZONE
             , LIMIT
-*/
+            , ERASE_DEAD_ZONE
         );
     }
 };
