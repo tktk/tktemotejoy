@@ -58,11 +58,14 @@ namespace {
                     _mapping.setHandler(
                         0
                         , Mapping::handlerUnique(
-                            new ToAxisY_old(
+                            new ToAxisY(
                                 -100
                                 , 100
                                 , 0
-                                , ToAxisYImpl_old( 100 )
+                                , ToAxisYImpl(
+                                    100
+                                    , 0
+                                )
                             )
                         )
                     );

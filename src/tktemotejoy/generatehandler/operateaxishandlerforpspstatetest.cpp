@@ -19,7 +19,7 @@ namespace {
 
 TEST_F(
     GenerateOperateAxisHandlerForPspStateTest
-    , ToAxisX_old
+    , ToAxisX
 )
 {
     this->test(
@@ -35,7 +35,7 @@ TEST_F(
 
 TEST_F(
     GenerateOperateAxisHandlerForPspStateTest
-    , ToAxisY_old
+    , ToAxisY
 )
 {
     this->test(

@@ -25,25 +25,3 @@ void ToAxisXImpl::operator()(
         )
     );
 }
-
-//REMOVEME
-ToAxisXImpl_old::ToAxisXImpl_old(
-    const __s32 _LIMIT
-)
-    : LIMIT( _LIMIT )
-{
-}
-
-//REMOVEME
-void ToAxisXImpl_old::operator()(
-    const __s32     _VALUE
-    , PspState &    _pspState
-) const
-{
-    _pspState.operateAxisX(
-        calcPspStateAxis(
-            _VALUE
-            , this->LIMIT
-        )
-    );
-}
