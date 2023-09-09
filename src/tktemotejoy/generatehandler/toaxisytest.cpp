@@ -28,9 +28,10 @@ TEST_F(
     "min" : 100,
     "max" : 200,
     "deadZone" : 10,
-    "limit" : 50
+    "limit" : 50,
+    "eraseDeadZone" : 64
 })"
         , 175
-        , 0xc0800000
+        , 0xe0800000
     );
 }
