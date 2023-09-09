@@ -37,9 +37,11 @@ public:
 
         const auto  KEY_ERADE_DEAD_ZONE = std::string( "eraseDeadZone" );
 
+        const auto  DEFAULT_ERASE_DEAD_ZONE = Json::number_unsigned_t( 0 );
+
         const auto &    ERASE_DEAD_ZONE = getJsonUnsignedFromObjectWithDefault(
             _OBJECT
-            , -10   //TODO
+            , DEFAULT_ERASE_DEAD_ZONE
             , KEY_ERADE_DEAD_ZONE
         );
 
