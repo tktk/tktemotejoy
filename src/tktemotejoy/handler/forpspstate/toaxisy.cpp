@@ -25,25 +25,3 @@ void ToAxisYImpl::operator()(
         )
     );
 }
-
-//REMOVEME
-ToAxisYImpl_old::ToAxisYImpl_old(
-    const __s32 _LIMIT
-)
-    : LIMIT( _LIMIT )
-{
-}
-
-//REMOVEME
-void ToAxisYImpl_old::operator()(
-    const __s32     _VALUE
-    , PspState &    _pspState
-) const
-{
-    _pspState.operateAxisY(
-        calcPspStateAxis(
-            _VALUE
-            , this->LIMIT
-        )
-    );
-}
