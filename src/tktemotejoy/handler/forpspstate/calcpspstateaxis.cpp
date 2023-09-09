@@ -23,7 +23,7 @@ PspState::Axis calcPspStateAxis(
         return PSP_STATE_AXIS_MIN;
     }
 
-    return PSP_STATE_AXIS_ZERO + ( _VALUE * PSP_STATE_AXIS_ZERO / _LIMIT );
+    return PSP_STATE_AXIS_ZERO + _ERASE_DEAD_ZONE + ( _VALUE * ( PSP_STATE_AXIS_ZERO - _ERASE_DEAD_ZONE ) / _LIMIT );
 }
 
 //REMOVEME
