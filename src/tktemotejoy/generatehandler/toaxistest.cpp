@@ -99,8 +99,6 @@ TEST_F(
     );
 }
 
-//TODO
-/*
 TEST_F(
     GenerateToAxisUniqueTest
     , NotExistsLimitMaxGreaterThanMin
@@ -110,12 +108,14 @@ TEST_F(
         R"({
     "min" : 0,
     "max" : 255,
-    "deadZone" : 30
+    "deadZone" : 30,
+    "eraseDeadZone" : 50
 })"
         , 0
         , 255
         , 30
         , 128
+        , 50
     );
 }
 
@@ -128,16 +128,36 @@ TEST_F(
         R"({
     "min" : 255,
     "max" : 0,
-    "deadZone" : 30
+    "deadZone" : 30,
+    "eraseDeadZone" : 50
 })"
         , 255
         , 0
         , 30
         , 128
+        , 50
     );
 }
 
-//TODO NotExintsEraseDeadZone
+TEST_F(
+    GenerateToAxisUniqueTest
+    , NotExistsEraseDeadZone
+)
+{
+    this->test(
+        R"({
+    "min" : 10,
+    "max" : 20,
+    "deadZone" : 30,
+    "limit" : 40
+})"
+        , 10
+        , 20
+        , 30
+        , 40
+        , 0
+    );
+}
 
 TEST_F(
     GenerateToAxisUniqueTest
@@ -149,13 +169,27 @@ TEST_F(
     "min" : 10,
     "max" : 20,
     "deadZone" : 30,
-    "limit" : -40
+    "limit" : -40,
+    "eraseDeadZone" : 50
 })"
     );
 }
 
-//TODO FailedNotUnsignedEraseDeadZone
-*/
+TEST_F(
+    GenerateToAxisUniqueTest
+    , FailedNotUnsignedEraseDeadZone
+)
+{
+    this->testAnyThrow(
+        R"({
+    "min" : 10,
+    "max" : 20,
+    "deadZone" : 30,
+    "limit" : 40,
+    "eraseDeadZone" : -50
+})"
+    );
+}
 
 //REMOVEME
 namespace {
