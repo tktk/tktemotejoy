@@ -29,7 +29,7 @@ namespace {
         ) const
         {
             return Mapping::handlerUnique(
-                new ToAxisX(
+                new ToAxisX_old(
                     _MIN
                     , _MAX
                     , _DEAD_ZONE

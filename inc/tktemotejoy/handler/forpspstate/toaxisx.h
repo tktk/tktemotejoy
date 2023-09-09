@@ -20,6 +20,6 @@ public:
     ) const;
 };
 
-using ToAxisX = WithRangeForPspState< ToAxisXImpl >;
+using ToAxisX_old = WithRangeForPspState< ToAxisXImpl >;
 
 #endif  // TKTEMOTEJOY_HANDLER_FORPSPSTATE_TOAXISX_H

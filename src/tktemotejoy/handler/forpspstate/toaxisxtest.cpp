@@ -14,7 +14,7 @@ namespace {
             , const __s32   _LIMIT
         ) const
         {
-            return ToAxisX(
+            return ToAxisX_old(
                 _MIN
                 , _MAX
                 , _DEAD_ZONE
