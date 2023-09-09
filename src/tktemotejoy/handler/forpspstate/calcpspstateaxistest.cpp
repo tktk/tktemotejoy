@@ -40,7 +40,7 @@ TEST_F(
 
 TEST_F(
     CalcPspStateAxisTest
-    , OverLimit
+    , OverLimit_plus
 )
 {
     this->test(
@@ -53,7 +53,7 @@ TEST_F(
 
 TEST_F(
     CalcPspStateAxisTest
-    , OverLimitMinus
+    , OverLimit_minus
 )
 {
     this->test(
@@ -63,3 +63,19 @@ TEST_F(
         , 0x00
     );
 }
+
+TEST_F(
+    CalcPspStateAxisTest
+    , EraseDeadZone_plus
+)
+{
+    this->test(
+        128
+        , 256
+        , 64
+        , 0xe0
+    );
+}
+
+//TODO EraseDeadZone_minus
+//TODO EraseDeadZone_zero
