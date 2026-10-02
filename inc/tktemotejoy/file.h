@@ -22,10 +22,10 @@ std::string readFile(
     const std::string & _FILE_NAME
 )
 {
-    //TODO
-    return std::string();
-/*
     auto    stream = GENERATE_STREAM_T()( _FILE_NAME );
+
+    //TODO
+/*
     if( stream.fail() == true ) {
         auto    oStringStream = std::ostringstream();
 
@@ -33,12 +33,12 @@ std::string readFile(
 
         throw std::runtime_error( oStringStream.str() );
     }
+*/
 
     return std::string(
         std::istreambuf_iterator< char >( stream )
         , std::istreambuf_iterator< char >()
     );
-*/
 }
 
 #endif  // TKTEMOTEJOY_FILE_H
