@@ -24,16 +24,13 @@ std::string readFile(
 {
     auto    stream = GENERATE_STREAM_T()( _FILE_NAME );
 
-    //TODO
-/*
     if( stream.fail() == true ) {
         auto    oStringStream = std::ostringstream();
 
-        oStringStream << "ファイル" << '"' << _FILE_NAME << '"' << "が存在しない";
+        oStringStream << "ファイル\"" << _FILE_NAME << "\"が存在しない";
 
         throw std::runtime_error( oStringStream.str() );
     }
-*/
 
     return std::string(
         std::istreambuf_iterator< char >( stream )
