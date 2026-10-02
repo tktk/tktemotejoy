@@ -4,6 +4,7 @@ _SOURCE_DIR = 'src'
 
 HEADER_DIR = 'inc'
 TEST_DIR = 'test'
+TOOLS_DIR = 'tools'
 
 PACKAGE_NAME = 'tktemotejoy'
 
