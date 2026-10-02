@@ -3,7 +3,7 @@ from taf import *
 from taf.tools import cpp
 
 module.DEPENDS = [
-#    'tktemotejoy_commandlineoptionstest',
+    'tktemotejoy_commandlineoptionstest',
 #    'tktemotejoy_filetest',
 #    'tktemotejoy_mappingnamestest',
 #    'tktemotejoy_customjson_parsetest',

@@ -12,3 +12,9 @@ SOURCE_ROOT_DIR = os.path.join(
     _SOURCE_DIR,
     PACKAGE_NAME,
 )
+
+TEST_SOURCE_ROOT_DIR = os.path.join(
+    TEST_DIR,
+    _SOURCE_DIR,
+    PACKAGE_NAME,
+)
