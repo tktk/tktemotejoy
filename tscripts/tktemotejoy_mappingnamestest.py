@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-
+from . import SOURCE_ROOT_DIR
+from . import TEST_SOURCE_ROOT_DIR
 from taf import *
 from taf.tools import cpp
 
@@ -9,8 +9,12 @@ module.BUILDER = cpp.gtest
 
 module.TARGET = 'tktemotejoy_mappingnamestest'
 
-module.SOURCE = [
-    'mappingnamestest.cpp',
-    'mappingnames.cpp',
-    'mappingnameerror.cpp',
-]
+module.SOURCE = {
+    TEST_SOURCE_ROOT_DIR : [
+        'mappingnamestest.cpp',
+    ],
+    SOURCE_ROOT_DIR : [
+        'mappingnames.cpp',
+        'mappingnameerror.cpp',
+    ],
+}

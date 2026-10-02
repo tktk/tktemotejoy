@@ -5,7 +5,7 @@ from taf.tools import cpp
 module.DEPENDS = [
     'tktemotejoy_commandlineoptionstest',
     'tktemotejoy_filetest',
-#    'tktemotejoy_mappingnamestest',
+    'tktemotejoy_mappingnamestest',
 #    'tktemotejoy_customjson_parsetest',
 #    'tktemotejoy_json_getjsonfromobjecttest',
 #    'tktemotejoy_json_getjsonarraytest',
