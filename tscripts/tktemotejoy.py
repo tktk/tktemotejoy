@@ -79,7 +79,6 @@ module.TARGET = 'tktemotejoy'
 module.SOURCE = [
     'main.cpp',
     'commandlineoptions.cpp',
-    'file.cpp',
     'customjson.cpp',
     'generatemappings.cpp',
     'mappings.cpp',
