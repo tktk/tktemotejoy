@@ -1,18 +1,18 @@
-# -*- coding: utf-8 -*-
-
+import tscripts
 from taf import *
 from taf.tools import cpp
+import os.path
 
 from waflib.Tools import waf_unit_test
 
 import os.path
 
-APPNAME = 'tktemotejoy'
-VERSION = '4.4.0'
+APPNAME = tscripts.PACKAGE_NAME
+VERSION = '5.0.0'
 
 out = 'build'
 
-taf.PACKAGE_NAME = 'tktemotejoy'
+taf.PACKAGE_NAME = tscripts.PACKAGE_NAME
 
 taf.LOAD_TOOLS = [
     'compiler_cxx',
@@ -21,24 +21,13 @@ taf.LOAD_TOOLS = [
 ]
 
 cpp.INCLUDES = [
-    os.path.join(
-        '..',
-        'tktusbrepeater',
-        'inc',
-    ),
-    os.path.join(
-        '..',
-        'nlohmann-json',
-        'single_include',
-    ),
+    tscripts.HEADER_DIR,
 ]
 
-cpp.LIBPATH = [
+cpp.TEST_INCLUDES = [
     os.path.join(
-        '..',
-        'tktusbrepeater',
-        'build',
-        'tktusbrepeater',
+        tscripts.TEST_DIR,
+        tscripts.HEADER_DIR,
     ),
 ]
 
