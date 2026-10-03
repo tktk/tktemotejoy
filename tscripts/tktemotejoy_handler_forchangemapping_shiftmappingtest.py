@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-
+from . import SOURCE_ROOT_DIR
+from . import TEST_SOURCE_ROOT_DIR
 from taf import *
 from taf.tools import cpp
 
@@ -9,18 +9,26 @@ module.BUILDER = cpp.gtest
 
 module.TARGET = 'tktemotejoy_handler_forchangemapping_shiftmappingtest'
 
-module.SOURCE = [
-    {
+module.SOURCE = {
+    TEST_SOURCE_ROOT_DIR : {
         'handler' : {
             'forchangemapping' : [
                 'shiftmappingtest.cpp',
-                'shiftmapping.cpp',
-                'dummy.cpp',
-            ],
-            'forpspstate' : [
-                'dummy.cpp',
             ],
         },
     },
-    'mapping.cpp',
-]
+    SOURCE_ROOT_DIR : [
+        {
+            'handler' : {
+                'forchangemapping' : [
+                    'shiftmapping.cpp',
+                    'dummy.cpp',
+                ],
+                'forpspstate' : [
+                    'dummy.cpp',
+                ],
+            },
+        },
+        'mapping.cpp',
+    ],
+}

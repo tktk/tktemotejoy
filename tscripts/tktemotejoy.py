@@ -32,7 +32,7 @@ module.DEPENDS = [
     'tktemotejoy_handler_forpspstate_tobuttonhandlerstest',
     'tktemotejoy_handler_forpspstate_calcpspstateaxistest',
     'tktemotejoy_handler_forpspstate_tobuttonhandlertest',
-#    'tktemotejoy_handler_forchangemapping_shiftmappingtest',
+    'tktemotejoy_handler_forchangemapping_shiftmappingtest',
 #    'tktemotejoy_handler_forchangemapping_togglemappingtest',
 #    'tktemotejoy_handler_forchangemapping_dummytest',
 #    'tktemotejoy_handler_forchangemapping_withrangetest',
