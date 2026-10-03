@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-
+from . import TEST_SOURCE_ROOT_DIR
 from taf import *
 from taf.tools import cpp
 
@@ -10,7 +9,9 @@ module.BUILDER = cpp.gtest
 module.TARGET = 'tktemotejoy_generatehandler_tofixedaxistest'
 
 module.SOURCE = {
-    'generatehandler' : [
-        'tofixedaxistest.cpp',
-    ],
+    TEST_SOURCE_ROOT_DIR : {
+        'generatehandler' : [
+            'tofixedaxistest.cpp',
+        ],
+    },
 }
