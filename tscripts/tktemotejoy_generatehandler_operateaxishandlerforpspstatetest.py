@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-
+from . import SOURCE_ROOT_DIR
+from . import TEST_SOURCE_ROOT_DIR
 from taf import *
 from taf.tools import cpp
 
@@ -9,42 +9,49 @@ module.BUILDER = cpp.gtest
 
 module.TARGET = 'tktemotejoy_generatehandler_operateaxishandlerforpspstatetest'
 
-module.SOURCE = [
-    {
+module.SOURCE = {
+    TEST_SOURCE_ROOT_DIR : {
         'generatehandler' : [
             'operateaxishandlerforpspstatetest.cpp',
-            'operateaxishandlerforpspstate.cpp',
-            'toaxisx.cpp',
-            'toaxisy.cpp',
-            'tobuttonhandlersforpspstate.cpp',
-            'tobuttonhandlerforpspstate.cpp',
-            'pressbuttonhandlerforpspstate.cpp',
-            'tobuttons.cpp',
-            'tofixedaxisx.cpp',
-            'tofixedaxisy.cpp',
         ],
-        'handler' : {
-            'forpspstate' : [
+    },
+    SOURCE_ROOT_DIR : [
+        {
+            'generatehandler' : [
+                'operateaxishandlerforpspstatetest.cpp',
+                'operateaxishandlerforpspstate.cpp',
                 'toaxisx.cpp',
                 'toaxisy.cpp',
-                'tobuttonhandlers.cpp',
-                'tobuttonhandler.cpp',
-                'dummy.cpp',
+                'tobuttonhandlersforpspstate.cpp',
+                'tobuttonhandlerforpspstate.cpp',
+                'pressbuttonhandlerforpspstate.cpp',
                 'tobuttons.cpp',
                 'tofixedaxisx.cpp',
                 'tofixedaxisy.cpp',
-                'calcpspstateaxis.cpp',
             ],
-            'forchangemapping' : [
-                'dummy.cpp',
-            ],
-            'common' : [
-                'calcrangedirection.cpp',
-                'calcmintocenter.cpp',
-            ],
+            'handler' : {
+                'forpspstate' : [
+                    'toaxisx.cpp',
+                    'toaxisy.cpp',
+                    'tobuttonhandlers.cpp',
+                    'tobuttonhandler.cpp',
+                    'dummy.cpp',
+                    'tobuttons.cpp',
+                    'tofixedaxisx.cpp',
+                    'tofixedaxisy.cpp',
+                    'calcpspstateaxis.cpp',
+                ],
+                'forchangemapping' : [
+                    'dummy.cpp',
+                ],
+                'common' : [
+                    'calcrangedirection.cpp',
+                    'calcmintocenter.cpp',
+                ],
+            },
         },
-    },
-    'pspstate.cpp',
-    'mapping.cpp',
-    'typeerror.cpp',
-]
+        'pspstate.cpp',
+        'mapping.cpp',
+        'typeerror.cpp',
+    ],
+}
