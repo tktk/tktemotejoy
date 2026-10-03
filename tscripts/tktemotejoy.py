@@ -6,7 +6,7 @@ module.DEPENDS = [
     'tktemotejoy_commandlineoptionstest',
     'tktemotejoy_filetest',
     'tktemotejoy_mappingnamestest',
-#    'tktemotejoy_customjson_parsetest',
+    'tktemotejoy_customjson_parsetest',
 #    'tktemotejoy_json_getjsonfromobjecttest',
 #    'tktemotejoy_json_getjsonarraytest',
 #    'tktemotejoy_json_getjsonobjecttest',
