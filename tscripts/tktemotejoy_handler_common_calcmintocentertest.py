@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-
+from . import SOURCE_ROOT_DIR
+from . import TEST_SOURCE_ROOT_DIR
 from taf import *
 from taf.tools import cpp
 
@@ -10,11 +10,18 @@ module.BUILDER = cpp.gtest
 module.TARGET = 'tktemotejoy_handler_common_calcmintocentertest'
 
 module.SOURCE = {
-    'handler' : {
-        'common' : [
-            'calcmintocentertest.cpp',
-            'calcmintocenter.cpp',
-        ],
+    TEST_SOURCE_ROOT_DIR : {
+        'handler' : {
+            'common' : [
+                'calcmintocentertest.cpp',
+            ],
+        },
+    },
+    SOURCE_ROOT_DIR : {
+        'handler' : {
+            'common' : [
+                'calcmintocenter.cpp',
+            ],
+        },
     },
 }
-
