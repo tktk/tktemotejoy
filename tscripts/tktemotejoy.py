@@ -19,7 +19,7 @@ module.DEPENDS = [
     'tktemotejoy_pspstate_difftest',
     'tktemotejoy_handler_common_calcrangedirectiontest',
     'tktemotejoy_handler_common_calcmintocentertest',
-#    'tktemotejoy_handler_common_withrangeimpltest',
+    'tktemotejoy_handler_common_withrangeimpltest',
 #    'tktemotejoy_handler_common_withrangeonewayimpltest',
 #    'tktemotejoy_handler_forpspstate_tobuttonstest',
 #    'tktemotejoy_handler_forpspstate_tofixedaxisxtest',
