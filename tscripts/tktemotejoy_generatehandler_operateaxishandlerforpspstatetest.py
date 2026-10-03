@@ -18,7 +18,6 @@ module.SOURCE = {
     SOURCE_ROOT_DIR : [
         {
             'generatehandler' : [
-                'operateaxishandlerforpspstatetest.cpp',
                 'operateaxishandlerforpspstate.cpp',
                 'toaxisx.cpp',
                 'toaxisy.cpp',
