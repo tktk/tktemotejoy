@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-
+from . import SOURCE_ROOT_DIR
+from . import TEST_SOURCE_ROOT_DIR
 from taf import *
 from taf.tools import cpp
 
@@ -9,33 +9,39 @@ module.BUILDER = cpp.gtest
 
 module.TARGET = 'tktemotejoy_generatehandler_tobuttonhandlersforchangemappingtest'
 
-module.SOURCE = [
-    {
+module.SOURCE = {
+    TEST_SOURCE_ROOT_DIR : {
         'generatehandler' : [
             'tobuttonhandlersforchangemappingtest.cpp',
-            'tobuttonhandlersforchangemapping.cpp',
-            'pressbuttonhandlerforchangemapping.cpp',
-            'togglemapping.cpp',
-            'shiftmapping.cpp',
         ],
-        'handler' : {
-            'forchangemapping' : [
-                'tobuttonhandlers.cpp',
+    },
+    SOURCE_ROOT_DIR : [
+        {
+            'generatehandler' : [
+                'tobuttonhandlersforchangemapping.cpp',
+                'pressbuttonhandlerforchangemapping.cpp',
                 'togglemapping.cpp',
                 'shiftmapping.cpp',
-                'dummy.cpp',
             ],
-            'forpspstate' : [
-                'dummy.cpp',
-            ],
-            'common' : [
-                'calcrangedirection.cpp',
-                'calcmintocenter.cpp',
-            ],
+            'handler' : {
+                'forchangemapping' : [
+                    'tobuttonhandlers.cpp',
+                    'togglemapping.cpp',
+                    'shiftmapping.cpp',
+                    'dummy.cpp',
+                ],
+                'forpspstate' : [
+                    'dummy.cpp',
+                ],
+                'common' : [
+                    'calcrangedirection.cpp',
+                    'calcmintocenter.cpp',
+                ],
+            },
         },
-    },
-    'mapping.cpp',
-    'mappingnames.cpp',
-    'typeerror.cpp',
-    'mappingnameerror.cpp',
-]
+        'mapping.cpp',
+        'mappingnames.cpp',
+        'typeerror.cpp',
+        'mappingnameerror.cpp',
+    ],
+}
