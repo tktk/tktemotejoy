@@ -41,7 +41,7 @@ module.DEPENDS = [
     'tktemotejoy_handler_forchangemapping_tobuttonhandlertest',
     'tktemotejoy_mapping_pressbuttonforpspstatetest',
     'tktemotejoy_mapping_operateaxisforpspstatetest',
-#    'tktemotejoy_mapping_pressbuttonforchangemappingtest',
+    'tktemotejoy_mapping_pressbuttonforchangemappingtest',
 #    'tktemotejoy_mapping_operateaxisforchangemappingtest',
 #    'tktemotejoy_mappings_evdevstatetopspstatetest',
 #    'tktemotejoy_generatehandler_generatehandleruniquetest',
