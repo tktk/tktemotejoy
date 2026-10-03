@@ -15,7 +15,7 @@ module.DEPENDS = [
     'tktemotejoy_json_getjsonstringtest',
     'tktemotejoy_jsonerrortest',
     'tktemotejoy_evdevstate_forpressedbuttonstest',
-#    'tktemotejoy_evdevstate_foraxestest',
+    'tktemotejoy_evdevstate_foraxestest',
 #    'tktemotejoy_pspstate_difftest',
 #    'tktemotejoy_handler_common_calcrangedirectiontest',
 #    'tktemotejoy_handler_common_calcmintocentertest',
