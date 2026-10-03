@@ -56,7 +56,7 @@ module.DEPENDS = [
     'tktemotejoy_generatehandler_toaxisytest',
     'tktemotejoy_generatehandler_operateaxishandlerforpspstatetest',
     'tktemotejoy_generatehandler_changemappingtest',
-#    'tktemotejoy_generatehandler_shiftmappingtest',
+    'tktemotejoy_generatehandler_shiftmappingtest',
 #    'tktemotejoy_generatehandler_togglemappingtest',
 #    'tktemotejoy_generatehandler_pressbuttonhandlerforchangemappingtest',
 #    'tktemotejoy_generatehandler_tobuttonhandlerstest',
