@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-
+from . import SOURCE_ROOT_DIR
+from . import TEST_SOURCE_ROOT_DIR
 from taf import *
 from taf.tools import cpp
 
@@ -10,10 +10,18 @@ module.BUILDER = cpp.gtest
 module.TARGET = 'tktemotejoy_handler_forpspstate_calcpspstateaxistest'
 
 module.SOURCE = {
-    'handler' : {
-        'forpspstate' : [
-            'calcpspstateaxistest.cpp',
-            'calcpspstateaxis.cpp',
-        ],
+    TEST_SOURCE_ROOT_DIR : {
+        'handler' : {
+            'forpspstate' : [
+                'calcpspstateaxistest.cpp',
+            ],
+        },
+    },
+    SOURCE_ROOT_DIR : {
+        'handler' : {
+            'forpspstate' : [
+                'calcpspstateaxis.cpp',
+            ],
+        },
     },
 }
