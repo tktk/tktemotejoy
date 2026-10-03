@@ -9,7 +9,7 @@ module.DEPENDS = [
     'tktemotejoy_customjson_parsetest',
     'tktemotejoy_json_getjsonfromobjecttest',
     'tktemotejoy_json_getjsonarraytest',
-#    'tktemotejoy_json_getjsonobjecttest',
+    'tktemotejoy_json_getjsonobjecttest',
 #    'tktemotejoy_json_getjsonunsignedtest',
 #    'tktemotejoy_json_getjsonintegertest',
 #    'tktemotejoy_json_getjsonstringtest',

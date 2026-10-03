@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-
+from . import TEST_SOURCE_ROOT_DIR
 from taf import *
 from taf.tools import cpp
 
@@ -9,6 +8,8 @@ module.BUILDER = cpp.gtest
 
 module.TARGET = 'tktemotejoy_json_getjsonobjecttest'
 
-module.SOURCE = [
-    'json_getjsonobjecttest.cpp',
-]
+module.SOURCE = {
+    TEST_SOURCE_ROOT_DIR : [
+        'json_getjsonobjecttest.cpp',
+    ],
+}
