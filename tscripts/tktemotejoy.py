@@ -17,7 +17,7 @@ module.DEPENDS = [
     'tktemotejoy_evdevstate_forpressedbuttonstest',
     'tktemotejoy_evdevstate_foraxestest',
     'tktemotejoy_pspstate_difftest',
-#    'tktemotejoy_handler_common_calcrangedirectiontest',
+    'tktemotejoy_handler_common_calcrangedirectiontest',
 #    'tktemotejoy_handler_common_calcmintocentertest',
 #    'tktemotejoy_handler_common_withrangeimpltest',
 #    'tktemotejoy_handler_common_withrangeonewayimpltest',
