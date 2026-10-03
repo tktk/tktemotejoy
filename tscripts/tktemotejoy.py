@@ -50,7 +50,7 @@ module.DEPENDS = [
     'tktemotejoy_generatehandler_tofixedaxisxtest',
     'tktemotejoy_generatehandler_tofixedaxisytest',
     'tktemotejoy_generatehandler_pressbuttonhandlerforpspstatetest',
-#    'tktemotejoy_generatehandler_withrangetest',
+    'tktemotejoy_generatehandler_withrangetest',
 #    'tktemotejoy_generatehandler_toaxistest',
 #    'tktemotejoy_generatehandler_toaxisxtest',
 #    'tktemotejoy_generatehandler_toaxisytest',
