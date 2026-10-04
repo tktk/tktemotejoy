@@ -6,7 +6,7 @@ TEST(
     , OperatorCall
 )
 {
-    auto    dummy = DummyPressButtonHandlerForChangeMapping();
+    auto    dummy = tktemotejoy::DummyPressButtonHandlerForChangeMapping();
 
     auto    mappingIndex = std::size_t( 10 );
 
@@ -26,7 +26,7 @@ TEST(
     , OperatorCall
 )
 {
-    auto    dummy = DummyOperateAxisHandlerForChangeMapping();
+    auto    dummy = tktemotejoy::DummyOperateAxisHandlerForChangeMapping();
 
     auto    mappingIndex = std::size_t( 10 );
 

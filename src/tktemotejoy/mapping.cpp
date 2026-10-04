@@ -81,7 +81,7 @@ Mapping::Mapping(
     , pressButtonHandlersForChangeMapping(
         generateHandlers<
             Mapping::PressButtonHandlersForChangeMapping
-            , DummyPressButtonHandlerForChangeMapping
+            , tktemotejoy::DummyPressButtonHandlerForChangeMapping  //TODO tktemotejoyを削除する
         >( _BUTTONS )
     )
     , operateAxisHandlersForPspState(
@@ -93,7 +93,7 @@ Mapping::Mapping(
     , operateAxisHandlersForChangeMapping(
         generateHandlers<
             Mapping::OperateAxisHandlersForChangeMapping
-            , DummyOperateAxisHandlerForChangeMapping
+            , tktemotejoy::DummyOperateAxisHandlerForChangeMapping  //TODO tktemotejoyを削除する
         >( _AXES )
     )
 {

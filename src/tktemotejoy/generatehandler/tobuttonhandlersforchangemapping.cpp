@@ -65,7 +65,7 @@ namespace {
         auto operator()(
         ) const
         {
-            return Mapping::handlerUnique( new DummyPressButtonHandlerForChangeMapping() );
+            return Mapping::handlerUnique( new tktemotejoy::DummyPressButtonHandlerForChangeMapping() );
         }
     };
 }
