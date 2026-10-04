@@ -10,7 +10,7 @@ namespace {
             const Json::object_t &  _OBJECT
         ) const
         {
-            return generateToButtonHandlerForPspStateUnique( _OBJECT );
+            return tktemotejoy::generateToButtonHandlerForPspStateUnique( _OBJECT );
         }
     };
 

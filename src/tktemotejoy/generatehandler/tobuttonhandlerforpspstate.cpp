@@ -51,16 +51,18 @@ namespace {
     };
 }
 
-Mapping::OperateAxisHandlerForPspStateUnique generateToButtonHandlerForPspStateUnique(
-    const Json::object_t &  _OBJECT
-)
-{
-    return generateHandlerUnique<
-        Mapping::OperateAxisHandlerForPspStateUnique
-        , GetType
-        , GenerateToButtonHandlerUnique<
-            GenerateToButtonHandlerForPspStateUnique
-            , GeneratePressButtonHandlerForPspStateUnique
-        >
-    >( _OBJECT );
+namespace tktemotejoy {
+    Mapping::OperateAxisHandlerForPspStateUnique generateToButtonHandlerForPspStateUnique(
+        const Json::object_t &  _OBJECT
+    )
+    {
+        return generateHandlerUnique<
+            Mapping::OperateAxisHandlerForPspStateUnique
+            , GetType
+            , GenerateToButtonHandlerUnique<
+                GenerateToButtonHandlerForPspStateUnique
+                , GeneratePressButtonHandlerForPspStateUnique
+            >
+        >( _OBJECT );
+    }
 }
