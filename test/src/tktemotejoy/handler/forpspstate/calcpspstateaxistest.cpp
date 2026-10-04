@@ -15,7 +15,7 @@ namespace {
         {
             EXPECT_EQ(
                 _EXPECTED
-                , calcPspStateAxis(
+                , tktemotejoy::calcPspStateAxis(
                     _VALUE
                     , _LIMIT
                     , _ERASE_DEAD_ZONE
