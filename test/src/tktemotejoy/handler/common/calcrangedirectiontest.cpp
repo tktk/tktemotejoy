@@ -14,7 +14,7 @@ namespace {
         {
             EXPECT_EQ(
                 _EXPECTED
-                , calcRangeDirection(
+                , tktemotejoy::calcRangeDirection(
                     _MIN
                     , _MAX
                 )
