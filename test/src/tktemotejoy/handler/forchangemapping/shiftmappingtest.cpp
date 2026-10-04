@@ -6,7 +6,7 @@ TEST(
     , OperatorCall
 )
 {
-    auto    shiftMapping = ShiftMapping( 10 );
+    auto    shiftMapping = tktemotejoy::ShiftMapping( 10 );
 
     auto    mappingIndex = std::size_t( 20 );
 

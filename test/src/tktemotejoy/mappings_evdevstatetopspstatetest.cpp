@@ -107,8 +107,8 @@ namespace {
                                 , 100
                                 , 0
                                 , ToButtonHandlersForChangeMappingImpl(
-                                    Mapping::handlerUnique( new ShiftMapping( 2 ) )
-                                    , Mapping::handlerUnique( new ShiftMapping( 3 ) )
+                                    Mapping::handlerUnique( new tktemotejoy::ShiftMapping( 2 ) )
+                                    , Mapping::handlerUnique( new tktemotejoy::ShiftMapping( 3 ) )
                                 )
                             )
                         )
