@@ -10,7 +10,7 @@ namespace {
             const Json::object_t &  _OBJECT
         ) const
         {
-            return generateToFixedAxisXUnique( _OBJECT );
+            return tktemotejoy::generateToFixedAxisXUnique( _OBJECT );
         }
     };
 
