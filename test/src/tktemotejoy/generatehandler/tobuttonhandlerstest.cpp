@@ -81,13 +81,13 @@ namespace {
         }
     };
 
-    using TestGenerateHandlerUnique_ = GenerateToButtonHandlersUnique<
+    using TestGenerateHandlerUnique_ = tktemotejoy::GenerateToButtonHandlersUnique<
         TestGenerateToButtonHandlersUnique
         , TestGenerateHandlerUnique
         , TestGenerateDummyHandlerUnique
     >;
 
-    using TestGenerateHandlerUniqueWithArgs_ = GenerateToButtonHandlersUnique<
+    using TestGenerateHandlerUniqueWithArgs_ = tktemotejoy::GenerateToButtonHandlersUnique<
         TestGenerateToButtonHandlersUnique
         , TestGenerateHandlerUniqueWithArgs
         , TestGenerateDummyHandlerUnique
