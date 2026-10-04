@@ -8,18 +8,18 @@ namespace {
     {
     public:
         void test(
-            const std::vector< const char * > & _ARGS
-            , const bool                        _EXPECTED_INITIALIZED
-            , CommandLineOptions                _EXPECTED_COMMAND_LINE_OPTIONS
+            const std::vector< const char * > &     _ARGS
+            , const bool                            _EXPECTED_INITIALIZED
+            , const tktemotejoy::CommandLineOptions _EXPECTED_COMMAND_LINE_OPTIONS
         ) const
         {
-            auto    commandLineOptions = CommandLineOptions();
+            auto    commandLineOptions = tktemotejoy::CommandLineOptions();
 
             optind = 1;
 
             EXPECT_EQ(
                 _EXPECTED_INITIALIZED
-                , initializeCommandLineOptions(
+                , tktemotejoy::initializeCommandLineOptions(
                     commandLineOptions
                     , _ARGS.size()
                     , const_cast< char * const * >( _ARGS.data() )
@@ -53,7 +53,7 @@ TEST_F(
             "DEVICEFILEPATH",
         }
         , true
-        , CommandLineOptions{
+        , tktemotejoy::CommandLineOptions{
             "MAPFILEPATH",
             "DEVICEFILEPATH",
             "SOCKET_NAME",
@@ -80,7 +80,7 @@ TEST_F(
             "-h",
         }
         , false
-        , CommandLineOptions{}
+        , tktemotejoy::CommandLineOptions{}
     );
 }
 
@@ -99,7 +99,7 @@ TEST_F(
             "DEVICEFILEPATH",
         }
         , false
-        , CommandLineOptions{}
+        , tktemotejoy::CommandLineOptions{}
     );
 }
 
@@ -118,7 +118,7 @@ TEST_F(
             "DEVICEFILEPATH",
         }
         , false
-        , CommandLineOptions{}
+        , tktemotejoy::CommandLineOptions{}
     );
 }
 
@@ -137,7 +137,7 @@ TEST_F(
             "DEVICEFILEPATH",
         }
         , false
-        , CommandLineOptions{}
+        , tktemotejoy::CommandLineOptions{}
     );
 }
 
@@ -157,7 +157,7 @@ TEST_F(
             "8a",
         }
         , false
-        , CommandLineOptions{}
+        , tktemotejoy::CommandLineOptions{}
     );
 }
 
@@ -178,7 +178,7 @@ TEST_F(
             "DEVICEFILEPATH",
         }
         , false
-        , CommandLineOptions{}
+        , tktemotejoy::CommandLineOptions{}
     );
 }
 
@@ -200,6 +200,6 @@ TEST_F(
             "DEVICEFILEPATH",
         }
         , false
-        , CommandLineOptions{}
+        , tktemotejoy::CommandLineOptions{}
     );
 }

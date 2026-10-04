@@ -90,8 +90,8 @@ int main(
     , char * const *    _argv
 )
 {
-    auto    options = CommandLineOptions();
-    if( initializeCommandLineOptions(
+    auto    options = tktemotejoy::CommandLineOptions();
+    if( tktemotejoy::initializeCommandLineOptions(
         options
         , _ARGC
         , _argv
