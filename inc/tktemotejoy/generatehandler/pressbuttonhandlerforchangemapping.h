@@ -5,9 +5,11 @@
 #include "tktemotejoy/mappingnames.h"
 #include "tktemotejoy/customjson.h"
 
-Mapping::PressButtonHandlerForChangeMappingUnique generatePressButtonHandlerForChangeMappingUnique(
-    const Json::object_t &
-    , const MappingNames &
-);
+namespace tktemotejoy {
+    Mapping::PressButtonHandlerForChangeMappingUnique generatePressButtonHandlerForChangeMappingUnique(
+        const Json::object_t &
+        , const MappingNames &
+    );
+}
 
 #endif  // TKTEMOTEJOY_GENERATEHANDLER_PRESSBUTTONHANDLERFORCHANGEMAPPING_H

@@ -5,28 +5,30 @@
 #include "tktemotejoy/mappingnames.h"
 #include "tktemotejoy/customjson.h"
 
-Mapping::PressButtonHandlerForChangeMappingUnique generatePressButtonHandlerForChangeMappingUnique(
-    const Json::object_t &  _OBJECT
-    , const MappingNames &  _MAPPING_NAMES
-)
-{
-    auto    handlerUnique = Mapping::PressButtonHandlerForChangeMappingUnique();
+namespace tktemotejoy {
+    Mapping::PressButtonHandlerForChangeMappingUnique generatePressButtonHandlerForChangeMappingUnique(
+        const Json::object_t &  _OBJECT
+        , const MappingNames &  _MAPPING_NAMES
+    )
+    {
+        auto    handlerUnique = Mapping::PressButtonHandlerForChangeMappingUnique();
 
-    handlerUnique = generateShiftMappingUnique(
-        _OBJECT
-        , _MAPPING_NAMES
-    );
-    if( handlerUnique.get() != nullptr ) {
+        handlerUnique = generateShiftMappingUnique(
+            _OBJECT
+            , _MAPPING_NAMES
+        );
+        if( handlerUnique.get() != nullptr ) {
+            return handlerUnique;
+        }
+
+        handlerUnique = generateToggleMappingUnique(
+            _OBJECT
+            , _MAPPING_NAMES
+        );
+        if( handlerUnique.get() != nullptr ) {
+            return handlerUnique;
+        }
+
         return handlerUnique;
     }
-
-    handlerUnique = generateToggleMappingUnique(
-        _OBJECT
-        , _MAPPING_NAMES
-    );
-    if( handlerUnique.get() != nullptr ) {
-        return handlerUnique;
-    }
-
-    return handlerUnique;
 }

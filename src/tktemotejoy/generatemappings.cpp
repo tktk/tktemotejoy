@@ -90,7 +90,7 @@ namespace {
             , const MappingNames &  _MAPPING_NAMES
         ) const
         {
-            return generatePressButtonHandlerForChangeMappingUnique(
+            return tktemotejoy::generatePressButtonHandlerForChangeMappingUnique(
                 _OBJECT
                 , _MAPPING_NAMES
             );
