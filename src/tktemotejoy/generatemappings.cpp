@@ -44,7 +44,7 @@ namespace {
 
     struct General
     {
-        Mappings::Impl::size_type   defaultMapping;
+        tktemotejoy::Mappings::Impl::size_type  defaultMapping;
     };
 
     General generateGeneral(
@@ -310,7 +310,7 @@ namespace {
         return mapping;
     }
 
-    Mappings::Impl generateMappingsImpl(
+    tktemotejoy::Mappings::Impl generateMappingsImpl(
         const Json::object_t &      _MAPPINGS
         , const Json::object_t *    _TEMPLATES_PTR
         , const MappingNames &      _MAPPING_NAMES
@@ -318,7 +318,7 @@ namespace {
         , const std::size_t &       _AXES
     )
     {
-        auto    impl = Mappings::Impl();
+        auto    impl = tktemotejoy::Mappings::Impl();
         for( const auto & MAPPING_NAME : _MAPPING_NAMES ) {
             const auto &    MAPPING_JSON = _MAPPINGS.at( MAPPING_NAME );
 

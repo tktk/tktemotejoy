@@ -29,7 +29,7 @@ namespace {
         );
     }
 
-    Mappings generateMappingsFromFile(
+    tktemotejoy::Mappings generateMappingsFromFile(
         const std::string &     _FILE_PATH
         , const std::size_t &   _BUTTONS
         , const std::size_t &   _AXES

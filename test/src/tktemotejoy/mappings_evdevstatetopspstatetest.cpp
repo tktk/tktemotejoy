@@ -29,10 +29,10 @@ namespace {
         return mapping;
     }
 
-    Mappings generateMappings(
+    tktemotejoy::Mappings generateMappings(
     )
     {
-        auto    mappingsImpl = Mappings::Impl();
+        auto    mappingsImpl = tktemotejoy::Mappings::Impl();
 
         mappingsImpl.emplace_back(
             generateMapping(
@@ -132,7 +132,7 @@ namespace {
         );
 
 
-        return Mappings(
+        return tktemotejoy::Mappings(
             std::move( mappingsImpl )
             , 0
         );
@@ -173,7 +173,7 @@ namespace {
     {
     public:
         void test(
-            Mappings &              _mappings
+            tktemotejoy::Mappings & _mappings
             , const EvdevState &    _EVDEV_STATE
             , const PspState::Bits  _EXPECTED_BITS
         ) const

@@ -13,10 +13,10 @@ namespace {
     {
         struct
         {
-            std::array< char, sizeof( Mappings::Impl ) >    impl;
-            Mappings::Impl::size_type                       mappingIndex;
+            std::array< char, sizeof( tktemotejoy::Mappings::Impl ) >   impl;
+            tktemotejoy::Mappings::Impl::size_type                      mappingIndex;
         };
-        Mappings  mappings;
+        tktemotejoy::Mappings   mappings;
     };
 
     auto getMappingIndex(

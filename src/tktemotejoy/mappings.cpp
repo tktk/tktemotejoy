@@ -6,8 +6,8 @@
 
 namespace {
     bool changeMappingIndex(
-        Mappings::Impl::size_type &         _currentMappingIndex
-        , const Mappings::Impl::size_type   _NEW_MAPPING_INDEX
+        tktemotejoy::Mappings::Impl::size_type &        _currentMappingIndex
+        , const tktemotejoy::Mappings::Impl::size_type  _NEW_MAPPING_INDEX
     )
     {
         const auto  CHANGED_MAPPING_INDEX = _currentMappingIndex != _NEW_MAPPING_INDEX;
@@ -17,10 +17,10 @@ namespace {
     }
 
     void changeMappingIndex(
-        Mappings::Impl::size_type &     _mappingIndex
-        , Mappings::Impl::size_type &   _currentMappingIndex
-        , const Mappings::Impl &        _MAPPINGS_IMPL
-        , const EvdevState &            _EVDEV_STATE
+        tktemotejoy::Mappings::Impl::size_type &    _mappingIndex
+        , tktemotejoy::Mappings::Impl::size_type &  _currentMappingIndex
+        , const tktemotejoy::Mappings::Impl &       _MAPPINGS_IMPL
+        , const EvdevState &                        _EVDEV_STATE
     )
     {
         while( true ) {
@@ -120,32 +120,34 @@ namespace {
     }
 }
 
-Mappings::Mappings(
-    Mappings::Impl &&                   _impl
-    , const Mappings::Impl::size_type   _DEFAULT_MAPPING_INDEX
-)
-    : IMPL( std::move( _impl ) )
-    , mappingIndex( _DEFAULT_MAPPING_INDEX )
-{
-}
+namespace tktemotejoy {
+    Mappings::Mappings(
+        Mappings::Impl &&                   _impl
+        , const Mappings::Impl::size_type   _DEFAULT_MAPPING_INDEX
+    )
+        : IMPL( std::move( _impl ) )
+        , mappingIndex( _DEFAULT_MAPPING_INDEX )
+    {
+    }
 
-void Mappings::evdevStateToPspState(
-    PspState &              _pspState
-    , const EvdevState &    _EVDEV_STATE
-)
-{
-    auto    currentMappingIndex = this->mappingIndex;
+    void Mappings::evdevStateToPspState(
+        PspState &              _pspState
+        , const EvdevState &    _EVDEV_STATE
+    )
+    {
+        auto    currentMappingIndex = this->mappingIndex;
 
-    ::changeMappingIndex(
-        this->mappingIndex
-        , currentMappingIndex
-        , this->IMPL
-        , _EVDEV_STATE
-    );
+        changeMappingIndex(
+            this->mappingIndex
+            , currentMappingIndex
+            , this->IMPL
+            , _EVDEV_STATE
+        );
 
-    ::evdevStateToPspState(
-        _pspState
-        , this->IMPL.at( currentMappingIndex )
-        , _EVDEV_STATE
-    );
+        ::evdevStateToPspState(
+            _pspState
+            , this->IMPL.at( currentMappingIndex )
+            , _EVDEV_STATE
+        );
+    }
 }
