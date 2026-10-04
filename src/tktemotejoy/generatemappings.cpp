@@ -114,7 +114,7 @@ namespace {
             , const MappingNames &  _MAPPING_NAMES
         ) const
         {
-            return generateOperateAxisHandlerForChangeMappingUnique(
+            return tktemotejoy::generateOperateAxisHandlerForChangeMappingUnique(
                 _OBJECT
                 , _MAPPING_NAMES
             );

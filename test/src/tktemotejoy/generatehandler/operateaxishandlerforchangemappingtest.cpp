@@ -12,7 +12,7 @@ namespace {
             , const MappingNames &  _MAPPING_NAMES
         ) const
         {
-            return generateOperateAxisHandlerForChangeMappingUnique(
+            return tktemotejoy::generateOperateAxisHandlerForChangeMappingUnique(
                 _JSON
                 , _MAPPING_NAMES
             );
