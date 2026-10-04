@@ -10,7 +10,7 @@ namespace {
             const Json &    _JSON
         ) const
         {
-            return generatePressButtonHandlerForPspStateUnique( _JSON );
+            return tktemotejoy::generatePressButtonHandlerForPspStateUnique( _JSON );
         }
     };
 
