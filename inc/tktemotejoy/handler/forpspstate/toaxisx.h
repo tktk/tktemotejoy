@@ -5,23 +5,25 @@
 #include "tktemotejoy/pspstate.h"
 #include <linux/input.h>
 
-class ToAxisXImpl final
-{
-    const __s32 LIMIT;
-    const __s32 ERASE_DEAD_ZONE;
+namespace tktemotejoy {
+    class ToAxisXImpl final
+    {
+        const __s32 LIMIT;
+        const __s32 ERASE_DEAD_ZONE;
 
-public:
-    ToAxisXImpl(
-        const __s32
-        , const __s32
-    );
+    public:
+        ToAxisXImpl(
+            const __s32
+            , const __s32
+        );
 
-    void operator()(
-        const __s32
-        , PspState &
-    ) const;
-};
+        void operator()(
+            const __s32
+            , PspState &
+        ) const;
+    };
 
-using ToAxisX = WithRangeForPspState< ToAxisXImpl >;
+    using ToAxisX = WithRangeForPspState< ToAxisXImpl >;
+}
 
 #endif  // TKTEMOTEJOY_HANDLER_FORPSPSTATE_TOAXISX_H
