@@ -52,7 +52,7 @@ namespace {
 
                     _mapping.setHandler(
                         2
-                        , Mapping::handlerUnique( new ToggleMapping( 1 ) )
+                        , Mapping::handlerUnique( new tktemotejoy::ToggleMapping( 1 ) )
                     );
 
                     _mapping.setHandler(

@@ -6,7 +6,7 @@ TEST(
     , OperatorCall
 )
 {
-    auto    toggleMapping = ToggleMapping( 10 );
+    auto    toggleMapping = tktemotejoy::ToggleMapping( 10 );
 
     auto    mappingIndex = std::size_t( 20 );
 

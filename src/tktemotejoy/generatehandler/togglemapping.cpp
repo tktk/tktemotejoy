@@ -26,7 +26,7 @@ namespace {
             const std::size_t   _MAPPING_INDEX
         ) const
         {
-            return Mapping::handlerUnique( new ToggleMapping( _MAPPING_INDEX ) );
+            return Mapping::handlerUnique( new tktemotejoy::ToggleMapping( _MAPPING_INDEX ) );
         }
     };
 }
