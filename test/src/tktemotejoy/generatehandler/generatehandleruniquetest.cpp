@@ -61,7 +61,7 @@ namespace {
         {
             const auto  JSON = Json::parse( _JSON_STRING );
 
-            auto    handlerUnique = generateHandlerUnique<
+            auto    handlerUnique = tktemotejoy::generateHandlerUnique<
                 TestHandlerUnique
                 , GET_TYPE_T
                 , TestGanarateHandlerUnique
@@ -85,7 +85,7 @@ namespace {
         {
             const auto  JSON = Json::parse( _JSON_STRING );
 
-            auto    handlerUnique = generateHandlerUnique<
+            auto    handlerUnique = tktemotejoy::generateHandlerUnique<
                 TestHandlerUnique
                 , GET_TYPE_T
                 , TestGanarateHandlerWithArgsUnique
@@ -113,7 +113,7 @@ namespace {
                 &JSON
             ]
             {
-                generateHandlerUnique<
+                tktemotejoy::generateHandlerUnique<
                     TestHandlerUnique
                     , GET_TYPE_T
                     , TestGanarateHandlerUnique
