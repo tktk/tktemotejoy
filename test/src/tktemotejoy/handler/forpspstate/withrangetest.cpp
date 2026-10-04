@@ -51,7 +51,7 @@ namespace {
 
             auto    pspState = PspState();
 
-            auto    withRange = WithRangeForPspState(
+            auto    withRange = tktemotejoy::WithRangeForPspState(
                 _MIN
                 , _MAX
                 , _DEAD_ZONE
