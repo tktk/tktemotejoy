@@ -10,7 +10,7 @@ namespace {
             const Json::object_t &  _OBJECT
         ) const
         {
-            return generateToAxisYUnique( _OBJECT );
+            return tktemotejoy::generateToAxisYUnique( _OBJECT );
         }
     };
 

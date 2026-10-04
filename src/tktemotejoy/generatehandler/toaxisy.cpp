@@ -44,13 +44,15 @@ namespace {
     };
 }
 
-Mapping::OperateAxisHandlerForPspStateUnique generateToAxisYUnique(
-    const Json::object_t &  _OBJECT
-)
-{
-    return generateHandlerUnique<
-        Mapping::OperateAxisHandlerForPspStateUnique
-        , GetType
-        , GenerateToAxisUnique< GenerateToAxisYUnique >
-    >( _OBJECT );
+namespace tktemotejoy {
+    Mapping::OperateAxisHandlerForPspStateUnique generateToAxisYUnique(
+        const Json::object_t &  _OBJECT
+    )
+    {
+        return generateHandlerUnique<
+            Mapping::OperateAxisHandlerForPspStateUnique
+            , GetType
+            , GenerateToAxisUnique< GenerateToAxisYUnique >
+        >( _OBJECT );
+    }
 }
