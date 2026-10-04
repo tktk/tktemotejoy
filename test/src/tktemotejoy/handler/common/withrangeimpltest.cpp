@@ -47,7 +47,7 @@ namespace {
         {
             auto    called = false;
 
-            auto    withRange = WithRangeImpl(
+            auto    withRange = tktemotejoy::WithRangeImpl(
                 _MIN
                 , _MAX
                 , _DEAD_ZONE
