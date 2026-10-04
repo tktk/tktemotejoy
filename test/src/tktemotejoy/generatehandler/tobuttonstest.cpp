@@ -10,7 +10,7 @@ namespace {
             const Json::object_t &  _OBJECT
         ) const
         {
-            return generateToButtonsUnique( _OBJECT );
+            return tktemotejoy::generateToButtonsUnique( _OBJECT );
         }
     };
 

@@ -73,13 +73,15 @@ namespace {
     };
 }
 
-Mapping::PressButtonHandlerForPspStateUnique generateToButtonsUnique(
-    const Json::object_t &  _OBJECT
-)
-{
-    return generateHandlerUnique<
-        Mapping::PressButtonHandlerForPspStateUnique
-        , GetType
-        , GenerateHandlerUnique
-    >( _OBJECT );
+namespace tktemotejoy {
+    Mapping::PressButtonHandlerForPspStateUnique generateToButtonsUnique(
+        const Json::object_t &  _OBJECT
+    )
+    {
+        return generateHandlerUnique<
+            Mapping::PressButtonHandlerForPspStateUnique
+            , GetType
+            , GenerateHandlerUnique
+        >( _OBJECT );
+    }
 }
