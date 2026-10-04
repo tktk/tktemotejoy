@@ -9,53 +9,55 @@
 #include <string>
 #include <utility>
 
-template<
-    typename GENERATE_TO_BUTTON_HANDLER_UNIQUE_T
-    , typename GENERATE_HANDLER_UNIQUE_T
->
-class GenerateToButtonHandlerUnique
-    : public GenerateHandlerWithRangeUnique<
-        GenerateToButtonHandlerUnique<
-            GENERATE_TO_BUTTON_HANDLER_UNIQUE_T
-            , GENERATE_HANDLER_UNIQUE_T
-        >
+namespace tktemotejoy {
+    template<
+        typename GENERATE_TO_BUTTON_HANDLER_UNIQUE_T
+        , typename GENERATE_HANDLER_UNIQUE_T
     >
-{
-public:
-    template< typename ... ARGS_T >
-    auto generateHandler(
-        const Json::object_t &  _OBJECT
-        , const __s32           _MIN
-        , const __s32           _MAX
-        , const __s32           _DEAD_ZONE
-        , const ARGS_T & ...    _ARGS
-    ) const
+    class GenerateToButtonHandlerUnique
+        : public GenerateHandlerWithRangeUnique<
+            GenerateToButtonHandlerUnique<
+                GENERATE_TO_BUTTON_HANDLER_UNIQUE_T
+                , GENERATE_HANDLER_UNIQUE_T
+            >
+        >
     {
-        const auto  KEY_HANDLER = std::string( "handler" );
+    public:
+        template< typename ... ARGS_T >
+        auto generateHandler(
+            const Json::object_t &  _OBJECT
+            , const __s32           _MIN
+            , const __s32           _MAX
+            , const __s32           _DEAD_ZONE
+            , const ARGS_T & ...    _ARGS
+        ) const
+        {
+            const auto  KEY_HANDLER = std::string( "handler" );
 
-        const auto &    OBJECT = getJsonObjectFromObject(
-            _OBJECT
-            , KEY_HANDLER
-        );
-
-        auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()(
-            OBJECT
-            , _ARGS ...
-        );
-        if( handlerUnique.get() == nullptr ) {
-            throw typeIsUnsupported(
-                OBJECT
+            const auto &    OBJECT = getJsonObjectFromObject(
+                _OBJECT
                 , KEY_HANDLER
             );
-        }
 
-        return GENERATE_TO_BUTTON_HANDLER_UNIQUE_T()(
-            _MIN
-            , _MAX
-            , _DEAD_ZONE
-            , std::move( handlerUnique )
-        );
-    }
-};
+            auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()(
+                OBJECT
+                , _ARGS ...
+            );
+            if( handlerUnique.get() == nullptr ) {
+                throw typeIsUnsupported(
+                    OBJECT
+                    , KEY_HANDLER
+                );
+            }
+
+            return GENERATE_TO_BUTTON_HANDLER_UNIQUE_T()(
+                _MIN
+                , _MAX
+                , _DEAD_ZONE
+                , std::move( handlerUnique )
+            );
+        }
+    };
+}
 
 #endif  // TKTEMOTEJOY_GENERATEHANDLER_TOBUTTONHANDLER_H
