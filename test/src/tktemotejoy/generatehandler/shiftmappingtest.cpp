@@ -12,7 +12,7 @@ namespace {
             , const MappingNames &  _MAPPING_NAMES
         ) const
         {
-            return generateShiftMappingUnique(
+            return tktemotejoy::generateShiftMappingUnique(
                 _OBJECT
                 , _MAPPING_NAMES
             );

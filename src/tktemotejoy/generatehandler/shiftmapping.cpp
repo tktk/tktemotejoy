@@ -31,17 +31,19 @@ namespace {
     };
 }
 
-Mapping::PressButtonHandlerForChangeMappingUnique generateShiftMappingUnique(
-    const Json::object_t &  _OBJECT
-    , const MappingNames &  _MAPPING_NAMES
-)
-{
-    return generateHandlerUnique<
-        Mapping::PressButtonHandlerForChangeMappingUnique
-        , GetType
-        , GenerateChangeMappingUnique< GenerateShiftMappingUnique >
-    >(
-        _OBJECT
-        , _MAPPING_NAMES
-    );
+namespace tktemotejoy {
+    Mapping::PressButtonHandlerForChangeMappingUnique generateShiftMappingUnique(
+        const Json::object_t &  _OBJECT
+        , const MappingNames &  _MAPPING_NAMES
+    )
+    {
+        return generateHandlerUnique<
+            Mapping::PressButtonHandlerForChangeMappingUnique
+            , GetType
+            , GenerateChangeMappingUnique< GenerateShiftMappingUnique >
+        >(
+            _OBJECT
+            , _MAPPING_NAMES
+        );
+    }
 }
