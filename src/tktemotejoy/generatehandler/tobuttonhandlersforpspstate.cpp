@@ -60,7 +60,7 @@ namespace {
         auto operator()(
         ) const
         {
-            return Mapping::handlerUnique( new DummyPressButtonHandlerForPspState() );
+            return Mapping::handlerUnique( new tktemotejoy::DummyPressButtonHandlerForPspState() );
         }
     };
 }

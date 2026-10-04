@@ -2,25 +2,27 @@
 #include "tktemotejoy/pspstate.h"
 #include <linux/input.h>
 
-DummyPressButtonHandlerForPspState::DummyPressButtonHandlerForPspState(
-)
-{
-}
+namespace tktemotejoy {
+    DummyPressButtonHandlerForPspState::DummyPressButtonHandlerForPspState(
+    )
+    {
+    }
 
-void DummyPressButtonHandlerForPspState::operator()(
-    PspState &
-) const
-{
-}
+    void DummyPressButtonHandlerForPspState::operator()(
+        PspState &
+    ) const
+    {
+    }
 
-DummyOperateAxisHandlerForPspState::DummyOperateAxisHandlerForPspState(
-)
-{
-}
+    DummyOperateAxisHandlerForPspState::DummyOperateAxisHandlerForPspState(
+    )
+    {
+    }
 
-void DummyOperateAxisHandlerForPspState::operator()(
-    const __s32
-    , PspState &
-) const
-{
+    void DummyOperateAxisHandlerForPspState::operator()(
+        const __s32
+        , PspState &
+    ) const
+    {
+    }
 }

@@ -7,7 +7,7 @@ TEST(
     , OperatorCall
 )
 {
-    auto    dummy = DummyPressButtonHandlerForPspState();
+    auto    dummy = tktemotejoy::DummyPressButtonHandlerForPspState();
 
     auto    pspState = PspState();
 
@@ -38,7 +38,7 @@ TEST(
     , OperatorCall
 )
 {
-    auto    dummy = DummyOperateAxisHandlerForPspState();
+    auto    dummy = tktemotejoy::DummyOperateAxisHandlerForPspState();
 
     auto    pspState = PspState();
 
