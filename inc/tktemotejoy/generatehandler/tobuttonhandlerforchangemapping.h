@@ -5,9 +5,11 @@
 #include "tktemotejoy/mappingnames.h"
 #include "tktemotejoy/customjson.h"
 
-Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChangeMappingUnique(
-    const Json::object_t &
-    , const MappingNames &
-);
+namespace tktemotejoy {
+    Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlerForChangeMappingUnique(
+        const Json::object_t &
+        , const MappingNames &
+    );
+}
 
 #endif  // TKTEMOTEJOY_GENERATEHANDLER_TOBUTTONHANDLERFORCHANGEMAPPING_H

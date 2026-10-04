@@ -12,7 +12,7 @@ namespace {
             , const MappingNames &  _MAPPING_NAMES
         ) const
         {
-            return generateToButtonHandlerForChangeMappingUnique(
+            return tktemotejoy::generateToButtonHandlerForChangeMappingUnique(
                 _OBJECT
                 , _MAPPING_NAMES
             );
