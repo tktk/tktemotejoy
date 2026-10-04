@@ -39,7 +39,7 @@ namespace {
 
         const auto  JSON = parseCustomJson( JSON_STRING );
 
-        return generateMappings(
+        return tktemotejoy::generateMappings(
             JSON
             , _BUTTONS
             , _AXES

@@ -343,44 +343,46 @@ namespace {
     }
 }
 
-Mappings generateMappings(
-    const Json &            _JSON
-    , const std::size_t &   _BUTTONS
-    , const std::size_t &   _AXES
-)
-{
-    const auto &    OBJECT = getJsonObjectFromJson(
-        _JSON
-        , JSON
-    );
+namespace tktemotejoy {
+    Mappings generateMappings(
+        const Json &            _JSON
+        , const std::size_t &   _BUTTONS
+        , const std::size_t &   _AXES
+    )
+    {
+        const auto &    OBJECT = getJsonObjectFromJson(
+            _JSON
+            , JSON
+        );
 
-    const auto &    MAPPINGS = getJsonObjectFromObject(
-        OBJECT
-        , ROOT_KEY_MAPPINGS
-    );
+        const auto &    MAPPINGS = getJsonObjectFromObject(
+            OBJECT
+            , ROOT_KEY_MAPPINGS
+        );
 
-    const auto  TEMPLATES_PTR = getJsonObjectFromObjectNotRequired(
-        OBJECT
-        , ROOT_KEY_TEMPLATES
-    );
+        const auto  TEMPLATES_PTR = getJsonObjectFromObjectNotRequired(
+            OBJECT
+            , ROOT_KEY_TEMPLATES
+        );
 
-    const auto  MAPPING_NAMES = generateMappingNames( MAPPINGS );
+        const auto  MAPPING_NAMES = generateMappingNames( MAPPINGS );
 
-    const auto  GENERAL = generateGeneral(
-        OBJECT
-        , MAPPING_NAMES
-    );
+        const auto  GENERAL = generateGeneral(
+            OBJECT
+            , MAPPING_NAMES
+        );
 
-    auto    impl = generateMappingsImpl(
-        MAPPINGS
-        , TEMPLATES_PTR
-        , MAPPING_NAMES
-        , _BUTTONS
-        , _AXES
-    );
+        auto    impl = generateMappingsImpl(
+            MAPPINGS
+            , TEMPLATES_PTR
+            , MAPPING_NAMES
+            , _BUTTONS
+            , _AXES
+        );
 
-    return Mappings(
-        std::move( impl )
-        , GENERAL.defaultMapping
-    );
+        return Mappings(
+            std::move( impl )
+            , GENERAL.defaultMapping
+        );
+    }
 }

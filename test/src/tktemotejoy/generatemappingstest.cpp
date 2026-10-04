@@ -16,7 +16,7 @@ namespace {
         {
             const auto  JSON = Json::parse( _JSON_STRING );
 
-            auto    mappings = generateMappings(
+            auto    mappings = tktemotejoy::generateMappings(
                 JSON
                 , 10
                 , 20
@@ -42,7 +42,7 @@ namespace {
             const auto  JSON = Json::parse( _JSON_STRING );
 
             EXPECT_ANY_THROW(
-                generateMappings(
+                tktemotejoy::generateMappings(
                     JSON
                     , 0
                     , 0

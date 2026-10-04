@@ -5,10 +5,12 @@
 #include "tktemotejoy/customjson.h"
 #include <cstddef>
 
-Mappings generateMappings(
-    const Json &
-    , const std::size_t &
-    , const std::size_t &
-);
+namespace tktemotejoy {
+    Mappings generateMappings(
+        const Json &
+        , const std::size_t &
+        , const std::size_t &
+    );
+}
 
 #endif  // TKTEMOTEJOY_GENERATEMAPPINGS_H
