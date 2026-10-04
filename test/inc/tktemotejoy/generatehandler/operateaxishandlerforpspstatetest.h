@@ -14,9 +14,9 @@ class GenerateOperateAxisHandlerForPspStateTestTmpl : public ::testing::Test
 {
 public:
     void test(
-        const std::string &     _JSON_STRING
-        , const __s32           _VALUE
-        , const PspState::Bits  _EXPECTED_BITS
+        const std::string &                 _JSON_STRING
+        , const __s32                       _VALUE
+        , const tktemotejoy::PspState::Bits _EXPECTED_BITS
     ) const
     {
         const auto  JSON = Json::parse( _JSON_STRING );
@@ -36,7 +36,7 @@ public:
             , std::move( handlerUnique )
         );
 
-        auto    pspState = PspState();
+        auto    pspState = tktemotejoy::PspState();
 
         mapping.operateAxis(
             0
@@ -44,9 +44,9 @@ public:
             , pspState
         );
 
-        const auto  OTHER = PspState();
+        const auto  OTHER = tktemotejoy::PspState();
 
-        auto    bits = PspState::Bits();
+        auto    bits = tktemotejoy::PspState::Bits();
 
         pspState.diff(
             OTHER
@@ -54,7 +54,7 @@ public:
                 &bits
             ]
             (
-                const PspState::Bits &  _BITS
+                const tktemotejoy::PspState::Bits & _BITS
             )
             {
                 bits = _BITS;

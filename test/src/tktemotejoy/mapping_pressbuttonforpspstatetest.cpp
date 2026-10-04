@@ -6,13 +6,13 @@
 namespace {
     class TestHandlerForPspState final : public tktemotejoy::Mapping::PressButtonHandlerForPspState
     {
-        int &               calledCount;
-        const PspState &    PSP_STATE;
+        int &                           calledCount;
+        const tktemotejoy::PspState &   PSP_STATE;
 
     public:
         TestHandlerForPspState(
-            int &               _calledCount
-            , const PspState &  _PSP_STATE
+            int &                           _calledCount
+            , const tktemotejoy::PspState & _PSP_STATE
         )
             : tktemotejoy::Mapping::PressButtonHandlerForPspState()
             , calledCount( _calledCount )
@@ -21,7 +21,7 @@ namespace {
         }
 
         void operator()(
-            PspState &  _pspState
+            tktemotejoy::PspState & _pspState
         ) const override
         {
             EXPECT_EQ( &( this->PSP_STATE ), &_pspState );
@@ -40,7 +40,7 @@ namespace {
         ) const
         {
             auto    calledCount = 0;
-            auto    pspState = PspState();
+            auto    pspState = tktemotejoy::PspState();
 
             auto    handlerUnique = tktemotejoy::Mapping::handlerUnique(
                 new TestHandlerForPspState(

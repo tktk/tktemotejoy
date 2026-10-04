@@ -22,7 +22,7 @@ namespace {
     struct GenerateToFixedAxisXUnique
     {
         auto operator()(
-            const PspState::Axis    _VALUE
+            const tktemotejoy::PspState::Axis   _VALUE
         ) const
         {
             return tktemotejoy::Mapping::handlerUnique( new tktemotejoy::ToFixedAxisX( _VALUE ) );

@@ -8,13 +8,13 @@
 namespace {
     struct TestHandler
     {
-        const PspState::Axis    VALUE;
+        const tktemotejoy::PspState::Axis   VALUE;
     };
 
     struct TestGenerateToFixedAxisUnique
     {
         auto operator()(
-            const PspState::Axis    _VALUE
+            const tktemotejoy::PspState::Axis   _VALUE
         ) const
         {
             return std::unique_ptr< TestHandler >(
@@ -31,8 +31,8 @@ namespace {
     {
     public:
         void test(
-            const std::string &     _JSON_STRING
-            , const PspState::Axis  _EXPECTED_VALUE
+            const std::string &                 _JSON_STRING
+            , const tktemotejoy::PspState::Axis _EXPECTED_VALUE
         ) const
         {
             const auto  JSON = Json::parse( _JSON_STRING );

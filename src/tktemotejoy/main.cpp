@@ -137,7 +137,7 @@ int main(
         , evdevState
     );
 
-    auto    prevPspState = PspState();
+    auto    prevPspState = tktemotejoy::PspState();
 
     auto    inputEvents = tktemotejoy::EvdevInputEvents();
 
@@ -198,7 +198,7 @@ int main(
                 }
             );
 
-            auto    pspState = PspState();
+            auto    pspState = tktemotejoy::PspState();
             mappings.evdevStateToPspState(
                 pspState
                 , evdevState
@@ -210,7 +210,7 @@ int main(
                     &toRepeaterUnique
                 ]
                 (
-                    const PspState::Bits &  _BITS
+                    const tktemotejoy::PspState::Bits & _BITS
                 )
                 {
                     toRepeaterUnique->write(
@@ -223,7 +223,7 @@ int main(
             prevPspState = pspState;
         }
     } catch( const std::runtime_error & _EX ) {
-        const auto  CLEAR_BITS = PspState::Bits( PSPSTATE_BITS_DEFAULT );
+        const auto  CLEAR_BITS = tktemotejoy::PspState::Bits( tktemotejoy::PSPSTATE_BITS_DEFAULT );
 
         toRepeaterUnique->write(
             &CLEAR_BITS

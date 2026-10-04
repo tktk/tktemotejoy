@@ -8,14 +8,14 @@ TEST(
 {
     auto    toButtons = tktemotejoy::ToButtons( 10 );
 
-    auto    pspState = PspState();
+    auto    pspState = tktemotejoy::PspState();
 
     toButtons( pspState );
 
-    const auto  OTHER = PspState();
+    const auto  OTHER = tktemotejoy::PspState();
 
     auto    calledWhenDiff = false;
-    auto    bits = PspState::Bits();
+    auto    bits = tktemotejoy::PspState::Bits();
 
     pspState.diff(
         OTHER
@@ -24,7 +24,7 @@ TEST(
             , &bits
         ]
         (
-            const PspState::Bits &  _BITS
+            const tktemotejoy::PspState::Bits & _BITS
         )
         {
             calledWhenDiff = true;

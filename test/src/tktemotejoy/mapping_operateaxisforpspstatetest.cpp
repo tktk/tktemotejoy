@@ -7,15 +7,15 @@
 namespace {
     class TestHandlerForPspState final : public tktemotejoy::Mapping::OperateAxisHandlerForPspState
     {
-        int &               calledCount;
-        const __s32         EXPECTED_VALUE;
-        const PspState &    PSP_STATE;
+        int &                           calledCount;
+        const __s32                     EXPECTED_VALUE;
+        const tktemotejoy::PspState &   PSP_STATE;
 
     public:
         TestHandlerForPspState(
-            int &               _calledCount
-            , const __s32       _EXPECTED_VALUE
-            , const PspState &  _PSP_STATE
+            int &                           _calledCount
+            , const __s32                   _EXPECTED_VALUE
+            , const tktemotejoy::PspState & _PSP_STATE
         )
             : tktemotejoy::Mapping::OperateAxisHandlerForPspState()
             , calledCount( _calledCount )
@@ -25,8 +25,8 @@ namespace {
         }
 
         void operator()(
-            const __s32     _VALUE
-            , PspState &    _pspState
+            const __s32                 _VALUE
+            , tktemotejoy::PspState &   _pspState
         ) const override
         {
             EXPECT_EQ( this->EXPECTED_VALUE, _VALUE );
@@ -48,7 +48,7 @@ namespace {
         ) const
         {
             auto    calledCount = 0;
-            auto    pspState = PspState();
+            auto    pspState = tktemotejoy::PspState();
 
             auto    handlerUnique = tktemotejoy::Mapping::handlerUnique(
                 new TestHandlerForPspState(

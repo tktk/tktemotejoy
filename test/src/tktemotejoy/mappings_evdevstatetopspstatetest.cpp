@@ -175,20 +175,20 @@ namespace {
         void test(
             tktemotejoy::Mappings &             _mappings
             , const tktemotejoy::EvdevState &   _EVDEV_STATE
-            , const PspState::Bits              _EXPECTED_BITS
+            , const tktemotejoy::PspState::Bits _EXPECTED_BITS
         ) const
         {
-            auto    pspState = PspState();
+            auto    pspState = tktemotejoy::PspState();
 
             _mappings.evdevStateToPspState(
                 pspState
                 , _EVDEV_STATE
             );
 
-            const auto  OTHER = PspState();
+            const auto  OTHER = tktemotejoy::PspState();
 
             auto    calledWhenDiff = false;
-            auto    bits = PspState::Bits();
+            auto    bits = tktemotejoy::PspState::Bits();
 
             pspState.diff(
                 OTHER
@@ -197,7 +197,7 @@ namespace {
                     , &bits
                 ]
                 (
-                    const PspState::Bits &  _BITS
+                    const tktemotejoy::PspState::Bits & _BITS
                 )
                 {
                     calledWhenDiff = true;

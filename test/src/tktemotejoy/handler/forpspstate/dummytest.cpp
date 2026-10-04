@@ -9,11 +9,11 @@ TEST(
 {
     auto    dummy = tktemotejoy::DummyPressButtonHandlerForPspState();
 
-    auto    pspState = PspState();
+    auto    pspState = tktemotejoy::PspState();
 
     dummy( pspState );
 
-    const auto  OTHER = PspState();
+    const auto  OTHER = tktemotejoy::PspState();
 
     auto    calledWhenDiff = false;
 
@@ -23,7 +23,7 @@ TEST(
             &calledWhenDiff
         ]
         (
-            const PspState::Bits &
+            const tktemotejoy::PspState::Bits &
         )
         {
             calledWhenDiff = true;
@@ -40,14 +40,14 @@ TEST(
 {
     auto    dummy = tktemotejoy::DummyOperateAxisHandlerForPspState();
 
-    auto    pspState = PspState();
+    auto    pspState = tktemotejoy::PspState();
 
     dummy(
         10
         , pspState
     );
 
-    const auto  OTHER = PspState();
+    const auto  OTHER = tktemotejoy::PspState();
 
     auto    calledWhenDiff = false;
 
@@ -57,7 +57,7 @@ TEST(
             &calledWhenDiff
         ]
         (
-            const PspState::Bits &
+            const tktemotejoy::PspState::Bits &
         )
         {
             calledWhenDiff = true;

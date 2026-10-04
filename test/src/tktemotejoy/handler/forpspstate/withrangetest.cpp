@@ -8,14 +8,14 @@ namespace {
     {
         bool &  called;
 
-        const __s32         EXPECTED_FROM_CENTER;
-        const PspState &    EXPECTED_PSP_STATE;
+        const __s32                     EXPECTED_FROM_CENTER;
+        const tktemotejoy::PspState &   EXPECTED_PSP_STATE;
 
     public:
         TestHandler(
-            bool &              _called
-            , const __s32       _EXPECTED_FROM_CENTER
-            , const PspState &  _EXPECTED_PSP_STATE
+            bool &                          _called
+            , const __s32                   _EXPECTED_FROM_CENTER
+            , const tktemotejoy::PspState & _EXPECTED_PSP_STATE
         )
             : called( _called )
             , EXPECTED_FROM_CENTER( _EXPECTED_FROM_CENTER )
@@ -24,8 +24,8 @@ namespace {
         }
 
         void operator()(
-            const __s32     _FROM_CENTER
-            , PspState &    _pspState
+            const __s32                 _FROM_CENTER
+            , tktemotejoy::PspState &   _pspState
         ) const
         {
             this->called = true;
@@ -49,7 +49,7 @@ namespace {
         {
             auto    called = false;
 
-            auto    pspState = PspState();
+            auto    pspState = tktemotejoy::PspState();
 
             auto    withRange = tktemotejoy::WithRangeForPspState(
                 _MIN

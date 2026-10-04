@@ -7,19 +7,19 @@ namespace {
     {
     public:
         void test(
-            const std::function< void ( PspState & ) > &    _FOR_PSP_STATE
-            , const bool                                    _EXPECTED_CALLED_WHEN_DIFF
-            , const PspState::Bits                          _EXPECTED_BITS
+            const std::function< void ( tktemotejoy::PspState & ) > &   _FOR_PSP_STATE
+            , const bool                                                _EXPECTED_CALLED_WHEN_DIFF
+            , const tktemotejoy::PspState::Bits                         _EXPECTED_BITS
         ) const
         {
-            auto    pspState = PspState();
+            auto    pspState = tktemotejoy::PspState();
 
             _FOR_PSP_STATE( pspState );
 
-            const auto  OTHER = PspState();
+            const auto  OTHER = tktemotejoy::PspState();
 
             auto    calledWhenDiff = false;
-            auto    bits = PspState::Bits();
+            auto    bits = tktemotejoy::PspState::Bits();
 
             pspState.diff(
                 OTHER
@@ -28,7 +28,7 @@ namespace {
                     , &bits
                 ]
                 (
-                    const PspState::Bits &  _BITS
+                    const tktemotejoy::PspState::Bits & _BITS
                 )
                 {
                     calledWhenDiff = true;
@@ -49,7 +49,7 @@ TEST_F(
 {
     this->test(
         [](
-            PspState &  _pspState
+            tktemotejoy::PspState & _pspState
         )
         {
             _pspState.pressButtons( 0x1111 );
@@ -67,7 +67,7 @@ TEST_F(
 {
     this->test(
         [](
-            PspState &
+            tktemotejoy::PspState &
         )
         {
         }
@@ -83,7 +83,7 @@ TEST_F(
 {
     this->test(
         [](
-            PspState &  _pspState
+            tktemotejoy::PspState & _pspState
         )
         {
             _pspState.operateAxisX( 10 );
@@ -100,7 +100,7 @@ TEST_F(
 {
     this->test(
         [](
-            PspState &  _pspState
+            tktemotejoy::PspState & _pspState
         )
         {
             _pspState.operateAxisY( 20 );

@@ -13,7 +13,7 @@ namespace {
         void test(
             const std::string &                 _JSON_STRING
             , const tktemotejoy::EvdevState &   _EVDEV_STATE
-            , const PspState::Bits              _EXPECTED_BITS
+            , const tktemotejoy::PspState::Bits _EXPECTED_BITS
         ) const
         {
             const auto  JSON = Json::parse( _JSON_STRING );
@@ -24,16 +24,16 @@ namespace {
                 , 20
             );
 
-            auto    pspState = PspState();
+            auto    pspState = tktemotejoy::PspState();
 
             mappings.evdevStateToPspState(
                 pspState
                 , _EVDEV_STATE
             );
 
-            const auto  OTHER = PspState();
+            const auto  OTHER = tktemotejoy::PspState();
 
-            auto    bits = PspState::Bits();
+            auto    bits = tktemotejoy::PspState::Bits();
 
             pspState.diff(
                 OTHER
@@ -41,7 +41,7 @@ namespace {
                     &bits
                 ]
                 (
-                    const PspState::Bits &  _BITS
+                    const tktemotejoy::PspState::Bits & _BITS
                 )
                 {
                     bits = _BITS;

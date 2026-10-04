@@ -76,7 +76,7 @@ namespace {
     }
 
     void evdevStateToPspState(
-        PspState &                          _pspState
+        tktemotejoy::PspState &             _pspState
         , const tktemotejoy::Mapping &      _MAPPING
         , const tktemotejoy::EvdevState &   _EVDEV_STATE
     )

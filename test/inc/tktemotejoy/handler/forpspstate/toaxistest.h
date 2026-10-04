@@ -10,14 +10,14 @@ class ToAxisTest : public ::testing::Test
 {
 public:
     void test(
-        const __s32             _MIN
-        , const __s32           _MAX
-        , const __s32           _DEAD_ZONE
-        , const __s32           _LIMIT
-        , const __s32           _ERASE_DEAD_ZONE
-        , const __s32           _VALUE
-        , const bool            _EXPECTED_CALLED_WHEN_DIFF
-        , const PspState::Bits  _EXPECTED_BITS
+        const __s32                         _MIN
+        , const __s32                       _MAX
+        , const __s32                       _DEAD_ZONE
+        , const __s32                       _LIMIT
+        , const __s32                       _ERASE_DEAD_ZONE
+        , const __s32                       _VALUE
+        , const bool                        _EXPECTED_CALLED_WHEN_DIFF
+        , const tktemotejoy::PspState::Bits _EXPECTED_BITS
     ) const
     {
         auto    toAxis = GENERATE_TO_AXIS_T()(
@@ -28,14 +28,14 @@ public:
             , _ERASE_DEAD_ZONE
         );
 
-        auto    pspState = PspState();
+        auto    pspState = tktemotejoy::PspState();
 
         toAxis(
             _VALUE
             , pspState
         );
 
-        const auto  OTHER = PspState();
+        const auto  OTHER = tktemotejoy::PspState();
 
         auto    calledWhenDiff = false;
 
@@ -46,7 +46,7 @@ public:
                 , &calledWhenDiff
             ]
             (
-                const PspState::Bits &  _BITS
+                const tktemotejoy::PspState::Bits & _BITS
             )
             {
                 calledWhenDiff = true;

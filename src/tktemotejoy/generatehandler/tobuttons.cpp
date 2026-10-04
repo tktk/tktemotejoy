@@ -14,20 +14,20 @@ namespace {
     const auto  TYPE = std::string( "toButtons" );
     const auto  KEY_BUTTONS = std::string( "buttons" );
 
-    const auto  STRING_TO_BUTTON = std::map< std::string, PspState::Buttons >(
+    const auto  STRING_TO_BUTTON = std::map< std::string, tktemotejoy::PspState::Buttons >(
         {
-            { "up", PspState::Button::UP },
-            { "down", PspState::Button::DOWN },
-            { "left", PspState::Button::LEFT },
-            { "right", PspState::Button::RIGHT },
-            { "circle", PspState::Button::CIRCLE },
-            { "cross", PspState::Button::CROSS },
-            { "triangle", PspState::Button::TRIANGLE },
-            { "square", PspState::Button::SQUARE },
-            { "triggerL", PspState::Button::TRIGGER_L },
-            { "triggerR", PspState::Button::TRIGGER_R },
-            { "start", PspState::Button::START },
-            { "select", PspState::Button::SELECT },
+            { "up", tktemotejoy::PspState::Button::UP },
+            { "down", tktemotejoy::PspState::Button::DOWN },
+            { "left", tktemotejoy::PspState::Button::LEFT },
+            { "right", tktemotejoy::PspState::Button::RIGHT },
+            { "circle", tktemotejoy::PspState::Button::CIRCLE },
+            { "cross", tktemotejoy::PspState::Button::CROSS },
+            { "triangle", tktemotejoy::PspState::Button::TRIANGLE },
+            { "square", tktemotejoy::PspState::Button::SQUARE },
+            { "triggerL", tktemotejoy::PspState::Button::TRIGGER_L },
+            { "triggerR", tktemotejoy::PspState::Button::TRIGGER_R },
+            { "start", tktemotejoy::PspState::Button::START },
+            { "select", tktemotejoy::PspState::Button::SELECT },
         }
     );
 
@@ -52,7 +52,7 @@ namespace {
                 , TYPE
             );
 
-            auto    buttons = PspState::Buttons( 0 );
+            auto    buttons = tktemotejoy::PspState::Buttons( 0 );
 
             const auto  STRING_TO_BUTTON_END = STRING_TO_BUTTON.end();
             for( const auto & BUTTON_STRING : BUTTON_STRINGS ) {

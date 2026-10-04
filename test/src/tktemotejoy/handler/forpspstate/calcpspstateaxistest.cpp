@@ -7,10 +7,10 @@ namespace {
     {
     public:
         void test(
-            const __s32             _VALUE
-            , const __s32           _LIMIT
-            , const __s32           _ERASE_DEAD_ZONE
-            , const PspState::Axis  _EXPECTED
+            const __s32                         _VALUE
+            , const __s32                       _LIMIT
+            , const __s32                       _ERASE_DEAD_ZONE
+            , const tktemotejoy::PspState::Axis _EXPECTED
         ) const
         {
             EXPECT_EQ(
