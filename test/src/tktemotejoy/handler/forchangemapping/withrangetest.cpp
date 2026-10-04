@@ -63,7 +63,7 @@ namespace {
 
             auto    mappingIndex = _MAPPING_INDEX;
 
-            auto    withRange = WithRangeForChangeMapping(
+            auto    withRange = tktemotejoy::WithRangeForChangeMapping(
                 _MIN
                 , _MAX
                 , _DEAD_ZONE
