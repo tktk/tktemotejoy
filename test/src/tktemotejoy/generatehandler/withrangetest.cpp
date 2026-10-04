@@ -14,7 +14,7 @@ namespace {
         const long int  VALUE;
     };
 
-    struct TestGenerateHandlerUnique : public GenerateHandlerWithRangeUnique< TestGenerateHandlerUnique >
+    struct TestGenerateHandlerUnique : public tktemotejoy::GenerateHandlerWithRangeUnique< TestGenerateHandlerUnique >
     {
         auto generateHandler(
             const Json::object_t &  _OBJECT
@@ -36,7 +36,7 @@ namespace {
         }
     };
 
-    struct TestGenerateHandlerUniqueWithArgs : public GenerateHandlerWithRangeUnique< TestGenerateHandlerUniqueWithArgs >
+    struct TestGenerateHandlerUniqueWithArgs : public tktemotejoy::GenerateHandlerWithRangeUnique< TestGenerateHandlerUniqueWithArgs >
     {
         auto generateHandler(
             const Json::object_t &  _OBJECT
