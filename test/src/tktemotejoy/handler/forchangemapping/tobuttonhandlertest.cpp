@@ -59,11 +59,11 @@ namespace {
                 )
             );
 
-            auto    toButtonHandlerForChangeMapping = ToButtonHandlerForChangeMapping(
+            auto    toButtonHandlerForChangeMapping = tktemotejoy::ToButtonHandlerForChangeMapping(
                 _MIN
                 , _MAX
                 , _DEAD_ZONE
-                , ToButtonHandlerForChangeMappingImpl( std::move( handlerUnique ) )
+                , tktemotejoy::ToButtonHandlerForChangeMappingImpl( std::move( handlerUnique ) )
             );
 
             EXPECT_EQ(

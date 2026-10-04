@@ -6,22 +6,24 @@
 #include <linux/input.h>
 #include <cstddef>
 
-class ToButtonHandlerForChangeMappingImpl final
-{
-    Mapping::PressButtonHandlerForChangeMappingUnique   handlerUnique;
+namespace tktemotejoy {
+    class ToButtonHandlerForChangeMappingImpl final
+    {
+        Mapping::PressButtonHandlerForChangeMappingUnique   handlerUnique;
 
-public:
-    ToButtonHandlerForChangeMappingImpl(
-        Mapping::PressButtonHandlerForChangeMappingUnique &&
-    );
+    public:
+        ToButtonHandlerForChangeMappingImpl(
+            Mapping::PressButtonHandlerForChangeMappingUnique &&
+        );
 
-    std::size_t operator()(
-        const __s32
-        , std::size_t &
-        , const std::size_t
-    ) const;
-};
+        std::size_t operator()(
+            const __s32
+            , std::size_t &
+            , const std::size_t
+        ) const;
+    };
 
-using ToButtonHandlerForChangeMapping = WithRangeOneWayForChangeMapping< ToButtonHandlerForChangeMappingImpl >;
+    using ToButtonHandlerForChangeMapping = WithRangeOneWayForChangeMapping< ToButtonHandlerForChangeMappingImpl >;
+}
 
 #endif  // TKTEMOTEJOY_HANDLER_FORCHANGEMAPPING_TOBUTTONHANDLER_H
