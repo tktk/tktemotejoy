@@ -24,7 +24,7 @@ TEST(
         }
     };
 
-    EXPECT_EQ( TEST_CONTENTS, readFile< GenerateDummyStream >( DUMMY_PATH ) );
+    EXPECT_EQ( TEST_CONTENTS, tktemotejoy::readFile< GenerateDummyStream >( DUMMY_PATH ) );
 }
 
 TEST(
@@ -45,5 +45,5 @@ TEST(
         }
     };
 
-    EXPECT_ANY_THROW( readFile< GenerateDummyStreamForFailed >( DUMMY_PATH ) );
+    EXPECT_ANY_THROW( tktemotejoy::readFile< GenerateDummyStreamForFailed >( DUMMY_PATH ) );
 }

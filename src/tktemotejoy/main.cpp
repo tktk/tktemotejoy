@@ -35,7 +35,7 @@ namespace {
         , const std::size_t &   _AXES
     )
     {
-        const auto  JSON_STRING = readFile( _FILE_PATH );
+        const auto  JSON_STRING = tktemotejoy::readFile( _FILE_PATH );
 
         const auto  JSON = parseCustomJson( JSON_STRING );
 
