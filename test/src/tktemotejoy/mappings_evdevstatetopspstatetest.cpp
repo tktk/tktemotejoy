@@ -73,11 +73,11 @@ namespace {
                     _mapping.setHandler(
                         1
                         , Mapping::handlerUnique(
-                            new ToButtonHandlersForPspState(
+                            new tktemotejoy::ToButtonHandlersForPspState(
                                 -100
                                 , 100
                                 , 0
-                                , ToButtonHandlersForPspStateImpl(
+                                , tktemotejoy::ToButtonHandlersForPspStateImpl(
                                     Mapping::handlerUnique( new tktemotejoy::ToButtons( 0x00b0 ) )
                                     , Mapping::handlerUnique( new tktemotejoy::ToButtons( 0x0c00 ) )
                                 )

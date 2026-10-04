@@ -6,23 +6,25 @@
 #include "tktemotejoy/mapping.h"
 #include <linux/input.h>
 
-class ToButtonHandlersForPspStateImpl final
-{
-    Mapping::PressButtonHandlerForPspStateUnique    handlerMinusUnique;
-    Mapping::PressButtonHandlerForPspStateUnique    handlerPlusUnique;
+namespace tktemotejoy {
+    class ToButtonHandlersForPspStateImpl final
+    {
+        Mapping::PressButtonHandlerForPspStateUnique    handlerMinusUnique;
+        Mapping::PressButtonHandlerForPspStateUnique    handlerPlusUnique;
 
-public:
-    ToButtonHandlersForPspStateImpl(
-        Mapping::PressButtonHandlerForPspStateUnique &&
-        , Mapping::PressButtonHandlerForPspStateUnique &&
-    );
+    public:
+        ToButtonHandlersForPspStateImpl(
+            Mapping::PressButtonHandlerForPspStateUnique &&
+            , Mapping::PressButtonHandlerForPspStateUnique &&
+        );
 
-    void operator()(
-        const __s32
-        , PspState &
-    ) const;
-};
+        void operator()(
+            const __s32
+            , PspState &
+        ) const;
+    };
 
-using ToButtonHandlersForPspState = WithRangeForPspState< ToButtonHandlersForPspStateImpl >;
+    using ToButtonHandlersForPspState = WithRangeForPspState< ToButtonHandlersForPspStateImpl >;
+}
 
 #endif  // TKTEMOTEJOY_HANDLER_FORPSPSTATE_TOBUTTONHANDLERS_H

@@ -61,11 +61,11 @@ namespace {
                 )
             );
 
-            auto    toButtonHandlers = ToButtonHandlersForPspState(
+            auto    toButtonHandlers = tktemotejoy::ToButtonHandlersForPspState(
                 _MIN
                 , _MAX
                 , _DEAD_ZONE
-                , ToButtonHandlersForPspStateImpl(
+                , tktemotejoy::ToButtonHandlersForPspStateImpl(
                     std::move( handlerMinusUnique )
                     , std::move( handlerPlusUnique )
                 )

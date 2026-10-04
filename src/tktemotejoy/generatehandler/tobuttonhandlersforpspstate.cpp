@@ -32,11 +32,11 @@ namespace {
         ) const
         {
             return Mapping::handlerUnique(
-                new ToButtonHandlersForPspState(
+                new tktemotejoy::ToButtonHandlersForPspState(
                     _MIN
                     , _MAX
                     , _DEAD_ZONE
-                    , ToButtonHandlersForPspStateImpl(
+                    , tktemotejoy::ToButtonHandlersForPspStateImpl(
                         std::move( _handlerMinusUnique )
                         , std::move( _handlerPlusUnique )
                     )
