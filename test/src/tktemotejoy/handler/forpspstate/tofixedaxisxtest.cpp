@@ -7,7 +7,7 @@ TEST(
     , OperatorCall
 )
 {
-    auto    toFixedAxisX = ToFixedAxisX( 0xc0 );
+    auto    toFixedAxisX = tktemotejoy::ToFixedAxisX( 0xc0 );
 
     auto    pspState = PspState();
 

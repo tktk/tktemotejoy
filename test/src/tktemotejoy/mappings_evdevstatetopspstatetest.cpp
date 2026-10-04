@@ -47,7 +47,7 @@ namespace {
 
                     _mapping.setHandler(
                         1
-                        , Mapping::handlerUnique( new ToFixedAxisX( 0xff ) )
+                        , Mapping::handlerUnique( new tktemotejoy::ToFixedAxisX( 0xff ) )
                     );
 
                     _mapping.setHandler(
