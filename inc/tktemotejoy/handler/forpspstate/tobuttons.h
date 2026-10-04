@@ -4,18 +4,20 @@
 #include "tktemotejoy/mapping.h"
 #include "tktemotejoy/pspstate.h"
 
-class ToButtons final : public Mapping::PressButtonHandlerForPspState
-{
-    const PspState::Buttons BUTTONS;
+namespace tktemotejoy {
+    class ToButtons final : public Mapping::PressButtonHandlerForPspState
+    {
+        const PspState::Buttons BUTTONS;
 
-public:
-    ToButtons(
-        const PspState::Buttons
-    );
+    public:
+        ToButtons(
+            const PspState::Buttons
+        );
 
-    void operator()(
-        PspState &
-    ) const override;
-};
+        void operator()(
+            PspState &
+        ) const override;
+    };
+}
 
 #endif  // TKTEMOTEJOY_HANDLER_FORPSPSTATE_TOBUTTONS_H

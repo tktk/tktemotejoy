@@ -68,7 +68,7 @@ namespace {
                 buttons |= IT->second;
             }
 
-            return Mapping::handlerUnique( new ToButtons( buttons ) );
+            return Mapping::handlerUnique( new tktemotejoy::ToButtons( buttons ) );
         }
     };
 }

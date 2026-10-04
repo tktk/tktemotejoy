@@ -42,7 +42,7 @@ namespace {
                 {
                     _mapping.setHandler(
                         0
-                        , Mapping::handlerUnique( new ToButtons( 0x000a ) )
+                        , Mapping::handlerUnique( new tktemotejoy::ToButtons( 0x000a ) )
                     );
 
                     _mapping.setHandler(
@@ -78,8 +78,8 @@ namespace {
                                 , 100
                                 , 0
                                 , ToButtonHandlersForPspStateImpl(
-                                    Mapping::handlerUnique( new ToButtons( 0x00b0 ) )
-                                    , Mapping::handlerUnique( new ToButtons( 0x0c00 ) )
+                                    Mapping::handlerUnique( new tktemotejoy::ToButtons( 0x00b0 ) )
+                                    , Mapping::handlerUnique( new tktemotejoy::ToButtons( 0x0c00 ) )
                                 )
                             )
                         )
@@ -96,7 +96,7 @@ namespace {
                 {
                     _mapping.setHandler(
                         0
-                        , Mapping::handlerUnique( new ToButtons( 0xd000 ) )
+                        , Mapping::handlerUnique( new tktemotejoy::ToButtons( 0xd000 ) )
                     );
 
                     _mapping.setHandler(
@@ -125,7 +125,7 @@ namespace {
                 {
                     _mapping.setHandler(
                         0
-                        , Mapping::handlerUnique( new ToButtons( 0xe000 ) )
+                        , Mapping::handlerUnique( new tktemotejoy::ToButtons( 0xe000 ) )
                     );
                 }
             )

@@ -6,7 +6,7 @@ TEST(
     , OperatorCall
 )
 {
-    auto    toButtons = ToButtons( 10 );
+    auto    toButtons = tktemotejoy::ToButtons( 10 );
 
     auto    pspState = PspState();
 
