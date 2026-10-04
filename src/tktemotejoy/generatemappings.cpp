@@ -103,7 +103,7 @@ namespace {
             const Json::object_t &  _OBJECT
         ) const
         {
-            return generateOperateAxisHandlerForPspStateUnique( _OBJECT );
+            return tktemotejoy::generateOperateAxisHandlerForPspStateUnique( _OBJECT );
         }
     };
 
