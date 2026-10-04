@@ -14,7 +14,7 @@ namespace {
         {
             EXPECT_EQ(
                 _EXPECTED
-                , calcMinToCenter(
+                , tktemotejoy::calcMinToCenter(
                     _MIN
                     , _MAX
                 )
