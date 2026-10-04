@@ -25,7 +25,7 @@ namespace {
         }
     };
 
-    using TestGenerateHandlerUnique = GenerateToFixedAxisUnique< TestGenerateToFixedAxisUnique >;
+    using TestGenerateHandlerUnique = tktemotejoy::GenerateToFixedAxisUnique< TestGenerateToFixedAxisUnique >;
 
     class GenerateToFixedAxisUniqueTest : public ::testing::Test
     {
