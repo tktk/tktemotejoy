@@ -12,7 +12,7 @@ namespace {
             , const MappingNames &  _MAPPING_NAMES
         ) const
         {
-            return generateToggleMappingUnique(
+            return tktemotejoy::generateToggleMappingUnique(
                 _OBJECT
                 , _MAPPING_NAMES
             );
