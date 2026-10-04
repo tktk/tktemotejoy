@@ -49,94 +49,96 @@ namespace {
     }
 }
 
-DescriptorCloser openEvdev(
-    int &                   _descriptor
-    , const std::string &   _DEVICE_PATH
-)
-{
-    _descriptor = open(
-        _DEVICE_PATH.c_str()
-        , O_RDONLY
-    );
-    if( _descriptor < 0 ) {
-        auto    oStringStream = std::ostringstream();
+namespace tktemotejoy {
+    DescriptorCloser openEvdev(
+        int &                   _descriptor
+        , const std::string &   _DEVICE_PATH
+    )
+    {
+        _descriptor = open(
+            _DEVICE_PATH.c_str()
+            , O_RDONLY
+        );
+        if( _descriptor < 0 ) {
+            auto    oStringStream = std::ostringstream();
 
-        oStringStream << "open()が失敗 : " << '"' << _DEVICE_PATH << '"';
+            oStringStream << "open()が失敗 : " << '"' << _DEVICE_PATH << '"';
 
-        throw std::runtime_error( oStringStream.str() );
+            throw std::runtime_error( oStringStream.str() );
+        }
+
+        return DescriptorCloser( &_descriptor );
     }
 
-    return DescriptorCloser( &_descriptor );
-}
+    EvdevKeyIndices generateEvdevKeyIndices(
+        const int   _DESCRIPTOR
+    )
+    {
+        return generateEvdevEventIndices<
+            EV_KEY
+            , KEY_MAX
+        >( _DESCRIPTOR );
+    }
 
-EvdevKeyIndices generateEvdevKeyIndices(
-    const int   _DESCRIPTOR
-)
-{
-    return generateEvdevEventIndices<
-        EV_KEY
-        , KEY_MAX
-    >( _DESCRIPTOR );
-}
+    EvdevAbsIndices generateEvdevAbsIndices(
+        const int   _DESCRIPTOR
+    )
+    {
+        return generateEvdevEventIndices<
+            EV_ABS
+            , ABS_MAX
+        >( _DESCRIPTOR );
+    }
 
-EvdevAbsIndices generateEvdevAbsIndices(
-    const int   _DESCRIPTOR
-)
-{
-    return generateEvdevEventIndices<
-        EV_ABS
-        , ABS_MAX
-    >( _DESCRIPTOR );
-}
+    EvdevKeyStates generateEvdevKeyStates(
+        const int   _DESCRIPTOR
+    )
+    {
+        auto    keyStates = EvdevKeyStates();
 
-EvdevKeyStates generateEvdevKeyStates(
-    const int   _DESCRIPTOR
-)
-{
-    auto    keyStates = EvdevKeyStates();
-
-    ioctl(
-        _DESCRIPTOR
-        , EVIOCGKEY( sizeof( keyStates ) )
-        , &keyStates
-    );
-
-    return keyStates;
-}
-
-EvdevAbsDataArray generateEvdevAbsDataArray(
-    const int   _DESCRIPTOR
-)
-{
-    auto    absDataArray = EvdevAbsDataArray();
-
-    const auto  SIZE = absDataArray.size();
-    for( auto i = EvdevAbsDataArray::size_type( 0 ) ; i < SIZE ; i++ ) {
         ioctl(
             _DESCRIPTOR
-            , EVIOCGABS( i )
-            , &( absDataArray.at( i ) )
+            , EVIOCGKEY( sizeof( keyStates ) )
+            , &keyStates
         );
+
+        return keyStates;
     }
 
-    return absDataArray;
-}
+    EvdevAbsDataArray generateEvdevAbsDataArray(
+        const int   _DESCRIPTOR
+    )
+    {
+        auto    absDataArray = EvdevAbsDataArray();
 
-EvdevInputEvents::size_type readEvdevInputEvents(
-    const int               _DESCRIPTOR
-    , EvdevInputEvents &    _inputEvents
-)
-{
-    const auto  READ_SIZE = read(
-        _DESCRIPTOR
-        , _inputEvents.data()
-        , sizeof( _inputEvents )
-    );
-    if( READ_SIZE < 0 ) {
-        throw std::runtime_error( "read()が失敗" );
+        const auto  SIZE = absDataArray.size();
+        for( auto i = EvdevAbsDataArray::size_type( 0 ) ; i < SIZE ; i++ ) {
+            ioctl(
+                _DESCRIPTOR
+                , EVIOCGABS( i )
+                , &( absDataArray.at( i ) )
+            );
+        }
+
+        return absDataArray;
     }
 
-    const auto  READ_INPUT_EVENTS_COUNT = READ_SIZE / sizeof( EvdevInputEvents::value_type );
+    EvdevInputEvents::size_type readEvdevInputEvents(
+        const int               _DESCRIPTOR
+        , EvdevInputEvents &    _inputEvents
+    )
+    {
+        const auto  READ_SIZE = read(
+            _DESCRIPTOR
+            , _inputEvents.data()
+            , sizeof( _inputEvents )
+        );
+        if( READ_SIZE < 0 ) {
+            throw std::runtime_error( "read()が失敗" );
+        }
 
-    return READ_INPUT_EVENTS_COUNT;
+        const auto  READ_INPUT_EVENTS_COUNT = READ_SIZE / sizeof( EvdevInputEvents::value_type );
+
+        return READ_INPUT_EVENTS_COUNT;
+    }
 }

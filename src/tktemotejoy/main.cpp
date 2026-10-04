@@ -47,13 +47,13 @@ namespace {
     }
 
     void initializeEvdevState(
-        const int                   _DESCRIPTOR
-        , const EvdevKeyIndices &   _KEY_INDICES
-        , const EvdevAbsIndices &   _ABS_INDICES
-        , EvdevState &              _evdevState
+        const int                               _DESCRIPTOR
+        , const tktemotejoy::EvdevKeyIndices &  _KEY_INDICES
+        , const tktemotejoy::EvdevAbsIndices &  _ABS_INDICES
+        , EvdevState &                          _evdevState
     )
     {
-        const auto  KEY_STATES = generateEvdevKeyStates( _DESCRIPTOR );
+        const auto  KEY_STATES = tktemotejoy::generateEvdevKeyStates( _DESCRIPTOR );
 
         const auto  KEY_STATES_SIZE = KEY_STATES.size();
         for( auto i = std::size_t( 0 ) ; i < KEY_STATES_SIZE ; i++ ) {
@@ -68,7 +68,7 @@ namespace {
             );
         }
 
-        const auto  ABS_DATA_ARRAY = generateEvdevAbsDataArray( _DESCRIPTOR );
+        const auto  ABS_DATA_ARRAY = tktemotejoy::generateEvdevAbsDataArray( _DESCRIPTOR );
 
         const auto  ABS_DATA_ARRAY_SIZE = ABS_DATA_ARRAY.size();
         for( auto i = std::size_t( 0 ) ; i < ABS_DATA_ARRAY_SIZE ; i++ ) {
@@ -100,13 +100,13 @@ int main(
     }
 
     int evdev;
-    const auto  EVDEV_CLOSER = openEvdev(
+    const auto  EVDEV_CLOSER = tktemotejoy::openEvdev(
         evdev
         , options.deviceFilePath
     );
 
-    const auto  KEY_INDICES = generateEvdevKeyIndices( evdev );
-    const auto  ABS_INDICES = generateEvdevAbsIndices( evdev );
+    const auto  KEY_INDICES = tktemotejoy::generateEvdevKeyIndices( evdev );
+    const auto  ABS_INDICES = tktemotejoy::generateEvdevAbsIndices( evdev );
 
     const auto  BUTTONS = countAvailableIndices( KEY_INDICES );
     const auto  AXES = countAvailableIndices( ABS_INDICES );
@@ -139,13 +139,13 @@ int main(
 
     auto    prevPspState = PspState();
 
-    auto    inputEvents = EvdevInputEvents();
+    auto    inputEvents = tktemotejoy::EvdevInputEvents();
 
     const auto  INPUT_EVENTS_BEGIN = inputEvents.cbegin();
 
     try {
         while( true ) {
-            const auto  READ_EVENTS = readEvdevInputEvents(
+            const auto  READ_EVENTS = tktemotejoy::readEvdevInputEvents(
                 evdev
                 , inputEvents
             );

@@ -44,7 +44,7 @@ namespace {
     }
 
     void showAvailableKeysCount(
-        const EvdevKeyIndices & _INDICES
+        const tktemotejoy::EvdevKeyIndices &    _INDICES
     )
     {
         const auto  COUNT = countAvailableIndices( _INDICES );
@@ -52,7 +52,7 @@ namespace {
     }
 
     void showAvailableAbssCount(
-        const EvdevAbsIndices & _INDICES
+        const tktemotejoy::EvdevAbsIndices &    _INDICES
     )
     {
         const auto  COUNT = countAvailableIndices( _INDICES );
@@ -60,14 +60,14 @@ namespace {
     }
 
     void showAvailableKeys(
-        const int                   _DESCRIPTOR
-        , const EvdevKeyIndices &   _INDICES
+        const int                               _DESCRIPTOR
+        , const tktemotejoy::EvdevKeyIndices &  _INDICES
     )
     {
-        const auto  KEY_STATES = generateEvdevKeyStates( _DESCRIPTOR );
+        const auto  KEY_STATES = tktemotejoy::generateEvdevKeyStates( _DESCRIPTOR );
 
         const auto  SIZE = _INDICES.size();
-        for( auto i = EvdevKeyIndices::size_type( 0 ) ; i < SIZE ; i++ ) {
+        for( auto i = tktemotejoy::EvdevKeyIndices::size_type( 0 ) ; i < SIZE ; i++ ) {
             const auto & INDEX = _INDICES.at( i );
 
             if( INDEX >= 0 ) {
@@ -82,14 +82,14 @@ namespace {
     }
 
     void showAvailableAbss(
-        const int                   _DESCRIPTOR
-        , const EvdevAbsIndices &   _INDICES
+        const int                               _DESCRIPTOR
+        , const tktemotejoy::EvdevAbsIndices &  _INDICES
     )
     {
-        const auto  ABS_DATA_ARRAY = generateEvdevAbsDataArray( _DESCRIPTOR );
+        const auto  ABS_DATA_ARRAY = tktemotejoy::generateEvdevAbsDataArray( _DESCRIPTOR );
 
         const auto  SIZE = _INDICES.size();
-        for( auto i = EvdevKeyIndices::size_type( 0 ) ; i < SIZE ; i++ ) {
+        for( auto i = tktemotejoy::EvdevKeyIndices::size_type( 0 ) ; i < SIZE ; i++ ) {
             const auto & INDEX = _INDICES.at( i );
 
             if( INDEX < 0 ) {
@@ -125,15 +125,15 @@ int main(
     const auto  DEVICE_FILE_PATH = std::string( _ARGV[ 1 ] );
 
     int evdev;
-    const auto  EVDEV_CLOSER = openEvdev(
+    const auto  EVDEV_CLOSER = tktemotejoy::openEvdev(
         evdev
         , DEVICE_FILE_PATH
     );
 
     showDeviceName( evdev );
 
-    const auto  KEY_INDICES = generateEvdevKeyIndices( evdev );
-    const auto  ABS_INDICES = generateEvdevAbsIndices( evdev );
+    const auto  KEY_INDICES = tktemotejoy::generateEvdevKeyIndices( evdev );
+    const auto  ABS_INDICES = tktemotejoy::generateEvdevAbsIndices( evdev );
 
     showAvailableKeysCount( KEY_INDICES );
     showAvailableKeys(
@@ -146,12 +146,12 @@ int main(
         , ABS_INDICES
     );
 
-    auto    inputEvents = EvdevInputEvents();
+    auto    inputEvents = tktemotejoy::EvdevInputEvents();
 
     const auto  INPUT_EVENTS_BEGIN = inputEvents.cbegin();
 
     while( true ) {
-        const auto  READ_EVENTS = readEvdevInputEvents(
+        const auto  READ_EVENTS = tktemotejoy::readEvdevInputEvents(
             evdev
             , inputEvents
         );
