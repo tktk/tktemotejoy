@@ -70,21 +70,23 @@ namespace {
     };
 }
 
-Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlersForChangeMappingUnique(
-    const Json::object_t &  _OBJECT
-    , const MappingNames &  _MAPPING_NAMES
-)
-{
-    return generateHandlerUnique<
-        Mapping::OperateAxisHandlerForChangeMappingUnique
-        , GetType
-        , GenerateToButtonHandlersUnique<
-            GenerateToButtonHandlersForChangeMappingUnique
-            , GeneratePressButtonHandlerForChangeMappingUnique
-            , GenerateDummyPressButtonHandlerForChangeMappingUnique
-        >
-    >(
-        _OBJECT
-        , _MAPPING_NAMES
-    );
+namespace tktemotejoy {
+    Mapping::OperateAxisHandlerForChangeMappingUnique generateToButtonHandlersForChangeMappingUnique(
+        const Json::object_t &  _OBJECT
+        , const MappingNames &  _MAPPING_NAMES
+    )
+    {
+        return generateHandlerUnique<
+            Mapping::OperateAxisHandlerForChangeMappingUnique
+            , GetType
+            , GenerateToButtonHandlersUnique<
+                GenerateToButtonHandlersForChangeMappingUnique
+                , GeneratePressButtonHandlerForChangeMappingUnique
+                , GenerateDummyPressButtonHandlerForChangeMappingUnique
+            >
+        >(
+            _OBJECT
+            , _MAPPING_NAMES
+        );
+    }
 }
