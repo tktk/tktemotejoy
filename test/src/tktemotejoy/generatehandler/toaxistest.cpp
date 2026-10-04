@@ -37,7 +37,7 @@ namespace {
         }
     };
 
-    using TestGenerateHandlerUnique = GenerateToAxisUnique< TestGenerateToAxisUnique >;
+    using TestGenerateHandlerUnique = tktemotejoy::GenerateToAxisUnique< TestGenerateToAxisUnique >;
 
     class GenerateToAxisUniqueTest : public ::testing::Test
     {
