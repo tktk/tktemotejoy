@@ -26,7 +26,7 @@ namespace {
         }
     };
 
-    using TestGenerateHandlerUnique = GenerateChangeMappingUnique< TestGenerateChangeMappingUnique >;
+    using TestGenerateHandlerUnique = tktemotejoy::GenerateChangeMappingUnique< TestGenerateChangeMappingUnique >;
 
     class GenerateChangeMappingUniqueTest : public ::testing::Test
     {

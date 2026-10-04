@@ -7,29 +7,31 @@
 #include "tktemotejoy/mappingnameerror.h"
 #include <string>
 
-template< typename GENERATE_CHANGE_MAPPING_UNIQUE_T >
-class GenerateChangeMappingUnique
-{
-public:
-    auto operator()(
-        const Json::object_t &  _OBJECT
-        , const MappingNames &  _MAPPING_NAMES
-    ) const
+namespace tktemotejoy {
+    template< typename GENERATE_CHANGE_MAPPING_UNIQUE_T >
+    class GenerateChangeMappingUnique
     {
-        const auto  KEY_MAPPING = std::string( "mapping" );
+    public:
+        auto operator()(
+            const Json::object_t &  _OBJECT
+            , const MappingNames &  _MAPPING_NAMES
+        ) const
+        {
+            const auto  KEY_MAPPING = std::string( "mapping" );
 
-        const auto &    MAPPING_NAME = getJsonStringFromObject(
-            _OBJECT
-            , KEY_MAPPING
-        );
+            const auto &    MAPPING_NAME = getJsonStringFromObject(
+                _OBJECT
+                , KEY_MAPPING
+            );
 
-        const auto  MAPPING_INDEX = calcMappingIndex(
-            _MAPPING_NAMES
-            , MAPPING_NAME
-        );
+            const auto  MAPPING_INDEX = calcMappingIndex(
+                _MAPPING_NAMES
+                , MAPPING_NAME
+            );
 
-        return GENERATE_CHANGE_MAPPING_UNIQUE_T()( MAPPING_INDEX );
-    }
-};
+            return GENERATE_CHANGE_MAPPING_UNIQUE_T()( MAPPING_INDEX );
+        }
+    };
+}
 
 #endif  // TKTEMOTEJOY_GENERATEHANDLER_CHANGEMAPPING_H
