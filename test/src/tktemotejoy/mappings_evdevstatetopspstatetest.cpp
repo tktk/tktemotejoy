@@ -102,11 +102,11 @@ namespace {
                     _mapping.setHandler(
                         2
                         , Mapping::handlerUnique(
-                            new ToButtonHandlersForChangeMapping(
+                            new tktemotejoy::ToButtonHandlersForChangeMapping(
                                 -100
                                 , 100
                                 , 0
-                                , ToButtonHandlersForChangeMappingImpl(
+                                , tktemotejoy::ToButtonHandlersForChangeMappingImpl(
                                     Mapping::handlerUnique( new tktemotejoy::ShiftMapping( 2 ) )
                                     , Mapping::handlerUnique( new tktemotejoy::ShiftMapping( 3 ) )
                                 )

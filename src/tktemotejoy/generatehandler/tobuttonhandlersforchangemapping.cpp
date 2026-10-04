@@ -33,11 +33,11 @@ namespace {
         ) const
         {
             return Mapping::handlerUnique(
-                new ToButtonHandlersForChangeMapping(
+                new tktemotejoy::ToButtonHandlersForChangeMapping(
                     _MIN
                     , _MAX
                     , _DEAD_ZONE
-                    , ToButtonHandlersForChangeMappingImpl(
+                    , tktemotejoy::ToButtonHandlersForChangeMappingImpl(
                         std::move( _handlerMinusUnique )
                         , std::move( _handlerPlusUnique )
                     )

@@ -67,11 +67,11 @@ namespace {
                 )
             );
 
-            auto    toButtonHandlersForChangeMapping = ToButtonHandlersForChangeMapping(
+            auto    toButtonHandlersForChangeMapping = tktemotejoy::ToButtonHandlersForChangeMapping(
                 _MIN
                 , _MAX
                 , _DEAD_ZONE
-                , ToButtonHandlersForChangeMappingImpl(
+                , tktemotejoy::ToButtonHandlersForChangeMappingImpl(
                     std::move( handlerMinusUnique )
                     , std::move( handlerPlusUnique )
                 )
