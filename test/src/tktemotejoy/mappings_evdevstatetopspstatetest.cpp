@@ -15,11 +15,11 @@
 #include <utility>
 
 namespace {
-    Mapping generateMapping(
-        const std::function< void ( Mapping & ) > & _INITIALIZE_PROC
+    tktemotejoy::Mapping generateMapping(
+        const std::function< void ( tktemotejoy::Mapping & ) > & _INITIALIZE_PROC
     )
     {
-        auto    mapping = Mapping(
+        auto    mapping = tktemotejoy::Mapping(
             10
             , 10
         );
@@ -37,27 +37,27 @@ namespace {
         mappingsImpl.emplace_back(
             generateMapping(
                 [](
-                    Mapping &   _mapping
+                    tktemotejoy::Mapping &  _mapping
                 )
                 {
                     _mapping.setHandler(
                         0
-                        , Mapping::handlerUnique( new tktemotejoy::ToButtons( 0x000a ) )
+                        , tktemotejoy::Mapping::handlerUnique( new tktemotejoy::ToButtons( 0x000a ) )
                     );
 
                     _mapping.setHandler(
                         1
-                        , Mapping::handlerUnique( new tktemotejoy::ToFixedAxisX( 0xff ) )
+                        , tktemotejoy::Mapping::handlerUnique( new tktemotejoy::ToFixedAxisX( 0xff ) )
                     );
 
                     _mapping.setHandler(
                         2
-                        , Mapping::handlerUnique( new tktemotejoy::ToggleMapping( 1 ) )
+                        , tktemotejoy::Mapping::handlerUnique( new tktemotejoy::ToggleMapping( 1 ) )
                     );
 
                     _mapping.setHandler(
                         0
-                        , Mapping::handlerUnique(
+                        , tktemotejoy::Mapping::handlerUnique(
                             new tktemotejoy::ToAxisY(
                                 -100
                                 , 100
@@ -72,14 +72,14 @@ namespace {
 
                     _mapping.setHandler(
                         1
-                        , Mapping::handlerUnique(
+                        , tktemotejoy::Mapping::handlerUnique(
                             new tktemotejoy::ToButtonHandlersForPspState(
                                 -100
                                 , 100
                                 , 0
                                 , tktemotejoy::ToButtonHandlersForPspStateImpl(
-                                    Mapping::handlerUnique( new tktemotejoy::ToButtons( 0x00b0 ) )
-                                    , Mapping::handlerUnique( new tktemotejoy::ToButtons( 0x0c00 ) )
+                                    tktemotejoy::Mapping::handlerUnique( new tktemotejoy::ToButtons( 0x00b0 ) )
+                                    , tktemotejoy::Mapping::handlerUnique( new tktemotejoy::ToButtons( 0x0c00 ) )
                                 )
                             )
                         )
@@ -91,24 +91,24 @@ namespace {
         mappingsImpl.emplace_back(
             generateMapping(
                 [](
-                    Mapping &   _mapping
+                    tktemotejoy::Mapping &  _mapping
                 )
                 {
                     _mapping.setHandler(
                         0
-                        , Mapping::handlerUnique( new tktemotejoy::ToButtons( 0xd000 ) )
+                        , tktemotejoy::Mapping::handlerUnique( new tktemotejoy::ToButtons( 0xd000 ) )
                     );
 
                     _mapping.setHandler(
                         2
-                        , Mapping::handlerUnique(
+                        , tktemotejoy::Mapping::handlerUnique(
                             new tktemotejoy::ToButtonHandlersForChangeMapping(
                                 -100
                                 , 100
                                 , 0
                                 , tktemotejoy::ToButtonHandlersForChangeMappingImpl(
-                                    Mapping::handlerUnique( new tktemotejoy::ShiftMapping( 2 ) )
-                                    , Mapping::handlerUnique( new tktemotejoy::ShiftMapping( 3 ) )
+                                    tktemotejoy::Mapping::handlerUnique( new tktemotejoy::ShiftMapping( 2 ) )
+                                    , tktemotejoy::Mapping::handlerUnique( new tktemotejoy::ShiftMapping( 3 ) )
                                 )
                             )
                         )
@@ -120,12 +120,12 @@ namespace {
         mappingsImpl.emplace_back(
             generateMapping(
                 [](
-                    Mapping &   _mapping
+                    tktemotejoy::Mapping &  _mapping
                 )
                 {
                     _mapping.setHandler(
                         0
-                        , Mapping::handlerUnique( new tktemotejoy::ToButtons( 0xe000 ) )
+                        , tktemotejoy::Mapping::handlerUnique( new tktemotejoy::ToButtons( 0xe000 ) )
                     );
                 }
             )

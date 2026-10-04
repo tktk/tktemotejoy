@@ -29,7 +29,7 @@ public:
         );
         ASSERT_NE( nullptr, handlerUnique.get() );
 
-        auto    mapping = Mapping(
+        auto    mapping = tktemotejoy::Mapping(
             1
             , 0
         );

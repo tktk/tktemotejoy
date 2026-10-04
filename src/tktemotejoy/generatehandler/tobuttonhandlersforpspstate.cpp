@@ -24,14 +24,14 @@ namespace {
     struct GenerateToButtonHandlersForPspStateUnique
     {
         auto operator()(
-            const __s32                                         _MIN
-            , const __s32                                       _MAX
-            , const __s32                                       _DEAD_ZONE
-            , Mapping::PressButtonHandlerForPspStateUnique &&   _handlerMinusUnique
-            , Mapping::PressButtonHandlerForPspStateUnique &&   _handlerPlusUnique
+            const __s32                                                     _MIN
+            , const __s32                                                   _MAX
+            , const __s32                                                   _DEAD_ZONE
+            , tktemotejoy::Mapping::PressButtonHandlerForPspStateUnique &&  _handlerMinusUnique
+            , tktemotejoy::Mapping::PressButtonHandlerForPspStateUnique &&  _handlerPlusUnique
         ) const
         {
-            return Mapping::handlerUnique(
+            return tktemotejoy::Mapping::handlerUnique(
                 new tktemotejoy::ToButtonHandlersForPspState(
                     _MIN
                     , _MAX
@@ -60,7 +60,7 @@ namespace {
         auto operator()(
         ) const
         {
-            return Mapping::handlerUnique( new tktemotejoy::DummyPressButtonHandlerForPspState() );
+            return tktemotejoy::Mapping::handlerUnique( new tktemotejoy::DummyPressButtonHandlerForPspState() );
         }
     };
 }

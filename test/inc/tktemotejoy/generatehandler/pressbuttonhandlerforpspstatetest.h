@@ -22,7 +22,7 @@ public:
         auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( JSON );
         ASSERT_NE( nullptr, handlerUnique.get() );
 
-        auto    mapping = Mapping(
+        auto    mapping = tktemotejoy::Mapping(
             1
             , 0
         );

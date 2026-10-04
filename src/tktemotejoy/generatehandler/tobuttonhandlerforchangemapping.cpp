@@ -24,13 +24,13 @@ namespace {
     struct GenerateToButtonHandlerForChangeMappingUnique
     {
         auto operator()(
-            const __s32                                             _MIN
-            , const __s32                                           _MAX
-            , const __s32                                           _DEAD_ZONE
-            , Mapping::PressButtonHandlerForChangeMappingUnique &&  _handlerUnique
+            const __s32                                                         _MIN
+            , const __s32                                                       _MAX
+            , const __s32                                                       _DEAD_ZONE
+            , tktemotejoy::Mapping::PressButtonHandlerForChangeMappingUnique && _handlerUnique
         ) const
         {
-            return Mapping::handlerUnique(
+            return tktemotejoy::Mapping::handlerUnique(
                 new tktemotejoy::ToButtonHandlerForChangeMapping(
                     _MIN
                     , _MAX

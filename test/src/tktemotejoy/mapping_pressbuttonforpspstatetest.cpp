@@ -4,7 +4,7 @@
 #include <cstddef>
 
 namespace {
-    class TestHandlerForPspState final : public Mapping::PressButtonHandlerForPspState
+    class TestHandlerForPspState final : public tktemotejoy::Mapping::PressButtonHandlerForPspState
     {
         int &               calledCount;
         const PspState &    PSP_STATE;
@@ -14,7 +14,7 @@ namespace {
             int &               _calledCount
             , const PspState &  _PSP_STATE
         )
-            : Mapping::PressButtonHandlerForPspState()
+            : tktemotejoy::Mapping::PressButtonHandlerForPspState()
             , calledCount( _calledCount )
             , PSP_STATE( _PSP_STATE )
         {
@@ -42,14 +42,14 @@ namespace {
             auto    calledCount = 0;
             auto    pspState = PspState();
 
-            auto    handlerUnique = Mapping::handlerUnique(
+            auto    handlerUnique = tktemotejoy::Mapping::handlerUnique(
                 new TestHandlerForPspState(
                     calledCount
                     , pspState
                 )
             );
 
-            auto    mapping = Mapping(
+            auto    mapping = tktemotejoy::Mapping(
                 _PRESS_BUTTON_INDEX + 1
                 , 0
             );

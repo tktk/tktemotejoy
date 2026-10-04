@@ -126,7 +126,7 @@ namespace {
         , typename ... ARGS_T
     >
     void setHandlers(
-        Mapping &                   _mapping
+        tktemotejoy::Mapping &      _mapping
         , const Json::object_t &    _OBJECT
         , const std::string &       _KEY
         , const ARGS_T & ...        _ARGS
@@ -178,7 +178,7 @@ namespace {
     }
 
     void generateHandlersToMapping(
-        Mapping &                   _mapping
+        tktemotejoy::Mapping &      _mapping
         , const Json::object_t &    _OBJECT
         , const MappingNames &      _MAPPING_NAMES
     )
@@ -211,7 +211,7 @@ namespace {
     }
 
     void applyTemplates(
-        Mapping &                   _mapping
+        tktemotejoy::Mapping &      _mapping
         , const Json::object_t &    _OBJECT
         , const Json::object_t *    _TEMPLATES_PTR
         , const MappingNames &      _MAPPING_NAMES
@@ -281,7 +281,7 @@ namespace {
         }
     }
 
-    Mapping generateMapping(
+    tktemotejoy::Mapping generateMapping(
         const Json::object_t &      _OBJECT
         , const Json::object_t *    _TEMPLATES_PTR
         , const MappingNames &      _MAPPING_NAMES
@@ -289,7 +289,7 @@ namespace {
         , const std::size_t &       _AXES
     )
     {
-        auto    mapping = Mapping(
+        auto    mapping = tktemotejoy::Mapping(
             _BUTTONS
             , _AXES
         );

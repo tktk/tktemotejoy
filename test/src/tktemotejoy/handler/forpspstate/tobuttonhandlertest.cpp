@@ -6,7 +6,7 @@
 #include <utility>
 
 namespace {
-    class TestHandler final : public Mapping::PressButtonHandlerForPspState
+    class TestHandler final : public tktemotejoy::Mapping::PressButtonHandlerForPspState
     {
         bool &              calledHandler;
         const PspState &    EXPECTED_PSP_STATE;
@@ -46,7 +46,7 @@ namespace {
 
             auto    pspState = PspState();
 
-            auto    handlerUnique = Mapping::PressButtonHandlerForPspStateUnique(
+            auto    handlerUnique = tktemotejoy::Mapping::PressButtonHandlerForPspStateUnique(
                 new TestHandler(
                     calledHandler
                     , pspState

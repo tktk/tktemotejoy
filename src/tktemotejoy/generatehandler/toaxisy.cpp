@@ -29,7 +29,7 @@ namespace {
             , const __s32   _ERASE_DEAD_ZONE
         ) const
         {
-            return Mapping::handlerUnique(
+            return tktemotejoy::Mapping::handlerUnique(
                 new tktemotejoy::ToAxisY(
                     _MIN
                     , _MAX

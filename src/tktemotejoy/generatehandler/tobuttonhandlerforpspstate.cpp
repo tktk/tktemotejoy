@@ -23,13 +23,13 @@ namespace {
     struct GenerateToButtonHandlerForPspStateUnique
     {
         auto operator()(
-            const __s32                                         _MIN
-            , const __s32                                       _MAX
-            , const __s32                                       _DEAD_ZONE
-            , Mapping::PressButtonHandlerForPspStateUnique &&   _handlerUnique
+            const __s32                                                     _MIN
+            , const __s32                                                   _MAX
+            , const __s32                                                   _DEAD_ZONE
+            , tktemotejoy::Mapping::PressButtonHandlerForPspStateUnique &&  _handlerUnique
         ) const
         {
-            return Mapping::handlerUnique(
+            return tktemotejoy::Mapping::handlerUnique(
                 new tktemotejoy::ToButtonHandlerForPspState(
                     _MIN
                     , _MAX

@@ -4,7 +4,7 @@
 #include <cstddef>
 
 namespace {
-    class TestHandlerForChangeMapping final : public Mapping::PressButtonHandlerForChangeMapping
+    class TestHandlerForChangeMapping final : public tktemotejoy::Mapping::PressButtonHandlerForChangeMapping
     {
         int &               calledCount;
         const std::size_t   RETURNS_MAPPING_INDEX;
@@ -18,7 +18,7 @@ namespace {
             , const std::size_t &   _EXPECTED_MAPPING_INDEX
             , const std::size_t     _EXPECTED_CURRENT_MAPPING_INDEX
         )
-            : Mapping::PressButtonHandlerForChangeMapping()
+            : tktemotejoy::Mapping::PressButtonHandlerForChangeMapping()
             , calledCount( _calledCount )
             , RETURNS_MAPPING_INDEX( _RETURNS_MAPPING_INDEX )
             , EXPECTED_MAPPING_INDEX( _EXPECTED_MAPPING_INDEX )
@@ -56,7 +56,7 @@ namespace {
             auto    calledCount = 0;
             auto    mappingIndex = _MAPPING_INDEX;
 
-            auto    handlerUnique = Mapping::handlerUnique(
+            auto    handlerUnique = tktemotejoy::Mapping::handlerUnique(
                 new TestHandlerForChangeMapping(
                     calledCount
                     , _RETURNS_MAPPING_INDEX
@@ -65,7 +65,7 @@ namespace {
                 )
             );
 
-            auto    mapping = Mapping(
+            auto    mapping = tktemotejoy::Mapping(
                 _PRESS_BUTTON_INDEX + 1
                 , 0
             );

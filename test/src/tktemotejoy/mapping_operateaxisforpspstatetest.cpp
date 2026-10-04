@@ -5,7 +5,7 @@
 #include <cstddef>
 
 namespace {
-    class TestHandlerForPspState final : public Mapping::OperateAxisHandlerForPspState
+    class TestHandlerForPspState final : public tktemotejoy::Mapping::OperateAxisHandlerForPspState
     {
         int &               calledCount;
         const __s32         EXPECTED_VALUE;
@@ -17,7 +17,7 @@ namespace {
             , const __s32       _EXPECTED_VALUE
             , const PspState &  _PSP_STATE
         )
-            : Mapping::OperateAxisHandlerForPspState()
+            : tktemotejoy::Mapping::OperateAxisHandlerForPspState()
             , calledCount( _calledCount )
             , EXPECTED_VALUE( _EXPECTED_VALUE )
             , PSP_STATE( _PSP_STATE )
@@ -50,7 +50,7 @@ namespace {
             auto    calledCount = 0;
             auto    pspState = PspState();
 
-            auto    handlerUnique = Mapping::handlerUnique(
+            auto    handlerUnique = tktemotejoy::Mapping::handlerUnique(
                 new TestHandlerForPspState(
                     calledCount
                     , _EXPECTED_VALUE
@@ -58,7 +58,7 @@ namespace {
                 )
             );
 
-            auto    mapping = Mapping(
+            auto    mapping = tktemotejoy::Mapping(
                 0
                 , _OPERATE_AXIS_INDEX + 1
             );

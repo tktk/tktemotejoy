@@ -5,7 +5,7 @@
 #include <cstddef>
 
 namespace {
-    struct TestHandlerForChangeMapping final : public Mapping::OperateAxisHandlerForChangeMapping
+    struct TestHandlerForChangeMapping final : public tktemotejoy::Mapping::OperateAxisHandlerForChangeMapping
     {
         int &               calledCount;
         const std::size_t   RETURNS_MAPPING_INDEX;
@@ -20,7 +20,7 @@ namespace {
             , const std::size_t _EXPECTED_MAPPING_INDEX
             , const std::size_t _EXPECTED_CURRENT_MAPPING_INDEX
         )
-            : Mapping::OperateAxisHandlerForChangeMapping()
+            : tktemotejoy::Mapping::OperateAxisHandlerForChangeMapping()
             , calledCount( _calledCount )
             , RETURNS_MAPPING_INDEX( _RETURNS_MAPPING_INDEX )
             , EXPECTED_VALUE( _EXPECTED_VALUE )
@@ -65,7 +65,7 @@ namespace {
             auto    calledCount = 0;
             auto    mappingIndex = _MAPPING_INDEX;
 
-            auto    handlerUnique = Mapping::handlerUnique(
+            auto    handlerUnique = tktemotejoy::Mapping::handlerUnique(
                 new TestHandlerForChangeMapping(
                     calledCount
                     , _RETURNS_MAPPING_INDEX
@@ -75,7 +75,7 @@ namespace {
                 )
             );
 
-            auto    mapping = Mapping(
+            auto    mapping = tktemotejoy::Mapping(
                 0
                 , _OPERATE_AXIS_INDEX + 1
             );

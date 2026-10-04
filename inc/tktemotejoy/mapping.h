@@ -8,156 +8,158 @@
 #include <memory>
 #include <cstddef>
 
-class Mapping final
-{
-public:
-    class PressButtonHandlerForPspState
+namespace tktemotejoy {
+    class Mapping final
     {
     public:
-        virtual ~PressButtonHandlerForPspState(
-        ) = 0;
+        class PressButtonHandlerForPspState
+        {
+        public:
+            virtual ~PressButtonHandlerForPspState(
+            ) = 0;
 
-        virtual void operator()(
-            PspState &
-        ) const = 0;
-    };
+            virtual void operator()(
+                PspState &
+            ) const = 0;
+        };
 
-    using PressButtonHandlerForPspStateUnique = std::unique_ptr< PressButtonHandlerForPspState >;
+        using PressButtonHandlerForPspStateUnique = std::unique_ptr< PressButtonHandlerForPspState >;
 
-    using PressButtonHandlersForPspState = std::vector< PressButtonHandlerForPspStateUnique >;
+        using PressButtonHandlersForPspState = std::vector< PressButtonHandlerForPspStateUnique >;
 
-    class OperateAxisHandlerForPspState
-    {
+        class OperateAxisHandlerForPspState
+        {
+        public:
+            virtual ~OperateAxisHandlerForPspState(
+            ) = 0;
+
+            virtual void operator()(
+                const __s32
+                , PspState &
+            ) const = 0;
+        };
+
+        using OperateAxisHandlerForPspStateUnique = std::unique_ptr< OperateAxisHandlerForPspState >;
+
+        using OperateAxisHandlersForPspState = std::vector< OperateAxisHandlerForPspStateUnique >;
+
+        class PressButtonHandlerForChangeMapping
+        {
+        public:
+            virtual ~PressButtonHandlerForChangeMapping(
+            ) = 0;
+
+            virtual std::size_t operator()(
+                std::size_t &
+                , const std::size_t
+            ) const = 0;
+        };
+
+        using PressButtonHandlerForChangeMappingUnique = std::unique_ptr< PressButtonHandlerForChangeMapping >;
+
+        using PressButtonHandlersForChangeMapping = std::vector< PressButtonHandlerForChangeMappingUnique >;
+
+        class OperateAxisHandlerForChangeMapping
+        {
+        public:
+            virtual ~OperateAxisHandlerForChangeMapping(
+            ) = 0;
+
+            virtual std::size_t operator()(
+                const __s32
+                , std::size_t &
+                , const std::size_t
+            ) const = 0;
+        };
+
+        using OperateAxisHandlerForChangeMappingUnique = std::unique_ptr< OperateAxisHandlerForChangeMapping >;
+
+        using OperateAxisHandlersForChangeMapping = std::vector< OperateAxisHandlerForChangeMappingUnique >;
+
+        inline static auto handlerUnique(
+            PressButtonHandlerForPspState * _handler
+        )
+        {
+            return PressButtonHandlerForPspStateUnique( _handler );
+        }
+
+        inline static auto handlerUnique(
+            OperateAxisHandlerForPspState * _handler
+        )
+        {
+            return OperateAxisHandlerForPspStateUnique( _handler );
+        }
+
+        inline static auto handlerUnique(
+            PressButtonHandlerForChangeMapping *    _handler
+        )
+        {
+            return PressButtonHandlerForChangeMappingUnique( _handler );
+        }
+
+        inline static auto handlerUnique(
+            OperateAxisHandlerForChangeMapping *    _handler
+        )
+        {
+            return OperateAxisHandlerForChangeMappingUnique( _handler );
+        }
+
+    private:
+        PressButtonHandlersForPspState      pressButtonHandlersForPspState;
+        PressButtonHandlersForChangeMapping pressButtonHandlersForChangeMapping;
+        OperateAxisHandlersForPspState      operateAxisHandlersForPspState;
+        OperateAxisHandlersForChangeMapping operateAxisHandlersForChangeMapping;
+
     public:
-        virtual ~OperateAxisHandlerForPspState(
-        ) = 0;
-
-        virtual void operator()(
-            const __s32
-            , PspState &
-        ) const = 0;
-    };
-
-    using OperateAxisHandlerForPspStateUnique = std::unique_ptr< OperateAxisHandlerForPspState >;
-
-    using OperateAxisHandlersForPspState = std::vector< OperateAxisHandlerForPspStateUnique >;
-
-    class PressButtonHandlerForChangeMapping
-    {
-    public:
-        virtual ~PressButtonHandlerForChangeMapping(
-        ) = 0;
-
-        virtual std::size_t operator()(
-            std::size_t &
+        Mapping(
+            const std::size_t
             , const std::size_t
-        ) const = 0;
-    };
+        );
 
-    using PressButtonHandlerForChangeMappingUnique = std::unique_ptr< PressButtonHandlerForChangeMapping >;
+        void setHandler(
+            const PressButtonHandlersForPspState::size_type
+            , PressButtonHandlersForPspState::value_type &&
+        );
 
-    using PressButtonHandlersForChangeMapping = std::vector< PressButtonHandlerForChangeMappingUnique >;
+        void setHandler(
+            const PressButtonHandlersForChangeMapping::size_type
+            , PressButtonHandlersForChangeMapping::value_type &&
+        );
 
-    class OperateAxisHandlerForChangeMapping
-    {
-    public:
-        virtual ~OperateAxisHandlerForChangeMapping(
-        ) = 0;
+        void setHandler(
+            const OperateAxisHandlersForPspState::size_type
+            , OperateAxisHandlersForPspState::value_type &&
+        );
 
-        virtual std::size_t operator()(
-            const __s32
+        void setHandler(
+            const OperateAxisHandlersForChangeMapping::size_type
+            , OperateAxisHandlersForChangeMapping::value_type &&
+        );
+
+        void pressButton(
+            const PressButtonHandlersForPspState::size_type
+            , PspState &
+        ) const;
+
+        std::size_t pressButton(
+            const PressButtonHandlersForChangeMapping::size_type
             , std::size_t &
             , const std::size_t
-        ) const = 0;
+        ) const;
+
+        void operateAxis(
+            const OperateAxisHandlersForPspState::size_type
+            , const __s32
+            , PspState &
+        ) const;
+
+        std::size_t operateAxis(
+            const OperateAxisHandlersForChangeMapping::size_type
+            , const __s32
+            , std::size_t &
+            , const std::size_t
+        ) const;
     };
-
-    using OperateAxisHandlerForChangeMappingUnique = std::unique_ptr< OperateAxisHandlerForChangeMapping >;
-
-    using OperateAxisHandlersForChangeMapping = std::vector< OperateAxisHandlerForChangeMappingUnique >;
-
-    inline static auto handlerUnique(
-        PressButtonHandlerForPspState * _handler
-    )
-    {
-        return PressButtonHandlerForPspStateUnique( _handler );
-    }
-
-    inline static auto handlerUnique(
-        OperateAxisHandlerForPspState * _handler
-    )
-    {
-        return OperateAxisHandlerForPspStateUnique( _handler );
-    }
-
-    inline static auto handlerUnique(
-        PressButtonHandlerForChangeMapping *    _handler
-    )
-    {
-        return PressButtonHandlerForChangeMappingUnique( _handler );
-    }
-
-    inline static auto handlerUnique(
-        OperateAxisHandlerForChangeMapping *    _handler
-    )
-    {
-        return OperateAxisHandlerForChangeMappingUnique( _handler );
-    }
-
-private:
-    PressButtonHandlersForPspState      pressButtonHandlersForPspState;
-    PressButtonHandlersForChangeMapping pressButtonHandlersForChangeMapping;
-    OperateAxisHandlersForPspState      operateAxisHandlersForPspState;
-    OperateAxisHandlersForChangeMapping operateAxisHandlersForChangeMapping;
-
-public:
-    Mapping(
-        const std::size_t
-        , const std::size_t
-    );
-
-    void setHandler(
-        const PressButtonHandlersForPspState::size_type
-        , PressButtonHandlersForPspState::value_type &&
-    );
-
-    void setHandler(
-        const PressButtonHandlersForChangeMapping::size_type
-        , PressButtonHandlersForChangeMapping::value_type &&
-    );
-
-    void setHandler(
-        const OperateAxisHandlersForPspState::size_type
-        , OperateAxisHandlersForPspState::value_type &&
-    );
-
-    void setHandler(
-        const OperateAxisHandlersForChangeMapping::size_type
-        , OperateAxisHandlersForChangeMapping::value_type &&
-    );
-
-    void pressButton(
-        const PressButtonHandlersForPspState::size_type
-        , PspState &
-    ) const;
-
-    std::size_t pressButton(
-        const PressButtonHandlersForChangeMapping::size_type
-        , std::size_t &
-        , const std::size_t
-    ) const;
-
-    void operateAxis(
-        const OperateAxisHandlersForPspState::size_type
-        , const __s32
-        , PspState &
-    ) const;
-
-    std::size_t operateAxis(
-        const OperateAxisHandlersForChangeMapping::size_type
-        , const __s32
-        , std::size_t &
-        , const std::size_t
-    ) const;
-};
+}
 
 #endif  // TKTEMOTEJOY_MAPPING_H

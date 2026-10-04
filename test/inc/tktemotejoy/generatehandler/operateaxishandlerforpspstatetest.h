@@ -26,7 +26,7 @@ public:
         auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( OBJECT );
         ASSERT_NE( nullptr, handlerUnique.get() );
 
-        auto    mapping = Mapping(
+        auto    mapping = tktemotejoy::Mapping(
             0
             , 1
         );
