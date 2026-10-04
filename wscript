@@ -1,11 +1,8 @@
 import tscripts
 from taf import *
 from taf.tools import cpp
-import os.path
 
 from waflib.Tools import waf_unit_test
-
-import os.path
 
 APPNAME = tscripts.PACKAGE_NAME
 VERSION = '5.0.0'
@@ -25,10 +22,7 @@ cpp.INCLUDES = [
 ]
 
 cpp.TEST_INCLUDES = [
-    os.path.join(
-        tscripts.TEST_DIR,
-        tscripts.HEADER_DIR,
-    ),
+    tscripts.TEST_HEADER_DIR,
 ]
 
 taf.POST_FUNCTIONS = [
