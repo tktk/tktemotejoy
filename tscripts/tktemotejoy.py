@@ -68,7 +68,7 @@ module.DEPENDS = [
     'tktemotejoy_generatehandler_operateaxishandlerforchangemappingtest',
     'tktemotejoy_generatemappingstest',
     'tktemotejoy_generatemappings_generaltest',
-#    'tktemotejoy_generatemappings_mappingstest',
+    'tktemotejoy_generatemappings_mappingstest',
 ]
 
 module.BUILDER = cpp.program
