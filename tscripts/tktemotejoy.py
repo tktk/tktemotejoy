@@ -67,7 +67,7 @@ module.DEPENDS = [
     'tktemotejoy_generatehandler_tobuttonhandlerforchangemappingtest',
     'tktemotejoy_generatehandler_operateaxishandlerforchangemappingtest',
     'tktemotejoy_generatemappingstest',
-#    'tktemotejoy_generatemappings_generaltest',
+    'tktemotejoy_generatemappings_generaltest',
 #    'tktemotejoy_generatemappings_mappingstest',
 ]
 
