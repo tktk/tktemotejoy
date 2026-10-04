@@ -25,7 +25,7 @@ namespace {
             const PspState::Axis    _VALUE
         ) const
         {
-            return Mapping::handlerUnique( new ToFixedAxisY( _VALUE ) );
+            return Mapping::handlerUnique( new tktemotejoy::ToFixedAxisY( _VALUE ) );
         }
     };
 }
