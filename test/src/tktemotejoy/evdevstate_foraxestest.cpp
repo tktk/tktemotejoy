@@ -4,21 +4,21 @@
 
 namespace {
     using IndexAndValueMap = std::map<
-        EvdevState::States::size_type
-        , EvdevState::States::value_type
+        tktemotejoy::EvdevState::States::size_type
+        , tktemotejoy::EvdevState::States::value_type
     >;
 
     class EvdevState_forAxesTest : public ::testing::Test
     {
     public:
         void test(
-            EvdevState                              _evdevState
-            , const IndexAndValueMap                _INDEX_AND_VALUE_MAP
-            , const bool                            _RETURNS_FOR_STATE
-            , const bool                            _EXPECTED
-            , const EvdevState::States::size_type   _EXPECTED_CALL_COUNT
-            , const IndexAndValueMap                _EXPECTED_CALLED_INDEX_AND_VALUE_MAP
-            , const bool                            _TEST_CALLED_INDEX_AND_VALUE_MAP
+            tktemotejoy::EvdevState                             _evdevState
+            , const IndexAndValueMap                            _INDEX_AND_VALUE_MAP
+            , const bool                                        _RETURNS_FOR_STATE
+            , const bool                                        _EXPECTED
+            , const tktemotejoy::EvdevState::States::size_type  _EXPECTED_CALL_COUNT
+            , const IndexAndValueMap                            _EXPECTED_CALLED_INDEX_AND_VALUE_MAP
+            , const bool                                        _TEST_CALLED_INDEX_AND_VALUE_MAP
         ) const
         {
             for( const auto & INDEX_AND_VALUE : _INDEX_AND_VALUE_MAP ) {
@@ -39,8 +39,8 @@ namespace {
                         , &calledIndexAndValueMap
                     ]
                     (
-                        const EvdevState::States::size_type     _INDEX
-                        , const EvdevState::States::value_type  _VALUE
+                        const tktemotejoy::EvdevState::States::size_type    _INDEX
+                        , const tktemotejoy::EvdevState::States::value_type _VALUE
                     ) -> bool
                     {
                         ++callCount;
@@ -65,7 +65,7 @@ TEST_F(
 )
 {
     this->test(
-        EvdevState(
+        tktemotejoy::EvdevState(
             5
             , 5
         )
@@ -94,7 +94,7 @@ TEST_F(
 )
 {
     this->test(
-        EvdevState(
+        tktemotejoy::EvdevState(
             5
             , 5
         )

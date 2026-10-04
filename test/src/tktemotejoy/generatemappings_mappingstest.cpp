@@ -11,9 +11,9 @@ namespace {
     {
     public:
         void test(
-            const std::string &     _JSON_STRING
-            , const EvdevState &    _EVDEV_STATE
-            , const PspState::Bits  _EXPECTED_BITS
+            const std::string &                 _JSON_STRING
+            , const tktemotejoy::EvdevState &   _EVDEV_STATE
+            , const PspState::Bits              _EXPECTED_BITS
         ) const
         {
             const auto  JSON = Json::parse( _JSON_STRING );
@@ -73,7 +73,7 @@ TEST_F(
     , ButtonsForPspState
 )
 {
-    auto    evdevState = EvdevState(
+    auto    evdevState = tktemotejoy::EvdevState(
         20
         , 20
     );
@@ -111,7 +111,7 @@ TEST_F(
     , ButtonsForChangeMapping
 )
 {
-    auto    evdevState = EvdevState(
+    auto    evdevState = tktemotejoy::EvdevState(
         20
         , 20
     );
@@ -157,7 +157,7 @@ TEST_F(
     , AxesForPspState
 )
 {
-    auto    evdevState = EvdevState(
+    auto    evdevState = tktemotejoy::EvdevState(
         20
         , 20
     );
@@ -194,7 +194,7 @@ TEST_F(
     , AxesForChangeMapping
 )
 {
-    auto    evdevState = EvdevState(
+    auto    evdevState = tktemotejoy::EvdevState(
         20
         , 20
     );
@@ -244,7 +244,7 @@ TEST_F(
     , WithTemplate
 )
 {
-    auto    evdevState = EvdevState(
+    auto    evdevState = tktemotejoy::EvdevState(
         20
         , 20
     );
@@ -289,7 +289,7 @@ TEST_F(
     , WithTemplateRecursive
 )
 {
-    auto    evdevState = EvdevState(
+    auto    evdevState = tktemotejoy::EvdevState(
         20
         , 20
     );
@@ -339,7 +339,7 @@ TEST_F(
     , OverwriteTemplateHandler
 )
 {
-    auto    evdevState = EvdevState(
+    auto    evdevState = tktemotejoy::EvdevState(
         20
         , 20
     );
@@ -392,7 +392,7 @@ TEST_F(
     , OverwriteTemplateHandlerRecursive
 )
 {
-    auto    evdevState = EvdevState(
+    auto    evdevState = tktemotejoy::EvdevState(
         20
         , 20
     );

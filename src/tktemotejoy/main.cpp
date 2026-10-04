@@ -50,7 +50,7 @@ namespace {
         const int                               _DESCRIPTOR
         , const tktemotejoy::EvdevKeyIndices &  _KEY_INDICES
         , const tktemotejoy::EvdevAbsIndices &  _ABS_INDICES
-        , EvdevState &                          _evdevState
+        , tktemotejoy::EvdevState &             _evdevState
     )
     {
         const auto  KEY_STATES = tktemotejoy::generateEvdevKeyStates( _DESCRIPTOR );
@@ -125,7 +125,7 @@ int main(
         throw std::runtime_error( "tktusbrepeater::newWriter()が失敗" );
     }
 
-    auto    evdevState = EvdevState(
+    auto    evdevState = tktemotejoy::EvdevState(
         BUTTONS
         , AXES
     );

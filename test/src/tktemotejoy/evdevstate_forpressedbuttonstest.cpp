@@ -4,18 +4,18 @@
 #include <set>
 
 namespace {
-    using Indices = std::set< EvdevState::States::size_type >;
+    using Indices = std::set< tktemotejoy::EvdevState::States::size_type >;
 
     class EvdevState_forPressedButtonsTest : public ::testing::Test
     {
     public:
         void test(
-            EvdevState                              _evdevState
-            , const Indices                         _PRESS_BUTTON_INDICES
-            , const bool                            _RETURNS_FOR_STATE
-            , const bool                            _EXPECTED
-            , const EvdevState::States::size_type   _EXPECTED_CALL_COUNT
-            , const bool                            _TEST_CALLED_INDICES
+            tktemotejoy::EvdevState                             _evdevState
+            , const Indices                                     _PRESS_BUTTON_INDICES
+            , const bool                                        _RETURNS_FOR_STATE
+            , const bool                                        _EXPECTED
+            , const tktemotejoy::EvdevState::States::size_type  _EXPECTED_CALL_COUNT
+            , const bool                                        _TEST_CALLED_INDICES
         ) const
         {
             for( const auto & INDEX : _PRESS_BUTTON_INDICES ) {
@@ -36,7 +36,7 @@ namespace {
                         , &calledIndices
                     ]
                     (
-                        const EvdevState::States::size_type _INDEX
+                        const tktemotejoy::EvdevState::States::size_type    _INDEX
                     ) -> bool
                     {
                         ++callCount;
@@ -61,7 +61,7 @@ TEST_F(
 )
 {
     this->test(
-        EvdevState(
+        tktemotejoy::EvdevState(
             5
             , 5
         )
@@ -83,7 +83,7 @@ TEST_F(
 )
 {
     this->test(
-        EvdevState(
+        tktemotejoy::EvdevState(
             5
             , 5
         )

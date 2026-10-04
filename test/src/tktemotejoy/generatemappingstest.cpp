@@ -24,7 +24,7 @@ namespace {
 
             auto    pspState = PspState();
 
-            const auto  EVDEV_STATE = EvdevState(
+            const auto  EVDEV_STATE = tktemotejoy::EvdevState(
                 10
                 , 20
             );

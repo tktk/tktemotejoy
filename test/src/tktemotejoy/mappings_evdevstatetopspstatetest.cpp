@@ -138,10 +138,10 @@ namespace {
         );
     }
 
-    EvdevState generateEvdevState(
+    tktemotejoy::EvdevState generateEvdevState(
     )
     {
-        auto    evdevState = EvdevState(
+        auto    evdevState = tktemotejoy::EvdevState(
             10
             , 10
         );
@@ -173,9 +173,9 @@ namespace {
     {
     public:
         void test(
-            tktemotejoy::Mappings & _mappings
-            , const EvdevState &    _EVDEV_STATE
-            , const PspState::Bits  _EXPECTED_BITS
+            tktemotejoy::Mappings &             _mappings
+            , const tktemotejoy::EvdevState &   _EVDEV_STATE
+            , const PspState::Bits              _EXPECTED_BITS
         ) const
         {
             auto    pspState = PspState();

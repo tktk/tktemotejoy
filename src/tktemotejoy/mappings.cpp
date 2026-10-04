@@ -20,7 +20,7 @@ namespace {
         tktemotejoy::Mappings::Impl::size_type &    _mappingIndex
         , tktemotejoy::Mappings::Impl::size_type &  _currentMappingIndex
         , const tktemotejoy::Mappings::Impl &       _MAPPINGS_IMPL
-        , const EvdevState &                        _EVDEV_STATE
+        , const tktemotejoy::EvdevState &           _EVDEV_STATE
     )
     {
         while( true ) {
@@ -31,7 +31,7 @@ namespace {
                     , &_MAPPINGS_IMPL
                 ]
                 (
-                    const EvdevState::States::size_type _INDEX
+                    const tktemotejoy::EvdevState::States::size_type    _INDEX
                 ) -> bool
                 {
                     return changeMappingIndex(
@@ -53,8 +53,8 @@ namespace {
                     , &_MAPPINGS_IMPL
                 ]
                 (
-                    const EvdevState::States::size_type     _INDEX
-                    , const EvdevState::States::value_type  _VALUE
+                    const tktemotejoy::EvdevState::States::size_type    _INDEX
+                    , const tktemotejoy::EvdevState::States::value_type _VALUE
                 ) -> bool
                 {
                     return changeMappingIndex(
@@ -76,9 +76,9 @@ namespace {
     }
 
     void evdevStateToPspState(
-        PspState &              _pspState
-        , const Mapping &       _MAPPING
-        , const EvdevState &    _EVDEV_STATE
+        PspState &                          _pspState
+        , const Mapping &                   _MAPPING
+        , const tktemotejoy::EvdevState &   _EVDEV_STATE
     )
     {
         _EVDEV_STATE.forPressedButtons(
@@ -87,7 +87,7 @@ namespace {
                 , &_MAPPING
             ]
             (
-                const EvdevState::States::size_type _INDEX
+                const tktemotejoy::EvdevState::States::size_type    _INDEX
             ) -> bool
             {
                 _MAPPING.pressButton(
@@ -104,8 +104,8 @@ namespace {
                 , &_MAPPING
             ]
             (
-                const EvdevState::States::size_type     _INDEX
-                , const EvdevState::States::value_type  _VALUE
+                const tktemotejoy::EvdevState::States::size_type    _INDEX
+                , const tktemotejoy::EvdevState::States::value_type _VALUE
             ) -> bool
             {
                 _MAPPING.operateAxis(
