@@ -58,11 +58,11 @@ namespace {
                     _mapping.setHandler(
                         0
                         , Mapping::handlerUnique(
-                            new ToAxisY(
+                            new tktemotejoy::ToAxisY(
                                 -100
                                 , 100
                                 , 0
-                                , ToAxisYImpl(
+                                , tktemotejoy::ToAxisYImpl(
                                     100
                                     , 0
                                 )

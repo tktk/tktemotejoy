@@ -3,25 +3,27 @@
 #include "tktemotejoy/pspstate.h"
 #include <linux/input.h>
 
-ToAxisYImpl::ToAxisYImpl(
-    const __s32     _LIMIT
-    , const __s32   _ERASE_DEAD_ZONE
-)
-    : LIMIT( _LIMIT )
-    , ERASE_DEAD_ZONE( _ERASE_DEAD_ZONE )
-{
-}
+namespace tktemotejoy {
+    ToAxisYImpl::ToAxisYImpl(
+        const __s32     _LIMIT
+        , const __s32   _ERASE_DEAD_ZONE
+    )
+        : LIMIT( _LIMIT )
+        , ERASE_DEAD_ZONE( _ERASE_DEAD_ZONE )
+    {
+    }
 
-void ToAxisYImpl::operator()(
-    const __s32     _VALUE
-    , PspState &    _pspState
-) const
-{
-    _pspState.operateAxisY(
-        calcPspStateAxis(
-            _VALUE
-            , this->LIMIT
-            , this->ERASE_DEAD_ZONE
-        )
-    );
+    void ToAxisYImpl::operator()(
+        const __s32     _VALUE
+        , PspState &    _pspState
+    ) const
+    {
+        _pspState.operateAxisY(
+            calcPspStateAxis(
+                _VALUE
+                , this->LIMIT
+                , this->ERASE_DEAD_ZONE
+            )
+        );
+    }
 }

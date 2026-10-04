@@ -15,11 +15,11 @@ namespace {
             , const __s32   _ERASE_DEAD_ZONE
         ) const
         {
-            return ToAxisY(
+            return tktemotejoy::ToAxisY(
                 _MIN
                 , _MAX
                 , _DEAD_ZONE
-                , ToAxisYImpl(
+                , tktemotejoy::ToAxisYImpl(
                     _LIMIT
                     , _ERASE_DEAD_ZONE
                 )

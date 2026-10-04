@@ -30,11 +30,11 @@ namespace {
         ) const
         {
             return Mapping::handlerUnique(
-                new ToAxisY(
+                new tktemotejoy::ToAxisY(
                     _MIN
                     , _MAX
                     , _DEAD_ZONE
-                    , ToAxisYImpl(
+                    , tktemotejoy::ToAxisYImpl(
                         _LIMIT
                         , _ERASE_DEAD_ZONE
                     )
