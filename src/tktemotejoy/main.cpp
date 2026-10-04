@@ -56,7 +56,7 @@ namespace {
         const auto  KEY_STATES = tktemotejoy::generateEvdevKeyStates( _DESCRIPTOR );
 
         const auto  KEY_STATES_SIZE = KEY_STATES.size();
-        for( auto i = std::size_t( 0 ) ; i < KEY_STATES_SIZE ; i++ ) {
+        for( auto i = std::size_t( 0 ) ; i < KEY_STATES_SIZE ; ++i ) {
             const auto &    INDEX = _KEY_INDICES.at( i );
             if( INDEX < 0 ) {
                 continue;
@@ -71,7 +71,7 @@ namespace {
         const auto  ABS_DATA_ARRAY = tktemotejoy::generateEvdevAbsDataArray( _DESCRIPTOR );
 
         const auto  ABS_DATA_ARRAY_SIZE = ABS_DATA_ARRAY.size();
-        for( auto i = std::size_t( 0 ) ; i < ABS_DATA_ARRAY_SIZE ; i++ ) {
+        for( auto i = std::size_t( 0 ) ; i < ABS_DATA_ARRAY_SIZE ; ++i ) {
             const auto &    INDEX = _ABS_INDICES.at( i );
             if( INDEX < 0 ) {
                 continue;

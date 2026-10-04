@@ -17,7 +17,7 @@ namespace {
         auto    handlers = HANDLERS_T();
         handlers.reserve( _SIZE );
 
-        for( auto i = typename HANDLERS_T::size_type( 0 ) ; i < _SIZE ; i++ ) {
+        for( auto i = typename HANDLERS_T::size_type( 0 ) ; i < _SIZE ; ++i ) {
             handlers.emplace_back( new DUMMY_HANDLER_T );
         }
 

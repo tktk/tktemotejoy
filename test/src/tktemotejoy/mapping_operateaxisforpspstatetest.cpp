@@ -32,7 +32,7 @@ namespace {
             EXPECT_EQ( this->EXPECTED_VALUE, _VALUE );
             EXPECT_EQ( &( this->PSP_STATE ), &_pspState );
 
-            const_cast< int & >( this->calledCount )++;
+            ++const_cast< int & >( this->calledCount );
         }
     };
 

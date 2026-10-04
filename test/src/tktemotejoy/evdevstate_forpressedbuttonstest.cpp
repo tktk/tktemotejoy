@@ -39,7 +39,7 @@ namespace {
                         const EvdevState::States::size_type _INDEX
                     ) -> bool
                     {
-                        callCount++;
+                        ++callCount;
                         calledIndices.insert( _INDEX );
 
                         return _RETURNS_FOR_STATE;

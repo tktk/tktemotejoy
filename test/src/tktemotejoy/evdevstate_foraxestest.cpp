@@ -43,7 +43,7 @@ namespace {
                         , const EvdevState::States::value_type  _VALUE
                     ) -> bool
                     {
-                        callCount++;
+                        ++callCount;
                         calledIndexAndValueMap.insert( { _INDEX, _VALUE } );
 
                         return _RETURNS_FOR_STATE;

@@ -27,7 +27,7 @@ namespace {
 
                 EXPECT_EQ( _EXPECTED_STRINGS.at( index ), J.get_ref< const Json::string_t & >() );
 
-                index++;
+                ++index;
             }
         }
 

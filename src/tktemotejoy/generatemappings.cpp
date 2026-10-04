@@ -277,7 +277,7 @@ namespace {
                 , _MAPPING_NAMES
             );
 
-            index++;
+            ++index;
         }
     }
 

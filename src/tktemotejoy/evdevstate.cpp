@@ -37,7 +37,7 @@ bool EvdevState::forPressedButtons(
             }
         }
 
-        index++;
+        ++index;
     }
 
     return false;
@@ -56,7 +56,7 @@ bool EvdevState::forAxes(
             return true;
         }
 
-        index++;
+        ++index;
     }
 
     return false;

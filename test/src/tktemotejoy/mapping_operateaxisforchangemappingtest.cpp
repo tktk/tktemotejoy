@@ -39,7 +39,7 @@ namespace {
             EXPECT_EQ( this->EXPECTED_MAPPING_INDEX, _mappingIndex );
             EXPECT_EQ( this->EXPECTED_CURRENT_MAPPING_INDEX, _CURRENT_MAPPING_INDEX );
 
-            const_cast< int & >( this->calledCount )++;
+            ++const_cast< int & >( this->calledCount );
 
             return this->RETURNS_MAPPING_INDEX;
         }

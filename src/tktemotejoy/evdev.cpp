@@ -36,10 +36,10 @@ namespace {
         auto    indices = EventIndices();
 
         auto    index = 0;
-        for( auto i = std::size_t( 0 ) ; i < EVENT_MAX ; i++ ) {
+        for( auto i = std::size_t( 0 ) ; i < EVENT_MAX ; ++i ) {
             if( event.test( i ) == true ) {
                 indices.at( i ) = index;
-                index++;
+                ++index;
             } else {
                 indices.at( i ) = -1;
             }
@@ -112,7 +112,7 @@ namespace tktemotejoy {
         auto    absDataArray = EvdevAbsDataArray();
 
         const auto  SIZE = absDataArray.size();
-        for( auto i = EvdevAbsDataArray::size_type( 0 ) ; i < SIZE ; i++ ) {
+        for( auto i = EvdevAbsDataArray::size_type( 0 ) ; i < SIZE ; ++i ) {
             ioctl(
                 _DESCRIPTOR
                 , EVIOCGABS( i )
