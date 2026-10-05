@@ -164,7 +164,7 @@ namespace {
                 , _ARGS ...
             );
             if( handlerUnique.get() == nullptr ) {
-                throw typeIsUnsupported(
+                throw tktemotejoy::typeIsUnsupported(
                     MAPPING
                     , _KEY
                 );

@@ -5,9 +5,11 @@
 #include <stdexcept>
 #include <string>
 
-std::runtime_error typeIsUnsupported(
-    const Json::object_t &
-    , const std::string &
-);
+namespace tktemotejoy {
+    std::runtime_error typeIsUnsupported(
+        const Json::object_t &
+        , const std::string &
+    );
+}
 
 #endif  // TKTEMOTEJOY_TYPEERROR_H
