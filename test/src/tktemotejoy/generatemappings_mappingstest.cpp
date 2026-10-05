@@ -35,7 +35,7 @@ namespace {
 
             auto    bits = tktemotejoy::PspState::Bits();
 
-            pspState.diff(
+            pspState.runWhenDiff(
                 OTHER
                 , [
                     &bits

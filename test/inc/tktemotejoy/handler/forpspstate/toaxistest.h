@@ -39,7 +39,7 @@ public:
 
         auto    calledWhenDiff = false;
 
-        pspState.diff(
+        pspState.runWhenDiff(
             OTHER
             , [
                 &_EXPECTED_BITS

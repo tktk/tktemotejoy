@@ -46,7 +46,7 @@ namespace tktemotejoy {
         PspState(
         );
 
-        void diff(
+        void runWhenDiff(
             const PspState &
             , const WhenDiff &
         ) const;

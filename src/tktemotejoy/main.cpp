@@ -204,7 +204,7 @@ int main(
                 , evdevState
             );
 
-            pspState.diff(
+            pspState.runWhenDiff(
                 prevPspState
                 , [
                     &toRepeaterUnique

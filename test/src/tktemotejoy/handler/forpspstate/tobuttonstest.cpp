@@ -17,7 +17,7 @@ TEST(
     auto    calledWhenDiff = false;
     auto    bits = tktemotejoy::PspState::Bits();
 
-    pspState.diff(
+    pspState.runWhenDiff(
         OTHER
         , [
             &calledWhenDiff

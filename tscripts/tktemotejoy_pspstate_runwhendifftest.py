@@ -7,11 +7,11 @@ module.TYPE = module.test
 
 module.BUILDER = cpp.gtest
 
-module.TARGET = 'tktemotejoy_pspstate_difftest'
+module.TARGET = 'tktemotejoy_pspstate_runwhendifftest'
 
 module.SOURCE = {
     TEST_SOURCE_ROOT_DIR : [
-        'pspstate_difftest.cpp',
+        'pspstate_runwhendifftest.cpp',
     ],
     SOURCE_ROOT_DIR : [
         'pspstate.cpp',

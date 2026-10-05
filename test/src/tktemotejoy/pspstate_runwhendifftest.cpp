@@ -3,7 +3,7 @@
 #include <functional>
 
 namespace {
-    class PspState_diffTest : public ::testing::Test
+    class PspState_runWhenDiffTest : public ::testing::Test
     {
     public:
         void test(
@@ -21,7 +21,7 @@ namespace {
             auto    calledWhenDiff = false;
             auto    bits = tktemotejoy::PspState::Bits();
 
-            pspState.diff(
+            pspState.runWhenDiff(
                 OTHER
                 , [
                     &calledWhenDiff
@@ -43,7 +43,7 @@ namespace {
 }
 
 TEST_F(
-    PspState_diffTest
+    PspState_runWhenDiffTest
     , Buttons
 )
 {
@@ -61,7 +61,7 @@ TEST_F(
 }
 
 TEST_F(
-    PspState_diffTest
+    PspState_runWhenDiffTest
     , Same
 )
 {
@@ -77,7 +77,7 @@ TEST_F(
 }
 
 TEST_F(
-    PspState_diffTest
+    PspState_runWhenDiffTest
     , AxisX
 )
 {
@@ -94,7 +94,7 @@ TEST_F(
 }
 
 TEST_F(
-    PspState_diffTest
+    PspState_runWhenDiffTest
     , AxisY
 )
 {

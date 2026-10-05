@@ -20,7 +20,7 @@ namespace tktemotejoy {
     {
     }
 
-    void PspState::diff(
+    void PspState::runWhenDiff(
         const PspState &                _OTHER
         , const PspState::WhenDiff &    _WHEN_DIFF
     ) const

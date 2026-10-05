@@ -17,7 +17,7 @@ TEST(
 
     auto    calledWhenDiff = false;
 
-    pspState.diff(
+    pspState.runWhenDiff(
         OTHER
         , [
             &calledWhenDiff
@@ -51,7 +51,7 @@ TEST(
 
     auto    calledWhenDiff = false;
 
-    pspState.diff(
+    pspState.runWhenDiff(
         OTHER
         , [
             &calledWhenDiff
