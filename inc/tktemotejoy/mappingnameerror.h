@@ -4,8 +4,10 @@
 #include <stdexcept>
 #include <string>
 
-std::runtime_error mappingNameIsNotExists(
-    const std::string &
-);
+namespace tktemotejoy {
+    std::runtime_error mappingNameIsNotExists(
+        const std::string &
+    );
+}
 
 #endif  // TKTEMOTEJOY_MAPPINGNAMEERROR_H
