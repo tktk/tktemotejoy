@@ -14,11 +14,11 @@ class GeneratePressButtonHandlerForChangeMappingTestTmpl : public ::testing::Tes
 {
 public:
     void test(
-        const std::string &     _JSON_STRING
-        , const MappingNames &  _MAPPING_NAMES
-        , const std::size_t     _MAPPING_INDEX
-        , const std::size_t     _EXPECTED_MAPPING_INDEX
-        , const std::size_t     _EXPECTED_NEW_MAPPING_INDEX
+        const std::string &                 _JSON_STRING
+        , const tktemotejoy::MappingNames & _MAPPING_NAMES
+        , const std::size_t                 _MAPPING_INDEX
+        , const std::size_t                 _EXPECTED_MAPPING_INDEX
+        , const std::size_t                 _EXPECTED_NEW_MAPPING_INDEX
     ) const
     {
         const auto  JSON = Json::parse( _JSON_STRING );
@@ -55,8 +55,8 @@ public:
     }
 
     void testAnyThrow(
-        const std::string &     _JSON_STRING
-        , const MappingNames &  _MAPPING_NAMES
+        const std::string &                 _JSON_STRING
+        , const tktemotejoy::MappingNames & _MAPPING_NAMES
     ) const
     {
         const auto  JSON = Json::parse( _JSON_STRING );
@@ -70,8 +70,8 @@ public:
     }
 
     void testNull(
-        const std::string &     _JSON_STRING
-        , const MappingNames &  _MAPPING_NAMES
+        const std::string &                 _JSON_STRING
+        , const tktemotejoy::MappingNames & _MAPPING_NAMES
     ) const
     {
         const auto  JSON = Json::parse( _JSON_STRING );

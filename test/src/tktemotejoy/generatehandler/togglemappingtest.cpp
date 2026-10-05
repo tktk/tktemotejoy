@@ -8,8 +8,8 @@ namespace {
     struct GenerateToggleMappingUnique
     {
         auto operator()(
-            const Json::object_t &  _OBJECT
-            , const MappingNames &  _MAPPING_NAMES
+            const Json::object_t &              _OBJECT
+            , const tktemotejoy::MappingNames & _MAPPING_NAMES
         ) const
         {
             return tktemotejoy::generateToggleMappingUnique(

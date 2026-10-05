@@ -8,8 +8,8 @@ namespace {
     struct GeneratePressButtonHandlerForChangeMappingUnique
     {
         auto operator()(
-            const Json &            _JSON
-            , const MappingNames &  _MAPPING_NAMES
+            const Json &                        _JSON
+            , const tktemotejoy::MappingNames & _MAPPING_NAMES
         ) const
         {
             return tktemotejoy::generatePressButtonHandlerForChangeMappingUnique(

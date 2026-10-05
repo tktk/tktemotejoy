@@ -32,9 +32,9 @@ namespace {
     {
     public:
         void test(
-            const std::string &     _JSON_STRING
-            , const MappingNames &  _MAPPING_NAMES
-            , const std::size_t     _EXPECTED_MAPPING_INDEX
+            const std::string &                 _JSON_STRING
+            , const tktemotejoy::MappingNames & _MAPPING_NAMES
+            , const std::size_t                 _EXPECTED_MAPPING_INDEX
         ) const
         {
             const auto  JSON = Json::parse( _JSON_STRING );
@@ -51,8 +51,8 @@ namespace {
         }
 
         void testAnyThrow(
-            const std::string &     _JSON_STRING
-            , const MappingNames &  _MAPPING_NAMES
+            const std::string &                 _JSON_STRING
+            , const tktemotejoy::MappingNames & _MAPPING_NAMES
         ) const
         {
             const auto  JSON = Json::parse( _JSON_STRING );

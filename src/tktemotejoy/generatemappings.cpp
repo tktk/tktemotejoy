@@ -28,11 +28,11 @@ namespace {
     const auto  MAPPING_KEY_AXES_FOR_PSP_STATE = std::string( "axesForPspState" );
     const auto  MAPPING_KEY_AXES_FOR_CHANGE_MAPPING = std::string( "axesForChangeMapping" );
 
-    MappingNames generateMappingNames(
+    tktemotejoy::MappingNames generateMappingNames(
         const Json::object_t &  _MAPPINGS
     )
     {
-        auto    mappingNames = MappingNames();
+        auto    mappingNames = tktemotejoy::MappingNames();
         mappingNames.reserve( _MAPPINGS.size() );
 
         for( const auto & PAIR : _MAPPINGS ) {
@@ -48,8 +48,8 @@ namespace {
     };
 
     General generateGeneral(
-        const Json::object_t &  _OBJECT
-        , const MappingNames &  _MAPPING_NAMES
+        const Json::object_t &              _OBJECT
+        , const tktemotejoy::MappingNames & _MAPPING_NAMES
     )
     {
         const auto &    GENERAL = getJsonObjectFromObject(
@@ -63,7 +63,7 @@ namespace {
             , ROOT_KEY_GENERAL
         );
 
-        const auto  DEFAULT_MAPPING_INDEX = calcMappingIndex(
+        const auto  DEFAULT_MAPPING_INDEX = tktemotejoy::calcMappingIndex(
             _MAPPING_NAMES
             , DEFAULT_MAPPING
         );
@@ -86,8 +86,8 @@ namespace {
     struct GeneratePressButtonHandlerForChangeMappingUnique
     {
         auto operator()(
-            const Json::object_t &  _OBJECT
-            , const MappingNames &  _MAPPING_NAMES
+            const Json::object_t &              _OBJECT
+            , const tktemotejoy::MappingNames & _MAPPING_NAMES
         ) const
         {
             return tktemotejoy::generatePressButtonHandlerForChangeMappingUnique(
@@ -110,8 +110,8 @@ namespace {
     struct GenerateOperateAxisHandlerForChangeMappingUnique
     {
         auto operator()(
-            const Json::object_t &  _OBJECT
-            , const MappingNames &  _MAPPING_NAMES
+            const Json::object_t &              _OBJECT
+            , const tktemotejoy::MappingNames & _MAPPING_NAMES
         ) const
         {
             return tktemotejoy::generateOperateAxisHandlerForChangeMappingUnique(
@@ -178,9 +178,9 @@ namespace {
     }
 
     void generateHandlersToMapping(
-        tktemotejoy::Mapping &      _mapping
-        , const Json::object_t &    _OBJECT
-        , const MappingNames &      _MAPPING_NAMES
+        tktemotejoy::Mapping &              _mapping
+        , const Json::object_t &            _OBJECT
+        , const tktemotejoy::MappingNames & _MAPPING_NAMES
     )
     {
         setHandlers< GeneratePressButtonHandlerForPspStateUnique >(
@@ -211,10 +211,10 @@ namespace {
     }
 
     void applyTemplates(
-        tktemotejoy::Mapping &      _mapping
-        , const Json::object_t &    _OBJECT
-        , const Json::object_t *    _TEMPLATES_PTR
-        , const MappingNames &      _MAPPING_NAMES
+        tktemotejoy::Mapping &              _mapping
+        , const Json::object_t &            _OBJECT
+        , const Json::object_t *            _TEMPLATES_PTR
+        , const tktemotejoy::MappingNames & _MAPPING_NAMES
     )
     {
         const auto  MAPPING_TEMPLATES_PTR = getJsonArrayFromObjectNotRequired(
@@ -282,9 +282,9 @@ namespace {
     }
 
     tktemotejoy::Mapping generateMapping(
-        const Json::object_t &      _OBJECT
-        , const Json::object_t *    _TEMPLATES_PTR
-        , const MappingNames &      _MAPPING_NAMES
+        const Json::object_t &              _OBJECT
+        , const Json::object_t *            _TEMPLATES_PTR
+        , const tktemotejoy::MappingNames & _MAPPING_NAMES
         , const std::size_t &       _BUTTONS
         , const std::size_t &       _AXES
     )
@@ -311,11 +311,11 @@ namespace {
     }
 
     tktemotejoy::Mappings::Impl generateMappingsImpl(
-        const Json::object_t &      _MAPPINGS
-        , const Json::object_t *    _TEMPLATES_PTR
-        , const MappingNames &      _MAPPING_NAMES
-        , const std::size_t &       _BUTTONS
-        , const std::size_t &       _AXES
+        const Json::object_t &              _MAPPINGS
+        , const Json::object_t *            _TEMPLATES_PTR
+        , const tktemotejoy::MappingNames & _MAPPING_NAMES
+        , const std::size_t &               _BUTTONS
+        , const std::size_t &               _AXES
     )
     {
         auto    impl = tktemotejoy::Mappings::Impl();

@@ -7,14 +7,14 @@ namespace {
     {
     public:
         void test(
-            const MappingNames &            _MAPPING_NAMES
-            , const std::string &           _MAPPING_NAME
-            , const MappingNames::size_type _EXPECTED
+            const tktemotejoy::MappingNames &               _MAPPING_NAMES
+            , const std::string &                           _MAPPING_NAME
+            , const tktemotejoy::MappingNames::size_type    _EXPECTED
         ) const
         {
             EXPECT_EQ(
                 _EXPECTED
-                , calcMappingIndex(
+                , tktemotejoy::calcMappingIndex(
                     _MAPPING_NAMES
                     , _MAPPING_NAME
                 )
@@ -22,12 +22,12 @@ namespace {
         }
 
         void testAnyThrow(
-            const MappingNames &    _MAPPING_NAMES
-            , const std::string &   _MAPPING_NAME
+            const tktemotejoy::MappingNames &   _MAPPING_NAMES
+            , const std::string &               _MAPPING_NAME
         ) const
         {
             EXPECT_ANY_THROW(
-                calcMappingIndex(
+                tktemotejoy::calcMappingIndex(
                     _MAPPING_NAMES
                     , _MAPPING_NAME
                 )
