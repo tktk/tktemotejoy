@@ -62,7 +62,7 @@ namespace tktemotejoy {
         if( _descriptor < 0 ) {
             auto    oStringStream = std::ostringstream();
 
-            oStringStream << "open()が失敗 : " << '"' << _DEVICE_PATH << '"';
+            oStringStream << "open()が失敗 : \"" << _DEVICE_PATH << '"';
 
             throw std::runtime_error( oStringStream.str() );
         }

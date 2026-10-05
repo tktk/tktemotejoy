@@ -10,7 +10,7 @@ namespace tktemotejoy {
     {
         auto    oStringStream = std::ostringstream();
 
-        oStringStream << "マッピング" << '"' << _MAPPING_NAME << '"' << "が存在しない";
+        oStringStream << "マッピング\"" << _MAPPING_NAME << "\"が存在しない";
 
         return std::runtime_error( oStringStream.str() );
     }

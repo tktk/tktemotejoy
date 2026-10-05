@@ -18,7 +18,7 @@ namespace tktemotejoy {
         if( IT != _OBJECT.end() ) {
             const auto &    TYPE_JSON = IT->second;
 
-            oStringStream << "非対応の" << _HANDLERS_TYPE << "タイプ : " << '"' << TYPE_JSON.get_ref< const Json::string_t & >() << '"';
+            oStringStream << "非対応の" << _HANDLERS_TYPE << "タイプ : \"" << TYPE_JSON.get_ref< const Json::string_t & >() << '"';
         } else {
             oStringStream << _HANDLERS_TYPE << "のタイプ指定がない";
         }
