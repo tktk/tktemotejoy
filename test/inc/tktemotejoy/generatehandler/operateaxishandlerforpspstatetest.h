@@ -19,9 +19,9 @@ public:
         , const tktemotejoy::PspState::Bits _EXPECTED_BITS
     ) const
     {
-        const auto  JSON = Json::parse( _JSON_STRING );
+        const auto  JSON = tktemotejoy::Json::parse( _JSON_STRING );
 
-        const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
+        const auto &    OBJECT = JSON.get_ref< const tktemotejoy::Json::object_t & >();
 
         auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()( OBJECT );
         ASSERT_NE( nullptr, handlerUnique.get() );
@@ -68,7 +68,7 @@ public:
         const std::string &     _JSON_STRING
     ) const
     {
-        const auto  JSON = Json::parse( _JSON_STRING );
+        const auto  JSON = tktemotejoy::Json::parse( _JSON_STRING );
 
         EXPECT_ANY_THROW( GENERATE_HANDLER_UNIQUE_T()( JSON ) );
     }
@@ -77,7 +77,7 @@ public:
         const std::string &     _JSON_STRING
     ) const
     {
-        const auto  JSON = Json::parse( _JSON_STRING );
+        const auto  JSON = tktemotejoy::Json::parse( _JSON_STRING );
 
         const auto  HANDLER_UNIQUE = GENERATE_HANDLER_UNIQUE_T()( JSON );
         ASSERT_EQ( nullptr, HANDLER_UNIQUE.get() );

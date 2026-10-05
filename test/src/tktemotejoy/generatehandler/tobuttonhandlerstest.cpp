@@ -17,14 +17,14 @@ namespace {
     struct TestGenerateHandlerUnique
     {
         auto operator()(
-            const Json::object_t &  _OBJECT
+            const tktemotejoy::Json::object_t & _OBJECT
         ) const
         {
             const auto  IT = _OBJECT.find( "key" );
             if( IT == _OBJECT.end() ) {
                 return TestHandlerUnique();
             }
-            const auto &    VALUE = IT->second.get_ref< const Json::number_integer_t & >();
+            const auto &    VALUE = IT->second.get_ref< const tktemotejoy::Json::number_integer_t & >();
 
             return TestHandlerUnique( new TestHandler{ static_cast< const int >( VALUE ) } );
         }
@@ -33,8 +33,8 @@ namespace {
     struct TestGenerateHandlerUniqueWithArgs
     {
         auto operator()(
-            const Json::object_t &
-            , const int &           _VALUE
+            const tktemotejoy::Json::object_t &
+            , const int &                       _VALUE
         ) const
         {
             return TestHandlerUnique( new TestHandler{ _VALUE } );
@@ -105,9 +105,9 @@ namespace {
             , const int         _EXPECTED_HANDLER_PLUS_VALUE
         ) const
         {
-            const auto  JSON = Json::parse( _JSON_STRING );
+            const auto  JSON = tktemotejoy::Json::parse( _JSON_STRING );
 
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
+            const auto &    OBJECT = JSON.get_ref< const tktemotejoy::Json::object_t & >();
 
             auto    handlerUnique = TestGenerateHandlerUnique_()( OBJECT );
             ASSERT_NE( nullptr, handlerUnique.get() );
@@ -131,9 +131,9 @@ namespace {
             , const int         _EXPECTED_HANDLER_PLUS_VALUE
         ) const
         {
-            const auto  JSON = Json::parse( _JSON_STRING );
+            const auto  JSON = tktemotejoy::Json::parse( _JSON_STRING );
 
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
+            const auto &    OBJECT = JSON.get_ref< const tktemotejoy::Json::object_t & >();
 
             auto    handlerUnique = TestGenerateHandlerUniqueWithArgs_()(
                 OBJECT
@@ -154,9 +154,9 @@ namespace {
             const std::string & _JSON_STRING
         ) const
         {
-            const auto  JSON = Json::parse( _JSON_STRING );
+            const auto  JSON = tktemotejoy::Json::parse( _JSON_STRING );
 
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
+            const auto &    OBJECT = JSON.get_ref< const tktemotejoy::Json::object_t & >();
 
             EXPECT_ANY_THROW( TestGenerateHandlerUnique_()( OBJECT ) );
         }

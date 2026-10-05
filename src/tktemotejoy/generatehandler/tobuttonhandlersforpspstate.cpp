@@ -48,7 +48,7 @@ namespace {
     struct GeneratePressButtonHandlerForPspStateUnique
     {
         auto operator()(
-            const Json::object_t &  _OBJECT
+            const tktemotejoy::Json::object_t & _OBJECT
         ) const
         {
             return tktemotejoy::generatePressButtonHandlerForPspStateUnique( _OBJECT );

@@ -7,7 +7,7 @@ namespace {
     struct GenerateToAxisXUnique
     {
         auto operator()(
-            const Json::object_t &  _OBJECT
+            const tktemotejoy::Json::object_t & _OBJECT
         ) const
         {
             return tktemotejoy::generateToAxisXUnique( _OBJECT );

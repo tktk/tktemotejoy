@@ -4,10 +4,12 @@
 #include "nlohmann/json.hpp"
 #include <string>
 
-using Json = nlohmann::json;
+namespace tktemotejoy {
+    using Json = nlohmann::json;
 
-Json parseCustomJson(
-    const std::string &
-);
+    Json parseCustomJson(
+        const std::string &
+    );
+}
 
 #endif  // TKTEMOTEJOY_CUSTOMJSON_H

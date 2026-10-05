@@ -9,11 +9,11 @@ namespace {
     {
         template< typename ... ARGS_T >
         const auto & operator()(
-            const Json &            _JSON
-            , const ARGS_T & ...    _ARGS
+            const tktemotejoy::Json &   _JSON
+            , const ARGS_T & ...        _ARGS
         ) const
         {
-            return getJsonObjectFromJson(
+            return tktemotejoy::getJsonObjectFromJson(
                 _JSON
                 , _ARGS ...
             );
@@ -26,13 +26,13 @@ namespace {
     {
         template< typename ... ARGS_T >
         const auto & operator()(
-            const Json &            _JSON
-            , const ARGS_T & ...    _ARGS
+            const tktemotejoy::Json &   _JSON
+            , const ARGS_T & ...        _ARGS
         ) const
         {
-            const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
+            const auto &    OBJECT = _JSON.get_ref< const tktemotejoy::Json::object_t & >();
 
-            return getJsonObjectFromObject(
+            return tktemotejoy::getJsonObjectFromObject(
                 OBJECT
                 , _ARGS ...
             );
@@ -45,13 +45,13 @@ namespace {
     {
         template< typename ... ARGS_T >
         auto operator()(
-            const Json &            _JSON
-            , const ARGS_T & ...    _ARGS
+            const tktemotejoy::Json &   _JSON
+            , const ARGS_T & ...        _ARGS
         ) const
         {
-            const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
+            const auto &    OBJECT = _JSON.get_ref< const tktemotejoy::Json::object_t & >();
 
-            return getJsonObjectFromObjectNotRequired(
+            return tktemotejoy::getJsonObjectFromObjectNotRequired(
                 OBJECT
                 , _ARGS ...
             );
@@ -73,7 +73,7 @@ TEST_F(
     "key3" : "ghi"
 })"
         , ""
-        , Json::object_t{
+        , tktemotejoy::Json::object_t{
             { "key1", "abc" }
             , { "key2", "def" }
             , { "key3", "ghi" }
@@ -109,7 +109,7 @@ TEST_F(
     }
 })"
         , "key"
-        , Json::object_t{
+        , tktemotejoy::Json::object_t{
             { "key1", "abc" }
             , { "key2", "def" }
             , { "key3", "ghi" }
@@ -153,7 +153,7 @@ TEST_F(
     , FromObjectNotRequired
 )
 {
-    const auto  EXPECTED = Json::object_t{
+    const auto  EXPECTED = tktemotejoy::Json::object_t{
         { "key1", "abc" }
         , { "key2", "def" }
         , { "key3", "ghi" }
@@ -181,7 +181,7 @@ TEST_F(
         R"({
 })"
         , "key"
-        , static_cast< const Json::object_t * >( nullptr )
+        , static_cast< const tktemotejoy::Json::object_t * >( nullptr )
     );
 }
 

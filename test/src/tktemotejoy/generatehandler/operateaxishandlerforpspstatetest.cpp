@@ -7,7 +7,7 @@ namespace {
     struct GenerateOperateAxisHandlerForPspStateUnique
     {
         auto operator()(
-            const Json::object_t &  _OBJECT
+            const tktemotejoy::Json::object_t & _OBJECT
         ) const
         {
             return tktemotejoy::generateOperateAxisHandlerForPspStateUnique( _OBJECT );

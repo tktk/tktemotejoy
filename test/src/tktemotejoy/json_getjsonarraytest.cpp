@@ -8,13 +8,13 @@ namespace {
     {
         template< typename ... ARGS_T >
         const auto & operator()(
-            const Json &            _JSON
-            , const ARGS_T & ...    _ARGS
+            const tktemotejoy::Json &   _JSON
+            , const ARGS_T & ...        _ARGS
         ) const
         {
-            const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
+            const auto &    OBJECT = _JSON.get_ref< const tktemotejoy::Json::object_t & >();
 
-            return getJsonArrayFromObject(
+            return tktemotejoy::getJsonArrayFromObject(
                 OBJECT
                 , _ARGS ...
             );
@@ -27,13 +27,13 @@ namespace {
     {
         template< typename ... ARGS_T >
         auto operator()(
-            const Json &            _JSON
-            , const ARGS_T & ...    _ARGS
+            const tktemotejoy::Json &   _JSON
+            , const ARGS_T & ...        _ARGS
         ) const
         {
-            const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
+            const auto &    OBJECT = _JSON.get_ref< const tktemotejoy::Json::object_t & >();
 
-            return getJsonArrayFromObjectNotRequired(
+            return tktemotejoy::getJsonArrayFromObjectNotRequired(
                 OBJECT
                 , _ARGS ...
             );
@@ -57,7 +57,7 @@ TEST_F(
     ]
 })"
         , "key"
-        , Json::array_t{
+        , tktemotejoy::Json::array_t{
             "abc"
             , "def"
             , "ghi"
@@ -101,7 +101,7 @@ TEST_F(
     , FromObjectNotRequired
 )
 {
-    const auto  EXPECTED = Json::array_t{
+    const auto  EXPECTED = tktemotejoy::Json::array_t{
         "abc"
         , "def"
         , "ghi"
@@ -129,7 +129,7 @@ TEST_F(
         R"({
 })"
         , "key"
-        , static_cast< const Json::array_t * >( nullptr )
+        , static_cast< const tktemotejoy::Json::array_t * >( nullptr )
     );
 }
 

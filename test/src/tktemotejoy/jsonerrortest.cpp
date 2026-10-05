@@ -27,7 +27,7 @@ TEST_F(
         auto operator()(
         ) const
         {
-            return jsonError(
+            return tktemotejoy::jsonError(
                 "がエラー"
                 , "key1"
                 , "key2"
@@ -49,7 +49,7 @@ TEST_F(
         auto operator()(
         ) const
         {
-            return jsonIsNotExists( "key" );
+            return tktemotejoy::jsonIsNotExists( "key" );
         }
     };
 
@@ -66,7 +66,7 @@ TEST_F(
         auto operator()(
         ) const
         {
-            return jsonIsNotInteger( "key" );
+            return tktemotejoy::jsonIsNotInteger( "key" );
         }
     };
 
@@ -83,7 +83,7 @@ TEST_F(
         auto operator()(
         ) const
         {
-            return jsonIsNotUnsigned( "key" );
+            return tktemotejoy::jsonIsNotUnsigned( "key" );
         }
     };
 
@@ -100,7 +100,7 @@ TEST_F(
         auto operator()(
         ) const
         {
-            return jsonIsNotString( "key" );
+            return tktemotejoy::jsonIsNotString( "key" );
         }
     };
 
@@ -117,7 +117,7 @@ TEST_F(
         auto operator()(
         ) const
         {
-            return jsonIsNotArray( "key" );
+            return tktemotejoy::jsonIsNotArray( "key" );
         }
     };
 
@@ -134,7 +134,7 @@ TEST_F(
         auto operator()(
         ) const
         {
-            return jsonIsNotObject( "key" );
+            return tktemotejoy::jsonIsNotObject( "key" );
         }
     };
 
@@ -151,7 +151,7 @@ TEST_F(
         auto operator()(
         ) const
         {
-            return jsonObjectKeyIsNotUnsignedString( "key" );
+            return tktemotejoy::jsonObjectKeyIsNotUnsignedString( "key" );
         }
     };
 

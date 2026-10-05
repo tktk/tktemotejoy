@@ -13,11 +13,11 @@ namespace {
             , const std::vector< std::string > &    _EXPECTED_STRINGS
         ) const
         {
-            const auto  JSON = parseCustomJson( _CUSTOM_JSON );
+            const auto  JSON = tktemotejoy::parseCustomJson( _CUSTOM_JSON );
 
             ASSERT_TRUE( JSON.is_array() );
 
-            const auto &    ARRAY = JSON.get_ref< const Json::array_t & >();
+            const auto &    ARRAY = JSON.get_ref< const tktemotejoy::Json::array_t & >();
 
             ASSERT_EQ( _EXPECTED_STRINGS.size(), ARRAY.size() );
 
@@ -25,7 +25,7 @@ namespace {
             for( const auto & J : ARRAY ) {
                 ASSERT_TRUE( J.is_string() );
 
-                EXPECT_EQ( _EXPECTED_STRINGS.at( index ), J.get_ref< const Json::string_t & >() );
+                EXPECT_EQ( _EXPECTED_STRINGS.at( index ), J.get_ref< const tktemotejoy::Json::string_t & >() );
 
                 ++index;
             }
@@ -36,11 +36,11 @@ namespace {
             , const std::map< std::string, std::string > &  _EXPECTED_MAP
         ) const
         {
-            const auto  JSON = parseCustomJson( _CUSTOM_JSON );
+            const auto  JSON = tktemotejoy::parseCustomJson( _CUSTOM_JSON );
 
             ASSERT_TRUE( JSON.is_object() );
 
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
+            const auto &    OBJECT = JSON.get_ref< const tktemotejoy::Json::object_t & >();
 
             ASSERT_EQ( _EXPECTED_MAP.size(), OBJECT.size() );
 
@@ -52,7 +52,7 @@ namespace {
                 const auto  IT = _EXPECTED_MAP.find( ITEM.first );
                 ASSERT_NE( _EXPECTED_MAP.end(), IT );
 
-                EXPECT_EQ( IT->second, J.get_ref< const Json::string_t & >() );
+                EXPECT_EQ( IT->second, J.get_ref< const tktemotejoy::Json::string_t & >() );
             }
         }
     };

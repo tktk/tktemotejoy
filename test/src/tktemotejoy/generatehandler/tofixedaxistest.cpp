@@ -35,9 +35,9 @@ namespace {
             , const tktemotejoy::PspState::Axis _EXPECTED_VALUE
         ) const
         {
-            const auto  JSON = Json::parse( _JSON_STRING );
+            const auto  JSON = tktemotejoy::Json::parse( _JSON_STRING );
 
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
+            const auto &    OBJECT = JSON.get_ref< const tktemotejoy::Json::object_t & >();
 
             auto    handlerUnique = TestGenerateHandlerUnique()( OBJECT );
             ASSERT_NE( nullptr, handlerUnique.get() );
@@ -49,9 +49,9 @@ namespace {
             const std::string & _JSON_STRING
         ) const
         {
-            const auto  JSON = Json::parse( _JSON_STRING );
+            const auto  JSON = tktemotejoy::Json::parse( _JSON_STRING );
 
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
+            const auto &    OBJECT = JSON.get_ref< const tktemotejoy::Json::object_t & >();
 
             EXPECT_ANY_THROW( TestGenerateHandlerUnique()( OBJECT ) );
         }

@@ -29,7 +29,7 @@ namespace {
     const auto  MAPPING_KEY_AXES_FOR_CHANGE_MAPPING = std::string( "axesForChangeMapping" );
 
     tktemotejoy::MappingNames generateMappingNames(
-        const Json::object_t &  _MAPPINGS
+        const tktemotejoy::Json::object_t & _MAPPINGS
     )
     {
         auto    mappingNames = tktemotejoy::MappingNames();
@@ -48,16 +48,16 @@ namespace {
     };
 
     General generateGeneral(
-        const Json::object_t &              _OBJECT
+        const tktemotejoy::Json::object_t & _OBJECT
         , const tktemotejoy::MappingNames & _MAPPING_NAMES
     )
     {
-        const auto &    GENERAL = getJsonObjectFromObject(
+        const auto &    GENERAL = tktemotejoy::getJsonObjectFromObject(
             _OBJECT
             , ROOT_KEY_GENERAL
         );
 
-        const auto &    DEFAULT_MAPPING = getJsonStringFromObject(
+        const auto &    DEFAULT_MAPPING = tktemotejoy::getJsonStringFromObject(
             GENERAL
             , GENERAL_KEY_DEFAULT_MAPPING
             , ROOT_KEY_GENERAL
@@ -76,7 +76,7 @@ namespace {
     struct GeneratePressButtonHandlerForPspStateUnique
     {
         auto operator()(
-            const Json::object_t &  _OBJECT
+            const tktemotejoy::Json::object_t & _OBJECT
         ) const
         {
             return tktemotejoy::generatePressButtonHandlerForPspStateUnique( _OBJECT );
@@ -86,7 +86,7 @@ namespace {
     struct GeneratePressButtonHandlerForChangeMappingUnique
     {
         auto operator()(
-            const Json::object_t &              _OBJECT
+            const tktemotejoy::Json::object_t & _OBJECT
             , const tktemotejoy::MappingNames & _MAPPING_NAMES
         ) const
         {
@@ -100,7 +100,7 @@ namespace {
     struct GenerateOperateAxisHandlerForPspStateUnique
     {
         auto operator()(
-            const Json::object_t &  _OBJECT
+            const tktemotejoy::Json::object_t & _OBJECT
         ) const
         {
             return tktemotejoy::generateOperateAxisHandlerForPspStateUnique( _OBJECT );
@@ -110,7 +110,7 @@ namespace {
     struct GenerateOperateAxisHandlerForChangeMappingUnique
     {
         auto operator()(
-            const Json::object_t &              _OBJECT
+            const tktemotejoy::Json::object_t & _OBJECT
             , const tktemotejoy::MappingNames & _MAPPING_NAMES
         ) const
         {
@@ -126,13 +126,13 @@ namespace {
         , typename ... ARGS_T
     >
     void setHandlers(
-        tktemotejoy::Mapping &      _mapping
-        , const Json::object_t &    _OBJECT
-        , const std::string &       _KEY
-        , const ARGS_T & ...        _ARGS
+        tktemotejoy::Mapping &                  _mapping
+        , const tktemotejoy::Json::object_t &   _OBJECT
+        , const std::string &                   _KEY
+        , const ARGS_T & ...                    _ARGS
     )
     {
-        const auto  MAPPINGS_PTR = getJsonObjectFromObjectNotRequired(
+        const auto  MAPPINGS_PTR = tktemotejoy::getJsonObjectFromObjectNotRequired(
             _OBJECT
             , _KEY
         );
@@ -146,14 +146,14 @@ namespace {
             try {
                 index = std::stoull( ITEM.first );
             } catch( ... ) {
-                throw jsonObjectKeyIsNotUnsignedString(
+                throw tktemotejoy::jsonObjectKeyIsNotUnsignedString(
                     _KEY
                     , ITEM.first
                 );
             }
 
             const auto &    MAPPING_JSON = ITEM.second;
-            const auto &    MAPPING = getJsonObjectFromJson(
+            const auto &    MAPPING = tktemotejoy::getJsonObjectFromJson(
                 MAPPING_JSON
                 , _KEY
                 , index
@@ -178,9 +178,9 @@ namespace {
     }
 
     void generateHandlersToMapping(
-        tktemotejoy::Mapping &              _mapping
-        , const Json::object_t &            _OBJECT
-        , const tktemotejoy::MappingNames & _MAPPING_NAMES
+        tktemotejoy::Mapping &                  _mapping
+        , const tktemotejoy::Json::object_t &   _OBJECT
+        , const tktemotejoy::MappingNames &     _MAPPING_NAMES
     )
     {
         setHandlers< GeneratePressButtonHandlerForPspStateUnique >(
@@ -211,13 +211,13 @@ namespace {
     }
 
     void applyTemplates(
-        tktemotejoy::Mapping &              _mapping
-        , const Json::object_t &            _OBJECT
-        , const Json::object_t *            _TEMPLATES_PTR
-        , const tktemotejoy::MappingNames & _MAPPING_NAMES
+        tktemotejoy::Mapping &                  _mapping
+        , const tktemotejoy::Json::object_t &   _OBJECT
+        , const tktemotejoy::Json::object_t *   _TEMPLATES_PTR
+        , const tktemotejoy::MappingNames &     _MAPPING_NAMES
     )
     {
-        const auto  MAPPING_TEMPLATES_PTR = getJsonArrayFromObjectNotRequired(
+        const auto  MAPPING_TEMPLATES_PTR = tktemotejoy::getJsonArrayFromObjectNotRequired(
             _OBJECT
             , MAPPING_KEY_TEMPLATES
         );
@@ -231,7 +231,7 @@ namespace {
         }
 
         if( _TEMPLATES_PTR == nullptr ) {
-            throw jsonIsNotExists( ROOT_KEY_TEMPLATES );
+            throw tktemotejoy::jsonIsNotExists( ROOT_KEY_TEMPLATES );
         }
         const auto &    TEMPLATES = *_TEMPLATES_PTR;
 
@@ -240,16 +240,16 @@ namespace {
         auto    index = 0;
         for( const auto & MAPPING_TEMPLATE_JSON : MAPPING_TEMPLATES ) {
             if( MAPPING_TEMPLATE_JSON.is_string() == false ) {
-                throw jsonIsNotString(
+                throw tktemotejoy::jsonIsNotString(
                     MAPPING_KEY_TEMPLATES
                     , index
                 );
             }
-            const auto &    MAPPING_TEMPLATE = MAPPING_TEMPLATE_JSON.get_ref< const Json::string_t & >();
+            const auto &    MAPPING_TEMPLATE = MAPPING_TEMPLATE_JSON.get_ref< const tktemotejoy::Json::string_t & >();
 
             const auto  IT = TEMPLATES.find( MAPPING_TEMPLATE );
             if( IT == TEMPLATES_END ) {
-                throw jsonIsNotExists(
+                throw tktemotejoy::jsonIsNotExists(
                     ROOT_KEY_TEMPLATES
                     , MAPPING_TEMPLATE
                 );
@@ -257,12 +257,12 @@ namespace {
             const auto &    TEMPLATE_JSON = IT->second;
 
             if( TEMPLATE_JSON.is_object() == false ) {
-                throw jsonIsNotObject(
+                throw tktemotejoy::jsonIsNotObject(
                     ROOT_KEY_TEMPLATES
                     , MAPPING_TEMPLATE
                 );
             }
-            const auto &    TEMPLATE = TEMPLATE_JSON.get_ref< const Json::object_t & >();
+            const auto &    TEMPLATE = TEMPLATE_JSON.get_ref< const tktemotejoy::Json::object_t & >();
 
             applyTemplates(
                 _mapping
@@ -282,11 +282,11 @@ namespace {
     }
 
     tktemotejoy::Mapping generateMapping(
-        const Json::object_t &              _OBJECT
-        , const Json::object_t *            _TEMPLATES_PTR
-        , const tktemotejoy::MappingNames & _MAPPING_NAMES
-        , const std::size_t &       _BUTTONS
-        , const std::size_t &       _AXES
+        const tktemotejoy::Json::object_t &     _OBJECT
+        , const tktemotejoy::Json::object_t *   _TEMPLATES_PTR
+        , const tktemotejoy::MappingNames &     _MAPPING_NAMES
+        , const std::size_t &                   _BUTTONS
+        , const std::size_t &                   _AXES
     )
     {
         auto    mapping = tktemotejoy::Mapping(
@@ -311,18 +311,18 @@ namespace {
     }
 
     tktemotejoy::Mappings::Impl generateMappingsImpl(
-        const Json::object_t &              _MAPPINGS
-        , const Json::object_t *            _TEMPLATES_PTR
-        , const tktemotejoy::MappingNames & _MAPPING_NAMES
-        , const std::size_t &               _BUTTONS
-        , const std::size_t &               _AXES
+        const tktemotejoy::Json::object_t &     _MAPPINGS
+        , const tktemotejoy::Json::object_t *   _TEMPLATES_PTR
+        , const tktemotejoy::MappingNames &     _MAPPING_NAMES
+        , const std::size_t &                   _BUTTONS
+        , const std::size_t &                   _AXES
     )
     {
         auto    impl = tktemotejoy::Mappings::Impl();
         for( const auto & MAPPING_NAME : _MAPPING_NAMES ) {
             const auto &    MAPPING_JSON = _MAPPINGS.at( MAPPING_NAME );
 
-            const auto &    MAPPING = getJsonObjectFromJson(
+            const auto &    MAPPING = tktemotejoy::getJsonObjectFromJson(
                 MAPPING_JSON
                 , ROOT_KEY_MAPPINGS
                 , MAPPING_NAME

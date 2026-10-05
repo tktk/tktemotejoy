@@ -8,7 +8,7 @@ namespace {
     struct GenerateOperateAxisHandlerForChangeMappingUnique
     {
         auto operator()(
-            const Json &                        _JSON
+            const tktemotejoy::Json &           _JSON
             , const tktemotejoy::MappingNames & _MAPPING_NAMES
         ) const
         {

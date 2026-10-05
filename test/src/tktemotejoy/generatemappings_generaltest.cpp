@@ -20,12 +20,12 @@ namespace {
     };
 
     auto getMappingIndex(
-        const Json &            _JSON
-        , const std::string &   _MAPPING_NAME
+        const tktemotejoy::Json &   _JSON
+        , const std::string &       _MAPPING_NAME
     )
     {
-        const auto &    ROOT = _JSON.get_ref< const Json::object_t & >();
-        const auto &    MAPPINGS = ROOT.at( "mappings" ).get_ref< const Json::object_t & >();
+        const auto &    ROOT = _JSON.get_ref< const tktemotejoy::Json::object_t & >();
+        const auto &    MAPPINGS = ROOT.at( "mappings" ).get_ref< const tktemotejoy::Json::object_t & >();
 
         auto    keys = std::vector< std::string >();
         for( const auto & PAIR : MAPPINGS ) {
@@ -55,7 +55,7 @@ namespace {
             , const std::string &   _MAPPING_NAME
         ) const
         {
-            const auto  JSON = Json::parse( _JSON_STRING );
+            const auto  JSON = tktemotejoy::Json::parse( _JSON_STRING );
 
             const auto  EXPECTED_MAPPING_INDEX = getMappingIndex(
                 JSON
@@ -77,7 +77,7 @@ namespace {
             const std::string & _JSON_STRING
         ) const
         {
-            const auto  JSON = Json::parse( _JSON_STRING );
+            const auto  JSON = tktemotejoy::Json::parse( _JSON_STRING );
 
             EXPECT_ANY_THROW(
                 tktemotejoy::generateMappings(

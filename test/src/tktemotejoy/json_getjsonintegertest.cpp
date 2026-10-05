@@ -9,13 +9,13 @@ namespace {
     {
         template< typename ... ARGS_T >
         const auto & operator()(
-            const Json &            _JSON
-            , const ARGS_T & ...    _ARGS
+            const tktemotejoy::Json &   _JSON
+            , const ARGS_T & ...        _ARGS
         ) const
         {
-            const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
+            const auto &    OBJECT = _JSON.get_ref< const tktemotejoy::Json::object_t & >();
 
-            return getJsonIntegerFromObject(
+            return tktemotejoy::getJsonIntegerFromObject(
                 OBJECT
                 , _ARGS ...
             );
@@ -28,13 +28,13 @@ namespace {
     {
         template< typename ... ARGS_T >
         auto operator()(
-            const Json &            _JSON
-            , const ARGS_T & ...    _ARGS
+            const tktemotejoy::Json &   _JSON
+            , const ARGS_T & ...        _ARGS
         ) const
         {
-            const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
+            const auto &    OBJECT = _JSON.get_ref< const tktemotejoy::Json::object_t & >();
 
-            return getJsonIntegerFromObjectWithDefault(
+            return tktemotejoy::getJsonIntegerFromObjectWithDefault(
                 OBJECT
                 , _ARGS ...
             );

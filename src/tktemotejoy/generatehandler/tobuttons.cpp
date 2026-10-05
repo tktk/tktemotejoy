@@ -43,10 +43,10 @@ namespace {
     struct GenerateHandlerUnique
     {
         auto operator()(
-            const Json::object_t &  _OBJECT
+            const tktemotejoy::Json::object_t &  _OBJECT
         ) const
         {
-            const auto &    BUTTON_STRINGS = getJsonArrayFromObject(
+            const auto &    BUTTON_STRINGS = tktemotejoy::getJsonArrayFromObject(
                 _OBJECT
                 , KEY_BUTTONS
                 , TYPE

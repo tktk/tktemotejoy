@@ -23,7 +23,7 @@ public:
         , const std::size_t                 _EXPECTED_NEW_MAPPING_INDEX
     ) const
     {
-        const auto  JSON = Json::parse( _JSON_STRING );
+        const auto  JSON = tktemotejoy::Json::parse( _JSON_STRING );
 
         auto    handlerUnique = GENERATE_HANDLER_UNIQUE_T()(
             JSON
@@ -62,7 +62,7 @@ public:
         , const tktemotejoy::MappingNames & _MAPPING_NAMES
     ) const
     {
-        const auto  JSON = Json::parse( _JSON_STRING );
+        const auto  JSON = tktemotejoy::Json::parse( _JSON_STRING );
 
         EXPECT_ANY_THROW(
             GENERATE_HANDLER_UNIQUE_T()(
@@ -77,7 +77,7 @@ public:
         , const tktemotejoy::MappingNames & _MAPPING_NAMES
     ) const
     {
-        const auto  JSON = Json::parse( _JSON_STRING );
+        const auto  JSON = tktemotejoy::Json::parse( _JSON_STRING );
 
         const auto  HANDLER_UNIQUE = GENERATE_HANDLER_UNIQUE_T()(
             JSON

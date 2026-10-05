@@ -37,9 +37,9 @@ namespace {
             , const std::size_t                 _EXPECTED_MAPPING_INDEX
         ) const
         {
-            const auto  JSON = Json::parse( _JSON_STRING );
+            const auto  JSON = tktemotejoy::Json::parse( _JSON_STRING );
 
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
+            const auto &    OBJECT = JSON.get_ref< const tktemotejoy::Json::object_t & >();
 
             auto    handlerUnique = TestGenerateHandlerUnique()(
                 OBJECT
@@ -55,9 +55,9 @@ namespace {
             , const tktemotejoy::MappingNames & _MAPPING_NAMES
         ) const
         {
-            const auto  JSON = Json::parse( _JSON_STRING );
+            const auto  JSON = tktemotejoy::Json::parse( _JSON_STRING );
 
-            const auto &    OBJECT = JSON.get_ref< const Json::object_t & >();
+            const auto &    OBJECT = JSON.get_ref< const tktemotejoy::Json::object_t & >();
 
             EXPECT_ANY_THROW(
                 TestGenerateHandlerUnique()(

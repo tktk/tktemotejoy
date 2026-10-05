@@ -16,7 +16,7 @@ namespace {
             , const tktemotejoy::PspState::Bits _EXPECTED_BITS
         ) const
         {
-            const auto  JSON = Json::parse( _JSON_STRING );
+            const auto  JSON = tktemotejoy::Json::parse( _JSON_STRING );
 
             auto    mappings = tktemotejoy::generateMappings(
                 JSON
@@ -55,7 +55,7 @@ namespace {
             const std::string & _JSON_STRING
         ) const
         {
-            const auto  JSON = Json::parse( _JSON_STRING );
+            const auto  JSON = tktemotejoy::Json::parse( _JSON_STRING );
 
             EXPECT_ANY_THROW(
                 tktemotejoy::generateMappings(

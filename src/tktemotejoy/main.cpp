@@ -37,7 +37,7 @@ namespace {
     {
         const auto  JSON_STRING = tktemotejoy::readFile( _FILE_PATH );
 
-        const auto  JSON = parseCustomJson( JSON_STRING );
+        const auto  JSON = tktemotejoy::parseCustomJson( JSON_STRING );
 
         return tktemotejoy::generateMappings(
             JSON

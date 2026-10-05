@@ -9,11 +9,11 @@ namespace {
     {
         template< typename ... ARGS_T >
         const auto & operator()(
-            const Json &            _JSON
+            const tktemotejoy::Json &   _JSON
             , const ARGS_T & ...
         ) const
         {
-            return _JSON.get_ref< const Json::string_t & >();
+            return _JSON.get_ref< const tktemotejoy::Json::string_t & >();
         }
     };
 
@@ -21,13 +21,13 @@ namespace {
     {
         template< typename ... ARGS_T >
         const auto & operator()(
-            const Json &            _JSON
-            , const ARGS_T & ...    _ARGS
+            const tktemotejoy::Json &   _JSON
+            , const ARGS_T & ...        _ARGS
         ) const
         {
-            const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
+            const auto &    OBJECT = _JSON.get_ref< const tktemotejoy::Json::object_t & >();
 
-            return getJsonFromObject< TestGetJsonString >(
+            return tktemotejoy::getJsonFromObject< TestGetJsonString >(
                 OBJECT
                 , _ARGS ...
             );
@@ -40,13 +40,13 @@ namespace {
     {
         template< typename ... ARGS_T >
         auto operator()(
-            const Json &            _JSON
-            , const ARGS_T & ...    _ARGS
+            const tktemotejoy::Json &   _JSON
+            , const ARGS_T & ...        _ARGS
         ) const
         {
-            const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
+            const auto &    OBJECT = _JSON.get_ref< const tktemotejoy::Json::object_t & >();
 
-            return getJsonFromObjectNotRequired< TestGetJsonString >(
+            return tktemotejoy::getJsonFromObjectNotRequired< TestGetJsonString >(
                 OBJECT
                 , _ARGS ...
             );
@@ -59,13 +59,13 @@ namespace {
     {
         template< typename ... ARGS_T >
         const auto & operator()(
-            const Json &            _JSON
-            , const ARGS_T & ...    _ARGS
+            const tktemotejoy::Json &   _JSON
+            , const ARGS_T & ...        _ARGS
         ) const
         {
-            const auto &    OBJECT = _JSON.get_ref< const Json::object_t & >();
+            const auto &    OBJECT = _JSON.get_ref< const tktemotejoy::Json::object_t & >();
 
-            return getJsonFromObjectWithDefault< TestGetJsonString >(
+            return tktemotejoy::getJsonFromObjectWithDefault< TestGetJsonString >(
                 OBJECT
                 , _ARGS ...
             );
@@ -109,7 +109,7 @@ TEST_F(
     , FromObjectNotRequired
 )
 {
-    const auto  EXPECTED = Json::string_t( "STRING" );
+    const auto  EXPECTED = tktemotejoy::Json::string_t( "STRING" );
 
     this->test(
         R"({
@@ -129,7 +129,7 @@ TEST_F(
         R"({
 })"
         , "key"
-        , static_cast< const Json::string_t * >( nullptr )
+        , static_cast< const tktemotejoy::Json::string_t * >( nullptr )
     );
 }
 
@@ -142,9 +142,9 @@ TEST_F(
         R"({
     "key" : "STRING"
 })"
-        , Json::string_t( "DEFAULT" )
+        , tktemotejoy::Json::string_t( "DEFAULT" )
         , "key"
-        , Json::string_t( "STRING" )
+        , tktemotejoy::Json::string_t( "STRING" )
     );
 }
 
@@ -156,8 +156,8 @@ TEST_F(
     this->test(
         R"({
 })"
-        , Json::string_t( "DEFAULT" )
+        , tktemotejoy::Json::string_t( "DEFAULT" )
         , "key"
-        , Json::string_t( "DEFAULT" )
+        , tktemotejoy::Json::string_t( "DEFAULT" )
     );
 }
