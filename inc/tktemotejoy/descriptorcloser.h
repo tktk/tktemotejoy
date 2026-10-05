@@ -3,16 +3,18 @@
 
 #include <memory>
 
-struct CloseDescriptor
-{
-    void operator()(
-        int *
-    ) const;
-};
+namespace tktemotejoy {
+    struct CloseDescriptor
+    {
+        void operator()(
+            int *
+        ) const;
+    };
 
-using DescriptorCloser = std::unique_ptr<
-    int
-    , CloseDescriptor
->;
+    using DescriptorCloser = std::unique_ptr<
+        int
+        , CloseDescriptor
+    >;
+}
 
 #endif  // TKTEMOTEJOY_DESCRIPTORCLOSER_H
