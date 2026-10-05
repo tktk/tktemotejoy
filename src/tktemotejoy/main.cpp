@@ -83,6 +83,18 @@ namespace {
             );
         }
     }
+
+    void writeClearBit(
+        tktusbrepeater::Writer &    _toRepeater
+    )
+    {
+        const auto  CLEAR_BITS = tktemotejoy::PspState::Bits( tktemotejoy::PSPSTATE_BITS_DEFAULT );
+
+        _toRepeater.write(
+            &CLEAR_BITS
+            , sizeof( CLEAR_BITS )
+        );
+    }
 }
 
 int main(
@@ -124,6 +136,7 @@ int main(
     if( toRepeaterUnique.get() == nullptr ) {
         throw std::runtime_error( "tktusbrepeater::newWriter()が失敗" );
     }
+    auto &  toRepeater = *toRepeaterUnique;
 
     auto    evdevState = tktemotejoy::EvdevState(
         BUTTONS
@@ -207,13 +220,13 @@ int main(
             pspState.runWhenDiff(
                 prevPspState
                 , [
-                    &toRepeaterUnique
+                    &toRepeater
                 ]
                 (
                     const tktemotejoy::PspState::Bits & _BITS
                 )
                 {
-                    toRepeaterUnique->write(
+                    toRepeater.write(
                         &_BITS
                         , sizeof( _BITS )
                     );
@@ -223,12 +236,7 @@ int main(
             prevPspState = pspState;
         }
     } catch( const std::runtime_error & _EX ) {
-        const auto  CLEAR_BITS = tktemotejoy::PspState::Bits( tktemotejoy::PSPSTATE_BITS_DEFAULT );
-
-        toRepeaterUnique->write(
-            &CLEAR_BITS
-            , sizeof( CLEAR_BITS )
-        );
+        writeClearBit( toRepeater );
 
         throw _EX;
     }
