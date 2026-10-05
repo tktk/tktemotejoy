@@ -46,14 +46,13 @@ namespace {
         );
     }
 
-    void initializeEvdevState(
+    void initializeEvdevStateAllKey(
         tktemotejoy::EvdevState &               _evdevState
-        , const int                             _DESCRIPTOR
+        , const int &                           _EVDEV
         , const tktemotejoy::EvdevKeyIndices &  _KEY_INDICES
-        , const tktemotejoy::EvdevAbsIndices &  _ABS_INDICES
     )
     {
-        const auto  KEY_STATES = tktemotejoy::generateEvdevKeyStates( _DESCRIPTOR );
+        const auto  KEY_STATES = tktemotejoy::generateEvdevKeyStates( _EVDEV );
 
         const auto  KEY_STATES_SIZE = KEY_STATES.size();
         for( auto i = std::size_t( 0 ) ; i < KEY_STATES_SIZE ; ++i ) {
@@ -67,8 +66,15 @@ namespace {
                 , KEY_STATES.test( i ) == true ? 1 : 0
             );
         }
+    }
 
-        const auto  ABS_DATA_ARRAY = tktemotejoy::generateEvdevAbsDataArray( _DESCRIPTOR );
+    void initializeEvdevStateAllAbs(
+        tktemotejoy::EvdevState &               _evdevState
+        , const int &                           _EVDEV
+        , const tktemotejoy::EvdevAbsIndices &  _ABS_INDICES
+    )
+    {
+        const auto  ABS_DATA_ARRAY = tktemotejoy::generateEvdevAbsDataArray( _EVDEV );
 
         const auto  ABS_DATA_ARRAY_SIZE = ABS_DATA_ARRAY.size();
         for( auto i = std::size_t( 0 ) ; i < ABS_DATA_ARRAY_SIZE ; ++i ) {
@@ -84,16 +90,80 @@ namespace {
         }
     }
 
+    void initializeEvdevState(
+        tktemotejoy::EvdevState &               _evdevState
+        , const int &                           _EVDEV
+        , const tktemotejoy::EvdevKeyIndices &  _KEY_INDICES
+        , const tktemotejoy::EvdevAbsIndices &  _ABS_INDICES
+    )
+    {
+        initializeEvdevStateAllKey(
+            _evdevState
+            , _EVDEV
+            , _KEY_INDICES
+        );
+
+        initializeEvdevStateAllAbs(
+            _evdevState
+            , _EVDEV
+            , _ABS_INDICES
+        );
+    }
+
+    void updateEvdevStateKey(
+        tktemotejoy::EvdevState &               _evdevState
+        , const tktemotejoy::EvdevKeyIndices &  _KEY_INDICES
+        , const __u16 &                         _EVENT_CODE
+        , const __s32 &                         _EVENT_VALUE
+    )
+    {
+        const auto &    INDEX = _KEY_INDICES.at( _EVENT_CODE );
+        if( INDEX < 0 ) {
+            auto    oStringStream = std::ostringstream();
+
+            oStringStream << "無効なキーコード : [" << _EVENT_CODE << ']';
+
+            throw std::runtime_error( oStringStream.str() );
+        }
+
+        _evdevState.setButtonState(
+            INDEX
+            , _EVENT_VALUE
+        );
+    }
+
+    void updateEvdevStateAbs(
+        tktemotejoy::EvdevState &               _evdevState
+        , const tktemotejoy::EvdevAbsIndices &  _ABS_INDICES
+        , const __u16 &                         _EVENT_CODE
+        , const __s32 &                         _EVENT_VALUE
+    )
+    {
+        const auto &    INDEX = _ABS_INDICES.at( _EVENT_CODE );
+        if( INDEX < 0 ) {
+            auto    oStringStream = std::ostringstream();
+
+            oStringStream << "無効な軸コード : [" << _EVENT_CODE << ']';
+
+            throw std::runtime_error( oStringStream.str() );
+        }
+
+        _evdevState.setAxisState(
+            INDEX
+            , _EVENT_VALUE
+        );
+    }
+
     void updateEvdevState(
         tktemotejoy::EvdevState &               _evdevState
-        , int &                                 _evdev
+        , const int &                           _EVDEV
         , const tktemotejoy::EvdevKeyIndices &  _KEY_INDICES
         , const tktemotejoy::EvdevAbsIndices &  _ABS_INDICES
     )
     {
         auto        inputEvents = tktemotejoy::EvdevInputEvents();
         const auto  READ_EVENTS = tktemotejoy::readEvdevInputEvents(
-            _evdev
+            _EVDEV
             , inputEvents
         );
 
@@ -117,31 +187,17 @@ namespace {
                 const auto &    EVENT_VALUE = _EVENT.value;
 
                 if( EVENT_TYPE == EV_KEY ) {
-                    const auto &    INDEX = _KEY_INDICES.at( EVENT_CODE );
-                    if( INDEX < 0 ) {
-                        auto    oStringStream = std::ostringstream();
-
-                        oStringStream << "無効なキーコード : [" << EVENT_CODE << ']';
-
-                        throw std::runtime_error( oStringStream.str() );
-                    }
-
-                    _evdevState.setButtonState(
-                        INDEX
+                    updateEvdevStateKey(
+                        _evdevState
+                        , _KEY_INDICES
+                        , EVENT_CODE
                         , EVENT_VALUE
                     );
                 } else if( EVENT_TYPE == EV_ABS ) {
-                    const auto &    INDEX = _ABS_INDICES.at( EVENT_CODE );
-                    if( INDEX < 0 ) {
-                        auto    oStringStream = std::ostringstream();
-
-                        oStringStream << "無効な軸コード : [" << EVENT_CODE << ']';
-
-                        throw std::runtime_error( oStringStream.str() );
-                    }
-
-                    _evdevState.setAxisState(
-                        INDEX
+                    updateEvdevStateAbs(
+                        _evdevState
+                        , _ABS_INDICES
+                        , EVENT_CODE
                         , EVENT_VALUE
                     );
                 }
@@ -184,7 +240,7 @@ namespace {
     }
 
     void mainLoop(
-        int &                                   _evdev
+        const int &                             _EVDEV
         , const tktemotejoy::EvdevKeyIndices &  _KEY_INDICES
         , const tktemotejoy::EvdevAbsIndices &  _ABS_INDICES
         , tktemotejoy::Mappings &               _mappings
@@ -196,7 +252,7 @@ namespace {
         while( true ) {
             updateEvdevState(
                 _evdevState
-                , _evdev
+                , _EVDEV
                 , _KEY_INDICES
                 , _ABS_INDICES
             );
